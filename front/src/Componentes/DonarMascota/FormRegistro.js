@@ -16,7 +16,7 @@ export default function FormRegistro () {
         facebookURL:"",
         twitterURL:"",
         instagramURL:"",
-        logo:[]
+        logo:""
     });
 
     function handleSubmit(e) {
