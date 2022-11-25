@@ -1,6 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import Paypal from "../Paypal/Paypal";
+import MercadoPago from "../mercadoPago/mercadoPago"
 
 import stl from "./Donacion.module.css";
 
@@ -49,7 +50,7 @@ export default function Donar() {
                 // </div> */}
                 {/* <button>Mercado Pago</button>
                 <button>Crypto</button> */}
-            
+            <MercadoPago />
         </div>
        </form>
 

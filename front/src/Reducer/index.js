@@ -1,4 +1,4 @@
-import { CREATE_ANIMAL, CREATE_USER, GET_ANIMAL_BY_ID, GET_MASCOTAS, PAGO_PAYPAL } from "../Actions";
+import { CREATE_ANIMAL, CREATE_USER, GET_ANIMAL_BY_ID, GET_MASCOTAS, PAGO_PAYPAL, PAGO_MERCADO_PAGO } from "../Actions";
 
 const initialState = {
    animales: [],
@@ -27,6 +27,9 @@ export default function rootReducer(state = initialState, action){
             return { ...state, animalesdetail: action.payload }
 
         case PAGO_PAYPAL:
+            return {...state}
+
+        case PAGO_MERCADO_PAGO:
             return {...state}
             
         default:
