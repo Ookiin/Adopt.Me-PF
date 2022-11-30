@@ -4,7 +4,11 @@ import NavBar from "../NavBar/NavBar";
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import getDetalleUsuario from "../../Actions/getDetalleUsuario"
-//import stl from "../Perfil/perfil.madule.css";
+/*
+import cambiarContraseña from "./CAMBIAR CONTRASEÑA"
+import misPublicaciones from "./MIS PUBLICACIONES"
+import misFavoritos from "./MIS FAVORITOS"
+import miInformacion from "./MI INFORMACION"*/
 
 export default function Perfil() {
     const { user, isAuthenticated } = useAuth0()
@@ -27,49 +31,6 @@ export default function Perfil() {
         <div >
             <NavBar/>
             <h2>PERFIL</h2>
-
-            <div >
-                <div>
-                    <button>
-                        Mi informacion
-                    </button>
-                </div>
-                <br />
-                <br />
-
-                <div>
-                    <button>
-                        Mis favoritos
-                    </button>
-                </div>
-                <br />
-                <br />
-
-                <div>
-                    <button>
-                        Mis historias
-                    </button>
-                </div>
-                <br />
-                <br />
-
-                <div>
-                    <button>
-                        Cambiar contraseña
-                    </button>
-                </div>
-                <br />
-                <br />
-
-                <div>
-                    <button>
-                        Inicio
-                    </button>
-                </div>
-                <br />
-                <br />
-            </div>
-
             {isAuthenticated && (
                 <div>
                     <img src={detalleUser.fotoPerfil} alt={detalleUser.nombre} />
@@ -82,7 +43,6 @@ export default function Perfil() {
                     <br></br>
                     <br></br>
                     <br></br>
-                    <button onClick={() => logout()}>Cerrar sesión</button>
                 </div>
             )}
             
