@@ -18,7 +18,6 @@ export default function BuscarMascota() {
   const params = useParams();
   const dispatch = useDispatch();
   
-
   const allPets = useSelector((state)=>state.animalesPerdidos);
   const [currentPage, setCurrentPage] = useState(1);
   const [mascotasPerPage] = useState(4);
@@ -26,7 +25,6 @@ export default function BuscarMascota() {
   const firstPetIndex = lastPetIndex - mascotasPerPage ;
   const currentPets = allPets.slice(firstPetIndex,lastPetIndex);
   const actualPage = (pageNumber) => {setCurrentPage(pageNumber)};
-
 
   useEffect(()=>{      
     dispatch(getAnimalesPerdidos());
@@ -60,15 +58,15 @@ export default function BuscarMascota() {
 
   return (
     <>
-      <div key={params.id}></div>
+      <div className={stl.paginaadopcionperros} key={params.id}></div>
       <NavBar />
       <FloatingUI />
       <div>
-        <h1 className={stl.titulo}>BUSCA AQUI TU MASCOTA PERDIDA</h1>
+        <h1 className={stl.tituloPerros}>BUSCA AQUI TU MASCOTA PERDIDA</h1>
       </div>
 
       <div>
-      <button className={stl.boton} onClick= {(e)=>handleRecargar(e)}>RECARGAR</button>
+      <button className={stl.btnNavHome} onClick= {(e)=>handleRecargar(e)}>RECARGAR</button>
       </div>
 
        <Paging
@@ -79,8 +77,9 @@ export default function BuscarMascota() {
         currentPets={currentPets}
        />
 
+    <div className={stl.filtros}>
       <div>
-      <select onChange={(e)=>handleTamaño(e)}>
+      <select className={stl.op} onChange={(e)=>handleTamaño(e)}>
                 <option value='All' disabled selected defaultValue>Tamaño</option>
                 <option value = 'Chico'>Chico</option>
                 <option value = 'Mediano'>Mediano</option>
@@ -89,20 +88,23 @@ export default function BuscarMascota() {
       </div>
 
       <div>
-      <select onChange={(e)=>handleEstado(e)}>
+      <select className={stl.op} onChange={(e)=>handleEstado(e)}>
                 <option value='estado' disabled selected defaultValue>Estado</option>
                 <option value = 'Perdido'>Perdido</option>
                 <option value = 'Encontrado'>Encontrado</option>                                           
             </select>           
       </div>
+      </div>
 
       <div>
-        <button onClick={(e)=>handleGato(e)}>Gatos</button>
+        <button className={stl.btnNav} onClick={(e)=>handleGato(e)}>Gatos</button>
       </div>
       
       <div>
-        <button onClick={(e)=>handlePerro(e)}>Perros</button>
+        <button className={stl.btnNav} onClick={(e)=>handlePerro(e)}>Perros</button>
       </div>
+
+    <div className={stl.listadoCards}>
 
       {currentPets.length > 0 && currentPets.map(a =>{
         return(  
@@ -115,6 +117,8 @@ export default function BuscarMascota() {
         />                  
                )
            })}
+
+</div>
       
       <Link to="/homepage">
         <button className={stl.boton}>VOLVER</button>

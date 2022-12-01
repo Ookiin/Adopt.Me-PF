@@ -20,6 +20,8 @@ import DarEnAdopcion from "../Componentes/DonarMascota/formularioDar";
 import Perfil from "../Componentes/Perfil/perfil";
 import Login from "../Componentes/Login/Login";
 import DetalleMascotaPerdida from '../Componentes/BuscarMascota/DetalleMascotaPerdida';
+import MapView from "../Componentes/Maps/Maps";
+
 
 
 function App() {
@@ -47,6 +49,7 @@ function App() {
           <Route exact path="/registroMascota" element={<DarEnAdopcion />} />
           <Route exact path="/perfil" element={<Perfil />} />
           <Route exact path="/prueba" element={<Login />} />
+          <Route exact path="map" element={<MapView />} />
 
         </Routes>
       </div>

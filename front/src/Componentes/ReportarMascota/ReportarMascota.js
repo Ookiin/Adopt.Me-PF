@@ -123,12 +123,14 @@ console.log(input)
 
 
    function handleTamaño(e) {
+    if (input.tama.length === 0)
     setInput({
       ...input,
       tama: [...input.tama, e.target.value]
     })
  } 
  function handleEstado(e) {
+  if (input.estado.length === 0)
   setInput({
     ...input,
     estado: [...input.estado, e.target.value]
