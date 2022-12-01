@@ -1,15 +1,25 @@
 import React, { useEffect, useState } from "react"
-import {MapContainer, TileLayer} from "react-leaflet"
+import {MapContainer, Marker, Popup, TileLayer} from "react-leaflet"
 import "leaflet/dist/leaflet.css"
 import "./Maps.css";
-import Markers from "./Markers";
+import {IconLocation} from "./IconLocation";
+import NavBar from "../NavBar/NavBar";
+import Footer from "../Footer/Footer";
+import { Link } from "react-router-dom";
+import createLocation from "../../Actions/createLocation";
 import { useDispatch } from "react-redux";
+import Markers from "./Markers";
 
 export default function MapView() {
 
     const dispatch = useDispatch()
 
-    /////////////////////////////////////////////////////////// TOMA MI UBICACION ACTUAL SEGUN MI GPS ///////////////////////////////////////7
+    /////////////////////////////////////////////////////////// TOMA MI UBICACION ACTUAL SEGUN MI GPS ///////////////////
+
+    const [geo, setGeo] = useState({
+        longitude: -61.043988,
+        latitude: -34.7361,
+    })
 
     useEffect(() => {
         navigator.geolocation.getCurrentPosition(
@@ -27,50 +37,73 @@ export default function MapView() {
             console.log("estoy haciendo el primer useEffect")
     }, [])
 
-    /////////////////////////////////////////////////// GUARDA MI UBICACION ACTUAL EN UN ESTADO /////////////////////////////////////////////////////
+    ///////////////////////////////////////////////////// GUARDA LA UBICACION EN LA BASE DE DATOS //////////////////////
 
-    const [geo, setGeo] = useState({
-        longitude: 0,
-        latitude: 0,
+    const [location, setLocation] = useState({
+        longitude: "",
+        latitude: ""
     })
-    console.log("estoy viendo el estado de geo.longitude", geo.longitude)
-    console.log("estoy viendo el estado de geo.latitud", geo.latitude)
 
-    /////////////////////////////////////////////////////////////// ACTUALIZA LA VISTA A MI UBICACION  ///////////////////////////////////////////
-    
+    function handleLocation() {
+        setLocation({
+            longitude: geo.longitude,
+            latitude: geo.latitude
+        })
+        console.log("primer handle", location)
+        alert("Ubicacion Establecida. Por favor seleccione 'Guardar mi Ubicacion'")
+    }
+
+    function handleLocation2() {
+        setLocation({
+            longitude: geo.longitude,
+            latitude: geo.latitude
+        })
+        console.log("segundo handle", location)
+        alert("Ubicacion Guardada con exito")
+    }
+
     useEffect(() => {
-        if (geo.latitude.length !== 0) {
-            const currentLocation = {
-                lat: geo.latitude,
-                lng: geo.longitude
-            }
-            setActualState({...actual, currentLocation})
-            console.log("estoy haciendo el segundo useEffect")
-        }}, [])
-       
-    
-    //////////////////////////////////////////////////////////////////// GUARDA LA VISTA INICIAL A UN ESTADO /////////////////////////////////////77
+        if (location.longitude.length >= 1 && location.latitude.length >= 1) {
+            dispatch(createLocation())
+        }
+    }, [location.longitude.length, location.latitude.length, dispatch])
 
-    const [actual, setActualState] = useState({
-        currentLocation: {lat: "-34.0981400", lng: "-59.0285800"},
-        zoom: 13,
-    })
-    console.log("estoy viendo el estado de actual", actual.currentLocation)
-    console.log(actual.zoom)
-    
-////////////////////////////////////////////////// REDIRECCIONA MI VISTA DEL MAPA A MI UBICACION POR GPS ////////////////////////////////////////////////////
+    /////////////////////////////////////////////////// GUARDA MI UBICACION ACTUAL EN UN ESTADO Y RENDERIZO  ///////
 
+    const position = [geo.latitude, geo.longitude]
+    console.log("position", position)
 
-    return (
+    return (    
     <div>
-    <MapContainer center={actual.currentLocation} zoom={actual.zoom}>
+        <NavBar />
+      
+        <p>Por favor. Para guardar su ubicacion exitosamente<br></br>
+        Primero seleccione Confirmar su Ubicacion, y luego Guardar mi Ubicacion</p>
+        <button onClick={handleLocation}>Confirmar su Ubicacion</button>
+        <button onClick={handleLocation2}>Guardar mi Ubicacion</button>
+        <Link to ="/registroMascota">
+            <button>Volver</button>
+            </Link>
+
+        <MapContainer center={position} zoom={5}>
         
         <TileLayer
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"/>
+
+        <Marker position={position} icon={IconLocation}>
+
+           <Popup>
+               Esta es mi ubicacion
+          </Popup>
+
+    </Marker>
+
         <Markers />
         
     </MapContainer>
+    
+    <Footer />
     </div>
     )
 }

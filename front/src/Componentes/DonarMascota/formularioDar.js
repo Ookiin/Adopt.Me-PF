@@ -1,6 +1,6 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import createanimal from "../../Actions/createanimal";
 import "./formularioDar.css";
 import NavBar from "../NavBar/NavBar";
@@ -151,7 +151,7 @@ function validation(input){
   const [isChecked, setIsChecked] = useState(false);
   const [isChecked2, setIsChecked2] = useState(false);
   
- /////////////////////// HANDLE DE GATO
+ /////////////////////// HANDLE DE GATO ////////////////////////////////////77
  
   function handleCheck() {  
     setIsChecked(!isChecked)
@@ -170,7 +170,7 @@ function validation(input){
      })
   }}
 
-  ///////////////////////////// HANDLE DE PERRO
+  ///////////////////////////// HANDLE DE PERRO ///////////////////////////////////////////7
 
     function handleCheck2() {     
         setIsChecked2(!isChecked2)
@@ -190,7 +190,7 @@ function validation(input){
     }}
 
 
-  ///////////////////////////// HANDLE DE CLOUDINARY
+  ///////////////////////////// HANDLE DE CLOUDINARY  ///////////////////////////////////7
 
     function handleOpenWidget(e) {
       // console.log("Entre el handleOpenWidget");
@@ -334,7 +334,7 @@ function validation(input){
             <div className={stl.opciones}>
             <label className={stl.titulos}>Localidad:</label>
             <Link to = "/map">
-                <button>Establecer tu ubicacion</button>
+                <button className={stl.botonUbicacion}>Establecer tu ubicacion</button>
                 </Link>
             </div>
 
