@@ -18,9 +18,7 @@ import BuscarMascota from "../Componentes/BuscarMascota/BuscarMascota";
 import DetallePerro from "../Componentes/AdoptarMascota/DetallePerro";
 import DarEnAdopcion from "../Componentes/DonarMascota/formularioDar";
 import Perfil from "../Componentes/Perfil/perfil";
-
-import Prueba from "../Componentes/PRUEBA/prueba";
-
+import Login from "../Componentes/Login/Login";
 import DetalleMascotaPerdida from '../Componentes/BuscarMascota/DetalleMascotaPerdida';
 
 
@@ -48,7 +46,7 @@ function App() {
           <Route exact path="/buscarmascota" element={<BuscarMascota />} />
           <Route exact path="/registroMascota" element={<DarEnAdopcion />} />
           <Route exact path="/perfil" element={<Perfil />} />
-          <Route exact path="/prueba" element={<Prueba />} />
+          <Route exact path="/prueba" element={<Login />} />
 
         </Routes>
       </div>

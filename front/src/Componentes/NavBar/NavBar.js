@@ -31,32 +31,32 @@ export default function NavBar() {
       </Link>
 
       <div className={stl.algomas}>
-        <h4>Blog</h4>
+        <button className={stl.blogInfo}>Blog</button>
 
-        <div className="dropdown">
-          <div className="info" onClick={handleOpen}>
+        <div className={stl.dropdown}>
+          <button className={stl.blogInfo} onClick={handleOpen}>
             Info
-          </div>
+          </button>
           {open ? (
-            <div className="menu">
-              <div className="menu-item">
+            <div className={stl.menu}>
+              <div className={stl.opcionMenu}>
                 <Link to="/givepet">
-                  <div className="drop">Dar en Adopcion</div>
+                  <button className={stl.buttonsBlog}>Dar en Adopcion</button>
                 </Link>
               </div>
-              <div className="menu-item">
+              <div className={stl.opcionMenu}>
                 <Link to="/buscarmascota">
-                  <div className="drop">Mascota Perdida</div>
+                  <button className={stl.buttonsBlog}>Mascota Perdida</button>
                 </Link>
               </div>
-              <div className="menu-item">
+              <div className={stl.opcionMenu}>
                 <Link to="/reportarmaltrato">
-                  <div className="drop">Denunciar Maltrato</div>
+                  <button className={stl.buttonsBlog}>Maltrato Animal</button>
                 </Link>
               </div>
-              <div className="menu-item">
+              <div className={stl.opcionMenu}>
                 <Link to="/tepuedeinteresar">
-                  <div className="drop">Otras Cosas</div>
+                  <button className={stl.buttonsBlog}>+ Info</button>
                 </Link>
               </div>
             </div>
@@ -83,19 +83,22 @@ export default function NavBar() {
 
       {isAuthenticated && (
         <div className={stl.dropdown}>
-          <div className={stl.info} onClick={handleOpen2}>
+          
+          <div className={stl.buttonPerfil} onClick={handleOpen2}>
             Perfil
           </div>
+
           {open2 ? (
-            <div className="menu2">
-              <div className="menu-item2">
+            <div className={stl.menuPerfil}>
+              
+                
                 <Link to="/perfil">
-                  <div className="drop2">Mi perfil</div>
+                  <button className={stl.buttons2}>Mi perfil</button>
                 </Link>
-              </div>
-              <div className="menu-item">
-                <button onClick={() => logout()}>Cerrar sesión</button>
-              </div>
+              
+                <button className={stl.buttons2} onClick={() => logout()}>Cerrar sesión</button>
+            
+
             </div>
           ) : null}
           {open2 ? <div></div> : <div></div>}

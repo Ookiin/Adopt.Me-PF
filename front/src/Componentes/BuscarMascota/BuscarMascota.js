@@ -6,39 +6,56 @@ import Footer from "../Footer/Footer";
 import stl from "../BuscarMascota/BuscarMascota.module.css";
 import FloatingUI from "../Floating UI/FloatingUI";
 import getAnimalesPerdidos from "../../Actions/getAnimalesPerdidos";
-import getTamañoPerdidos from "../../Actions/getTamAnimPerd";
+import filtradoEstadoPerdido from "../../Actions/filtradoEstadoPerdido";
 import getTamañofiltro from "../../Actions/getTamañoFiltro";
+import getGatoPerdido from "../../Actions/getGatosPerdidos";
 import {useSelector, useDispatch} from 'react-redux';
 import { useState } from "react";
 import Paging from "../Pagination/Pagination";
+import getPerroPerdido from "../../Actions/getPerrosPerdidos";
 
 export default function BuscarMascota() {
   const params = useParams();
   const dispatch = useDispatch();
   
-  const allPets = useSelector((state)=>state.animalesPerdidos)
-  const copia = useSelector((state)=>state.animalesPerdidosCopia)
 
-    const [currentPage, setCurrentPage] = useState(1) 
-    const [mascotasPerPage] = useState(4)
-    const lastPetIndex = currentPage * mascotasPerPage 
-    const firstPetIndex = lastPetIndex - mascotasPerPage 
-    const currentPets = allPets.slice(firstPetIndex,lastPetIndex);
-    const actualPage = (pageNumber) => {setCurrentPage(pageNumber)}
-
-    const [refresh, setReefresh]= useState(copia)
+  const allPets = useSelector((state)=>state.animalesPerdidos);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [mascotasPerPage] = useState(4);
+  const lastPetIndex = currentPage * mascotasPerPage; 
+  const firstPetIndex = lastPetIndex - mascotasPerPage ;
+  const currentPets = allPets.slice(firstPetIndex,lastPetIndex);
+  const actualPage = (pageNumber) => {setCurrentPage(pageNumber)};
 
 
   useEffect(()=>{      
-    dispatch(getAnimalesPerdidos())    
+    dispatch(getAnimalesPerdidos());
+    dispatch(getGatoPerdido());
+    dispatch(getPerroPerdido());   
     setCurrentPage(1)
   }, [dispatch]);
 
   async function handleTamaño (e){  
-    await e.preventDefault(copia);   
-    await dispatch(getTamañofiltro(e.target.value))  
-    console.log(copia);    
-  }
+    await e.preventDefault();   
+    await dispatch(getTamañofiltro(e.target.value));
+  };
+  async function handleEstado (e){  
+    await e.preventDefault();   
+    await dispatch(filtradoEstadoPerdido(e.target.value));
+  };
+  async function handleGato (e){  
+    await e.preventDefault();   
+    await dispatch(getGatoPerdido(e.target.value))    
+  };
+  async function handlePerro (e){  
+    await e.preventDefault();   
+    await dispatch(getPerroPerdido(e.target.value)); 
+  };
+  async function handleRecargar (e){  
+    await e.preventDefault();   
+    await dispatch(getAnimalesPerdidos(e.target.value));
+    setCurrentPage(1)
+  };
 
 
   return (
@@ -49,6 +66,11 @@ export default function BuscarMascota() {
       <div>
         <h1 className={stl.titulo}>BUSCA AQUI TU MASCOTA PERDIDA</h1>
       </div>
+
+      <div>
+      <button className={stl.boton} onClick= {(e)=>handleRecargar(e)}>RECARGAR</button>
+      </div>
+
        <Paging
         mascotasPerPage={mascotasPerPage} 
         allPets={allPets.length} 
@@ -57,20 +79,29 @@ export default function BuscarMascota() {
         currentPets={currentPets}
        />
 
-                {/* // <option value = 'mediano'>Mediano</option>
-                // <option value = 'chico'>Chico</option>
-                // <option value = 'grande'>Grande</option>                     */}
-       
-       {/* TODAVIA NO ANDA BIEN EL FILTRO POR TAMAÑOS, PERO LO DEJO COMENTADO PARA SEGUIR */}
       <div>
       <select onChange={(e)=>handleTamaño(e)}>
                 <option value='All' disabled selected defaultValue>Tamaño</option>
-                <option value = 'mediano'>Mediano</option>
-                <option value = 'chico'>Chico</option>
-                <option value = 'grande'>Grande</option>                               
-            </select>  
+                <option value = 'Chico'>Chico</option>
+                <option value = 'Mediano'>Mediano</option>
+                <option value = 'Grande'>Grande</option>                               
+            </select>            
+      </div>
 
-            
+      <div>
+      <select onChange={(e)=>handleEstado(e)}>
+                <option value='estado' disabled selected defaultValue>Estado</option>
+                <option value = 'Perdido'>Perdido</option>
+                <option value = 'Encontrado'>Encontrado</option>                                           
+            </select>           
+      </div>
+
+      <div>
+        <button onClick={(e)=>handleGato(e)}>Gatos</button>
+      </div>
+      
+      <div>
+        <button onClick={(e)=>handlePerro(e)}>Perros</button>
       </div>
 
       {currentPets.length > 0 && currentPets.map(a =>{
@@ -82,14 +113,15 @@ export default function BuscarMascota() {
         tama = {a.tama}       
         localidad = {a.localidad}
         />                  
-)
-})}
-      <button className={stl.boton}>BUSCAR</button>
+               )
+           })}
+      
       <Link to="/homepage">
         <button className={stl.boton}>VOLVER</button>
       </Link>
 
       <Footer />
+
     </>
   );
-}
+};

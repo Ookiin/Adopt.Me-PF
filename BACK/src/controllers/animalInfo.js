@@ -71,17 +71,21 @@ getLocalidad = async (req,res) => {
   }
 }
 
-getTamaño= async (req,res) => {
+getTamaño = async (req,res) => {
   try {
-    const {tamaño} = req.body;
-    console.log(tamaño);
-    let mascotaTamaño = await AnimalModel.find({tamaño: tamaño});
-    console.log(mascotaTamaño);
-    if (mascotaTamaño.length) await res.status(200).json(mascotaTamaño)
+    
+    const {tamaño} = req.body;      
+    let tamaños = await AnimalModel.find({tama:{path: ''}});    
+    console.log(tamaños);
+    const mapeado = await tamaños.map(t=>t.tamaño)
+    
+    
+    console.log(mapeado);  
+    if (tamaños) await res.status(200).json(mapeado)
   } catch (error) {
     res.status(400).json('UPS! algo salio mal')   
   }
-}
+};
 
 
 postAnimal = async (req, res) => {
