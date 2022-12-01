@@ -23,6 +23,11 @@ export default function TePuedeInteresar () {
             </br>
             Ademas tendras acceso el blog para compartir tu experiencias con otras personas</p>
 
+            <div className={stl.veterinarias}>
+                <p>Hospitales Veterinarios</p>
+            <iframe title="veterinarias" src="https://www.google.com/maps/d/embed?mid=1o7saHY6jCTeLP6EWNsvv0OHvydS8oNs&ehbc=2E312F" width="640" height="480"></iframe>
+            </div>
+
             <div className={stl.vacunacion}></div>
 
             <Link to = '/directorio'> 
