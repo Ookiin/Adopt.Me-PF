@@ -1,79 +1,183 @@
- @import url("https://fonts.googleapis.com/css2?family=Viga&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Viga&display=swap');
 
-.maltrato {
-  font-family: "Viga", sans-serif;
-  color: #393e46;
-  background-image: url("../../Imagenes/pisadas.jpg");
-  background-size: contain;
-  background-position: -250px;
+
+.formDarAdopcion {
+    height: 800px;
+    background-image: url("../../Imagenes/pisadas.jpg");
+    background-size: contain;
+    background-repeat: no-repeat;
+    font-family: 'Viga', sans-serif;
+}
+
+.formularito {
+    height: 800px;
+    width: 600px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: flex-end;
+    margin-left: 480px;
+    margin-top: 80px;
+    margin-bottom: 100px;
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;    
+    background-color: #F2E7D5;
 }
 
 .titulo {
-  font-family: "Viga", sans-serif;
-  font-size: 55px;
-  text-shadow: 2px 2px rgb(38, 37, 37);
+    margin-bottom: 20px;
+    color: #393E46;
+    font-size: 30px;
+    text-shadow: 2px 2px rgb(38, 37, 37);
+    font-family: 'Viga', sans-serif;
+    margin-right: 70px;
 }
 
-.ley {
-  font-size: 25px;
-  width: 700px;
-  margin-left: 410px;
-  margin-bottom: 50px;
-  color: #c82f08;
+.opciones {
+    margin-bottom: 10px;
+    margin-right: 120px;
 }
 
-/* li {
-  width: 600px;
-  margin-left: 430px;
-  font-size: 20px;
-  padding: 10px;
-  list-style: none;
-} */
+.gatoPerro {
+    width: 100px;
+    display: flex;
+    flex-wrap: nowrap;
+    margin-right: 248px;
+    margin-bottom: 10px;
+}
 
 .boton {
-  appearance: button;
-  background-color: transparent;
-  background-image: linear-gradient(to bottom, #fff, #f8eedb);
-  border: 0 solid #e5e7eb;
-  border-radius: 0.5rem;
-  box-sizing: border-box;
-  color: #482307;
-  column-gap: 1rem;
-  cursor: pointer;
-  display: inline-flex;
-  font-family: "Viga", sans-serif;
-  font-size: 100%;
-  font-weight: 700;
-  line-height: 24px;
-  margin: 0;
-  outline: 2px solid transparent;
-  padding: 9px 10px;
-
-  text-align: center;
-  text-transform: none;
-  transition: all 0.1s cubic-bezier(0.4, 0, 0.2, 1);
-  user-select: none;
-  -webkit-user-select: none;
-  touch-action: manipulation;
-  box-shadow: -6px 8px 10px rgba(81, 41, 10, 0.1),
-    0px 2px 2px rgba(81, 41, 10, 0.2);
+    margin-top: 24px;
+    margin-right: 137px;
 }
 
-.boton:active {
-  background-color: #f3f4f6;
-  box-shadow: -1px 2px 5px rgba(81, 41, 10, 0.15),
-    0px 1px 1px rgba(81, 41, 10, 0.15);
-  transform: translateY(0.125rem);
+.titulos {
+    margin-right: 20px;
+    font-size: 13px;
+    font-size: 16px;
 }
 
-.boton:focus {
-  box-shadow: rgba(72, 35, 7, 0.46) 0 0 0 4px,
-    -6px 8px 10px rgba(81, 41, 10, 0.1), 0px 2px 2px rgba(81, 41, 10, 0.2);
-}   
-
-.boton:hover {
-  box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
-  transform: translateY(-4px);
-  background-color: white;
-  color: black;
+.titulos2 {
+    font-size: 16px;
 }
+
+.boton {
+    appearance: button;
+    background-color: transparent;
+    background-image: linear-gradient(to bottom, #fff, #f8eedb);
+    border: 0 solid #e5e7eb;
+    border-radius: .5rem;
+    box-sizing: border-box;
+    color: #482307;
+    column-gap: 1rem;
+    cursor: pointer;
+    display: inline-flex;
+    font-family: 'Viga', sans-serif;  font-size: 100%;
+    font-weight: 700;
+    line-height: 24px;
+    margin: 0;
+    outline: 2px solid transparent;
+    padding: 9px 10px;
+    margin-right: 224px;
+    margin-top: 20px;
+    text-align: center;
+    text-transform: none;
+    transition: all .1s cubic-bezier(.4, 0, .2, 1);
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    box-shadow: -6px 8px 10px rgba(81,41,10,0.1),0px 2px 2px rgba(81,41,10,0.2);
+  }
+  
+  .boton:active {
+    background-color: #f3f4f6;
+    box-shadow: -1px 2px 5px rgba(81,41,10,0.15),0px 1px 1px rgba(81,41,10,0.15);
+    transform: translateY(0.125rem);
+  }
+  
+ .boton:focus {
+    box-shadow: rgba(72, 35, 7, .46) 0 0 0 4px, -6px 8px 10px rgba(81,41,10,0.1), 0px 2px 2px rgba(81,41,10,0.2);
+  }
+
+  .boton:hover {
+    box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
+    transform: translateY(-4px);
+    background-color: white;
+    color: black;
+  }
+
+  .imagePreview {
+    display: flex;
+    justify-content: center;
+    width: 180px;
+    height: 180px;
+    background-image: url("https://www.sourcedogg.com/wp-content/uploads/2015/05/default-placeholder.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    margin-right: -150px;
+    margin-bottom: 50px;
+
+  }
+
+  .imagePreview img {
+    width: 180px;
+    height: 180px;
+    margin-left: 48px;
+    z-index: 1;
+  }
+
+  .imageContainer {
+    display: flex;
+    justify-content: center;
+  }
+
+  .botonFoto {
+    appearance: button;
+    background-color: transparent;
+    background-image: linear-gradient(to bottom, #fff, #f8eedb);
+    border: 0 solid #e5e7eb;
+    border-radius: .5rem;
+    box-sizing: border-box;
+    color: #482307;
+    column-gap: 1rem;
+    cursor: pointer;
+    display: inline-flex;
+    font-family: 'Viga', sans-serif;  font-size: 100%;
+    font-weight: 700;
+    line-height: 24px;
+    margin: 0;
+    outline: 2px solid transparent;
+    padding: 9px 10px;
+    margin-right: 249px;
+    margin-top: 20px;
+    text-align: center;
+    text-transform: none;
+    transition: all .1s cubic-bezier(.4, 0, .2, 1);
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    box-shadow: -6px 8px 10px rgba(81,41,10,0.1),0px 2px 2px rgba(81,41,10,0.2);
+    margin-top: 200px;
+    width: 100px;
+    height: 30px;
+    font-size: 10px;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .botonFoto:active {
+    background-color: #f3f4f6;
+    box-shadow: -1px 2px 5px rgba(81,41,10,0.15),0px 1px 1px rgba(81,41,10,0.15);
+    transform: translateY(0.125rem);
+  }
+  
+ .botonFoto:focus {
+    box-shadow: rgba(72, 35, 7, .46) 0 0 0 4px, -6px 8px 10px rgba(81,41,10,0.1), 0px 2px 2px rgba(81,41,10,0.2);
+  }
+
+  .botonFoto:hover {
+    box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
+    transform: translateY(-4px);  
+    background-color: white;
+    color: black;
+  }

@@ -1,12 +1,13 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import createanimal from "../../Actions/createanimal";
 import "./formularioDar.css";
 import NavBar from "../NavBar/NavBar";
 import Footer from "../Footer/Footer"
 import stl from "../DonarMascota/formularioDar.module.css"
 import FloatingUI from "../Floating UI/FloatingUI";
+
 
 ////////////////////////////////////////////////////// VALIDACION ///////////////////////////////////////////////////////////////
 
@@ -63,7 +64,7 @@ function validation(input){
         vacunado: "",
         imagen: ""
       });
-console.log(input)
+
   const [imagenes, setImagenes] = useState([]);
       
   const [errors, setErrors] = useState({});
@@ -71,7 +72,7 @@ console.log(input)
     function handleSubmit(e){
          e.preventDefault();
 
-    dispatch(createanimal(input, imagenes));
+    
 
     alert("Mascota Agregada");
 
@@ -92,7 +93,7 @@ console.log(input)
     })
     
     // setImagenes([])
-
+    dispatch(createanimal(input, imagenes));
     navigate("/homepage")
  }
 
@@ -132,6 +133,7 @@ console.log(input)
   }
 
   function handleEdad(e) {
+    if (input.edad.length === 0)
       setInput({
         ...input,
         edad: [...input.edad, e.target.value]
@@ -139,6 +141,7 @@ console.log(input)
    } 
 
    function handleTamaño(e) {
+    if (input.tamaño.length === 0)
     setInput({
       ...input,
       tamaño: [...input.tamaño, e.target.value]
@@ -221,6 +224,7 @@ console.log(input)
       id: imagenes.id.filter((id) => id !== f)
     });
   }
+
 
 /////////////////////////////////////////////////////////// TE KAVIO EL RETURN  ///////////////////////////////////////////////////
 
@@ -329,8 +333,9 @@ console.log(input)
 
             <div className={stl.opciones}>
             <label className={stl.titulos}>Localidad:</label>
-                <input onChange={handleChange} 
-                type="text" name="localidad" value={input.localidad}/>            
+            <Link to = "/map">
+                <button>Establecer tu ubicacion</button>
+                </Link>
             </div>
 
             <div className={stl.opciones}>
@@ -350,7 +355,7 @@ console.log(input)
             </div>  
 
             <button className={stl.boton} onClick={handleImagen}>Dar en Adopcion</button>
-             {/* <button className={stl.boton} type="submit">Dar en Adopcion</button> */}
+              {/* <button className={stl.boton} type="submit">Dar en Adopcion</button> */}
 
         </form>
         <Footer />

@@ -6,7 +6,7 @@ import Footer from "../Footer/Footer";
 import stl from "../BuscarMascota/BuscarMascota.module.css";
 import FloatingUI from "../Floating UI/FloatingUI";
 import getAnimalesPerdidos from "../../Actions/getAnimalesPerdidos";
-import getTamañoPerdidos from "../../Actions/getTamAnimPerd";
+// import getTamañoPerdidos from "../../Actions/getTamAnimPerd";
 import getTamañofiltro from "../../Actions/getTamañoFiltro";
 import {useSelector, useDispatch} from 'react-redux';
 import { useState } from "react";
@@ -27,7 +27,7 @@ export default function BuscarMascota() {
     const currentPets = allPets.slice(firstPetIndex,lastPetIndex);
     const actualPage = (pageNumber) => {setCurrentPage(pageNumber)}
 
-    const [refresh, setReefresh]= useState(copia)
+    // const [refresh, setReefresh]= useState(copia)
 
 
   useEffect(()=>{      

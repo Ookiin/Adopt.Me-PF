@@ -9,7 +9,7 @@ const getmascotabyid =(id) => {
     return async function (dispatch) {
         try {
             
-            let result = await axios.get(`http://localhost:3001/animales/${id}`); 
+            let result = await axios.get(`/animales/${id}`); 
             dispatch({ type: GET_ANIMAL_BY_ID, payload: result.data })                                                                                                      
             console.log(result.data);       
             

@@ -5,20 +5,21 @@ import Footer from "../Footer/Footer";
 import NavBar from "../NavBar/NavBar";
 import stl from "./HomePage.module.css";
 
+
 export default function HomePage() {
   return (
     <div className={stl.homepage}>
       
       <NavBar />
       <FloatingUI />
-
+      
       <div className={stl.donacion}>
         <p className={stl.textoDonacion}>Realiza tu donacion</p>
         <Link to="/donation">
           <button className={stl.botonDonar}>Donar</button>
         </Link>
       </div>
-
+      
       <div className={stl.adoptarDarEnAdopcion}>
         <div className={stl.adoptar}>
           <div className={stl.opciones}>
