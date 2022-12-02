@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import createanimal from "../../Actions/createanimal";
 import "./formularioDar.css";
@@ -49,6 +49,9 @@ function validation(input){
  const navigate = useNavigate();
  const dispatch = useDispatch();
 
+ const usuario = useSelector((state) => state.detalleUsuario)
+ console.log(usuario._id)
+
  const [input, setInput] = useState({
         perro: false,
         gato: false,
@@ -62,11 +65,12 @@ function validation(input){
         descripcion: "",
         castrado: "",
         vacunado: "",
-        imagen: ""
+        imagen: "",
+        pichina: usuario._id
       });
 
   const [imagenes, setImagenes] = useState([]);
-      
+  console.log(input.pichina)
   const [errors, setErrors] = useState({});
 
     function handleSubmit(e){
@@ -89,8 +93,10 @@ function validation(input){
         descripcion: "",
         castrado: "",
         vacunado: "",
-        imagen: ""
+        imagen: "",
+        pichina: ""
     })
+    
     
     // setImagenes([])
     dispatch(createanimal(input, imagenes));
