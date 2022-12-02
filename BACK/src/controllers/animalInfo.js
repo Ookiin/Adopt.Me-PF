@@ -104,7 +104,8 @@ postAnimal = async (req, res) => {
       descripcion,
       castrado,
       vacunado,
-      imagen,} = req.body;
+      imagen,
+      pichina} = req.body;
 
       const animales = await new AnimalModel({
       _id: _id,
@@ -120,7 +121,8 @@ postAnimal = async (req, res) => {
       descripcion,
       castrado,
       vacunado,
-      imagen,        
+      imagen,
+      pichina        
       })    
       if (animales.length) await animales.save()
       const nuevoAnimal = await animales.save()      

@@ -7,15 +7,13 @@ import NavBar from "../NavBar/NavBar";
 import Footer from "../Footer/Footer";
 import { Link } from "react-router-dom";
 import createLocation from "../../Actions/createLocation";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import Markers from "./Markers";
-import getLocations from "../../Actions/getLocation";
+import stl from "../Maps/Maps.module.css";
 
 export default function MapView() {
 
     const dispatch = useDispatch()
-
-   
 
     /////////////////////////////////////////////////////////// TOMA MI UBICACION ACTUAL SEGUN MI GPS ///////////////////
 
@@ -80,12 +78,15 @@ export default function MapView() {
         <NavBar />
       
         <p>Por favor. Para guardar su ubicacion exitosamente<br></br>
-        Primero seleccione Confirmar su Ubicacion, y luego Guardar mi Ubicacion</p>
-        <button onClick={handleLocation}>Confirmar su Ubicacion</button>
-        <button onClick={handleLocation2}>Guardar mi Ubicacion</button>
+        Primero seleccione "Establecer mi Ubicacion", y luego "Guardar mi Ubicacion".</p>
+        <p>Finalmente "Confirmar y Volver"</p>
+        <div className={stl.botones}>
+        <button className={stl.botonMapa2} onClick={handleLocation}>Establecer mi Ubicacion</button>
+        <button className={stl.botonMapa2} onClick={handleLocation2}>Guardar mi Ubicacion</button>
         <Link to ="/registroMascota">
-            <button type="submit" onClick={handleSubmit}>Volver</button>
+            <button className={stl.botonMapa3} type="submit" onClick={handleSubmit}>Confirmar y Volver</button>
             </Link>
+            </div>
 
         <MapContainer center={position} zoom={5}>
         

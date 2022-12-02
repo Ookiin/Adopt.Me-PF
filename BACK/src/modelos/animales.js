@@ -58,7 +58,10 @@ const AnimalSchema = new Schema({
     imagen: {
         type: String,
         required: false,
-    } 
+    },
+    pichina: {
+        type: String,
+    }
 });
 
 const AnimalModel = mongoose.model('animales', AnimalSchema)
