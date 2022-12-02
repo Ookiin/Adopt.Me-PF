@@ -1,6 +1,6 @@
 require("dotenv").config();
 const mongoose = require("mongoose");
-const { PASSWORD, DB_DEPLOY } = process.env;
+const { PASSWORD } = process.env;
 
 
 const uri = `mongodb+srv://noesneda:${PASSWORD}@proyecto.hbyeplt.mongodb.net/?retryWrites=true&w=majority`
