@@ -26,23 +26,17 @@ import {
 
 const initialState = {
   animales: [],
-
   perrosCopia: [],
   gatosCopia: [],
-
   animalesPerdidos: [],
   animalesPerdidosCopia: [],
-
   gatosPerdidos: [],
-
   animalesPerdidosDetail: [],
   animalesdetail: [],
   users: [],
   gatos: [],
   perros: [],
-
   tamañoFiltrado: [],
-
   filtroPerdidos: [],
   detalleUsuario: [],
 };

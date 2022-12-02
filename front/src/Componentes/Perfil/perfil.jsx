@@ -4,7 +4,14 @@ import NavBar from "../NavBar/NavBar";
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import getDetalleUsuario from "../../Actions/getDetalleUsuario"
-//import stl from "../Perfil/perfil.madule.css";
+import CambiarContraseña from "../SideBarPerfil/CAMBIARCONTRASEÑA.js";
+import CompletarRegistro from "../SideBarPerfil/COMPLETARREGISTRO";
+import MiInformacion from "../SideBarPerfil/MIINFORMACION.js";
+import MisFavoritos from "../SideBarPerfil/MISFAVORITOS";
+import MisPublicaciones from "../SideBarPerfil/MISPUBLICACIONES";
+import Inicio from "../SideBarPerfil/INICIO";
+import css from "../Perfil/perfil.module.css"
+
 
 export default function Perfil() {
     const { user, isAuthenticated } = useAuth0()
@@ -26,65 +33,72 @@ export default function Perfil() {
     return (
         <div >
             <NavBar/>
-            <h2>PERFIL</h2>
-
-            <div >
-                <div>
-                    <button>
-                        Mi informacion
-                    </button>
+            <div className={css.container}>
+                <div className={ css.miniContainer}>
+                    <div className={css.sideBar}>
+                    <br />
+                        <br />
+                        <br />
+                        <br />
+                        <br />
+                        <br />
+                        <div>
+                            <MiInformacion></MiInformacion>
+                        </div>
+                        <br />
+                        <br />
+                        <div>
+                            <MisFavoritos></MisFavoritos>
+                        </div>
+                        <br />
+                        <br />
+                        <div>
+                            <MisPublicaciones></MisPublicaciones>
+                        </div>
+                        <br />
+                        <br />
+                        <div>
+                            <CambiarContraseña></CambiarContraseña>
+                        </div>
+                        <br />
+                        <br />
+                        <div>
+                            <CompletarRegistro></CompletarRegistro>
+                        </div>
+                        <br />
+                        <br />
+                        <div>
+                            <Inicio></Inicio>
+                        </div>
+                        <br />
+                        <br />
+                    </div>
+                    <div className={css.contenido}> 
+                    <br />
+                        <br /><br />
+                        <br /><br />
+                        <br />
+                        {isAuthenticated && (
+                            <div>
+                                <img src={detalleUser.fotoPerfil} alt={detalleUser.nombre} />
+                                <h3>id: {detalleUser._id}</h3>
+                                <h3>Usuario: {detalleUser.nickname}</h3>
+                                <h3>Nombre: {detalleUser.nombre}</h3>
+                                <h3>Telefono: {detalleUser.telefono}</h3>
+                                <h3>Localidad: {detalleUser.localidad}</h3>
+                                <h3>Mail: {detalleUser.mail}</h3>
+                                <br></br>
+                                <br></br>
+                                <br></br>
+                                <button onClick={() => logout()}>Cerrar sesión</button>
+                            </div>
+                        )}
+                    </div>
                 </div>
-                <br />
-                <br />
-
-                <div>
-                    <button>
-                        Mis favoritos
-                    </button>
-                </div>
-                <br />
-                <br />
-
-                <div>
-                    <button>
-                        Mis historias
-                    </button>
-                </div>
-                <br />
-                <br />
-
-                <div>
-                    <button>
-                        Cambiar contraseña
-                    </button>
-                </div>
-                <br />
-                <br />
-
-                <div>
-                    <button>
-                        Inicio
-                    </button>
-                </div>
-                <br />
-                <br />
             </div>
 
-            {isAuthenticated && (
-                <div>
-                    <img src={detalleUser.fotoPerfil} alt={detalleUser.nombre} />
-                    <h3>id: {detalleUser._id}</h3>
-                    <h3>Usuario: {detalleUser.nickname}</h3>
-                    <h3>Nombre: {detalleUser.nombre}</h3>
-                    <h3>Telefono: {detalleUser.telefono}</h3>
-                    <h3>Localidad: {detalleUser.localidad}</h3>
-                    <h3>Mail: {detalleUser.mail}</h3>
-                    <br></br>
-                    <br></br>
-                    <br></br>
-                    <button onClick={() => logout()}>Cerrar sesión</button>
-                </div>
-            )}
+            
+
             
         </div>
     
