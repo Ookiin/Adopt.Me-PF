@@ -7,6 +7,7 @@ import NavBar from "../NavBar/NavBar";
 import Footer from "../Footer/Footer"
 import stl from "../DonarMascota/formularioDar.module.css"
 import FloatingUI from "../Floating UI/FloatingUI";
+import imagenDefault from "../../Imagenes/imagenDefault.png"
 
 
  
@@ -36,7 +37,7 @@ import FloatingUI from "../Floating UI/FloatingUI";
         pichina: usuario._id
       });
 
-  const [imagenes, setImagenes] = useState([]);
+  // const [imagenes, setImagenes] = useState([]);
   // console.log(input.pichina)
   const [errors, setErrors] = useState({});
   const [isSubmit, setisSubmit] = useState(false);
@@ -139,7 +140,7 @@ import FloatingUI from "../Floating UI/FloatingUI";
     //Si no hay errores, el isSubmit esta en true
     if (isSubmit === true) {
 
-      dispatch(createanimal(input, imagenes));
+      dispatch(createanimal(input));
       setInput({
         perro: false,
         gato: false,
@@ -165,21 +166,21 @@ import FloatingUI from "../Floating UI/FloatingUI";
 
  /////////////////////////// EXTRAYENDO URL DE CLAUDINARY /////////////////////////////////////////////////////////////////////
 
- const img = []
- for (let i = 0; i < imagenes.length; i++) {
-    img.push(imagenes[i])
- }
+//  const img = []
+//  for (let i = 0; i < imagenes.length; i++) {
+//     img.push(imagenes[i])
+//  }
 
- let imgUrl = img.map(({ url }) => url)
+//  let imgUrl = img.map(({ url }) => url)
 
- let urlImagen = imgUrl.toString();
+//  let urlImagen = imgUrl.toString();
 
-  function handleImagen() {
-    setInput({
-      ...input,
-      imagen: urlImagen
-    })
-  }
+//   function handleImagen() {
+//     setInput({
+//       ...input,
+//       imagen: urlImagen
+//     })
+//   }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////7
 
@@ -258,6 +259,7 @@ function handleChange(e) {
     function handleOpenWidget(e) {
       // console.log("Entre el handleOpenWidget");
       e.preventDefault();
+      const imagen = document.querySelector("#default-photo");
       var myWidget = window.cloudinary.createUploadWidget(
           {
               cloudName: "dvw0vrnxp",
@@ -265,13 +267,12 @@ function handleChange(e) {
           },
           (error, result) => {
               if (!error && result && result.event === "success") {
-              console.log('Done! Here is the image info: ', result.info);
-
-              setImagenes((prev) => [
-                ...prev, {
-                  url: result.info.secure_url, 
-                  id: result.info.public_id
-                }])
+              // console.log('Done! Here is the image info: ', result.info);
+              imagen.src = result.info.secure_url;
+              setInput((prev) => ({
+                ...prev,
+                [e.target.name]: result.info.secure_url,
+              }));
               }
             }
           );
@@ -302,9 +303,29 @@ function handleChange(e) {
           <form className={stl.formularito} onSubmit={handleSubmit}>
 
           <div className={stl.imageContainer}>
-            {imagenes.map((f) => {
-              return (
-              <div className={stl.imagePreview}>
+
+          <div >
+            <img
+              src={imagenDefault}
+              id="default-photo"
+              alt=""
+              height="150"
+              width="150"
+            />
+
+            <button
+              id="btn-foto"
+              name="imagen"
+              onClick={(e) => handleOpenWidget(e)}
+              className={stl.botonFoto}
+            >
+              AGREGAR FOTO
+            </button>
+            <span></span>
+            </div>
+            </div>
+
+            {/* <div className={stl.imagePreview}>
                 <img src= {f.url} value={f.id} alt="foto"/>
                 {imagenes.map((f) => (
                   <i className="fa fa-times close-icon" onClick={() => handleDelete(f)} value={f.id}></i>
@@ -320,11 +341,10 @@ function handleChange(e) {
                     className={stl.botonFoto}
                     name="fotos"
                     onClick={handleOpenWidget}> 
-                      AGREGAR FOTO
+                      AGREGAR FOTOS
                       </button>
                      
-                      </div>
-                  </div>
+                      </div> */}
                   
        
        <div className={stl.gatoPerro}>
