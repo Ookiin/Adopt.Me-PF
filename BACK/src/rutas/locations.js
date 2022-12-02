@@ -8,4 +8,6 @@ router.post("/", postLocation);
 
 router.get("/", getLocation);
 
+router.delete("/", deleteLocation);
+
 module.exports = router;

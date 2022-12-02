@@ -26,4 +26,14 @@ postLocation = async (req, res) => {
   }
 };
 
+deleteLocation = async (req, res) => {
+  const { id } = req.params;
+  try {
+    await locationModel.remove({ _id: id });
+    res.status(200).json(`ubicacion eliminada ${id} eliminación exitosa`);
+  } catch (error) {
+    res.status(400).json(`la ubicacion ${id} no se pudo eliminar`);
+  }
+};
+
 module.exports = infoLocation;
