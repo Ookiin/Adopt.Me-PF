@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import  {useNavigate}  from "react-router-dom"
+import  {Link, useNavigate}  from "react-router-dom"
 import Card from "../Card/Card";
 import stl from "./HomePerros.module.css";
 import NavBar from "../NavBar/NavBar";
@@ -11,11 +11,10 @@ import getperro from "../../Actions/getperros";
 import getDogByName from "../../Actions/getDogByName";
 import ordenAlfabetico from "../../Actions/ordenAlfabetico";
 import getDogsLocal from "../../Actions/getDogsLocal";
- import getdogtamaños from "../../Actions/getDogTamaños";
+import MapView from "../Maps/Maps";
+import MapPets from "../Maps/Maps2";
+//  import getdogtamaños from "../../Actions/getDogTamaños";
  
-
-
-
 
 export default function HomePerros () {
 
@@ -33,11 +32,11 @@ export default function HomePerros () {
     const firstPetIndex = lastPetIndex - mascotasPerPage 
     const currentPets = allPets.slice(firstPetIndex,lastPetIndex) 
 
-    const [input, setInput] = useState("");
-    const [orden, setOrden] = useState("");
+    const [setInput] = useState("");
+    const [setOrden] = useState("");
     const [searchDog, setSearchDog] = useState("");
     const [localDog, setlocalDog] = useState("");
-    const [refresh, setReefresh]= useState(copiaPerros)
+    useState(copiaPerros)
 
     const actualPage = (pageNumber) => {setCurrentPage(pageNumber)}
 
@@ -152,6 +151,13 @@ export default function HomePerros () {
         <br/>
         <div>
             <button className={stl.btnNavHome} onClick={handleClick}>HomePerros</button>
+        </div>
+
+        <div className={stl.ico}></div>
+        <div className={stl.mapapets}>
+            <Link to ="/mappets">
+           <button className={stl.btnMap}>Ver mascotas a mi alrededor</button>
+           </Link>
         </div>
 
         <div className={stl.listadoCards}> 
