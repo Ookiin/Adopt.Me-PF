@@ -432,5 +432,4 @@ function handleChange(e) {
         </form>
         <Footer />
     </div>
-  
   )}

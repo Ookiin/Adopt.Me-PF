@@ -62,6 +62,7 @@ const AnimalSchema = new Schema({
     pichina: {
         type: String,
     }
+    
 });
 
 const AnimalModel = mongoose.model('animales', AnimalSchema)
