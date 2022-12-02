@@ -320,7 +320,7 @@ function handleChange(e) {
                     className={stl.botonFoto}
                     name="fotos"
                     onClick={handleOpenWidget}> 
-                      AGREGAR FOTOS
+                      AGREGAR FOTO
                       </button>
                      
                       </div>
