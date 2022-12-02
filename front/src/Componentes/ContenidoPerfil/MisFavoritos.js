@@ -1,5 +1,6 @@
 export default function MisFavoritos() {
+    
     return (
-        <button>Mis favoritos</button>
+        <h1> Mis Favoritos</h1>
     )
 };
