@@ -18,7 +18,9 @@ import {
     FILTRADO_ESTADO_PERDIDO,
     GET_GATO_PERDIDO,
     GET_PERRO_PERDIDO,
-    CREATE_ANIMAL_PERDIDO, 
+    CREATE_ANIMAL_PERDIDO,
+    CREATE_LOCATION,
+    GET_LOCATIONS, 
     // GET_DOG_TAMAÑOS,
     // FILTRA_TAMAÑO
   } from "../Actions";
@@ -44,7 +46,10 @@ const initialState = {
    tamañoFiltrado: [],
    
    filtroPerdidos: [],
-   detalleUsuario: []
+   detalleUsuario: [],
+
+   locations: []
+   
 }
 
 
@@ -55,7 +60,8 @@ export default function rootReducer(state = initialState, action){
         if(action.payload) { 
             return {       
                 ...state,   
-                animales: action.payload,           
+                animales: action.payload, 
+                          
             }              
         } else { 
             return { ...state, animales:[] } }
@@ -197,6 +203,7 @@ export default function rootReducer(state = initialState, action){
             return{
               ...state,
               animalesPerdidos: action.payload,
+              
             }
         case CREATE_ANIMAL_PERDIDO:
             return{
@@ -212,6 +219,17 @@ export default function rootReducer(state = initialState, action){
         detalleUsuario: action.payload,
       };
 
+      case CREATE_LOCATION:
+          return {
+            ...state
+          }
+
+      case GET_LOCATIONS:
+        return {
+          ...state,
+         locations: action.payload 
+        }
+        
     default:
       return state;
   }

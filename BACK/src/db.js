@@ -3,9 +3,9 @@ const mongoose = require("mongoose");
 const { PASSWORD, DB_DEPLOY } = process.env;
 
 
-const uri = `mongodb+srv://noesneda:${PASSWORD}@proyecto.hbyeplt.mongodb.net/?retryWrites=true&w=majority`
+// const uri = `mongodb+srv://noesneda:${PASSWORD}@proyecto.hbyeplt.mongodb.net/?retryWrites=true&w=majority`
 
-mongoose.connect(uri, {
+mongoose.connect(DB_DEPLOY, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   },

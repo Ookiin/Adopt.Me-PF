@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import {useDispatch, useSelector} from 'react-redux';
-import  {useNavigate}  from "react-router-dom"
+import  {Link, useNavigate}  from "react-router-dom"
 import getgato from "../../Actions/getgatos";
 import CardGato from "../Card/CardGato";
 import NavBar from "../NavBar/NavBar";
@@ -131,6 +131,14 @@ const HomeGatos = () => {
         <div>
         <button className={stl.btnNavHome} onClick={handleClick}>HomeGatos</button>
         </div>
+
+        <div className={stl.ico}></div>
+        <div className={stl.mapapets}>
+            <Link to ="/mappets2">
+           <button className={stl.btnMap}>Ver mascotas a mi alrededor</button>
+           </Link>
+        </div>
+
         <div className={stl.listadoCards}>
 
 

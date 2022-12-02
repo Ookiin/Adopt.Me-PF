@@ -7,12 +7,15 @@ import NavBar from "../NavBar/NavBar";
 import Footer from "../Footer/Footer";
 import { Link } from "react-router-dom";
 import createLocation from "../../Actions/createLocation";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Markers from "./Markers";
+import getLocations from "../../Actions/getLocation";
 
 export default function MapView() {
 
     const dispatch = useDispatch()
+
+   
 
     /////////////////////////////////////////////////////////// TOMA MI UBICACION ACTUAL SEGUN MI GPS ///////////////////
 
@@ -40,14 +43,14 @@ export default function MapView() {
     ///////////////////////////////////////////////////// GUARDA LA UBICACION EN LA BASE DE DATOS //////////////////////
 
     const [location, setLocation] = useState({
-        longitude: "",
-        latitude: ""
+            latitude: "",
+            longitude: ""
     })
 
     function handleLocation() {
         setLocation({
-            longitude: geo.longitude,
-            latitude: geo.latitude
+                latitude: geo.longitude,
+                longitude: geo.latitude
         })
         console.log("primer handle", location)
         alert("Ubicacion Establecida. Por favor seleccione 'Guardar mi Ubicacion'")
@@ -55,18 +58,17 @@ export default function MapView() {
 
     function handleLocation2() {
         setLocation({
-            longitude: geo.longitude,
-            latitude: geo.latitude
+                latitude: geo.longitude,
+                longitude: geo.latitude
         })
         console.log("segundo handle", location)
         alert("Ubicacion Guardada con exito")
     }
 
-    useEffect(() => {
-        if (location.longitude.length >= 1 && location.latitude.length >= 1) {
-            dispatch(createLocation())
-        }
-    }, [location.longitude.length, location.latitude.length, dispatch])
+    function handleSubmit() {
+        dispatch(createLocation(location))
+    }
+
 
     /////////////////////////////////////////////////// GUARDA MI UBICACION ACTUAL EN UN ESTADO Y RENDERIZO  ///////
 
@@ -82,7 +84,7 @@ export default function MapView() {
         <button onClick={handleLocation}>Confirmar su Ubicacion</button>
         <button onClick={handleLocation2}>Guardar mi Ubicacion</button>
         <Link to ="/registroMascota">
-            <button>Volver</button>
+            <button type="submit" onClick={handleSubmit}>Volver</button>
             </Link>
 
         <MapContainer center={position} zoom={5}>
@@ -92,14 +94,14 @@ export default function MapView() {
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"/>
 
         <Marker position={position} icon={IconLocation}>
-
+ 
            <Popup>
                Esta es mi ubicacion
           </Popup>
 
     </Marker>
 
-        <Markers />
+    <Markers />
         
     </MapContainer>
     
