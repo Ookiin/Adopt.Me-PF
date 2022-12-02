@@ -39,10 +39,6 @@ const AnimalSchema = new Schema({
         type: Number,
         required: false,
     },
-    localidad: {
-        type: String,
-        required: false,
-    },
     descripcion: {
         type: String,
         required: false,
@@ -52,6 +48,10 @@ const AnimalSchema = new Schema({
         required: false,
     },
     vacunado: {
+        type: String,
+        required: false,
+    },
+    desparasitado: {
         type: String,
         required: false,
     },

@@ -9,39 +9,6 @@ import stl from "../DonarMascota/formularioDar.module.css"
 import FloatingUI from "../Floating UI/FloatingUI";
 
 
-////////////////////////////////////////////////////// VALIDACION ///////////////////////////////////////////////////////////////
-
-function validation(input){
-    let errors = {};
-    const whitespace = /\S+/;
-    const validString = /^[a-z]+$/i;
-    const validNumber = /^\d+$/;
- 
-  
-   if (
-     !whitespace.test(input.nombre) ||                
-     !validString.test(input.nombre) ||               
-     input.nombre.length < 3                          
-    ) errors.nombre = "Nombre Requerido. Debe contener mas de dos caracteres y no incluir ningun simbolo o caracter especial";
-                                                
-                                        
-   if ( 
-       !validNumber.test(input.edad) ||      
-       parseInt(input.edad) < 1      ||      
-       parseInt(input.edad) > 20            
-     ) errors.edad = "Edad is required. Must be higher than 1 and less than 20.";
-                                   
-                                    
-     if (!input.descripcion) {
-       errors.descripcion = "Tienes que agregar una descripcion informativa de la mascota";
-     } else if (!/^[a-z\s]+$/i.test(input.descrpcion)) {
-       errors.descripcion = "La descripcion no es válida";
-     }
-                                
-     return errors
- }
-
- //////////////////////////////////////////////////// PA ADOPTAR AMEGO ////////////////////////////////////////////////////////////
  
  export default function DarEnAdopcion() {
  
@@ -50,7 +17,7 @@ function validation(input){
  const dispatch = useDispatch();
 
  const usuario = useSelector((state) => state.detalleUsuario)
- console.log(usuario._id)
+ // console.log(usuario._id)
 
  const [input, setInput] = useState({
         perro: false,
@@ -58,50 +25,143 @@ function validation(input){
         nombre: "",
         raza: "",
         edad: [],
-        estado: "",
+        estado: "En adopción",
         tamaño: [],
         peso: "",
-        localidad: "",
         descripcion: "",
         castrado: "",
         vacunado: "",
+        desparasitado: "",
         imagen: "",
         pichina: usuario._id
       });
 
   const [imagenes, setImagenes] = useState([]);
-  console.log(input.pichina)
+  // console.log(input.pichina)
   const [errors, setErrors] = useState({});
+  const [isSubmit, setisSubmit] = useState(false);
 
-    function handleSubmit(e){
-         e.preventDefault();
+  
+  ////////////////////////////////////////////////////// VALIDACION ///////////////////////////////////////////////////////////////
 
-    
+  function validation(input) {
+    let errors = {};
 
-    alert("Mascota Agregada");
+    if (!input.nombre) {
+      errors.nombre = "Tenes que ingresar un nombre";
+    } else if (!/^[a-z\s]+$/i.test(input.nombre)) {
+      errors.nombre = "El nombre no es válido";
+    }
 
-    setInput({
+    if (!input.raza) {
+      errors.raza = "Tenes que ingresar una raza";
+    } else if (!/^[a-z\s]+$/i.test(input.nombre)) {
+      errors.raza = "La raza no es válida";
+    }
+
+    if(!input.edad || input.edad === []) {
+      errors.edad = "Tenes que indicar la edad"
+    }
+
+    if(!input.tamaño || input.tamaño === []) {
+      errors.tamaño = "Tenes que indicar el tamaño"
+    }
+
+    if (!input.peso) {
+      errors.peso = "Tenes que ingresar el peso";
+    } else if (input.peso > 110) {
+      errors.peso = "El peso no es valido";
+    }
+
+    if(!input.descripcion) {
+      errors.descripcion = "Tenes que ingresar una descripción";
+    } else if (input.descripcion.length > 800) {
+      errors.descripcion = "La descripción es muy larga (Max = 800 caracteres)";
+    }
+
+    if(!input.castrado) {
+      errors.castrado = "Tenes que ingresar una respuesta";
+    } else if (
+      input.castrado != "si" && 
+      input.castrado != "SI" && 
+      input.castrado != "Si" &&
+      input.castrado != "sI" && 
+      input.castrado != "no" &&
+      input.castrado != "NO" &&
+      input.castrado != "No" &&
+      input.castrado != "nO"
+      ) {
+      errors.castrado = "Tenes que ingresar si o no";
+    }
+
+    if(!input.vacunado) {
+      errors.vacunado = "Tenes que ingresar una respuesta";
+    } else if (
+      input.vacunado != "si" && 
+      input.vacunado != "SI" && 
+      input.vacunado != "Si" &&
+      input.vacunado != "sI" && 
+      input.vacunado != "no" &&
+      input.vacunado != "NO" &&
+      input.vacunado != "No" &&
+      input.vacunado != "nO"
+      ) {
+      errors.vacunado = "Tenes que ingresar si o no";
+    }
+
+    if(!input.desparasitado) {
+      errors.desparasitado = "Tenes que ingresar una respuesta";
+    } else if (
+      input.desparasitado != "si" && 
+      input.desparasitado != "SI" && 
+      input.desparasitado != "Si" &&
+      input.desparasitado != "sI" && 
+      input.desparasitado != "no" &&
+      input.desparasitado != "NO" &&
+      input.desparasitado != "No" &&
+      input.desparasitado != "nO"
+      ) {
+      errors.desparasitado = "Tenes que ingresar si o no";
+    }
+
+    if (Object.keys(errors).length === 0) {
+      setisSubmit(true);
+    }
+
+    return errors;
+  }
+
+  
+  /////////////////////////// SUBMIT /////////////////////////////////////////////////////////////////////
+  function handleSubmit(e){
+    e.preventDefault();
+
+    //Si no hay errores, el isSubmit esta en true
+    if (isSubmit === true) {
+
+      dispatch(createanimal(input, imagenes));
+      setInput({
         perro: false,
         gato: false,
         nombre: "",
         raza: "",
         edad: [],
-        estado: "",
+        estado: "En adopción",
         tamaño: [],
         peso: "",
-        localidad: "",
         descripcion: "",
         castrado: "",
         vacunado: "",
+        desparasitado: "",
         imagen: "",
         pichina: ""
-    })
-    
-    
-    // setImagenes([])
-    dispatch(createanimal(input, imagenes));
-    navigate("/homepage")
- }
+      });
+      navigate("/homepage")
+      alert("Mascota publicada correctamente");
+    } else {
+      alert("No se pudo completar el registro, revise los campos");
+    }
+  }
 
  /////////////////////////// EXTRAYENDO URL DE CLAUDINARY /////////////////////////////////////////////////////////////////////
 
@@ -123,20 +183,17 @@ function validation(input){
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////7
 
- function handleChange(e) {
-
-    setInput({
-       ...input,
-       [e.target.name]: e.target.value
+function handleChange(e) {
+  e.preventDefault();
+  setInput((prev) => ({ ...prev, [e.target.name]: e.target.value })); // e.target.name seria el input que se va a estar modificando
+  setErrors(
+    validation({
+      // voy a tomar el valor del input que se modifico y voy a ir llenando el estado
+      ...input,
+      [e.target.name]: [e.target.value],
     })
-
-    setErrors(
-        validation({
-            ...input,
-            status: e.target.value,
-        })
-    )
-  }
+  );
+}
 
   function handleEdad(e) {
     if (input.edad.length === 0)
@@ -239,19 +296,11 @@ function validation(input){
   <div className={stl.formDarAdopcion}>
     <NavBar />
     <FloatingUI />
-   
-        <form className={stl.formularito} onSubmit={handleSubmit}>
 
-         <div className={stl.error}>
-      {errors.gato && ( <p class="error2">{errors.gato}</p>)} 
-      {errors.perro && ( <p class="error2">{errors.perro}</p>)}
-      {errors.nombre && ( <p class="error2">{errors.nombre}</p>)} 
-      {errors.edad && ( <p class="error2">{errors.edad}</p>)} 
-      {errors.descripcion && ( <p class="error2">{errors.descripcion}</p>)} 
-      </div> 
-
-          <div className={stl.titulo}>Registra los datos de tu Mascota</div>
+          <div className={stl.titulo}>Registra los datos de la mascota</div>
           
+          <form className={stl.formularito} onSubmit={handleSubmit}>
+
           <div className={stl.imageContainer}>
             {imagenes.map((f) => {
               return (
@@ -295,74 +344,91 @@ function validation(input){
               <div className={stl.opciones}>
                 <label className={stl.titulos}>Nombre:</label>
                 <input onChange={handleChange}
-                type="text" name="nombre" value={input.nombre}/>                        
+                type="text" name="nombre" value={input.nombre}/>  
+                {errors.nombre && <p className={stl.error}>{errors.nombre}</p>}                      
             </div>
  
             <div className={stl.opciones}>
             <label className={stl.titulos}>Raza:</label>
                 <input onChange={handleChange} 
-                type="text" name="raza" value={input.raza}/>           
+                type="text" name="raza" value={input.raza}/> 
+                {errors.raza && <p className={stl.error}>{errors.raza}</p>}          
             </div>
 
             <div className={stl.opciones}>                                
-            <label className={stl.titulos}>Edad (Solo Numeros):</label>
-            <select className={stl.edad} onChange={handleEdad}>
-                        <option></option>
+            <label className={stl.titulos}>Edad:</label>
+            <select className={stl.edad} defaultValue="" onChange={handleEdad}>
+                       <option value="" disabled hidden>Selecciona edad...</option>
                        <option>Menos de 45 dias</option>
                        <option>Mas de 45 dias</option>
                        <option>Adulto</option>
                        <option>Anciano</option>
                         </select>
+                        {errors.edad && ( <p className={stl.error}>{errors.edad}</p>)}
                         </div>
-
-            <div className={stl.opciones}>
-            <label className={stl.titulos}>Estado de la mascota:</label>
-                <input onChange={handleChange} 
-                type="text" name="estado" value={input.estado}/>          
-            </div>
 
             <div className={stl.opciones}>                                     
             <label className={stl.titulos}>Tamaño:</label>
-            <select className={stl.tamaño} onChange={handleTamaño}>
-                       <option></option>
+            <select className={stl.tamaño} defaultValue="" onChange={handleTamaño}>
+                       <option value="" disabled hidden>Seleccione tamaño...</option>
                        <option>Chico</option>
                        <option>Mediano</option>
                        <option>Grande</option>
                        </select>
-                        </div>
+                       {errors.tamaño && <p className={stl.error}>{errors.tamaño}</p>}
+                       </div>
         
             <div className={stl.opciones}>
-            <label className={stl.titulos}>Peso (Solo Numeros):</label>
+            <label className={stl.titulos}>Peso:</label>
                 <input onChange={handleChange} 
-                type="text" name="peso" value={input.peso}/>           
+                type="text" name="peso" value={input.peso}/>
+                <label className={stl.titulos}> kg.</label>
+                {errors.peso && <p className={stl.error}>{errors.peso}</p>}          
             </div>
 
             <div className={stl.opciones}>
-            <label className={stl.titulos}>Localidad:</label>
-            <Link to = "/map">
-                <button className={stl.botonUbicacion}>Establecer tu ubicacion</button>
-                </Link>
-            </div>
-
-            <div className={stl.opciones}>
-            <label className={stl.titulos}>Descripcion:</label>
-                <input onChange={handleChange} type="text" name="descripcion" value={input.descripcion}/>
-               
-           </div>
+            <label className={stl.titulos}>Descripción:</label>
+            <textarea
+              required
+              type="text"
+              name="descripcion"
+              value={input.descripcion}
+              onChange={(e) => handleChange(e)}
+              > </textarea>
+              {errors.descripcion && <p className={stl.error}>{errors.descripcion}</p>}
+          </div>
 
             <div className={stl.opciones}>
             <label className={stl.titulos}>Esta Castrado? (Si/No):</label>
                 <input onChange={handleChange}type="text" name="castrado" value={input.castrado}/>
+                {errors.castrado && <p className={stl.error}>{errors.castrado}</p>}
             </div> 
 
             <div className={stl.opciones}>
             <label className={stl.titulos}>Esta Vacunado? (Si/No):</label>
                 <input onChange={handleChange} type="text" name="vacunado"  value={input.vacunado}/>
+                {errors.vacunado && <p className={stl.error}>{errors.vacunado}</p>}
             </div>  
 
-            <button className={stl.boton} onClick={handleImagen}>Dar en Adopcion</button>
-              {/* <button className={stl.boton} type="submit">Dar en Adopcion</button> */}
+            <div className={stl.opciones}>
+            <label className={stl.titulos}>Esta desparasitado? (Si/No):</label>
+                <input onChange={handleChange} type="text" name="desparasitado"  value={input.desparasitado}/>
+                {errors.vacunado && <p className={stl.error}>{errors.vacunado}</p>}
+            </div>  
 
+              <div>
+            <button
+              className={stl.boton}
+              type="submit"
+              disabled={isSubmit ? false : true}
+            >
+              PONER EN ADOPCIÓN
+            </button>
+
+            <Link to="/homepage">
+              <button className={stl.boton}>CANCELAR</button>
+            </Link>
+          </div>
         </form>
         <Footer />
     </div>
