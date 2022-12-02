@@ -1,5 +1,6 @@
 export default function MisPublicaciones() {
+    
     return (
-        <button>Mis publiciones</button>
+        <h1> Mis Publicaciones</h1>
     )
 };
