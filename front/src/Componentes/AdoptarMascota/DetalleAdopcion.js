@@ -1,5 +1,6 @@
 import React from "react";
 import { Link, useParams } from 'react-router-dom';
+import NavBar from "../NavBar/NavBar";
 
 export default function DetalleAdopcion () {
 
@@ -8,6 +9,7 @@ export default function DetalleAdopcion () {
     return (
 
         <div key={params.id}>
+            <NavBar></NavBar>
             <div>
             <h1>ADOPTA A TU NUEVA MASCOTA</h1>
             </div>
