@@ -1,6 +1,5 @@
 import React from "react";
-import { useState } from "react";
-
+import Metamask from "../Metamask/Metamask";
 import Paypal from "../Paypal/Paypal";
 
 // import MercadoPago from "../MercadoPago/MercadoPago"
@@ -45,21 +44,22 @@ export default function Donar() {
 
            <div className={stl.metodosPago}>
                 
-                {/* {checkout ? ( */}
+                <div className={stl.botonpaypal}>
                 <Paypal />
-                {/* //  ) : ( */}
-                {/* // <button className={stl.paypal} onClick={() => {setCheckOut(true)}}></button>
-                // )}
-                // </div> */}
-                {/* <button>Mercado Pago</button>
-                <button>Crypto</button>
+                </div>
 
-                {/* <MercadoPago /> */}
+                <div className={stl.botonmetamask}>
+                <Metamask />
+                </div>
+
+                <div className={stl.botonstripes}>
+                    <button>algo</button>
+                </div>
 
         </div>
+        
        </form>
-
-
         </div>
+        
     )
 }
