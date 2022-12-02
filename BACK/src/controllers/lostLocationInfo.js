@@ -12,12 +12,13 @@ getLostLocation = async (req, res) => {
 
 postLostLocation = async (req, res) => {
   try {
-    const { tipo, longitude, latitude } = req.body;
+    const { tipo, longitude, latitude, imagen } = req.body;
 
     const lostLocations = await new lostLocationModel({
       tipo,
       longitude,
       latitude,
+      imagen,
     });
     if (lostLocations.length) await lostLocations.save();
     const nuevaLostLocation = await lostLocations.save();

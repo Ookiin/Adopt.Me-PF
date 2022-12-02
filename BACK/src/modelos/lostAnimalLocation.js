@@ -2,9 +2,16 @@ const mongoose = require("mongoose");
 const { Schema } = mongoose;
 
 const lostLocationSchema = new Schema({
-  tipo: String,
+  tipo: { 
+    type:String,
+    required: false,
+},
   longitude: String,
   latitude: String,
+  imagen: {
+        type: String,
+        required: false,
+    },
 });
 
 const lostLocationModel = mongoose.model("lostlocation", lostLocationSchema);
