@@ -73,3 +73,14 @@
   .texto {
     font-size: 20px;
   }
+
+  iframe {
+    margin-top: 10px;
+    margin-bottom: 70px;
+    width: 500px;
+    height: 500px;
+  }
+
+  .veterinarias {
+    margin-top: 90px;
+  }

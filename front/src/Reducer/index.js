@@ -24,6 +24,7 @@ import {
   // FILTRA_TAMAÑO
 } from "../Actions";
 
+
 const initialState = {
   animales: [],
   perrosCopia: [],
