@@ -4,7 +4,7 @@
     /* border: 2px solid red; */
     display: flex;
     width: 600px;  
-    height: 850px; 
+    height: 750px; 
     margin-top: 60px;
     justify-content: center;
     position: relative;
@@ -50,7 +50,7 @@ input {
     position: absolute;
     margin-top: 350px;
     width: 450px;
-    height: 400px;
+    height: 330px;
     background-color: #F2E7D5;
     box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;    
 }
@@ -73,5 +73,6 @@ label {
  }
 
  .botonstripes  {
-    margin-top: 40px;
+    margin-top: 160px;
+    margin-left: 54px;
  }

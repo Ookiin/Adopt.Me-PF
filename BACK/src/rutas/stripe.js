@@ -1,8 +1,8 @@
-const express = require('express')
-const Router = express.Router()
-const infoStripe = require('../controllers/StripeInfo')
+// const express = require('express')
+// const Router = express.Router()
+// const infoStripe = require('../controllers/StripeInfo')
 
-Router.post('/payment', app.post)
+// Router.post('/payment', app.post)
 
 
-module.exports = Router
+// module.exports = Router

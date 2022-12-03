@@ -1,8 +1,13 @@
 import React from "react";
 import Metamask from "../Metamask/Metamask";
 import Paypal from "../Paypal/Paypal";
-import Stripes from "../Stripes/Stripes";
+// import App from "../Stripes/Stripe";
 import stl from "./Donacion.module.css";
+// import {Elements, CardElement, useStripe, useElements} from '@stripe/react-stripe-js';
+// import { loadStripe } from '@stripe/stripe-js';
+// import CheckoutForm from "../Stripes/Stripe";
+
+// const stripePromise = loadStripe("pk_test_51M9wCWDFa6jLCwa92xpEczTJ20PPSzL6XTQmi8OZan1aNkHFGAv9A0AX7OJIw8wJf1Ru59PdJrRpGnnBvopiFK5T000lEuF7rB")
 
 
 export default function Donar() {
@@ -48,9 +53,17 @@ export default function Donar() {
                 <Metamask />
                 </div>
 
-                <div className={stl.botonstripes}>
-                <Stripes />
-                </div>
+                {/* <div className={stl.botonstripes}>
+                <Elements stripe={stripePromise}>
+       <div >
+         <div >
+           <div >
+       <CheckoutForm />
+           </div>
+         </div>
+       </div>    
+       </Elements>
+                </div> */}
 
         </div>
         
