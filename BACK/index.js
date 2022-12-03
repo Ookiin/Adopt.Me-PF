@@ -14,6 +14,7 @@ const session = require("express-session");
 const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
 const locationRutas = require("../BACK/src/rutas/locations");
+const lostLocationRutas = require("../BACK/src/rutas/lostLocation");
 
 
 //inicializacion
@@ -52,7 +53,9 @@ app.use("/usuarios", usuarioRutas);
 app.use("/pagos", pagosPayPalRutas);
 app.use("/pagosMp", pagosMercadoPago);
 app.use("/location", locationRutas);
+app.use("/lostlocation", lostLocationRutas);
 app.use("/payment", pagosStripes);
+
 
 app.listen(app.get("port"), () => {
   console.log("Server on port", app.get("port"));
