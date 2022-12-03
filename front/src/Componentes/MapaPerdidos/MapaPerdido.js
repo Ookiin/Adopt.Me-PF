@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react"
-import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet"
+import { MapContainer, Marker, Popup, TileLayer, useMap } from "react-leaflet"
 import { useDispatch } from "react-redux"
 import createLocationPerdidos from "../../Actions/createLocationPerdidos"
 import { IconLocation } from "../Maps/IconLocation"
@@ -80,8 +80,23 @@ export default function MapLostPets() {
     function handleSubmit() {
         dispatch(createLocationPerdidos(location))
     }
-
+    
     const position = [geo.lat, geo.lng]
+
+    const local = position
+
+    function FlyMapTo() {
+
+      const map = useMap()
+  
+      useEffect(() => {
+          map.flyTo(local)
+          
+      }, {enableHighAccuracy: true})
+  
+      return null
+  }
+
   
     return (
 
@@ -103,8 +118,8 @@ export default function MapLostPets() {
             </Link>
             </div>
 
-        <MapContainer center={position} zoom={5}>
-        
+        <MapContainer center={position} zoom={13} scrollWheelZoom={false}>
+        <FlyMapTo />
         <TileLayer
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"/>

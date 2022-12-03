@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react"
-import {MapContainer, Marker, Popup, TileLayer} from "react-leaflet"
+import {MapContainer, Marker, Popup, TileLayer, useMap} from "react-leaflet"
 import "leaflet/dist/leaflet.css"
 import "./Maps.css";
 import {IconLocation} from "./IconLocation";
@@ -71,7 +71,21 @@ export default function MapView() {
     /////////////////////////////////////////////////// GUARDA MI UBICACION ACTUAL EN UN ESTADO Y RENDERIZO  ///////
 
     const position = [geo.latitude, geo.longitude]
-    console.log("position", position)
+
+    const local = position
+
+    function FlyMapTo() {
+
+      const map = useMap()
+  
+      useEffect(() => {
+          map.flyTo(local)
+          
+      }, {enableHighAccuracy: true})
+  
+      return null
+  }
+
 
     return (    
     <div>
@@ -88,8 +102,8 @@ export default function MapView() {
             </Link>
             </div>
 
-        <MapContainer center={position} zoom={5}>
-        
+        <MapContainer center={position} zoom={13} scrollWheelZoom={false}>
+        <FlyMapTo />
         <TileLayer
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"/>

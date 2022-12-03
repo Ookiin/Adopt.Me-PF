@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react"
-import {MapContainer, TileLayer} from "react-leaflet"
+import {MapContainer, TileLayer, useMap} from "react-leaflet"
 import "leaflet/dist/leaflet.css"
 import NavBar from "../NavBar/NavBar";
 import Footer from "../Footer/Footer";
 import { Link } from "react-router-dom";
 import stl from "../MapaPerdidos/MapaPerdido.module.css";
-// import MarkersLost from "./Marcadores";
+import MarkersLost from "./Marcadores";
+
 
 
 export default function LostPetsList() {
@@ -27,28 +28,44 @@ useEffect(() => {
             console.log(error)
         }, {
             enableHighAccuracy: true
+            
         });
     
 }, [])
 
-    const position = [geo.latitude, geo.longitude]
-    
-    return ( 
+const position = [geo.latitude, geo.longitude]
 
-    <div>
+const local = position
+
+function FlyMapTo() {
+
+    const map = useMap()
+
+    useEffect(() => {
+        map.flyTo(position)
+    }, [])
+
+    return null
+}
+
+   
+
+    return ( 
+    <div className="map">
        <NavBar />
 
         <p>Estas son las mascotas perdidas reportadas</p>
 
-        <MapContainer center={position} zoom={5}>
-        
-        <TileLayer
+        <MapContainer center={local} zoom={13} scrollWheelZoom={false} >
+        <FlyMapTo />
+        <TileLayer 
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"/>
 
-         {/* <MarkersLost /> */}
+         <MarkersLost  />
 
-        </MapContainer> 
+            
+        </MapContainer > 
 
         <Link to ="/buscarmascota">
         <button className={stl.botonMapa}>Volver</button>
