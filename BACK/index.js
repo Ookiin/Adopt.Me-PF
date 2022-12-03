@@ -54,7 +54,7 @@ app.use("/pagos", pagosPayPalRutas);
 app.use("/pagosMp", pagosMercadoPago);
 app.use("/location", locationRutas);
 app.use("/lostlocation", lostLocationRutas);
-app.use("/payment", pagosStripes);
+// app.use("/payment", pagosStripes);
 
 
 app.listen(app.get("port"), () => {
