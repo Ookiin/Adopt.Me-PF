@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import createAnimalPerdido from '../../Actions/createAnimalPerdido';
 import './ReportarMascota.module.css'
 import NavBar from "../NavBar/NavBar";
@@ -293,9 +293,11 @@ console.log(input)
         
 
             <div className={stl.opciones}>
-            <label className={stl.titulos}>Localidad:</label>
-                <input onChange={handleChange} 
-                type="text" name="localidad" value={input.localidad}/>            
+              <Link to ="/lostpets">
+                <button>Establecer ubicacion donde se perdio o vio por ultima vez
+                  la mascota
+                </button>
+                  </Link>        
             </div>
 
             <div className={stl.opciones}>
