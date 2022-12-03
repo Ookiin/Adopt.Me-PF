@@ -4,9 +4,11 @@ import { Link, useNavigate } from "react-router-dom";
 import createAnimalPerdido from '../../Actions/createAnimalPerdido';
 import './ReportarMascota.module.css'
 import NavBar from "../NavBar/NavBar";
-import Footer from "../Footer/Footer";
-import stl from "../ReportarMascota/ReportarMascota.module.css";
+import Footer from "../Footer/Footer"
+import stl from "../ReportarMascota/ReportarMascota.module.css"
 import FloatingUI from "../Floating UI/FloatingUI";
+import imagenDefault from "../../Imagenes/imagenDefault.png"
+
 
 ////////////////////////////////////////////////////// VALIDACION ///////////////////////////////////////////////////////////////
 
@@ -207,12 +209,12 @@ console.log(input)
 
   ///////////////////////////// HANDLE DELETE FOTO
 
-  function handleDelete(f) {
-    setImagenes({
-      ...imagenes,
-      id: imagenes.id.filter((id) => id !== f)
-    });
-  }
+  // function handleDelete(f) {
+  //   setImagenes({
+  //     ...imagenes,
+  //     id: imagenes.id.filter((id) => id !== f)
+  //   });
+  // }
 
 /////////////////////////////////////////////////////////// TE KAVIO EL RETURN  ///////////////////////////////////////////////////
 
@@ -221,65 +223,67 @@ console.log(input)
   <div className={stl.paginareportar}>
     <NavBar />
     <FloatingUI />
-   
-        <form onSubmit={handleSubmit}>
-
-          <div>Registra los datos de Mascota Perdida</div>
           
-          <div>
-            {imagenes.map((f) => {
-              return (
-              <div >
-                <img src= {f.url} value={f.id} alt="foto"/>
-                {imagenes.map((f) => (
-                  <i className="fa fa-times close-icon" onClick={() => handleDelete(f)} value={f.id}></i>
-                ))}
-                </div>
-                );
-                })}
-                <div >
+          <div className={stl.tituloperdido}>Registra los datos de Mascota Perdida</div>
+   
+        <form className={stl.formul} onSubmit={handleSubmit}>
+
+      {errors.gato && ( <p class="error2">{errors.gato}</p>)} 
+      {errors.perro && ( <p class="error2">{errors.perro}</p>)}
+      {errors.descripcion && ( <p class="error2">{errors.descripcion}</p>)} 
+      
+
+          
+      <div className={stl.imageContainer2}>
+
+        <div >
+            <img
+        src={imagenDefault}
+          id="default-photo"
+          alt=""
+          height="150"
+          width="150"
+          />
+
+        <button
+            id="btn-foto"
+         name="imagen"
+         onClick={(e) => handleOpenWidget(e)}
+         className={stl.botonFoto2}
+          >
+            AGREGAR FOTO
+            </button>
+          <span></span>
+            </div>
+            </div>
                   
-                  </div>
-                  <div>
-                    <button
-                   
-                    name="fotos"
-                    onClick={handleOpenWidget}> 
-                      AGREGAR FOTOS
-                      </button>
-                     
-                      </div>
-                  </div>
-                  
-       
-       <div >
-         <div >
-                <label >Gato:</label>
-                <input  onChange={ (e) => { handleCheck(e); handleGato(e); }}
-                type="checkbox" name="gato" checked={isChecked} value={input.gato}/>
-                {errors.gato && ( <p class="error2">{errors.gato}</p>)}                        
+            <div className={stl.contenedordatos2}>
+       <div className={stl.gatoPerro2}>
+         <div className={stl.opciones2}>
+                <label className={stl.titulos2}>Gato:</label>
+                <input className={stl.inputs2} onChange={ (e) => { handleCheck(e); handleGato(e); }}
+                type="checkbox" name="gato" checked={isChecked} value={input.gato}/>                       
             </div> 
           
-            <div >
-                <label >Perro:</label>
-                <input  onChange={ (e) => { handleCheck2(e); handlePerro(e); }}
-                type="checkbox" name="perro" checked={isChecked2} value={input.perro}/> 
-                {errors.perro && ( <p class="error2">{errors.perro}</p>)}                       
+            <div className={stl.opciones2}>
+                <label className={stl.titulos2}>Perro:</label>
+                <input className={stl.inputs2} onChange={ (e) => { handleCheck2(e); handlePerro(e); }}
+                type="checkbox" name="perro" checked={isChecked2} value={input.perro}/>                        
             </div>
             </div>
 
-            <div >                                     
-            <label >Estado:</label>
-            <select  onChange={handleEstado}>
+            <div className={stl.opciones}>                                     
+            <label className={stl.titulos}>Estado:</label>
+            <select className={stl.tamaño} onChange={handleEstado}>
                        <option></option>
                        <option>Perdido</option>
                        <option>Encontrado</option>                       
                        </select>
                         </div>
 
-            <div >                                     
-            <label >Tamaño:</label>
-            <select onChange={handleTamaño}>
+            <div className={stl.opciones}>                                     
+            <label className={stl.titulos}>Tamaño:</label>
+            <select className={stl.tamaño} onChange={handleTamaño}>
                        <option></option>
                        <option>Chico</option>
                        <option>Mediano</option>
@@ -288,22 +292,22 @@ console.log(input)
                         </div>
         
 
-            <div >
+            <div className={stl.opciones}>
               <Link to ="/lostpets">
-                <button>Establecer ubicacion donde se perdio o vio por ultima vez
+                <button className={stl.botonubicacion}>Establecer ubicacion donde se perdio o vio por ultima vez
                   la mascota
                 </button>
                   </Link>        
             </div>
 
-            <div >
-            <label >Descripcion:</label>
+            <div className={stl.opciones}>
+            <label className={stl.titulos}>Descripcion:</label>
                 <input onChange={handleChange} type="text" name="descripcion" value={input.descripcion}/>
-                {errors.descripcion && ( <p class="error2">{errors.descripcion}</p>)} 
+               
            </div>
+          </div>
 
-
-            <button  onClick={handleImagen}>Reportar</button>
+            <button className={stl.botonperdido} onClick={handleImagen}>Reportar</button>
              {/* <button className={stl.boton} type="submit">Dar en Adopcion</button> */}
 
         </form>
