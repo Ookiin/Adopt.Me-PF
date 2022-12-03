@@ -3,8 +3,8 @@ import { GET_LOCATION_PERDIDOS } from ".";
 
 export default function getLocationsPerdidos() {
     return async function (dispatch) {
-        const result = await axios.get("/location2");
-        console.log("viendo que trae", result)
+        const result = await axios.get("/lostlocation");
+       
         return dispatch({ type: GET_LOCATION_PERDIDOS, payload: result.data})
     }
 }
