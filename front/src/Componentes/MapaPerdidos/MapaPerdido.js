@@ -37,7 +37,6 @@ export default function MapLostPets() {
 
 
     const [draggable, setDraggable] = useState(false)
-    // const [position, setPosition] = useState()
     const markerRef = useRef(null)
     const eventHandlers = useMemo(
       () => ({
@@ -100,7 +99,7 @@ export default function MapLostPets() {
         <button className={stl.botonMapa2} onClick={handleLocation}>Establecer mi Ubicacion</button>
         <button className={stl.botonMapa2} onClick={handleLocation2}>Guardar mi Ubicacion</button>
         <Link to ="/homepage">
-            <button className={stl.botonMapa3} type="submit" onClick={handleSubmit}>Confirmar y Volver</button>
+            <button className={stl.botonMapa3} type="submit" onClick={handleSubmit} >Confirmar y Volver</button>
             </Link>
             </div>
 
@@ -117,11 +116,11 @@ export default function MapLostPets() {
         ref={markerRef}
         icon={IconLocation}>
         <Popup minWidth={90}>
-          <span onClick={toggleDraggable}>
+          <div onClick={toggleDraggable}>
             {draggable
-              ? 'Marker is draggable'
-              : 'Click here to make marker draggable'}
-          </span>
+              ? 'Ya puedes arrastrarlo'
+              : 'Hace "Click" aqui para arrastrarlo'}
+          </div>
         </Popup>
       </Marker>
 

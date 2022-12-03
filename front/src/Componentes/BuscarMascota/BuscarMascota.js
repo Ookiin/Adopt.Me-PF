@@ -104,6 +104,12 @@ export default function BuscarMascota() {
         <button className={stl.btnNav} onClick={(e)=>handlePerro(e)}>Perros</button>
       </div>
 
+      <div>
+        <Link to ="/viewlostpets">
+        <button>Ver mascotas perdidas en el mapa</button>
+        </Link>
+      </div>
+
     <div className={stl.listadoCards}>
 
       {currentPets.length > 0 && currentPets.map(a =>{
