@@ -10,10 +10,12 @@ import FloatingUI from "../Floating UI/FloatingUI";
 import getperro from "../../Actions/getperros";
 import getDogByName from "../../Actions/getDogByName";
 import ordenAlfabetico from "../../Actions/ordenAlfabetico";
-import getDogsLocal from "../../Actions/getDogsLocal";
+import getdogtamaños from "../../Actions/getDogTamaños";
+
 import MapView from "../Maps/Maps";
 import MapPets from "../Maps/Maps2";
-//  import getdogtamaños from "../../Actions/getDogTamaños";
+import getDogEdad from "../../Actions/getDogEdad";
+
  
 
 export default function HomePerros () {
@@ -23,7 +25,7 @@ export default function HomePerros () {
 
     const allPets = useSelector((state) => state.perros);
     const copiaPerros = useSelector((state)=>state.perrosCopia)
-    console.log("copiaperros", copiaPerros)
+    
 
     const [currentPage, setCurrentPage] = useState(1) 
     const [mascotasPerPage] = useState(4)
@@ -35,7 +37,6 @@ export default function HomePerros () {
     const [setInput] = useState("");
     const [setOrden] = useState("");
     const [searchDog, setSearchDog] = useState("");
-    const [localDog, setlocalDog] = useState("");
     useState(copiaPerros)
 
     const actualPage = (pageNumber) => {setCurrentPage(pageNumber)}
@@ -54,11 +55,7 @@ export default function HomePerros () {
         e.preventDefault();
         setSearchDog(e.target.value)
     }
-
-    const handleInputLocal = (e) => {//cambia cada caracter
-        e.preventDefault();
-        setlocalDog(e.target.value)
-    }
+ 
 
     const handleSubmit = (e) => {//mando la accion y me trae el dog
         e.preventDefault();
@@ -70,15 +67,6 @@ export default function HomePerros () {
         }
    }
 
-   const handleLocalSubmit = (e) => {//mando la accion y me trae el dog
-    e.preventDefault();
-    if(localDog){
-    dispatch(getDogsLocal(localDog))
-    setlocalDog("")
-    navigate("/adoptdog") 
-    actualPage(1)
-    }
-}
 
    const handleOrden = (e) => {
      dispatch(ordenAlfabetico(e.target.value))
@@ -87,11 +75,16 @@ export default function HomePerros () {
    }
 
 
-//   async function handleTamaño (e){  
-//      e.preventDefault(copiaPerros);   
-//      dispatch(getdogtamaños(e.target.value))  
-//     console.log("copia perros:", copiaPerros);    
-//   }
+   async function handleTamaño (e){  
+    await e.preventDefault();   
+    await dispatch(getdogtamaños(e.target.value));
+    console.log(e.target.value);
+  };
+  async function handleEdad (e){  
+    await e.preventDefault();   
+    await dispatch(getDogEdad(e.target.value));
+    console.log(e.target.value);
+  };
         
    return(
         <div className={stl.paginaadopcionperros}>
@@ -119,16 +112,6 @@ export default function HomePerros () {
                type="submit"
                onClick={handleSubmit}>Ir</button>  
 
-        <label className={stl.labelSearch}>Localidad:</label>
-           <input className={stl.inputNav}
-               value={localDog}
-               type="text"
-               placeholder=" Localidad..."
-               onChange={handleInputLocal}>
-           </input>
-           <button className={stl.btnNav}
-               type="submit"
-               onClick={handleLocalSubmit}>Ir</button>    
         </div>
 
         <div className={stl.filtros}>Filtar: 
@@ -141,12 +124,19 @@ export default function HomePerros () {
                     <option value='Z-A'>Z-A</option>
                 </select>
               
-                {/* <select onChange={(e)=>handleTamaño(e)}>
+                <select onChange={(e)=>handleTamaño(e)}>
                 <option value='All' disabled selected defaultValue>Tamaño</option>
-                <option value = 'mediano'>Mediano</option>
-                <option value = 'chico'>Chico</option>
-                <option value = 'grande'>Grande</option>                               
-            </select>  */}
+                <option value = 'Mediano'>Mediano</option>
+                <option value = 'Chico'>Chico</option>
+                <option value = 'Grande'>Grande</option>                               
+            </select> 
+            <select onChange={(e)=>handleEdad(e)}>
+                <option value='edad' disabled selected defaultValue>Edad</option>
+                <option value = 'Menos de 45 dias'>Menos de 45 dias</option>
+                <option value = 'Mas de 45 dias'>Mas de 45 dias</option>
+                <option value = 'Adulto'>Adulto</option>
+                <option value = 'Anciano'>Anciano</option>                                  
+            </select> 
         </div>
         <br/>
         <div>
@@ -171,13 +161,9 @@ export default function HomePerros () {
                      <Card
                      id={p._id}
                      perro = {p.perro}
-                     nombre={p.nombre}
-                     localidad={p.localidad}
+                     nombre={p.nombre}                     
                      imagen={p.imagen}
-                     />
-                    
-                
-                                                         
+                     />                                                                                             
             )})     
                                   
         }

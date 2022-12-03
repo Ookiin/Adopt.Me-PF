@@ -31,7 +31,7 @@ const AnimalSchema = new Schema({
         type: String,
         required: false,
     },
-    tamaño: {
+    tama: {
         type: Array,
         required: false,
     },
