@@ -112,6 +112,7 @@ h4 {
   display: flex;
   align-items: center;
   margin-right: 60px;
+  z-index: +1;
 }
 
 .dropdown:hover .dropdown-content {
