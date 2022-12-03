@@ -8,14 +8,14 @@ postComentario = async (req, res) => {
     const comentarios = await new comentarioModel({
       comentario,
     });
-    if (comentario1.length) await comentario.save();
-    const nuevoComentario = await comentario.save();
+    if (comentarios.length) await comentarios.save();
+    const nuevoComentario = await comentarios.save();
     res.status(200).json(nuevoComentario);
   } catch (error) {
     res.status(400).json({ msg: "no se guardo comentario" });
   }
 };
-
+//console.log(comentarios);
 getComentario = async (req, res) => {
   try {
     let comentario = await comentarioModel.find();
@@ -29,7 +29,7 @@ putComentario = async (req, res) => {
   const { id } = req.params;
   const { comentario } = req.body;
   try {
-    let comentario2 = await comentarioModel.updateOne(
+    let comentario = await comentarioModel.updateOne(
       { _id: id },
       {
         $set: {

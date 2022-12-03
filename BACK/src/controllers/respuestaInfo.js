@@ -8,8 +8,8 @@ postRespuesta = async (req, res) => {
     const respuestas = await new respuestaModel({
       respuesta,
     });
-    if (respuesta.length) await respuesta.save();
-    const nuevaRespuesta = await respuesta.save();
+    if (respuestas.length) await respuestas.save();
+    const nuevaRespuesta = await respuestas.save();
     res.status(200).json(nuevaRespuesta);
   } catch (error) {
     res.status(400).json({ msg: "no se guardo respuesta" });
