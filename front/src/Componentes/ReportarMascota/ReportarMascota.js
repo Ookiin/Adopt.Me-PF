@@ -4,8 +4,8 @@ import { Link, useNavigate } from "react-router-dom";
 import createAnimalPerdido from '../../Actions/createAnimalPerdido';
 import './ReportarMascota.module.css'
 import NavBar from "../NavBar/NavBar";
-import Footer from "../Footer/Footer"
-import stl from "../DonarMascota/formularioDar.module.css"
+import Footer from "../Footer/Footer";
+import stl from "../ReportarMascota/ReportarMascota.module.css";
 import FloatingUI from "../Floating UI/FloatingUI";
 
 ////////////////////////////////////////////////////// VALIDACION ///////////////////////////////////////////////////////////////
@@ -218,24 +218,18 @@ console.log(input)
 
   return (
     
-  <div className={stl.formDarAdopcion}>
+  <div className={stl.paginareportar}>
     <NavBar />
     <FloatingUI />
    
-        <form className={stl.formularito} onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit}>
 
-         <div className={stl.error}>
-      {errors.gato && ( <p class="error2">{errors.gato}</p>)} 
-      {errors.perro && ( <p class="error2">{errors.perro}</p>)}
-      {errors.descripcion && ( <p class="error2">{errors.descripcion}</p>)} 
-      </div> 
-
-          <div className={stl.titulo}>Registra los datos de Mascota Perdida</div>
+          <div>Registra los datos de Mascota Perdida</div>
           
-          <div className={stl.imageContainer}>
+          <div>
             {imagenes.map((f) => {
               return (
-              <div className={stl.imagePreview}>
+              <div >
                 <img src= {f.url} value={f.id} alt="foto"/>
                 {imagenes.map((f) => (
                   <i className="fa fa-times close-icon" onClick={() => handleDelete(f)} value={f.id}></i>
@@ -243,12 +237,12 @@ console.log(input)
                 </div>
                 );
                 })}
-                <div className={stl.imagePreview}>
+                <div >
                   
                   </div>
                   <div>
                     <button
-                    className={stl.botonFoto}
+                   
                     name="fotos"
                     onClick={handleOpenWidget}> 
                       AGREGAR FOTOS
@@ -258,32 +252,34 @@ console.log(input)
                   </div>
                   
        
-       <div className={stl.gatoPerro}>
-         <div className={stl.opciones2}>
-                <label className={stl.titulos2}>Gato:</label>
-                <input className={stl.inputs2} onChange={ (e) => { handleCheck(e); handleGato(e); }}
-                type="checkbox" name="gato" checked={isChecked} value={input.gato}/>                       
+       <div >
+         <div >
+                <label >Gato:</label>
+                <input  onChange={ (e) => { handleCheck(e); handleGato(e); }}
+                type="checkbox" name="gato" checked={isChecked} value={input.gato}/>
+                {errors.gato && ( <p class="error2">{errors.gato}</p>)}                        
             </div> 
           
-            <div className={stl.opciones2}>
-                <label className={stl.titulos2}>Perro:</label>
-                <input className={stl.inputs2} onChange={ (e) => { handleCheck2(e); handlePerro(e); }}
-                type="checkbox" name="perro" checked={isChecked2} value={input.perro}/>                        
+            <div >
+                <label >Perro:</label>
+                <input  onChange={ (e) => { handleCheck2(e); handlePerro(e); }}
+                type="checkbox" name="perro" checked={isChecked2} value={input.perro}/> 
+                {errors.perro && ( <p class="error2">{errors.perro}</p>)}                       
             </div>
             </div>
 
-            <div className={stl.opciones}>                                     
-            <label className={stl.titulos}>Estado:</label>
-            <select className={stl.tamaño} onChange={handleEstado}>
+            <div >                                     
+            <label >Estado:</label>
+            <select  onChange={handleEstado}>
                        <option></option>
                        <option>Perdido</option>
                        <option>Encontrado</option>                       
                        </select>
                         </div>
 
-            <div className={stl.opciones}>                                     
-            <label className={stl.titulos}>Tamaño:</label>
-            <select className={stl.tamaño} onChange={handleTamaño}>
+            <div >                                     
+            <label >Tamaño:</label>
+            <select onChange={handleTamaño}>
                        <option></option>
                        <option>Chico</option>
                        <option>Mediano</option>
@@ -292,7 +288,7 @@ console.log(input)
                         </div>
         
 
-            <div className={stl.opciones}>
+            <div >
               <Link to ="/lostpets">
                 <button>Establecer ubicacion donde se perdio o vio por ultima vez
                   la mascota
@@ -300,14 +296,14 @@ console.log(input)
                   </Link>        
             </div>
 
-            <div className={stl.opciones}>
-            <label className={stl.titulos}>Descripcion:</label>
+            <div >
+            <label >Descripcion:</label>
                 <input onChange={handleChange} type="text" name="descripcion" value={input.descripcion}/>
-               
+                {errors.descripcion && ( <p class="error2">{errors.descripcion}</p>)} 
            </div>
 
 
-            <button className={stl.boton} onClick={handleImagen}>Reportar</button>
+            <button  onClick={handleImagen}>Reportar</button>
              {/* <button className={stl.boton} type="submit">Dar en Adopcion</button> */}
 
         </form>
