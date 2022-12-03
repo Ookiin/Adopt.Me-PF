@@ -90,6 +90,7 @@ getTamaño = async (req,res) => {
 
 postAnimal = async (req, res) => {
   try {
+
     const {  
       _id: _id,    
       perro,
@@ -100,10 +101,10 @@ postAnimal = async (req, res) => {
       estado,
       tamaño,
       peso,
-      localidad,
       descripcion,
       castrado,
       vacunado,
+      desparasitado,
       imagen,
       pichina} = req.body;
 
@@ -117,10 +118,10 @@ postAnimal = async (req, res) => {
       estado,
       tamaño,
       peso,
-      localidad,
       descripcion,
       castrado,
       vacunado,
+      desparasitado,
       imagen,
       pichina        
       })    

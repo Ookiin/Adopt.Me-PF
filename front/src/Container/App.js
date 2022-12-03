@@ -23,6 +23,8 @@ import DetalleMascotaPerdida from '../Componentes/BuscarMascota/DetalleMascotaPe
 import MapView from "../Componentes/Maps/Maps";
 import MapPets from "../Componentes/Maps/Maps2";
 import MapPets2 from "../Componentes/Maps/Maps3";
+import Blog from "../Componentes/Blog/Blog";
+import MapLostPets from "../Componentes/MapaPerdidos/MapaPerdido";
 
 
 
@@ -54,6 +56,9 @@ function App() {
           <Route exact path="/map" element={<MapView />} />
           <Route exact path="/mappets" element={<MapPets />} />
           <Route exact path="/mappets2" element={<MapPets2 />} />
+          <Route exact path="/blog" element={<Blog />} />
+          <Route exact path="/lostpets" element={<MapLostPets />} />
+          
           
         </Routes>
       </div>

@@ -21,6 +21,9 @@ import {
     CREATE_ANIMAL_PERDIDO,
     CREATE_LOCATION,
     GET_LOCATIONS, 
+    PAGO_STRIPES,
+    GET_LOCATION_PERDIDOS,
+    CREATE_LOCATION_PERDIDOS,
     // GET_DOG_TAMAÑOS,
     // FILTRA_TAMAÑO
   } from "../Actions";
@@ -48,8 +51,8 @@ const initialState = {
    filtroPerdidos: [],
    detalleUsuario: [],
 
-   locations: []
-   
+   locations: [],
+   locationsPerdidos: []
 }
 
 
@@ -121,6 +124,9 @@ export default function rootReducer(state = initialState, action){
 
     case PAGO_MERCADO_PAGO:
       return { ...state };
+
+      case PAGO_STRIPES:
+        return {...state};
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 // case GET_DOG_TAMAÑOS:
@@ -229,6 +235,17 @@ export default function rootReducer(state = initialState, action){
           ...state,
          locations: action.payload 
         }
+
+        case CREATE_LOCATION_PERDIDOS:
+          return {
+            ...state
+          }
+
+          case GET_LOCATION_PERDIDOS:
+            return {
+              ...state,
+              locationsPerdidos: action.payload
+            }
         
     default:
       return state;

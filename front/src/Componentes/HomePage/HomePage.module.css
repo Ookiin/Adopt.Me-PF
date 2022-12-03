@@ -272,6 +272,8 @@
     background-image: url("../../Imagenes/pisadas.jpg");
     background-size: 33%;
     background-repeat: repeat; 
+    position: relative;
+    height: 1400px;
   }
 
 
