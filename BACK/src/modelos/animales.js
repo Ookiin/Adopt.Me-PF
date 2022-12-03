@@ -39,10 +39,6 @@ const AnimalSchema = new Schema({
         type: Number,
         required: false,
     },
-    localidad: {
-        type: String,
-        required: false,
-    },
     descripcion: {
         type: String,
         required: false,
@@ -55,6 +51,10 @@ const AnimalSchema = new Schema({
         type: String,
         required: false,
     },
+    desparasitado: {
+        type: String,
+        required: false,
+    },
     imagen: {
         type: String,
         required: false,
@@ -62,6 +62,7 @@ const AnimalSchema = new Schema({
     pichina: {
         type: String,
     }
+    
 });
 
 const AnimalModel = mongoose.model('animales', AnimalSchema)
