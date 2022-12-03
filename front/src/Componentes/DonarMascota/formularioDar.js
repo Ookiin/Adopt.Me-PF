@@ -2,7 +2,6 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import createanimal from "../../Actions/createanimal";
-import "./formularioDar.css";
 import NavBar from "../NavBar/NavBar";
 import Footer from "../Footer/Footer"
 import stl from "../DonarMascota/formularioDar.module.css"
@@ -426,11 +425,15 @@ function handleChange(e) {
               {errors.descripcion && <p className={stl.error}>{errors.descripcion}</p>}
           </div>
 
+          <br></br>
+          
             <div className={stl.opciones}>
             <label className={stl.titulos}>Esta Castrado? (Si/No):</label>
                 <input onChange={handleChange}type="text" name="castrado" value={input.castrado}/>
                 {errors.castrado && <p className={stl.error}>{errors.castrado}</p>}
             </div> 
+
+            <br></br>
 
             <div className={stl.opciones}>
             <label className={stl.titulos}>Esta Vacunado? (Si/No):</label>
@@ -438,12 +441,15 @@ function handleChange(e) {
                 {errors.vacunado && <p className={stl.error}>{errors.vacunado}</p>}
             </div>  
 
+            <br></br>
+
             <div className={stl.opciones}>
             <label className={stl.titulos}>Esta desparasitado? (Si/No):</label>
                 <input onChange={handleChange} type="text" name="desparasitado"  value={input.desparasitado}/>
                 {errors.vacunado && <p className={stl.error}>{errors.vacunado}</p>}
             </div>  
             </div>
+            
               <div>
             <button
               className={stl.boton}
