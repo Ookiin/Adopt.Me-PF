@@ -407,6 +407,13 @@ function handleChange(e) {
             </div>
 
             <div className={stl.opciones}>
+            <label className={stl.titulos}>Localidad:</label>
+            <Link to = "/map">
+                <button className={stl.botonUbicacion}>Establecer tu ubicacion</button>
+                </Link>
+            </div>
+
+            <div className={stl.opciones}>
             <label className={stl.titulos}>Descripción:</label>
             <textarea
               required
