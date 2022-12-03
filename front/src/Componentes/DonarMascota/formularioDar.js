@@ -282,12 +282,12 @@ function handleChange(e) {
 
   ///////////////////////////// HANDLE DELETE FOTO
 
-  function handleDelete(f) {
-    setImagenes({
-      ...imagenes,
-      id: imagenes.id.filter((id) => id !== f)
-    });
-  }
+  // function handleDelete(f) {
+  //   setImagenes({
+  //     ...imagenes,
+  //     id: imagenes.id.filter((id) => id !== f)
+  //   });
+  // }
 
 
 /////////////////////////////////////////////////////////// TE KAVIO EL RETURN  ///////////////////////////////////////////////////
