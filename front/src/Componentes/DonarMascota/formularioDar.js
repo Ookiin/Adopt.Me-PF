@@ -37,10 +37,10 @@ import imagenDefault from "../../Imagenes/imagenDefault.png"
         pichina: usuario._id
       });
 
-  // const [imagenes, setImagenes] = useState([]);
+  const [imagenes, setImagenes] = useState([]);
   // console.log(input.pichina)
   const [errors, setErrors] = useState({});
-  const [isSubmit, setisSubmit] = useState(false);
+  // const [isSubmit, setisSubmit] = useState(false);
 
   
   ////////////////////////////////////////////////////// VALIDACION ///////////////////////////////////////////////////////////////
@@ -83,14 +83,14 @@ import imagenDefault from "../../Imagenes/imagenDefault.png"
     if(!input.castrado) {
       errors.castrado = "Tenes que ingresar una respuesta";
     } else if (
-      input.castrado != "si" && 
-      input.castrado != "SI" && 
-      input.castrado != "Si" &&
-      input.castrado != "sI" && 
-      input.castrado != "no" &&
-      input.castrado != "NO" &&
-      input.castrado != "No" &&
-      input.castrado != "nO"
+      input.castrado !== "si" && 
+      input.castrado !== "SI" && 
+      input.castrado !== "Si" &&
+      input.castrado !== "sI" && 
+      input.castrado !== "no" &&
+      input.castrado !== "NO" &&
+      input.castrado !== "No" &&
+      input.castrado !== "nO"
       ) {
       errors.castrado = "Tenes que ingresar si o no";
     }
@@ -98,14 +98,14 @@ import imagenDefault from "../../Imagenes/imagenDefault.png"
     if(!input.vacunado) {
       errors.vacunado = "Tenes que ingresar una respuesta";
     } else if (
-      input.vacunado != "si" && 
-      input.vacunado != "SI" && 
-      input.vacunado != "Si" &&
-      input.vacunado != "sI" && 
-      input.vacunado != "no" &&
-      input.vacunado != "NO" &&
-      input.vacunado != "No" &&
-      input.vacunado != "nO"
+      input.vacunado !== "si" && 
+      input.vacunado !== "SI" && 
+      input.vacunado !== "Si" &&
+      input.vacunado !== "sI" && 
+      input.vacunado !== "no" &&
+      input.vacunado !== "NO" &&
+      input.vacunado !== "No" &&
+      input.vacunado !== "nO"
       ) {
       errors.vacunado = "Tenes que ingresar si o no";
     }
@@ -113,21 +113,21 @@ import imagenDefault from "../../Imagenes/imagenDefault.png"
     if(!input.desparasitado) {
       errors.desparasitado = "Tenes que ingresar una respuesta";
     } else if (
-      input.desparasitado != "si" && 
-      input.desparasitado != "SI" && 
-      input.desparasitado != "Si" &&
-      input.desparasitado != "sI" && 
-      input.desparasitado != "no" &&
-      input.desparasitado != "NO" &&
-      input.desparasitado != "No" &&
-      input.desparasitado != "nO"
+      input.desparasitado !== "si" && 
+      input.desparasitado !== "SI" && 
+      input.desparasitado !== "Si" &&
+      input.desparasitado !== "sI" && 
+      input.desparasitado !== "no" &&
+      input.desparasitado !== "NO" &&
+      input.desparasitado !== "No" &&
+      input.desparasitado !== "nO"
       ) {
       errors.desparasitado = "Tenes que ingresar si o no";
     }
 
-    if (Object.keys(errors).length === 0) {
-      setisSubmit(true);
-    }
+    // if (Object.keys(errors).length === 0) {
+    //   setisSubmit(true);
+    // }
 
     return errors;
   }
@@ -138,7 +138,7 @@ import imagenDefault from "../../Imagenes/imagenDefault.png"
     e.preventDefault();
 
     //Si no hay errores, el isSubmit esta en true
-    if (isSubmit === true) {
+    // if (isSubmit === true) {
 
       dispatch(createanimal(input));
       setInput({
@@ -159,28 +159,28 @@ import imagenDefault from "../../Imagenes/imagenDefault.png"
       });
       navigate("/homepage")
       alert("Mascota publicada correctamente");
-    } else {
-      alert("No se pudo completar el registro, revise los campos");
+    // } else {
+      // alert("No se pudo completar el registro, revise los campos");
     }
-  }
+  
 
  /////////////////////////// EXTRAYENDO URL DE CLAUDINARY /////////////////////////////////////////////////////////////////////
 
-//  const img = []
-//  for (let i = 0; i < imagenes.length; i++) {
-//     img.push(imagenes[i])
-//  }
+ const img = []
+ for (let i = 0; i < imagenes.length; i++) {
+    img.push(imagenes[i])
+ }
 
-//  let imgUrl = img.map(({ url }) => url)
+ let imgUrl = img.map(({ url }) => url)
 
-//  let urlImagen = imgUrl.toString();
+ let urlImagen = imgUrl.toString();
 
-//   function handleImagen() {
-//     setInput({
-//       ...input,
-//       imagen: urlImagen
-//     })
-//   }
+  function handleImagen() {
+    setInput({
+      ...input,
+      imagen: urlImagen
+    })
+  }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////7
 
@@ -256,30 +256,29 @@ function handleChange(e) {
 
   ///////////////////////////// HANDLE DE CLOUDINARY  ///////////////////////////////////7
 
-    function handleOpenWidget(e) {
-      // console.log("Entre el handleOpenWidget");
-      e.preventDefault();
-      const imagen = document.querySelector("#default-photo");
-      var myWidget = window.cloudinary.createUploadWidget(
-          {
-              cloudName: "dvw0vrnxp",
-              uploadPreset: "mascotas",
-          },
-          (error, result) => {
-              if (!error && result && result.event === "success") {
-              // console.log('Done! Here is the image info: ', result.info);
-              imagen.src = result.info.secure_url;
-              setInput((prev) => ({
-                ...prev,
-                [e.target.name]: result.info.secure_url,
-              }));
-              }
+  function handleOpenWidget(e) {
+    // console.log("Entre el handleOpenWidget");
+    e.preventDefault();
+    var myWidget = window.cloudinary.createUploadWidget(
+        {
+            cloudName: "dvw0vrnxp",
+            uploadPreset: "mascotas",
+        },
+        (error, result) => {
+            if (!error && result && result.event === "success") {
+            console.log('Done! Here is the image info: ', result.info);
+            setImagenes((prev) => [
+              ...prev, {
+                url: result.info.secure_url, 
+                id: result.info.public_id
+              }])
             }
-          );
-          
-      myWidget.open();
-      }
-
+          }
+        );
+        
+    myWidget.open();
+    }
+    
   ///////////////////////////// HANDLE DELETE FOTO
 
   // function handleDelete(f) {
@@ -298,7 +297,7 @@ function handleChange(e) {
     <NavBar />
     <FloatingUI />
 
-          <div className={stl.titulo}>Registra los datos de la mascota</div>
+          <div className={stl.titulo}>REGISTRA LOS DATOS DE LA MASCOTA</div>
           
           <form className={stl.formularito} onSubmit={handleSubmit}>
 
@@ -346,7 +345,7 @@ function handleChange(e) {
                      
                       </div> */}
                   
-       
+       <div className={stl.contenedordatos}>
        <div className={stl.gatoPerro}>
          <div className={stl.opciones2}>
                 <label className={stl.titulos2}>Gato:</label>
@@ -361,22 +360,24 @@ function handleChange(e) {
             </div>
             </div>
 
-              <div className={stl.opciones}>
+                     
+                   
                 <label className={stl.titulos}>Nombre:</label>
+              <div className={stl.opciones}>
                 <input onChange={handleChange}
                 type="text" name="nombre" value={input.nombre}/>  
                 {errors.nombre && <p className={stl.error}>{errors.nombre}</p>}                      
             </div>
  
-            <div className={stl.opciones}>
             <label className={stl.titulos}>Raza:</label>
+            <div className={stl.opciones}>
                 <input onChange={handleChange} 
                 type="text" name="raza" value={input.raza}/> 
                 {errors.raza && <p className={stl.error}>{errors.raza}</p>}          
             </div>
 
-            <div className={stl.opciones}>                                
             <label className={stl.titulos}>Edad:</label>
+            <div className={stl.opciones}>                                
             <select className={stl.edad} defaultValue="" onChange={handleEdad}>
                        <option value="" disabled hidden>Selecciona edad...</option>
                        <option>Menos de 45 dias</option>
@@ -387,8 +388,8 @@ function handleChange(e) {
                         {errors.edad && ( <p className={stl.error}>{errors.edad}</p>)}
                         </div>
 
-            <div className={stl.opciones}>                                     
             <label className={stl.titulos}>Tamaño:</label>
+            <div className={stl.opciones}>                                     
             <select className={stl.tamaño} defaultValue="" onChange={handleTamaño}>
                        <option value="" disabled hidden>Seleccione tamaño...</option>
                        <option>Chico</option>
@@ -398,11 +399,10 @@ function handleChange(e) {
                        {errors.tamaño && <p className={stl.error}>{errors.tamaño}</p>}
                        </div>
         
+            <label className={stl.titulos}>Peso (en Kg):</label>
             <div className={stl.opciones}>
-            <label className={stl.titulos}>Peso:</label>
                 <input onChange={handleChange} 
                 type="text" name="peso" value={input.peso}/>
-                <label className={stl.titulos}> kg.</label>
                 {errors.peso && <p className={stl.error}>{errors.peso}</p>}          
             </div>
 
@@ -413,12 +413,13 @@ function handleChange(e) {
                 </Link>
             </div>
 
-            <div className={stl.opciones}>
             <label className={stl.titulos}>Descripción:</label>
+            <div className={stl.opciones}>
             <textarea
               required
               type="text"
               name="descripcion"
+              resize="none"
               value={input.descripcion}
               onChange={(e) => handleChange(e)}
               > </textarea>
@@ -442,12 +443,13 @@ function handleChange(e) {
                 <input onChange={handleChange} type="text" name="desparasitado"  value={input.desparasitado}/>
                 {errors.vacunado && <p className={stl.error}>{errors.vacunado}</p>}
             </div>  
-
+            </div>
               <div>
             <button
               className={stl.boton}
               type="submit"
-              disabled={isSubmit ? false : true}
+              onClick={handleImagen}
+              // disabled={isSubmit ? false : true}
             >
               PONER EN ADOPCIÓN
             </button>
@@ -456,6 +458,7 @@ function handleChange(e) {
               <button className={stl.boton}>CANCELAR</button>
             </Link>
           </div>
+          
         </form>
         <Footer />
     </div>

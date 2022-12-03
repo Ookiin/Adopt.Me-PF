@@ -31,7 +31,7 @@ export default function TePuedeInteresar () {
             <div className={stl.vacunacion}></div>
 
             <Link to = '/directorio'> 
-            <button className={stl.boton}>DIRECTORIO DE HOGARES DE TRANSITO, VETERINARIAS, ONG'S.</button>
+            <button className={stl.boton}>HOGARES DE TRANSITO</button>
             </Link>
 
             <Link to ="/blog">
