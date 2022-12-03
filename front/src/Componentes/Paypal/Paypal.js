@@ -1,4 +1,5 @@
 import { useEffect, useRef } from "react";
+import stl from "../Paypal/Paypal.module.css";
 
 export default function Paypal() {
 
@@ -33,8 +34,8 @@ export default function Paypal() {
     }, [])
 
     return (
-        <div>
-            <div ref={paypal}></div>
-        </div>
+      
+            <div className={stl.botonpaypal} ref={paypal}></div>
+        
     )
 }

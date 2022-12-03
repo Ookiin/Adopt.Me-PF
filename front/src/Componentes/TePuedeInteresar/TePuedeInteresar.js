@@ -34,7 +34,9 @@ export default function TePuedeInteresar () {
             <button className={stl.boton}>DIRECTORIO DE HOGARES DE TRANSITO, VETERINARIAS, ONG'S.</button>
             </Link>
 
+            <Link to ="/blog">
             <button className={stl.boton}>BLOG</button>
+            </Link>
 
             <Link to='/homepage'>
                 <button className={stl.boton}>VOLVER</button>

@@ -5,6 +5,8 @@ const usuarioRutas = require("../BACK/src/rutas/usuarios");
 const pagosPayPalRutas = require("../BACK/src/rutas/pagosPayPal");
 const pagosMercadoPago = require("../BACK/src/rutas/mercadoPago");
 const animalPerdidoRutas = require("../BACK/src/rutas/animalesPerdidos");
+const pagosStripes = require("../BACK/src/rutas/stripes");
+
 const morgan = require("morgan");
 require("dotenv").config();
 const passport = require("passport");
@@ -12,6 +14,7 @@ const session = require("express-session");
 const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
 const locationRutas = require("../BACK/src/rutas/locations");
+
 
 //inicializacion
 const app = express();
@@ -49,6 +52,7 @@ app.use("/usuarios", usuarioRutas);
 app.use("/pagos", pagosPayPalRutas);
 app.use("/pagosMp", pagosMercadoPago);
 app.use("/location", locationRutas);
+app.use("/payment", pagosStripes);
 
 app.listen(app.get("port"), () => {
   console.log("Server on port", app.get("port"));

@@ -1,11 +1,7 @@
 import React from "react";
 import Metamask from "../Metamask/Metamask";
 import Paypal from "../Paypal/Paypal";
-
-// import MercadoPago from "../MercadoPago/MercadoPago"
-
-
-
+import Stripes from "../Stripes/Stripes";
 import stl from "./Donacion.module.css";
 
 
@@ -53,7 +49,7 @@ export default function Donar() {
                 </div>
 
                 <div className={stl.botonstripes}>
-                    <button>algo</button>
+                <Stripes />
                 </div>
 
         </div>
