@@ -5,7 +5,8 @@ const usuarioRutas = require("../BACK/src/rutas/usuarios");
 const pagosPayPalRutas = require("../BACK/src/rutas/pagosPayPal");
 const pagosMercadoPago = require("../BACK/src/rutas/mercadoPago");
 const animalPerdidoRutas = require("../BACK/src/rutas/animalesPerdidos");
-const pagosStripes = require("../BACK/src/rutas/stripes");
+/* const pagosStripes = require("../BACK/src/rutas/stripes"); */
+const Stripe = require('stripe')
 
 const morgan = require("morgan");
 require("dotenv").config();
@@ -56,6 +57,7 @@ app.use("/pagos", pagosPayPalRutas);
 app.use("/pagosMp", pagosMercadoPago);
 app.use("/location", locationRutas);
 app.use("/lostlocation", lostLocationRutas);
+app.use("/payment", Stripe)
 app.use("/comentario", comentarioRutas);
 app.use("/respuesta", respuestaRutas);
 // app.use("/payment", pagosStripes);
