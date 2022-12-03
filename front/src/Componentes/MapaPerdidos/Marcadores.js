@@ -12,9 +12,9 @@ export default function MarkersLost() {
   const gps = useSelector((state) => state.locationsPerdidos);
   console.log("gps", gps)
 
-    useEffect(() => {
-      dispatch(getLocationsPerdidos())
-    }, [dispatch])
+    // useEffect(() => {
+    //   dispatch(getLocationsPerdidos())
+    // }, [dispatch])
 
 
     return (
