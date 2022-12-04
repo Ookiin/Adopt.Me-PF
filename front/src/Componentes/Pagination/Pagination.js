@@ -11,6 +11,9 @@ export default function Paging({mascotasPerPage, allPets, actualPage, currentPag
         pageNumbers.push(i + 1)
     }
 
+    const limitedPages = pageNumbers.slice(0, 1)
+    
+
     return (
         <nav>
             <div className={stl.pagination}>

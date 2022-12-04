@@ -1,5 +1,6 @@
 import { useEffect, useRef } from "react";
 import stl from "../Paypal/Paypal.module.css";
+import Toast from 'light-toast';
 
 export default function Paypal() {
 
@@ -24,7 +25,7 @@ export default function Paypal() {
             onApprove: async (data, actions) => {
                 const order = await actions.order.capture()
                 console.log(order)
-                await alert ('SU DONACIÓN A SIDO REALIZADA CON EXITO')
+               Toast.success('SU DONACIÓN A SIDO REALIZADA CON EXITO', 3000, () => {});
                 window.location.replace('/homepage')
             },
             onError: (err) => {

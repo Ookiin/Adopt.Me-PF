@@ -7,7 +7,7 @@ import Footer from "../Footer/Footer"
 import stl from "../DonarMascota/formularioDar.module.css"
 import FloatingUI from "../Floating UI/FloatingUI";
 import imagenDefault from "../../Imagenes/imagenDefault.png"
-
+import Toast from 'light-toast'
 
  
  export default function DarEnAdopcion() {
@@ -156,8 +156,9 @@ import imagenDefault from "../../Imagenes/imagenDefault.png"
         imagen: "",
         pichina: ""
       });
-      navigate("/homepage")
-      alert("Mascota publicada correctamente");
+      Toast.success("Mascota publicada correctamente", 3000, () => {
+        navigate("/homepage")
+      });
     // } else {
       // alert("No se pudo completar el registro, revise los campos");
     }

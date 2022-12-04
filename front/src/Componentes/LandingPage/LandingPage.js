@@ -7,50 +7,24 @@ import stl from "../LandingPage/LandingPage.module.css";
 
 
 export default function LandingPage() {
-
-  //  const responsive = {
-  //     superLargeDesktop: {
-  //       // the naming can be any, depends on you.
-  //       breakpoint: { max: 4000, min: 3000 },
-  //       items: 5
-  //     },
-  //     desktop: {
-  //       breakpoint: { max: 3000, min: 1024 },
-  //       items: 3
-  //     },
-  //     tablet: {
-  //       breakpoint: { max: 1024, min: 464 },
-  //       items: 2
-  //     },
-  //     mobile: {
-  //       breakpoint: { max: 464, min: 0 },
-  //       items: 1
-  //     }
-  //   };
    
       return (
       <div className={stl.landingPage}> 
  
          <div className={stl.titulo}>
             
-            <h1>
-               <span>A</span>
-               <span>D</span>
-               <span>O</span>
-               <span>P</span>
-               <span>T</span>
-               <span>.</span>
-               <span>M</span>
-               <span>E</span>
-            </h1>
+            <div className={stl.h1}>
+               <div className={stl.span}>A</div >
+               <div className={stl.span}>D</div >
+               <div className={stl.span}>O</div >
+               <div className={stl.span}>P</div >
+               <div className={stl.span}>T</div >
+               <div className={stl.span}>.</div>
+               <div className={stl.span}>M</div>
+               <div className={stl.span}>E</div>
+            </div>
          </div> 
          <div className={stl.logo}></div>
-         {/* <Carousel responsive={responsive}>
-  <div className={stl.imagen1}></div>
-  <div className={stl.imagen2}></div>
-  <div className={stl.imagen3}></div>
-  <div className={stl.imagen4}></div>
-</Carousel> */}
        
        <Link to = '/homepage'> 
             <button className={stl.button}>Entrar</button>

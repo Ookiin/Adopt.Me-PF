@@ -7,6 +7,7 @@ import stl from "../FormRegistro/FormRegistro.module.css";
 import createuser from "../../Actions/createuser";
 import getusers from "../../Actions/getusers";
 import FloatingUI from "../Floating UI/FloatingUI";
+import Toast from 'light-toast';
 
 
 export default function CompletarRegistro() {
@@ -130,10 +131,11 @@ export default function CompletarRegistro() {
         localidad: "",
         fotoPerfil: "",
       });
-      navigate("/prueba");
-      alert("Usuario creado correctamente");
+      Toast.success("Usuario creado correctamente", 3000, () => {
+        navigate("/prueba");
+      });
     } else {
-      alert("No se pudo completar el registro, revise los campos");
+      Toast.fail("No se pudo completar el registro, revise los campos", 3000, () => {});
     }
   }
 

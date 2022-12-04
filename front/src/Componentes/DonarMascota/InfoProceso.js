@@ -7,7 +7,8 @@ import FloatingUI from "../Floating UI/FloatingUI";
 import { useState, useEffect } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 import { useSelector, useDispatch } from "react-redux";
-import getDetalleUsuario from "../../Actions/getDetalleUsuario"
+import getDetalleUsuario from "../../Actions/getDetalleUsuario";
+import Toast from 'light-toast';
 
 
 export default function InfoProceso() {
@@ -36,10 +37,10 @@ export default function InfoProceso() {
   function onClick(e) {
     e.preventDefault()
     if (!user) {
-      return alert("Debes iniciar sesion para poder poner en adopcion")
+      return Toast.fail("Debes iniciar sesion para poder poner en adopcion", 3000, () => {});
     }
     if (!user || !detalleUser.usuario || !detalleUser.nombre || !detalleUser.telefono || !detalleUser.localidad || !detalleUser.nacimiento || !detalleUser.mail) {
-      return alert("Debes completar el registro en tu perfil antes de poner en adopcion")
+      return Toast.fail("Debes completar el registro en tu perfil antes de poner en adopcion", 3000, () => {});
     }
     if (user && detalleUser.usuario && detalleUser.nombre && detalleUser.telefono && detalleUser.localidad && detalleUser.nacimiento && detalleUser.mail) { 
     navigate("/registroMascota")

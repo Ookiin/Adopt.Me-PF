@@ -15,6 +15,7 @@
     "dropzone": "^6.0.0-beta.2",
     "google-maps-react-markers": "^1.0.8",
     "leaflet": "^1.9.3",
+    "light-toast": "^0.3.5",
     "mercadopago": "^1.5.14",
     "nodemon": "^2.0.20",
     "react": "^18.2.0",

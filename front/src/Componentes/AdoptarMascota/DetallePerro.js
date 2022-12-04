@@ -9,6 +9,7 @@ import stl from "../AdoptarMascota/DetalleMascotas.module.css";
 import FloatingUI from "../Floating UI/FloatingUI";
 import getDetalleUsuario from "../../Actions/getDetalleUsuario"
 import { useAuth0 } from "@auth0/auth0-react";
+import Toast from 'light-toast';
 
 export default function DetallePerro () {
   const { id } = useParams();
@@ -47,10 +48,11 @@ export default function DetallePerro () {
     function onClick(e) {
       e.preventDefault()
       if (!user) {
-        return alert("Debes iniciar sesion para poder adoptar")
+        Toast.fail("Debes iniciar sesion para poder adoptar", 3000, () => {});
+    
       }
       if (!user || !detalleUser.usuario || !detalleUser.nombre || !detalleUser.telefono || !detalleUser.localidad || !detalleUser.nacimiento || !detalleUser.mail) {
-        return alert("Debes completar el registro en tu perfil antes de adoptar")
+        Toast.fail("Debes completar el registro en tu perfil antes de adoptar", 3000, () => {});
       }
       if (user && detalleUser.usuario && detalleUser.nombre && detalleUser.telefono && detalleUser.localidad && detalleUser.nacimiento && detalleUser.mail) { 
       navigate("/contacto")

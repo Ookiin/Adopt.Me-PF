@@ -32,6 +32,7 @@ export default function HomePerros () {
     const firstPetIndex = lastPetIndex - mascotasPerPage 
     const currentPets = allPets.slice(firstPetIndex,lastPetIndex) 
 
+
     const [setInput] = useState("");
     const [setOrden] = useState("");
     const [searchDog, setSearchDog] = useState("");
