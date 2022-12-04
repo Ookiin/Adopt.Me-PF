@@ -84,14 +84,8 @@ const HomeGatos = () => {
             <NavBar/>
             <FloatingUI />
         <div className={stl.tituloPerros}>Gatos en Adopcion</div>
-
-       <Paging 
-        mascotasPerPage={mascotasPerPage} 
-        allPets={allPets.length} 
-        currentPage={currentPage} 
-        actualPage={actualPage}
-        currentPets={currentPets}
-        />
+        <br></br><br></br>
+       
        <div>
         <label className={stl.labelSearch}>Nombre:</label>
            <input className={stl.inputNav}
@@ -140,6 +134,14 @@ const HomeGatos = () => {
            <button className={stl.btnMap}>Ver mascotas a mi alrededor</button>
            </Link>
         </div>
+
+        <Paging 
+        mascotasPerPage={mascotasPerPage} 
+        allPets={allPets.length} 
+        currentPage={currentPage} 
+        actualPage={actualPage}
+        currentPets={currentPets}
+        />
 
         <div className={stl.listadoCards}>
 

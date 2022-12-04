@@ -8,7 +8,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 
 export default function NavBar() {
   const [darkTheme, setDarkTheme] = useState(false);
-  const { user, isAuthenticated } = useAuth0();
+  const { isAuthenticated } = useAuth0();
   const { logout } = useAuth0();
   const [open, setOpen] = useState(false);
   const [open2, setOpen2] = useState(false);

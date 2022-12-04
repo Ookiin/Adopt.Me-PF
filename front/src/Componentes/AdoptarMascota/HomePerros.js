@@ -86,7 +86,7 @@ export default function HomePerros () {
             <NavBar />
             <FloatingUI />
         <div className={stl.tituloPerros}>Perros en Adopcion</div>
-
+<br></br><br></br>
         <div>
         <label className={stl.labelSearch}>Nombre:</label>
            <input className={stl.inputNav}
@@ -111,13 +111,13 @@ export default function HomePerros () {
                     <option value='Z-A'>Z-A</option>
                 </select>
               
-                <select onChange={(e)=>handleTamaño(e)}>
+                <select className={stl.op} onChange={(e)=>handleTamaño(e)}>
                 <option value='All' disabled selected defaultValue>Tamaño</option>
                 <option value = 'Mediano'>Mediano</option>
                 <option value = 'Chico'>Chico</option>
                 <option value = 'Grande'>Grande</option>                               
             </select> 
-            <select onChange={(e)=>handleEdad(e)}>
+            <select className={stl.op} onChange={(e)=>handleEdad(e)}>
                 <option value='edad' disabled selected defaultValue>Edad</option>
                 <option value = 'Menos de 45 dias'>Menos de 45 dias</option>
                 <option value = 'Mas de 45 dias'>Mas de 45 dias</option>
