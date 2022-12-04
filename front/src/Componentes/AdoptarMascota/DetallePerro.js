@@ -68,8 +68,7 @@ export default function DetallePerro () {
               <div className={stl.datosAdopcion}>
               <div className={stl.tituloAdopcion}>Datos de la Mascota</div>
             <div className={stl.datos2}>              
-              <div className={stl.titulos2}>Nombre: <p className={stl.details}>{detail.nombre}</p></div>
-              <div className={stl.titulos2}>Localidad: <p className={stl.details}>{detail.localidad}</p> </div>              
+              <div className={stl.titulos2}>Nombre: <p className={stl.details}>{detail.nombre}</p></div>              
               <div className={stl.titulos2}>Raza: <p className={stl.details}>{detail.raza}</p></div>
               <div className={stl.titulos2}>Edad: <p className={stl.details}>{detail.edad}</p></div>
               <div className={stl.titulos2}>Estado: <p className={stl.details}>{detail.estado}</p></div>

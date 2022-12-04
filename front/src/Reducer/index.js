@@ -24,32 +24,32 @@ import {
     PAGO_STRIPES,
     GET_LOCATION_PERDIDOS,
     CREATE_LOCATION_PERDIDOS,
-    // GET_DOG_TAMAÑOS,
-    // FILTRA_TAMAÑO
+    GET_DOG_TAMAÑOS,
+    FILTRA_TAMAÑO,
+    GET_CAT_TAMAÑOS,
+    GET_DOG_EDAD,
+    GET_CAT_EDAD
   } from "../Actions";
 
 
 const initialState = {
    animales: [],
-
+   gatos: [],
+   perros: [],
    perrosCopia: [],
    gatosCopia: [],
+   animalesdetail: [],
+   tamañoFiltrado: [],
+   edadFiltrado: [],
 
    animalesPerdidos: [],
    animalesPerdidosCopia: [],
-
    gatosPerdidos: [],
-
    animalesPerdidosDetail: [],
-   animalesdetail: [],
-   users: [],
-   gatos: [],
-   perros: [],
-  
-   tamañoFiltrado: [],
-   
    filtroPerdidos: [],
-   detalleUsuario: [],
+
+   users: [],
+   detalleUsuario: [],  
 
    locations: [],
    locationsPerdidos: []
@@ -128,31 +128,70 @@ export default function rootReducer(state = initialState, action){
       case PAGO_STRIPES:
         return {...state};
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-// case GET_DOG_TAMAÑOS:
-//   let filtered2 = state.perrosCopia;
-//   let filterByTam2 = filtered2.filter(
-//       (t)=>t.tamaño.map(
-//           (ty)=>ty.tamaño).includes(
-//               action.payload === 'chico'|| action.payload === 'grande' || action.payload === 'mediano')
-//        || t.tamaño.includes(action.payload))            
-//   if(action.payload === 'All')filterByTam2 = filtered2;           
-  
-//   console.log(filterByTam2);
-//   return{
-//       ...state,
-//       perros: filterByTam2,                            
-//   };
-               
-        
-//         case FILTRA_TAMAÑO:
+case GET_CAT_EDAD:
+            let cat = state.gatosCopia;            
+            let filterByEdadCat = cat.filter(
+                (e)=>e.edad.map(
+                    (e)=>e.edad).includes(
+                        action.payload === 'Mayor a 45 dias'|| action.payload === 'Menor a 45 dias' || action.payload === 'Adulto' || action.payload === 'Anciano')
+                 || e.edad.includes(action.payload))            
+            if(action.payload === 'edad')filterByEdadCat = cat;           
             
-//             return{
-//                 ...state,
-//                 tamañoFiltrado: action.payload,
-//             }
+            console.log(filterByEdadCat);
+            return{
+                ...state,
+                gatos: filterByEdadCat,                            
+            };
+case GET_DOG_EDAD:
+            let filterEdad = state.perrosCopia;
+            console.log(filterEdad);
+            let filterByEdadDog = filterEdad.filter(
+                (e)=>e.edad.map(
+                    (e)=>e.edad).includes(
+                        action.payload === 'Mayor a 45 dias'|| action.payload === 'Menor a 45 dias' || action.payload === 'Adulto' || action.payload === 'Anciano')
+                 || e.edad.includes(action.payload))            
+            if(action.payload === 'edad')filterByEdadDog = filterEdad;           
+            
+            console.log(filterByEdadDog);
+            return{
+                ...state,
+                perros: filterByEdadDog,                            
+            };
+
+            
+case GET_DOG_TAMAÑOS:
+            let filter = state.perrosCopia;
+            let filterByT = filter.filter(
+                (t)=>t.tama.map(
+                    (ty)=>ty.tama).includes(
+                        action.payload === 'Chico'|| action.payload === 'Grande' || action.payload === 'Mediano')
+                 || t.tama.includes(action.payload))            
+            if(action.payload === 'All')filterByT = filter;           
+            
+            console.log(filterByT);
+            return{
+                ...state,
+                perros: filterByT,                            
+            };
+
+            case GET_CAT_TAMAÑOS:
+              let filterCat = state.gatosCopia;
+              let filterByTa = filterCat.filter(
+                  (t)=>t.tama.map(
+                      (ty)=>ty.tama).includes(
+                          action.payload === 'Chico'|| action.payload === 'Grande' || action.payload === 'Mediano')
+                   || t.tama.includes(action.payload))            
+              if(action.payload === 'All')filterByTa = filterCat;           
+              
+              console.log(filterByTa);
+              return{
+                  ...state,
+                  gatos: filterByTa,                            
+              };
+               
+  
         
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//------------------------------------------Animales Perdidos Inicio-----------------------------------------------------------------------//
    
         case GET_TAMAÑO_FILTRO:
             let filtered = state.animalesPerdidosCopia;
@@ -169,18 +208,18 @@ export default function rootReducer(state = initialState, action){
                 animalesPerdidos: filterByTam,                            
             };
 
+            case GET_TAMAÑO_PERDIDOS:
+                
+                return{
+                    ...state,
+                    filtroPerdidos: action.payload,
+                }
         case GET_DETAIL_MASCOTA_PERDIDA:
             return{
                 ...state,
                 animalesPerdidosDetail: action.payload,
             }               
         
-        case GET_TAMAÑO_PERDIDOS:
-            
-            return{
-                ...state,
-                filtroPerdidos: action.payload,
-            }
         case GET_ANIMALES_PERDIDOS:
             return{
                 ...state,
@@ -214,8 +253,9 @@ export default function rootReducer(state = initialState, action){
         case CREATE_ANIMAL_PERDIDO:
             return{
                 ...state,                      
-                // animalesPerdidosCopia: action.payload,
             }
+//------------------------------------------Animales Perdidos Fin-----------------------------------------------------------------------//
+
     case "signin":
       return { ...state };
 

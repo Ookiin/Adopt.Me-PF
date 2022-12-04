@@ -8,6 +8,7 @@ const animalPerdidoRutas = require("../BACK/src/rutas/animalesPerdidos");
 /* const pagosStripes = require("../BACK/src/rutas/stripes"); */
 const Stripe = require('stripe')
 
+
 const morgan = require("morgan");
 require("dotenv").config();
 const passport = require("passport");
@@ -61,6 +62,7 @@ app.use("/payment", Stripe)
 app.use("/comentario", comentarioRutas);
 app.use("/respuesta", respuestaRutas);
 // app.use("/payment", pagosStripes);
+
 
 
 app.listen(app.get("port"), () => {

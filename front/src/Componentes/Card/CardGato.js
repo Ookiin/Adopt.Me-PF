@@ -3,7 +3,7 @@ import React from "react";
 import "./Card.css";
 import { Link } from "react-router-dom";
 
-export default function CardGato({ nombre, raza, localidad,id, gato}) {
+export default function CardGato({ nombre, raza,id, gato}) {
 
   return (
     <div class="cardstodas">
@@ -26,7 +26,7 @@ export default function CardGato({ nombre, raza, localidad,id, gato}) {
             {/* <div>{id}</div> */}
           </div>
         </div>
-        <p class="card__description">Esta mascota esta ubicada en: {localidad}</p>
+        
       </div>
     </div>      
   </div>
