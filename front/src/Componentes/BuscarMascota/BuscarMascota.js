@@ -69,13 +69,7 @@ export default function BuscarMascota() {
       <button className={stl.btnNavHome} onClick= {(e)=>handleRecargar(e)}>RECARGAR</button>
       </div>
 
-       <Paging
-        mascotasPerPage={mascotasPerPage} 
-        allPets={allPets.length} 
-        currentPage={currentPage} 
-        actualPage={actualPage}
-        currentPets={currentPets}
-       />
+       
 
     <div className={stl.filtros}>
       <div>
@@ -109,6 +103,14 @@ export default function BuscarMascota() {
         <button>Ver mascotas perdidas en el mapa</button>
         </Link>
       </div>
+
+      <Paging
+        mascotasPerPage={mascotasPerPage} 
+        allPets={allPets.length} 
+        currentPage={currentPage} 
+        actualPage={actualPage}
+        currentPets={currentPets}
+       />
 
     <div className={stl.listadoCards}>
 

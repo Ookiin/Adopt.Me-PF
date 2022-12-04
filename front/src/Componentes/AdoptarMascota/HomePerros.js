@@ -11,12 +11,8 @@ import getperro from "../../Actions/getperros";
 import getDogByName from "../../Actions/getDogByName";
 import ordenAlfabetico from "../../Actions/ordenAlfabetico";
 import getdogtamaños from "../../Actions/getDogTamaños";
-
-import MapView from "../Maps/Maps";
-import MapPets from "../Maps/Maps2";
 import getDogEdad from "../../Actions/getDogEdad";
 
- 
 
 export default function HomePerros () {
 
@@ -25,7 +21,6 @@ export default function HomePerros () {
 
     const allPets = useSelector((state) => state.perros);
     const copiaPerros = useSelector((state)=>state.perrosCopia)
-    
 
     const [currentPage, setCurrentPage] = useState(1) 
     const [mascotasPerPage] = useState(4)
@@ -33,7 +28,6 @@ export default function HomePerros () {
     const lastPetIndex = currentPage * mascotasPerPage 
     const firstPetIndex = lastPetIndex - mascotasPerPage 
     const currentPets = allPets.slice(firstPetIndex,lastPetIndex) 
-
 
     const [setInput] = useState("");
     const [setOrden] = useState("");
@@ -78,12 +72,12 @@ export default function HomePerros () {
 
    async function handleTamaño (e){  
     await e.preventDefault();   
-    await dispatch(getdogtamaños(e.target.value));
+   dispatch(getdogtamaños(e.target.value));
     console.log(e.target.value);
   };
   async function handleEdad (e){  
     await e.preventDefault();   
-    await dispatch(getDogEdad(e.target.value));
+   dispatch(getDogEdad(e.target.value));
     console.log(e.target.value);
   };
         
@@ -92,14 +86,6 @@ export default function HomePerros () {
             <NavBar />
             <FloatingUI />
         <div className={stl.tituloPerros}>Perros en Adopcion</div>
-
-        <Paging 
-        mascotasPerPage={mascotasPerPage} 
-        allPets={allPets.length} 
-        currentPage={currentPage} 
-        actualPage={actualPage}
-        currentPets={currentPets}
-        />
 
         <div>
         <label className={stl.labelSearch}>Nombre:</label>
@@ -150,6 +136,14 @@ export default function HomePerros () {
            <button className={stl.btnMap}>Ver mascotas a mi alrededor</button>
            </Link>
         </div>
+
+        <Paging 
+        mascotasPerPage={mascotasPerPage} 
+        allPets={allPets.length} 
+        currentPage={currentPage}
+        actualPage={actualPage}
+        currentPets={currentPets}
+        />
 
         <div className={stl.listadoCards}> 
      
