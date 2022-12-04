@@ -24,6 +24,7 @@
     "react-dom": "^18.2.0",
     "react-dropdown": "^1.11.0",
     "react-dropzone": "^14.2.3",
+    "react-headless-pagination": "^0.2.1",
     "react-js-pagination": "^3.0.3",
     "react-leaflet": "^4.2.0",
     "react-multi-carousel": "^2.8.2",
