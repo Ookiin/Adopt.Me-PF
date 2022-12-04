@@ -7,7 +7,8 @@ import stl from "../FormRegistro/FormRegistro.module.css";
 import createuser from "../../Actions/createuser";
 import getusers from "../../Actions/getusers";
 import FloatingUI from "../Floating UI/FloatingUI";
-import userImageDefault from "../../Imagenes/userImageDefault.png"
+import userImageDefault from "../../Imagenes/userImageDefault.png";
+import Toast from 'light-toast';
 
 export default function FormRegistro() {
   const params = useParams();
@@ -125,10 +126,11 @@ export default function FormRegistro() {
         localidad: "",
         fotoPerfil: "",
       });
-      navigate("/prueba");
-      alert("Usuario creado correctamente");
+      Toast.success("Usuario creado correctamente", 3000, () => {
+        navigate("/prueba");
+      });    
     } else {
-      alert("No se pudo completar el registro, revise los campos");
+      Toast.fail("No se pudo completar el registro, revise los campos", 3000, () => {});
     }
   }
 

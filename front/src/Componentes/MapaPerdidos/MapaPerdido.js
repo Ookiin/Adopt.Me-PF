@@ -1,13 +1,14 @@
-import { useCallback, useEffect, useMemo, useRef, useState } from "react"
-import { MapContainer, Marker, Popup, TileLayer, useMap } from "react-leaflet"
-import { useDispatch } from "react-redux"
-import createLocationPerdidos from "../../Actions/createLocationPerdidos"
-import { IconLocation } from "../Maps/IconLocation"
-import MarkersLost from "./Marcadores"
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { MapContainer, Marker, Popup, TileLayer, useMap } from "react-leaflet";
+import { useDispatch } from "react-redux";
+import createLocationPerdidos from "../../Actions/createLocationPerdidos";
+import { IconLocation } from "../Maps/IconLocation";
+import MarkersLost from "./Marcadores";
 import stl from "../MapaPerdidos/MapaPerdido.module.css";
-import NavBar from "../NavBar/NavBar"
-import Footer from "../Footer/Footer"
-import { Link } from "react-router-dom"
+import NavBar from "../NavBar/NavBar";
+import Footer from "../Footer/Footer";
+import { Link } from "react-router-dom";
+import Toast from 'light-toast';
 
 
 export default function MapLostPets() {
@@ -64,8 +65,7 @@ export default function MapLostPets() {
                 lat: geo.lng,
                 lng: geo.lat
         })
-       
-        alert("Ubicacion Establecida. Por favor seleccione 'Guardar mi Ubicacion'")
+        Toast.success("Ubicacion Establecida. Por favor seleccione 'Guardar mi Ubicacion'", 3000, () => {});
     }
 
     function handleLocation2() {
@@ -73,8 +73,7 @@ export default function MapLostPets() {
                 lat: geo.lng,
                 lng: geo.lat
         })
-       
-        alert("Ubicacion Guardada con exito")
+        Toast.success("Ubicacion Guardada con exito. Por favor seleccione 'Confirmar y volver'", 3000, () => {});
     }
 
     function handleSubmit() {
@@ -107,7 +106,7 @@ export default function MapLostPets() {
         <p>Por favor. Para guardar su ubicacion exitosamente<br></br>
         Primero mueva el marcador de posicion para el<br></br>
          lugar donde perdio 
-        su mascota o vio una mascota perdida. <br></br>Despues seleccione "Establecer mi Ubicacion", 
+        su mascota o vio una mascota perdida. <br></br><br></br>Despues seleccione "Establecer mi Ubicacion", 
         y luego "Guardar mi Ubicacion".</p>
         <p>Finalmente "Confirmar y Volver"</p>
         <div className={stl.botones}>

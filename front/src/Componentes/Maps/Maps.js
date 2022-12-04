@@ -10,6 +10,7 @@ import createLocation from "../../Actions/createLocation";
 import { useDispatch } from "react-redux";
 import Markers from "./Markers";
 import stl from "../Maps/Maps.module.css";
+import Toast from 'light-toast';
 
 export default function MapView() {
 
@@ -50,8 +51,8 @@ export default function MapView() {
                 latitude: geo.longitude,
                 longitude: geo.latitude
         })
-        console.log("primer handle", location)
-        alert("Ubicacion Establecida. Por favor seleccione 'Guardar mi Ubicacion'")
+       
+        Toast.success("Ubicacion Establecida. Por favor seleccione 'Guardar mi Ubicacion'", 3000, () => {});
     }
 
     function handleLocation2() {
@@ -59,8 +60,7 @@ export default function MapView() {
                 latitude: geo.longitude,
                 longitude: geo.latitude
         })
-        console.log("segundo handle", location)
-        alert("Ubicacion Guardada con exito")
+        Toast.success("Ubicacion Guardada con exito. Por favor seleccione 'Confirmar y volver'", 3000, () => {});
     }
 
     function handleSubmit() {

@@ -7,6 +7,7 @@ import stl from "../FormSignIn/FormSignIn.module.css";
 import signinUser from "../../Actions/signinUser";
 import getusers from "../../Actions/getusers";
 import FloatingUI from "../Floating UI/FloatingUI";
+import Toast from 'light-toast';
 
 export default function FormSignIn() {
   const params = useParams();
@@ -66,10 +67,11 @@ export default function FormSignIn() {
         usuario: "",
         contraseña: "",
       });
-      //navigate("/perfil");
-      //alert("Ingreso exitoso. Bienvenido");
+      Toast.success("Ingreso exitoso. Bienvenido", 3000, () => {
+        navigate("/perfil");
+      });
     } else {
-      alert("No se pudo ingresar. Revise los campos")
+      Toast.fail("No se pudo ingresar. Revise los campos", 3000, () => {});
     }
   }
 

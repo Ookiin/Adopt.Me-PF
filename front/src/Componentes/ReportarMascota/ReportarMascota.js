@@ -8,6 +8,7 @@ import Footer from "../Footer/Footer"
 import stl from "../ReportarMascota/ReportarMascota.module.css"
 import FloatingUI from "../Floating UI/FloatingUI";
 import imagenDefault from "../../Imagenes/imagenDefault.png"
+import Toast from 'light-toast';
 
 
 ////////////////////////////////////////////////////// VALIDACION ///////////////////////////////////////////////////////////////
@@ -70,8 +71,6 @@ console.log(input)
 
     dispatch(createAnimalPerdido(input, imagenes));
 
-    alert("Mascota Agregada");
-
     setInput({
       perro: false,
       gato: false,        
@@ -84,8 +83,9 @@ console.log(input)
     })
     
     // setImagenes([])
-
-    navigate("/homepage")
+    Toast.success("Mascota agregada", 3000, () => {
+      navigate("/homepage")
+    });
  }
 
  /////////////////////////// EXTRAYENDO URL DE CLAUDINARY /////////////////////////////////////////////////////////////////////
