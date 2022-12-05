@@ -33,16 +33,20 @@ export default function InfoProceso() {
   const detalleUser = useSelector((state) => state.detalleUsuario); // Estado global con los datos del usuario
   console.log(detalleUser)
 
+  const detalleUserGoogle = useSelector((state) => state.detalleUsuarioGoogle)
+    console.log("Estos son los datos del userGoogle")
+    console.log(detalleUserGoogle)
+
   
   function onClick(e) {
     e.preventDefault()
     if (!user) {
       return Toast.fail("Debes iniciar sesion para poder poner en adopcion", 3000, () => {});
     }
-    if (!user || !detalleUser.usuario || !detalleUser.nombre || !detalleUser.telefono || !detalleUser.localidad || !detalleUser.nacimiento || !detalleUser.mail) {
+    if (!detalleUser.usuario && detalleUserGoogle.length == 0) {
       return Toast.fail("Debes completar el registro en tu perfil antes de poner en adopcion", 3000, () => {});
     }
-    if (user && detalleUser.usuario && detalleUser.nombre && detalleUser.telefono && detalleUser.localidad && detalleUser.nacimiento && detalleUser.mail) { 
+    if (user && detalleUser.usuario || detalleUserGoogle.usuario) { 
     navigate("/registroMascota")
     }
   }

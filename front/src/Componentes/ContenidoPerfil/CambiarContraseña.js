@@ -34,7 +34,7 @@ export default function CambiarContraseña() {
   });
 
   const [errors, setErrors] = useState({});
-  const [isSubmit, setisSubmit] = useState(false);
+  const [isSubmit, setisSubmit] = useState(true);
 
   function validation(input) {
     let errors = {};
