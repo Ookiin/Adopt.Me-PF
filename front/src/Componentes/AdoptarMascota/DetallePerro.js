@@ -47,14 +47,15 @@ export default function DetallePerro() {
     if (!user) {
       return Toast.fail(
         "Debes iniciar sesion para poder adoptar",
-        3000,
+        1500,
         () => {}
       );
     }
+
     if (!detalleUser.usuario && detalleUserGoogle.length == 0) {
       return Toast.fail(
         "Debes completar el registro en tu perfil antes de adoptar",
-        3000,
+        1500,
         () => {}
       );
     }

@@ -83,7 +83,7 @@ console.log(input)
     })
     
     // setImagenes([])
-    Toast.success("Mascota agregada", 3000, () => {
+    Toast.success("Mascota agregada", 1500, () => {
       navigate("/homepage")
     });
  }

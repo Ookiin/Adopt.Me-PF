@@ -67,11 +67,11 @@ export default function FormSignIn() {
         usuario: "",
         contraseña: "",
       });
-      Toast.success("Ingreso exitoso. Bienvenido", 3000, () => {
+      Toast.success("Ingreso exitoso. Bienvenido", 1500, () => {
         navigate("/perfil");
       });
     } else {
-      Toast.fail("No se pudo ingresar. Revise los campos", 3000, () => {});
+      Toast.fail("No se pudo ingresar. Revise los campos", 1500, () => {});
     }
   }
 

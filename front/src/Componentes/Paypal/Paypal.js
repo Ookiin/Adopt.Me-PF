@@ -25,7 +25,7 @@ export default function Paypal() {
             onApprove: async (data, actions) => {
                 const order = await actions.order.capture()
                 console.log(order)
-               Toast.success('SU DONACIÓN A SIDO REALIZADA CON EXITO', 3000, () => {});
+               Toast.success('SU DONACIÓN A SIDO REALIZADA CON EXITO', 1500, () => {});
                 window.location.replace('/homepage')
             },
             onError: (err) => {

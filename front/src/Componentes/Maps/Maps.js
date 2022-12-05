@@ -52,7 +52,7 @@ export default function MapView() {
                 longitude: geo.latitude
         })
        
-        Toast.success("Ubicacion Establecida. Por favor seleccione 'Guardar mi Ubicacion'", 3000, () => {});
+        Toast.success("Ubicacion Establecida. Por favor seleccione 'Guardar mi Ubicacion'", 1500, () => {});
     }
 
     function handleLocation2() {
@@ -60,7 +60,7 @@ export default function MapView() {
                 latitude: geo.longitude,
                 longitude: geo.latitude
         })
-        Toast.success("Ubicacion Guardada con exito. Por favor seleccione 'Confirmar y volver'", 3000, () => {});
+        Toast.success("Ubicacion Guardada con exito. Por favor seleccione 'Confirmar y volver'", 1500, () => {});
     }
 
     function handleSubmit() {
