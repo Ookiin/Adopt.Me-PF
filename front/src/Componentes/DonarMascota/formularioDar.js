@@ -312,11 +312,11 @@ function handleChange(e) {
         && desparasitado === "") {
      setInput((prev) => ({ ...prev, ...nameS}))
    }
- }, [nombre, raza, peso, descripcion, castrado, vacunado, desparasitado])
+ }, [])
 
  useEffect(() => {
    localStorage.setItem("nom", JSON.stringify(input))
- }, [nombre, raza, peso, descripcion, castrado, vacunado, desparasitado, input])
+ }, [nombre, raza, peso, descripcion, castrado, vacunado, desparasitado])
 
 
 ///////////////////////////////////////////////////////////////////////  TE KAVIO EL RETURN  ///////////////////////////
