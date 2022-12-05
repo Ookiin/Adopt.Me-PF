@@ -7,22 +7,42 @@ import stl from "../FormRegistro/FormRegistro.module.css";
 import createuser from "../../Actions/createuser";
 import getusers from "../../Actions/getusers";
 import FloatingUI from "../Floating UI/FloatingUI";
+
+import { useAuth0 } from "@auth0/auth0-react";
+import getDetalleUsuario from "../../Actions/getDetalleUsuario"
+import putUser from "../../Actions/putUsuario";
+
 import Toast from 'light-toast';
+
 
 export default function MiInformacion(props) {
   const params = useParams();
   const dispatch = useDispatch();
   const navigate = useNavigate(); // Metodo de router que me redirige a la ruta que yo le diga
   const Allusers = useSelector((state) => state.users).data; // (o el estado global que usemos para guardar todos los usuarios)
+  console.log("estos son los props")
+  console.log(props)
 
+  const id = props.datos._id
+  /*
+  const { user, isAuthenticated } = useAuth0()
+  const usuarioIdRaro = user.sub
+  
+
+  useEffect(() => {
+    dispatch(getDetalleUsuario(id));
+  }, [dispatch]);
+  const detalleUser = useSelector((state) => state.detalleUsuario); // Estado global con los datos del usuario
+  
+  console.log(detalleUser)
+  
   useEffect(() => {
     dispatch(getusers());
   }, [dispatch]);
-
+ */
+  
   const [input, setInput] = useState({
     usuario: "",
-    contraseña: "",
-    repitaContraseña: "",
     nombre: "",
     telefono: "",
     mail: "",
@@ -32,8 +52,9 @@ export default function MiInformacion(props) {
   });
 
   const [errors, setErrors] = useState({});
-  const [isSubmit, setisSubmit] = useState(false);
+  const [isSubmit, setisSubmit] = useState(true);
 
+  
   function validation(input) {
     let errors = {};
     let noRepeatUser = Allusers.filter((u) => u.usuario === input.usuario);
@@ -109,20 +130,16 @@ export default function MiInformacion(props) {
   }
 
   function handleSubmit(e) {
-    console.log("Ingreso al handleSubmit");
     e.preventDefault();
-    console.log(Allusers);
     //Si no hay errores, el isSubmit esta en true
     if (isSubmit) {
       console.log(
         "OK. Formulario recibido. Despacho la action con estos datos:"
       );
       console.log(input);
-      dispatch(createuser(input));
+      dispatch(putUser(input, id));
       setInput({
         usuario: "",
-        contraseña: "",
-        repitaContraseña: "",
         nombre: "",
         telefono: "",
         mail: "",
@@ -130,17 +147,19 @@ export default function MiInformacion(props) {
         localidad: "",
         fotoPerfil: "",
       });
-      Toast.success("Usuario creado correctamente", 3000, () => {
+
+     Toast.success("Usuario actualizado correctamente", 3000, () => {
         navigate("/prueba");
       });
     } else {
-      Toast.fail("No se pudo completar el registro, revise los campos", 3000, () => {});
+      Toast.fail("No se pudo actualizar los datos", 3000, () => {});
     }
   }
 
   function handleChange(e) {
     e.preventDefault();
     setInput((prev) => ({ ...prev, [e.target.name]: e.target.value })); // e.target.name seria el input que se va a estar modificando
+    
     setErrors(
       validation({
         // voy a tomar el valor del input que se modifico y voy a ir llenando el estado

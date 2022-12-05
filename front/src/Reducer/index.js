@@ -34,23 +34,21 @@ import {
 
 const initialState = {
    animales: [],
-   gatos: [],
-   perros: [],
    perrosCopia: [],
    gatosCopia: [],
+   detalleUsuarioGoogle: [],
+   gatos: [],
+   perros: [],
    animalesdetail: [],
    tamañoFiltrado: [],
    edadFiltrado: [],
-
    animalesPerdidos: [],
    animalesPerdidosCopia: [],
    gatosPerdidos: [],
    animalesPerdidosDetail: [],
-   filtroPerdidos: [],
-
    users: [],
-   detalleUsuario: [],  
-
+   filtroPerdidos: [],
+   detalleUsuario: [],
    locations: [],
    locationsPerdidos: []
 }
@@ -276,6 +274,19 @@ case GET_DOG_TAMAÑOS:
          locations: action.payload 
         }
 
+      
+      case "putUsuario":
+        return {
+          ...state,
+        }
+      
+        case "getDetalleUsuarioGoogle":
+          return {
+            ...state,
+            detalleUsuarioGoogle: action.payload,
+          };
+
+
         case CREATE_LOCATION_PERDIDOS:
           return {
             ...state
@@ -286,6 +297,7 @@ case GET_DOG_TAMAÑOS:
               ...state,
               locationsPerdidos: action.payload
             }
+
         
     default:
       return state;

@@ -17,7 +17,7 @@ const UsuarioSchema = new Schema({
   },
   contraseña: {
     type: String,
-    required: true,
+    required: false,
   },
   fotoPerfil: {
     type: String,
@@ -34,11 +34,13 @@ const UsuarioSchema = new Schema({
   publicaciones: {
     type: String,
   },
+  caca: {
+    type: String,
+  },
 });
 
 // METODO PARA HASHEAR CONTRASEÑA
 UsuarioSchema.methods.encryptPassword = async (contraseña) => {
-
   return bcrypt.hashSync(contraseña, bcrypt.genSaltSync(10));
 };
 

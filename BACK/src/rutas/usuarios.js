@@ -22,17 +22,19 @@ router.post("/signup", (req, res) => {
     if (err) throw err;
     if (doc) res.send("El usuario ya existe")
     if (!doc) {
-      console.log("entre al /signup, voy a crear el usuario")
-      const contraseñaHasheada = await bcrypt.hash(req.body.contraseña, 10)
+      console.log("entre al /signup, voy a crear el usuario, este es el req.body")
+      console.log(req.body)
+      //const contraseñaHasheada = await bcrypt.hash(req.body.contraseña, 10)
       const usuarioNuevo = new UsuarioModel({
         usuario: req.body.usuario,
-        contraseña: contraseñaHasheada,
+        //contraseña: contraseñaHasheada,
         nombre: req.body.nombre,
         mail: req.body.mail,
         telefono: req.body.telefono,
         localidad: req.body.localidad,
         fotoPerfil: req.body.fotoPerfil,
         nacimiento: req.body.nacimiento,
+        caca: req.body.caca
       });
       await usuarioNuevo.save()
       console.log(usuarioNuevo)
@@ -40,6 +42,7 @@ router.post("/signup", (req, res) => {
     }
   })
 });
+
 
 router.post("/signin", (req, res, next) => {
   passport.authenticate("local-signin",(err, user, info) => {
@@ -56,5 +59,19 @@ router.post("/signin", (req, res, next) => {
   })(req, res, next);
 });
 
+router.get("/google/:id", async (req, res) => {
+    const { id } = req.params;
+    try {
+      let userId = await UsuarioModel.findOne({caca : id});
+      if (userId) {
+        let u = await userId.save();
+        res.status(200).json(u);
+      } else {
+        res.status(400).json(`${id} no encontrado`);
+      }
+    } catch (error) {
+      res.status(400).json(`${id} no encontrado`);
+    }
+})
   
 module.exports = router;
