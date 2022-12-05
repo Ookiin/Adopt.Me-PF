@@ -3,7 +3,7 @@ const User = require("../modelos/usuarios");
 const bcrypt = require("bcryptjs");
 const passport = require("passport");
 
-
+/*
   passport.use("local-signin",
     new localStrategy({
       usernameField: "usuario",
@@ -27,7 +27,7 @@ const passport = require("passport");
         })
       })
     })
-  )
+  )*/
 
   
   // UNA VEZ Q SE AUTENTICA, DE ESOS DATOS SOLO NOS QUEDAMOS CON EL ID(lo que nos intercambiamos entre las pag para verificar q sea de un usuario ya autenticado)

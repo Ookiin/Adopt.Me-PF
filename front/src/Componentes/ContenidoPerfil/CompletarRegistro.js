@@ -10,17 +10,16 @@ import FloatingUI from "../Floating UI/FloatingUI";
 
 import { useAuth0 } from "@auth0/auth0-react";
 
-import Toast from 'light-toast';
-
+import Toast from "light-toast";
+import createUserGoogle from "../../Actions/createUserGoogle";
 
 export default function FormRegistro() {
   const params = useParams();
   const dispatch = useDispatch();
   const navigate = useNavigate(); // Metodo de router que me redirige a la ruta que yo le diga
   const Allusers = useSelector((state) => state.users).data; // (o el estado global que usemos para guardar todos los usuarios)
-  const { user, isAuthenticated } = useAuth0()
-  console.log(user)
-  
+  const { user, isAuthenticated } = useAuth0();
+  console.log(user);
 
   useEffect(() => {
     dispatch(getusers());
@@ -34,12 +33,12 @@ export default function FormRegistro() {
     nacimiento: "",
     localidad: "",
     fotoPerfil: user.picture,
-    caca: user.sub.substring(14)
+    caca: user.sub.substring(14),
   });
 
   const [errors, setErrors] = useState({});
   const [isSubmit, setisSubmit] = useState(true);
-
+  /*
   function validation(input) {
     let errors = {};
     let noRepeatUser = Allusers.filter((u) => u.usuario === input.usuario);
@@ -112,7 +111,7 @@ export default function FormRegistro() {
     }
 
     return errors;
-  }
+  }*/
 
   function handleSubmit(e) {
     console.log("Ingreso al handleSubmit");
@@ -124,7 +123,7 @@ export default function FormRegistro() {
         "OK. Formulario recibido. Despacho la action con estos datos:"
       );
       console.log(input);
-      dispatch(createuser(input));
+      dispatch(createUserGoogle(input));
       setInput({
         usuario: "",
         contraseña: "",
@@ -142,22 +141,26 @@ export default function FormRegistro() {
         navigate("/homepage");
       });
     } else {
-      Toast.fail("No se pudo completar el registro, revise los campos", 3000, () => {});
+      Toast.fail(
+        "No se pudo completar el registro, revise los campos",
+        3000,
+        () => {}
+      );
     }
   }
 
   function handleChange(e) {
     e.preventDefault();
     setInput((prev) => ({ ...prev, [e.target.name]: e.target.value })); // e.target.name seria el input que se va a estar modificando
+    /*
     setErrors(
       validation({
         // voy a tomar el valor del input que se modifico y voy a ir llenando el estado
         ...input,
         [e.target.name]: [e.target.value],
       })
-    );
+    );*/
   }
-
 
   return (
     <div className={stl.registro} key={params.id}>
@@ -194,8 +197,6 @@ export default function FormRegistro() {
             <span></span>
           </div>
 
-          
-
           <div className={stl.datosRegistro} key={params.id}>
             <div>TELÉFONO DE CONTACTO: </div>
             <input
@@ -208,8 +209,6 @@ export default function FormRegistro() {
             />{" "}
             <span></span>
           </div>
-
-        
 
           <div className={stl.datosRegistro} key={params.id}>
             <div>FECHA DE NACIMIENTO: </div>
@@ -237,7 +236,6 @@ export default function FormRegistro() {
             />{" "}
             <span></span>
           </div>
-
 
           <div>
             <button

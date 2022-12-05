@@ -28,7 +28,8 @@ import {
     FILTRA_TAMAÑO,
     GET_CAT_TAMAÑOS,
     GET_DOG_EDAD,
-    GET_CAT_EDAD
+    GET_CAT_EDAD,
+    CREATE_USER_GOOGLE
   } from "../Actions";
 
 
@@ -251,7 +252,8 @@ case GET_DOG_TAMAÑOS:
         case CREATE_ANIMAL_PERDIDO:
             return{
                 ...state,                      
-            }
+        }
+      
 //------------------------------------------Animales Perdidos Fin-----------------------------------------------------------------------//
 
     case "signin":
@@ -296,7 +298,12 @@ case GET_DOG_TAMAÑOS:
             return {
               ...state,
               locationsPerdidos: action.payload
-            }
+        }
+      
+      case CREATE_USER_GOOGLE:
+        return {
+          ...state,
+        }
 
         
     default:
