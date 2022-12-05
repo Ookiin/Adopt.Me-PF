@@ -113,7 +113,8 @@ export default function FormRegistro() {
     e.preventDefault();
     //Si no hay errores, el isSubmit esta en true
     if (isSubmit) {
-
+      console.log("Se despacha el create con estos valores")
+      console.log(input)
       dispatch(createuser(input));
       setInput({
         usuario: "",

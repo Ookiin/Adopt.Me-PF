@@ -149,7 +149,7 @@ export default function MiInformacion(props) {
       });
 
      Toast.success("Usuario actualizado correctamente", 3000, () => {
-        navigate("/prueba");
+        navigate("/homepage");
       });
     } else {
       Toast.fail("No se pudo actualizar los datos", 3000, () => {});
