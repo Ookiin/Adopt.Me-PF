@@ -6,6 +6,7 @@ import NavBar from "../NavBar/NavBar";
 import stl from "./HomePage.module.css";
 
 
+
 export default function HomePage() {
   return (
     <div className={stl.homepage}>
@@ -19,6 +20,26 @@ export default function HomePage() {
           <button className={stl.botonDonar}>Donar</button>
         </Link>
       </div>
+
+      <div className={stl.titulobanner}>
+  <div className={stl.spanbanner}>A</div>
+  <div className={stl.spanbanner}>D</div>
+  <div className={stl.spanbanner}>O</div>
+  <div className={stl.spanbanner}>P</div>
+  <div className={stl.spanbanner}>T</div>
+  <div className={stl.spanbanner}>.</div>
+  <div className={stl.spanbanner}>M</div>
+  <div className={stl.spanbanner}>E</div>
+  <br></br>
+  <div className={stl.spanbanner}> </div>
+  <div className={stl.spanbanner}>Encuentra&nbsp;<p></p></div>
+    <div className={stl.spanbanner}>tu&nbsp;</div>
+  <div className={stl.spanbanner}>mascota&nbsp;</div>
+  <div className={stl.spanbanner}>hoy</div>
+</div>
+
+      <div className={stl.banner}></div>
+
       
       <div className={stl.adoptarDarEnAdopcion}>
         <div className={stl.adoptar}>
@@ -68,6 +89,12 @@ export default function HomePage() {
             </Link>
           </div>
 
+      <div className={stl.mensajemascotas}><br></br>Adoptar es formar parte <br></br>de la solucion<br>
+      </br><br></br><br></br>Muchos animales <br></br>te necesitan
+      <br></br><br></br><br></br>Adopt.Me te ayuda<br></br>a cumplir ese objetivo</div>  
+
+
+
           <div className={stl.reportarMascota}>
             <p className={stl.reportarTitulo}>Reportar Mascota Perdida</p>
             <p className={stl.parrafoReportar}>
@@ -85,6 +112,8 @@ export default function HomePage() {
             </Link>
           </div>
         </div>
+            <div className={stl.banner2}></div>
+        
       </div>
 
      
