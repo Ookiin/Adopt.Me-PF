@@ -5,6 +5,8 @@
     display: flex;
     margin-top: 30px;
     font-family: 'Viga', sans-serif;
+    opacity:0;
+    animation: smooth-appear 1s ease forwards;
 }
 
 .adoptar {
@@ -24,8 +26,15 @@
     background-color: #F2E7D5;  
   }
 
+  @keyframes smooth-appear {
+     
+    to{
+      bottom: 20;
+      opacity:1;
+    }
+  }
+
 .otrosServicios {
-  
     display: flex;
     justify-content: center;
     margin-top: 100px;
@@ -34,7 +43,13 @@
     margin-left: 260px;
     box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
     font-family: 'Viga', sans-serif;
-    background-color: #F2E7D5;
+    background-color: #F2E7D5; 
+    opacity:0;
+    animation: smooth-appear 1s ease forwards;
+}
+
+.otroServicios:hover {
+ 
 }
 
 .perros {
@@ -481,3 +496,5 @@
     filter: blur(0);
   }
 }
+
+

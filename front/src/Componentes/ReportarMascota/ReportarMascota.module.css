@@ -106,7 +106,7 @@
 
   .gatoPerro2 {
     width: 100px;
-    margin-left: 120px;
+    margin-left: 180px;
     display: flex;
     justify-content: center;
     flex-wrap: nowrap;
@@ -209,4 +209,17 @@
     transform: translateY(-4px);
     background-color: white;
     color: black;
+  }
+
+  .titulos {
+    font-size: 20px;
+  }
+
+  .titulos2 {
+    font-size: 20px;
+    margin-right: 60px;
+  }
+
+  .inputs2 {
+    margin-right: 60px;
   }

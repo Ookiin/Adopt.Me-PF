@@ -381,3 +381,41 @@ h4 {
     color: white;
   }
   
+  /*///////////////////////////////////// MEDIA QUERIES CELULARES MODO VERTICAL ////////////////////////////////////////////////*/
+
+  @media (min-width: 481px) and (max-width: 767px) {
+    .logo {
+      font-size: 23px;
+      margin-left: -80px;
+    }
+
+    .algomas {
+      margin-left: -70px;  
+    }
+
+    .login {
+      margin-left: -100px;
+    }
+
+    .blogInfo {
+      width: 30px;
+      height: 33px;
+      font-size: 10px;
+      margin-right: 4px;
+    }
+
+    .buttons {
+      width: 60px;
+      height: 30px;
+      font-size: 10px;
+      margin-right: 16px;
+      margin-left: -30px;
+    }
+
+    .buttonPerfil {
+      margin-left: -86px;
+      width: 50px;
+      height: 30px;
+      font-size: 13px;
+    }
+  } 

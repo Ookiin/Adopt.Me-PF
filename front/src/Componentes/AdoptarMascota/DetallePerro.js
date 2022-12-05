@@ -14,7 +14,7 @@ import Toast from 'light-toast';
 export default function DetallePerro () {
   const { id } = useParams();
   const navigate = useNavigate()
-    const params = useParams();
+    // const params = useParams();
     const { user, isAuthenticated } = useAuth0()
     const dispatch = useDispatch();
     // console.log(id);
@@ -24,13 +24,7 @@ export default function DetallePerro () {
         dispatch(getmascotasbyid(id))               
     }, [id, dispatch])
    
-  
-     useEffect(() => {
-      dispatch(getDetalleUsuario(_id));
-    }, [dispatch]);
-  
-    
-  
+
     
     let _id = undefined
     if (user) {
@@ -38,6 +32,9 @@ export default function DetallePerro () {
     _id = usuarioIdRaro.substring(6)
     }
     
+    useEffect(() => {
+      dispatch(getDetalleUsuario(_id));
+    }, [_id, dispatch]);
    
     
     console.log(isAuthenticated)
@@ -65,7 +62,7 @@ export default function DetallePerro () {
             
             <NavBar />
             <FloatingUI />
-              <img className={stl.img} alt="" src={detail.imagen} />
+              <img className={stl.img} src={detail.imagen} alt=""/>
               <div className={stl.cardDetalles}>                   
               <div className={stl.datosAdopcion}>
               <div className={stl.tituloAdopcion}>Datos de la Mascota</div>
