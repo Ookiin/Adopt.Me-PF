@@ -7,13 +7,16 @@ import stl from "../FormRegistro/FormRegistro.module.css";
 import createuser from "../../Actions/createuser";
 import getusers from "../../Actions/getusers";
 import FloatingUI from "../Floating UI/FloatingUI";
+import { useAuth0 } from "@auth0/auth0-react";
 
-
-export default function CompletarRegistro() {
+export default function FormRegistro() {
   const params = useParams();
   const dispatch = useDispatch();
   const navigate = useNavigate(); // Metodo de router que me redirige a la ruta que yo le diga
   const Allusers = useSelector((state) => state.users).data; // (o el estado global que usemos para guardar todos los usuarios)
+  const { user, isAuthenticated } = useAuth0()
+  console.log(user)
+  
 
   useEffect(() => {
     dispatch(getusers());
@@ -21,18 +24,17 @@ export default function CompletarRegistro() {
 
   const [input, setInput] = useState({
     usuario: "",
-    contraseña: "",
-    repitaContraseña: "",
-    nombre: "",
+    nombre: user.name,
     telefono: "",
-    mail: "",
+    mail: user.email,
     nacimiento: "",
     localidad: "",
-    fotoPerfil: "",
+    fotoPerfil: user.picture,
+    caca: user.sub.substring(14)
   });
 
   const [errors, setErrors] = useState({});
-  const [isSubmit, setisSubmit] = useState(false);
+  const [isSubmit, setisSubmit] = useState(true);
 
   function validation(input) {
     let errors = {};
@@ -129,8 +131,9 @@ export default function CompletarRegistro() {
         nacimiento: "",
         localidad: "",
         fotoPerfil: "",
+        caca: "",
       });
-      navigate("/prueba");
+      navigate("/homepage");
       alert("Usuario creado correctamente");
     } else {
       alert("No se pudo completar el registro, revise los campos");
@@ -149,36 +152,25 @@ export default function CompletarRegistro() {
     );
   }
 
-  function handleOpenWidget(e) {
-    // console.log("Entre el handleOpenWidget");
-    e.preventDefault();
-    const imagen = document.querySelector("#user-photo");
-    var myWidget = window.cloudinary.createUploadWidget(
-      {
-        cloudName: "dvw0vrnxp",
-        uploadPreset: "usuarios",
-      },
-      (error, result) => {
-        if (!error && result && result.event === "success") {
-          // console.log('Done! Here is the image info: ', result.info);
-          imagen.src = result.info.secure_url;
-          setInput((prev) => ({
-            ...prev,
-            [e.target.name]: result.info.secure_url,
-          }));
-        }
-      }
-    );
-    // console.log("abro el widget");
-    myWidget.open();
-  }
 
-    return (
-        <div>
-            <h1>Completar Registro</h1>
+  return (
+    <div className={stl.registro} key={params.id}>
+      <div className={stl.errores}>
+        {errors.usuario && <p className={stl.error}>{errors.usuario}</p>}
+        {errors.contraseña && <p className={stl.error}>{errors.contraseña}</p>}
+        {errors.repitaContraseña && (
+          <p className={stl.error}>{errors.repitaContraseña}</p>
+        )}
+        {errors.nombre && <p className={stl.error}>{errors.nombre}</p>}
+        {errors.telefono && <p className={stl.error}>{errors.telefono}</p>}
+        {errors.mail && <p className={stl.error}>{errors.mail}</p>}
+        {errors.nacimiento && <p className={stl.error}>{errors.nacimiento}</p>}
+        {errors.localidad && <p className={stl.error}>{errors.localidad}</p>}
+      </div>
 
-
-            <form
+      <div className={stl.form} key={params.id}>
+        <div className={stl.titulomayor}>Completar registro</div>
+        <form
           onSubmit={(e) => handleSubmit(e)}
           action="/usuarios/signup"
           method="POST"
@@ -196,44 +188,7 @@ export default function CompletarRegistro() {
             <span></span>
           </div>
 
-          <div className={stl.datosRegistro} key={params.id}>
-            <div>CONTRASEÑA: </div>
-            <input
-              className={stl.inputs}
-              required
-              type="password"
-              name="contraseña"
-              value={input.contraseña}
-              onChange={(e) => handleChange(e)}
-            />{" "}
-            <span></span>
-          </div>
-
-          <div className={stl.datosRegistro} key={params.id}>
-            <div>REPITA CONTRASEÑA: </div>
-            <input
-              className={stl.inputs}
-              required
-              type="password"
-              name="repitaContraseña"
-              value={input.repitaContraseña}
-              onChange={(e) => handleChange(e)}
-            />{" "}
-            <span></span>
-          </div>
-
-          <div className={stl.datosRegistro} key={params.id}>
-            <div>NOMBRE Y APELLIDO / REFUGIO: </div>
-            <input
-              className={stl.inputs}
-              type="text"
-              required
-              name="nombre"
-              value={input.nombre}
-              onChange={(e) => handleChange(e)}
-            />{" "}
-            <span></span>
-          </div>
+          
 
           <div className={stl.datosRegistro} key={params.id}>
             <div>TELÉFONO DE CONTACTO: </div>
@@ -248,18 +203,7 @@ export default function CompletarRegistro() {
             <span></span>
           </div>
 
-          <div className={stl.datosRegistro} key={params.id}>
-            <div>E-MAIL: </div>
-            <input
-              className={stl.inputs}
-              type="email"
-              required
-              name="mail"
-              value={input.mail}
-              onChange={(e) => handleChange(e)}
-            />{" "}
-            <span></span>
-          </div>
+        
 
           <div className={stl.datosRegistro} key={params.id}>
             <div>FECHA DE NACIMIENTO: </div>
@@ -288,26 +232,6 @@ export default function CompletarRegistro() {
             <span></span>
           </div>
 
-          <div className={stl.datosRegistro} key={params.id}>
-            <img
-              src="https://www.kindpng.com/picc/m/24-248253_user-profile-default-image-png-clipart-png-download.png"
-              id="user-photo"
-              alt=""
-              height="150"
-              width="150"
-            />
-
-            <button
-              id="btn-foto"
-              name="fotoPerfil"
-              onClick={(e) => handleOpenWidget(e)}
-              className={stl.botonImagen}
-            >
-              SELECCIONE FOTO DE PERFIL
-            </button>
-            <span></span>
-            {errors.fotoPerfil && <p>{errors.fotoPerfil}</p>}
-          </div>
 
           <div>
             <button
@@ -323,8 +247,8 @@ export default function CompletarRegistro() {
             </Link>
           </div>
         </form>
-        </div>
-        
-
-    )
-};
+      </div>
+      <Footer />
+    </div>
+  );
+}

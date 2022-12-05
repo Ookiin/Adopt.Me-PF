@@ -28,28 +28,21 @@ import {
 
 const initialState = {
    animales: [],
-
    perrosCopia: [],
    gatosCopia: [],
-
+   detalleUsuarioGoogle: [],
    animalesPerdidos: [],
    animalesPerdidosCopia: [],
-
    gatosPerdidos: [],
-
    animalesPerdidosDetail: [],
    animalesdetail: [],
    users: [],
    gatos: [],
    perros: [],
-  
    tamañoFiltrado: [],
-   
    filtroPerdidos: [],
    detalleUsuario: [],
-
    locations: []
-   
 }
 
 
@@ -229,6 +222,17 @@ export default function rootReducer(state = initialState, action){
           ...state,
          locations: action.payload 
         }
+      
+      case "putUsuario":
+        return {
+          ...state,
+        }
+      
+        case "getDetalleUsuarioGoogle":
+          return {
+            ...state,
+            detalleUsuarioGoogle: action.payload,
+          };
         
     default:
       return state;

@@ -10,25 +10,50 @@ import MiInformacion from "../ContenidoPerfil/MiInformacion";
 import MisFavoritos from "../ContenidoPerfil/MisFavoritos";
 import CambiarContraseña from "../ContenidoPerfil/CambiarContraseña";
 import CompletarRegistro from "../ContenidoPerfil/CompletarRegistro";
+import MisPublicaciones from "../ContenidoPerfil/MisPublicaciones";
+import getDetalleUsuarioGoogle from "../../Actions/getDetalleUsuarioGoogle";
 
 
 export default function Perfil() {
-    const { user, isAuthenticated } = useAuth0()
     const { logout } = useAuth0()
     const dispatch = useDispatch();
-    const [Render, setRender] = useState(0);
+    const [Render, setRender] = useState(0); 
 
-    const usuarioIdRaro = user.sub
-    const id = usuarioIdRaro.substring(6)
+    const { user, isAuthenticated } = useAuth0()
+    console.log(isAuthenticated)
+
+    
+    let usuarioIdRaro = ""
+    let id = ""
+    if (isAuthenticated) {
+        if (user.sub.startsWith("google")) {
+            usuarioIdRaro = user.sub
+            id = usuarioIdRaro.substring(14)
+        }
+        else {
+            usuarioIdRaro = user.sub
+            id = usuarioIdRaro.substring(6)
+        }
+    }
+    
+
+    useEffect(() => {
+        dispatch(getDetalleUsuarioGoogle(id));
+    }, [dispatch]);
 
     useEffect(() => {
             dispatch(getDetalleUsuario(id));
     }, [dispatch]);
     
-    console.log(isAuthenticated)
+    
 
     const detalleUser = useSelector((state) => state.detalleUsuario); // Estado global con los datos del usuario
+    console.log("Estos son los datos de detalleUser")
     console.log(detalleUser)
+
+    const detalleUserGoogle = useSelector((state) => state.detalleUsuarioGoogle)
+    console.log("Estos son los datos del userGoogle")
+    console.log(detalleUserGoogle)
 
     /////////////////// ON CLICKS ////////////////////////
 
@@ -109,11 +134,17 @@ export default function Perfil() {
                         <br /><br />
                         <br />
                         <div>
-                        {Render === 1 ? <MiInformacion datos={detalleUser} /> : null}
+                        {Render === 1 && detalleUser.usuario ? <MiInformacion datos={detalleUser} /> : null}
+                        {Render === 1 && detalleUserGoogle.usuario ? <MiInformacion datos={detalleUserGoogle} /> : null}
+                        {Render === 1 && detalleUserGoogle.length && !detalleUserGoogle.usuario ? <h1>Por favor, completa el registro para ver tus datos</h1> : null}
+                        
                         {Render === 2 ? <MisFavoritos></MisFavoritos>: null }
-                        {Render === 3 ? <MisFavoritos></MisFavoritos> : null}
-                        {Render === 4 ? <CambiarContraseña></CambiarContraseña> :null}
-                        {Render === 5 ? <CompletarRegistro></CompletarRegistro> : null}
+                        {Render === 3 ? <MisPublicaciones></MisPublicaciones> : null}
+                        {Render === 4 ? <CambiarContraseña></CambiarContraseña> : null}
+                            
+                        {Render === 5 && detalleUser.usuario ? <h1>Tu registro ya fue completado!! </h1> : null}
+                        {Render === 5 && detalleUserGoogle.usuario ? <h1>Tu registro ya fue completado! </h1> : null}
+                        {Render === 5 && detalleUserGoogle.length && !detalleUserGoogle.usuario ? <CompletarRegistro></CompletarRegistro> : null}
                         </div>
                         
                         

@@ -41,27 +41,35 @@ getDetalleUsuario = async (req, res) => {
 };
 
 putUsuario = async (req, res) => {
+  console.log("ENTRE a la ruta PUTUSER")
+  console.log(req.body)
   const { id } = req.params; //es lo que buscamos
   const {
     //es lo que modificamos
+    usuario,
     nombre,
     mail,
     contraseña,
     localidad,
     nacimiento,
     publicaciones,
+    telefono,
+    fotoPerfil,
   } = req.body;
   try {
     let usuarios = await UsuarioModel.updateOne(
       { _id: id },
       {
         $set: {
+          usuario,
           nombre,
           mail,
           contraseña,
           localidad,
           nacimiento,
           publicaciones,
+          telefono,
+          fotoPerfil,
         },
       }
     );
