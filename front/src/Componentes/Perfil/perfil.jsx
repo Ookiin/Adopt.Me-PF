@@ -137,7 +137,7 @@ export default function Perfil() {
                         <div>
                         {Render === 1 && detalleUser.usuario ? <MiInformacion datos={detalleUser} /> : null}
                         {Render === 1 && detalleUserGoogle.usuario ? <MiInformacion datos={detalleUserGoogle} /> : null}
-                        {Render === 1 && detalleUserGoogle && !detalleUserGoogle.usuario ? <h1>Por favor, completa el registro para ver tus datos</h1> : null}
+                        {Render === 1 && !detalleUser.usuario && !detalleUserGoogle.usuario ? <h1>Por favor, completa el registro para ver tus datos</h1> : null}
                         
                         {Render === 2 ? <MisFavoritos></MisFavoritos>: null }
                         {Render === 3 ? <MisPublicaciones></MisPublicaciones> : null}
@@ -145,7 +145,7 @@ export default function Perfil() {
                             
                         {Render === 5 && detalleUser.usuario ? <h1>Tu registro ya fue completado!! </h1> : null}
                         {Render === 5 && detalleUserGoogle.usuario ? <h1>Tu registro ya fue completado! </h1> : null}
-                        {Render === 5 && detalleUserGoogle && !detalleUserGoogle.usuario ? <CompletarRegistro></CompletarRegistro> : null}
+                        {Render === 5 && !detalleUser.usuario && !detalleUserGoogle.usuario ? <CompletarRegistro></CompletarRegistro> : null}
                         </div>
                         
                         
