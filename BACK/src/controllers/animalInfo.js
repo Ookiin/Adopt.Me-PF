@@ -74,14 +74,23 @@ getLocalidad = async (req,res) => {
 getTamaño = async (req,res) => {
   try {
     
-    const {tamaño} = req.body;      
-    let tamaños = await AnimalModel.find({tama:{path: ''}});    
-    console.log(tamaños);
-    const mapeado = await tamaños.map(t=>t.tamaño)
+    const {tama} = req.body;        
+    let tamas = await AnimalModel.find({tam:{path: ''}});   
+    const mapeado = await tamas.map(t=>t.tama)   ;   
+    console.log(tamas);
+    if (tamas) await res.status(200).json(mapeado)
+  } catch (error) {
+    res.status(400).json('UPS! algo salio mal')   
+  }
+};
+getEdad = async (req,res) => {
+  try {
     
-    
-    console.log(mapeado);  
-    if (tamaños) await res.status(200).json(mapeado)
+    const {edad} = req.body;        
+    let edades = await AnimalModel.find({eda:{path: ''}});   
+    const mapeados = await edades.map(t=>t.edad);   
+    console.log(edades);
+    if (edades) await res.status(200).json(mapeados)
   } catch (error) {
     res.status(400).json('UPS! algo salio mal')   
   }
@@ -90,6 +99,7 @@ getTamaño = async (req,res) => {
 
 postAnimal = async (req, res) => {
   try {
+
     const {  
       _id: _id,    
       perro,
@@ -98,13 +108,14 @@ postAnimal = async (req, res) => {
       raza,
       edad,
       estado,
-      tamaño,
+      tama,
       peso,
-      localidad,
       descripcion,
       castrado,
       vacunado,
-      imagen,} = req.body;
+      desparasitado,
+      imagen,
+      pichina} = req.body;
 
       const animales = await new AnimalModel({
       _id: _id,
@@ -114,13 +125,14 @@ postAnimal = async (req, res) => {
       raza,
       edad,
       estado,
-      tamaño,
+      tama,
       peso,
-      localidad,
       descripcion,
       castrado,
       vacunado,
-      imagen,        
+      desparasitado,
+      imagen,
+      pichina        
       })    
       if (animales.length) await animales.save()
       const nuevoAnimal = await animales.save()      
@@ -153,7 +165,7 @@ putAnimal = async (req, res) => {
     raza,
     edad,
     estado,
-    tamaño,
+    tama,
     peso,
     localidad,
     descripcion,
@@ -172,7 +184,7 @@ putAnimal = async (req, res) => {
           raza,
           edad,
           estado,
-          tamaño,
+          tama,
           peso,
           localidad,
           descripcion,

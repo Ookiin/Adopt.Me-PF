@@ -31,16 +31,12 @@ const AnimalSchema = new Schema({
         type: String,
         required: false,
     },
-    tamaño: {
+    tama: {
         type: Array,
         required: false,
     },
     peso: {
         type: Number,
-        required: false,
-    },
-    localidad: {
-        type: String,
         required: false,
     },
     descripcion: {
@@ -55,10 +51,18 @@ const AnimalSchema = new Schema({
         type: String,
         required: false,
     },
+    desparasitado: {
+        type: String,
+        required: false,
+    },
     imagen: {
         type: String,
         required: false,
-    } 
+    },
+    pichina: {
+        type: String,
+    }
+    
 });
 
 const AnimalModel = mongoose.model('animales', AnimalSchema)

@@ -1,12 +1,15 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import createAnimalPerdido from '../../Actions/createAnimalPerdido';
 import './ReportarMascota.module.css'
 import NavBar from "../NavBar/NavBar";
 import Footer from "../Footer/Footer"
-import stl from "../DonarMascota/formularioDar.module.css"
+import stl from "../ReportarMascota/ReportarMascota.module.css"
 import FloatingUI from "../Floating UI/FloatingUI";
+import imagenDefault from "../../Imagenes/imagenDefault.png"
+import Toast from 'light-toast';
+
 
 ////////////////////////////////////////////////////// VALIDACION ///////////////////////////////////////////////////////////////
 
@@ -68,8 +71,6 @@ console.log(input)
 
     dispatch(createAnimalPerdido(input, imagenes));
 
-    alert("Mascota Agregada");
-
     setInput({
       perro: false,
       gato: false,        
@@ -82,8 +83,9 @@ console.log(input)
     })
     
     // setImagenes([])
-
-    navigate("/homepage")
+    Toast.success("Mascota agregada", 3000, () => {
+      navigate("/homepage")
+    });
  }
 
  /////////////////////////// EXTRAYENDO URL DE CLAUDINARY /////////////////////////////////////////////////////////////////////
@@ -207,58 +209,56 @@ console.log(input)
 
   ///////////////////////////// HANDLE DELETE FOTO
 
-  function handleDelete(f) {
-    setImagenes({
-      ...imagenes,
-      id: imagenes.id.filter((id) => id !== f)
-    });
-  }
+  // function handleDelete(f) {
+  //   setImagenes({
+  //     ...imagenes,
+  //     id: imagenes.id.filter((id) => id !== f)
+  //   });
+  // }
 
 /////////////////////////////////////////////////////////// TE KAVIO EL RETURN  ///////////////////////////////////////////////////
 
   return (
     
-  <div className={stl.formDarAdopcion}>
+  <div className={stl.paginareportar}>
     <NavBar />
     <FloatingUI />
+          
+          <div className={stl.tituloperdido}>Registra los datos de Mascota Perdida</div>
    
-        <form className={stl.formularito} onSubmit={handleSubmit}>
+        <form className={stl.formul} onSubmit={handleSubmit}>
 
-         <div className={stl.error}>
       {errors.gato && ( <p class="error2">{errors.gato}</p>)} 
       {errors.perro && ( <p class="error2">{errors.perro}</p>)}
       {errors.descripcion && ( <p class="error2">{errors.descripcion}</p>)} 
-      </div> 
+      
 
-          <div className={stl.titulo}>Registra los datos de Mascota Perdida</div>
           
-          <div className={stl.imageContainer}>
-            {imagenes.map((f) => {
-              return (
-              <div className={stl.imagePreview}>
-                <img src= {f.url} value={f.id} alt="foto"/>
-                {imagenes.map((f) => (
-                  <i className="fa fa-times close-icon" onClick={() => handleDelete(f)} value={f.id}></i>
-                ))}
-                </div>
-                );
-                })}
-                <div className={stl.imagePreview}>
+      <div className={stl.imageContainer2}>
+
+        <div >
+            <img
+        src={imagenDefault}
+          id="default-photo"
+          alt=""
+          height="150"
+          width="150"
+          />
+
+        <button
+            id="btn-foto"
+         name="imagen"
+         onClick={(e) => handleOpenWidget(e)}
+         className={stl.botonFoto2}
+          >
+            AGREGAR FOTO
+            </button>
+          <span></span>
+            </div>
+            </div>
                   
-                  </div>
-                  <div>
-                    <button
-                    className={stl.botonFoto}
-                    name="fotos"
-                    onClick={handleOpenWidget}> 
-                      AGREGAR FOTOS
-                      </button>
-                     
-                      </div>
-                  </div>
-                  
-       
-       <div className={stl.gatoPerro}>
+            <div className={stl.contenedordatos2}>
+       <div className={stl.gatoPerro2}>
          <div className={stl.opciones2}>
                 <label className={stl.titulos2}>Gato:</label>
                 <input className={stl.inputs2} onChange={ (e) => { handleCheck(e); handleGato(e); }}
@@ -293,9 +293,11 @@ console.log(input)
         
 
             <div className={stl.opciones}>
-            <label className={stl.titulos}>Localidad:</label>
-                <input onChange={handleChange} 
-                type="text" name="localidad" value={input.localidad}/>            
+              <Link to ="/lostpets">
+                <button className={stl.botonubicacion}>Establecer ubicacion donde se perdio o vio por ultima vez
+                  la mascota
+                </button>
+                  </Link>        
             </div>
 
             <div className={stl.opciones}>
@@ -303,9 +305,9 @@ console.log(input)
                 <input onChange={handleChange} type="text" name="descripcion" value={input.descripcion}/>
                
            </div>
+          </div>
 
-
-            <button className={stl.boton} onClick={handleImagen}>Reportar</button>
+            <button className={stl.botonperdido} onClick={handleImagen}>Reportar</button>
              {/* <button className={stl.boton} type="submit">Dar en Adopcion</button> */}
 
         </form>

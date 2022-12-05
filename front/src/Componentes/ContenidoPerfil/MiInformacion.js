@@ -7,9 +7,13 @@ import stl from "../FormRegistro/FormRegistro.module.css";
 import createuser from "../../Actions/createuser";
 import getusers from "../../Actions/getusers";
 import FloatingUI from "../Floating UI/FloatingUI";
+
 import { useAuth0 } from "@auth0/auth0-react";
 import getDetalleUsuario from "../../Actions/getDetalleUsuario"
 import putUser from "../../Actions/putUsuario";
+
+import Toast from 'light-toast';
+
 
 export default function MiInformacion(props) {
   const params = useParams();
@@ -143,10 +147,12 @@ export default function MiInformacion(props) {
         localidad: "",
         fotoPerfil: "",
       });
-      navigate("/homepage");
-      alert("Usuario actualizado correctamente");
+
+     Toast.success("Usuario actualizado correctamente", 3000, () => {
+        navigate("/prueba");
+      });
     } else {
-      alert("No se pudo actualizar los datos");
+      Toast.fail("No se pudo actualizar los datos", 3000, () => {});
     }
   }
 

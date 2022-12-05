@@ -4,7 +4,7 @@
     /* border: 2px solid red; */
     display: flex;
     width: 600px;  
-    height: 650px; 
+    height: 750px; 
     margin-top: 60px;
     justify-content: center;
     position: relative;
@@ -18,7 +18,7 @@
     justify-content: center;
     /* border: 5px solid yellow; */
     position: relative;
-    height: 743px;
+    height: 943px;
     background-image: url("../../Imagenes/pisadas.jpg");
     background-size: contain;
 }
@@ -48,10 +48,9 @@ input {
 .metodosPago {
     display: block;
     position: absolute;
-    margin-top: 410px;
-    /* border: 2px solid violet; */
+    margin-top: 350px;
     width: 450px;
-    /* justify-content: space-between; */
+    height: 330px;
     background-color: #F2E7D5;
     box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;    
 }
@@ -65,13 +64,15 @@ label {
     margin-top: 20px;
 }
 
-/* .paypal {
-    background-image: url("../../Imagenes/paypal.png");
-    background-repeat: repeat;
-    background-size: contain;
-   width: 400px;
-   height: 50px;
-   cursor: pointer;
-   /* position: absolute; 
-   border: 1px solid red;
-} */
+ .botonpaypal {
+     margin-bottom: 40px;
+ }
+
+ .botonmetamask {
+    margin-bottom: 20px ;
+ }
+
+ .botonstripes  {
+    margin-top: 160px;
+    margin-left: 54px;
+ }

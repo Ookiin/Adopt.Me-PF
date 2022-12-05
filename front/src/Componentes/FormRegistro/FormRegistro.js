@@ -7,6 +7,8 @@ import stl from "../FormRegistro/FormRegistro.module.css";
 import createuser from "../../Actions/createuser";
 import getusers from "../../Actions/getusers";
 import FloatingUI from "../Floating UI/FloatingUI";
+import userImageDefault from "../../Imagenes/userImageDefault.png";
+import Toast from 'light-toast';
 
 export default function FormRegistro() {
   const params = useParams();
@@ -96,7 +98,7 @@ export default function FormRegistro() {
     if (!input.fotoPerfil || input.fotoPerfil === "") {
       setInput({
         fotoPerfil:
-          "https://www.kindpng.com/picc/m/24-248253_user-profile-default-image-png-clipart-png-download.png",
+          "https://res.cloudinary.com/dvw0vrnxp/image/upload/v1670012585/usuarios/userImageDefault_bm6bdk.png",
       });
     }
 
@@ -108,15 +110,10 @@ export default function FormRegistro() {
   }
 
   function handleSubmit(e) {
-    console.log("Ingreso al handleSubmit");
     e.preventDefault();
-    console.log(Allusers);
     //Si no hay errores, el isSubmit esta en true
     if (isSubmit) {
-      console.log(
-        "OK. Formulario recibido. Despacho la action con estos datos:"
-      );
-      console.log(input);
+
       dispatch(createuser(input));
       setInput({
         usuario: "",
@@ -129,10 +126,11 @@ export default function FormRegistro() {
         localidad: "",
         fotoPerfil: "",
       });
-      navigate("/prueba");
-      alert("Usuario creado correctamente");
+      Toast.success("Usuario creado correctamente", 3000, () => {
+        navigate("/prueba");
+      });    
     } else {
-      alert("No se pudo completar el registro, revise los campos");
+      Toast.fail("No se pudo completar el registro, revise los campos", 3000, () => {});
     }
   }
 
@@ -304,7 +302,7 @@ export default function FormRegistro() {
 
           <div className={stl.datosRegistro} key={params.id}>
             <img
-              src="https://www.kindpng.com/picc/m/24-248253_user-profile-default-image-png-clipart-png-download.png"
+              src={userImageDefault}
               id="user-photo"
               alt=""
               height="150"
@@ -332,7 +330,7 @@ export default function FormRegistro() {
               ACEPTAR
             </button>
 
-            <Link to="/givepet">
+            <Link to="/homepage">
               <button className={stl.buttons}>CANCELAR</button>
             </Link>
           </div>
@@ -341,4 +339,5 @@ export default function FormRegistro() {
       <Footer />
     </div>
   );
+  
 }

@@ -12,8 +12,9 @@ router.get("/", getAnimales);
 
 router.get('/localidad', getLocalidad); 
 
-router.get('/tamaño', getTamaño); 
+router.get('/tama', getTamaño);
 
+router.get('/edad', getEdad); 
 
 router.get('/perro', getPerros);
 
