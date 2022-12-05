@@ -158,6 +158,7 @@ export default function HomePerros () {
                      perro = {p.perro}
                      nombre={p.nombre}                     
                      imagen={p.imagen}
+                     edad={p.edad}
                      />                                                                                             
             )})     
                                   

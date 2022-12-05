@@ -324,15 +324,14 @@ function handleChange(e) {
             </div>
             </div>
 
-            {/* <div className={stl.imagePreview}>
-                <img src= {f.url} value={f.id} alt="foto"/>
+             {/*<div className={stl.imagePreview}>
+                <img src= {imagenes.url} value={imagenes.id} alt="foto"/>
                 {imagenes.map((f) => (
                   <i className="fa fa-times close-icon" onClick={() => handleDelete(f)} value={f.id}></i>
                 ))}
                 </div>
-                );
-                })}
-                <div className={stl.imagePreview}>
+                
+                <div className={stl.imagePreview}> 
                   
                   </div>
                   <div>
@@ -342,8 +341,8 @@ function handleChange(e) {
                     onClick={handleOpenWidget}> 
                       AGREGAR FOTOS
                       </button>
-                     
-                      </div> */}
+             
+                      </div>  */}
                   
        <div className={stl.contenedordatos}>
        <div className={stl.gatoPerro}>

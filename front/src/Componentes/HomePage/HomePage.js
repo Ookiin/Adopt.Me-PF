@@ -8,6 +8,7 @@ import stl from "./HomePage.module.css";
 
 
 export default function HomePage() {
+
   return (
     <div className={stl.homepage}>
       
@@ -41,7 +42,7 @@ export default function HomePage() {
       <div className={stl.banner}></div>
 
       
-      <div className={stl.adoptarDarEnAdopcion}>
+      <div className={stl.adoptarDarEnAdopcion} >
         <div className={stl.adoptar}>
           <div className={stl.opciones}>
             <Link to="/adoptdog">

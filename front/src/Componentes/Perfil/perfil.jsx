@@ -40,11 +40,11 @@ export default function Perfil() {
 
     useEffect(() => {
         dispatch(getDetalleUsuarioGoogle(id));
-    }, [dispatch]);
+    }, [id, dispatch]);
 
     useEffect(() => {
             dispatch(getDetalleUsuario(id));
-    }, [dispatch]);
+    }, [id, dispatch]);
     
     
 
