@@ -90,6 +90,7 @@ export default function BuscarMascota() {
       </div>
       </div>
 
+    <div className={stl.perrogato}>
       <div>
         <button className={stl.btnNav} onClick={(e)=>handleGato(e)}>Gatos</button>
       </div>
@@ -97,10 +98,11 @@ export default function BuscarMascota() {
       <div>
         <button className={stl.btnNav} onClick={(e)=>handlePerro(e)}>Perros</button>
       </div>
+      </div>
 
       <div>
         <Link to ="/viewlostpets">
-        <button>Ver mascotas perdidas en el mapa</button>
+        <button className={stl.btnMap}>Ver mascotas perdidas en el mapa</button>
         </Link>
       </div>
 
@@ -121,7 +123,8 @@ export default function BuscarMascota() {
         gato = {a.gato}
         perro = {a.perro}
         tama = {a.tama}       
-        localidad = {a.localidad}
+        description = {a.descripcion}
+        estado = {a.estado}
         />                  
                )
            })}

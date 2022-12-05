@@ -93,9 +93,9 @@
 }
 
 .card__title {
-  font-size: 30px;
+  font-size: 20px;
   margin: 0 0 .3em;
-  color: #6A515E;
+  color: #131112;
   font-family: 'Viga', sans-serif;
 
 }
@@ -109,8 +109,8 @@
 }
 
 .card__status {
-  font-size: .8em;
-  color: #D7BDCA;
+  font-size: 18px;
+  color: #81747b;
 }
 
 .card__description {
