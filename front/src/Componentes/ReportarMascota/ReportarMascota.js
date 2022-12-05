@@ -186,6 +186,7 @@ console.log(input)
     function handleOpenWidget(e) {
       // console.log("Entre el handleOpenWidget");
       e.preventDefault();
+      const imagen = document.querySelector("#mascota-photo");
       var myWidget = window.cloudinary.createUploadWidget(
           {
               cloudName: "dvw0vrnxp",
@@ -193,7 +194,8 @@ console.log(input)
           },
           (error, result) => {
               if (!error && result && result.event === "success") {
-              console.log('Done! Here is the image info: ', result.info);
+              //console.log('Done! Here is the image info: ', result.info);
+              imagen.src = result.info.secure_url;
 
               setImagenes((prev) => [
                 ...prev, {
@@ -239,7 +241,7 @@ console.log(input)
         <div >
             <img
         src={imagenDefault}
-          id="default-photo"
+          id="mascota-photo"
           alt=""
           height="150"
           width="150"
