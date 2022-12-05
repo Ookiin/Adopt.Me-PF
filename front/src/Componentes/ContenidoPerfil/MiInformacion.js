@@ -148,11 +148,11 @@ export default function MiInformacion(props) {
         fotoPerfil: "",
       });
 
-     Toast.success("Usuario actualizado correctamente", 3000, () => {
+     Toast.success("Usuario actualizado correctamente", 1500, () => {
         navigate("/homepage");
       });
     } else {
-      Toast.fail("No se pudo actualizar los datos", 3000, () => {});
+      Toast.fail("No se pudo actualizar los datos", 1500, () => {});
     }
   }
 

@@ -132,11 +132,11 @@ export default function CambiarContraseña() {
         localidad: "",
         fotoPerfil: "",
       });
-      Toast.success("Usuario creado correctamente", 3000, () => {      
+      Toast.success("Usuario creado correctamente", 1500, () => {      
         navigate("/prueba");
       });
     } else {
-      Toast.fail("No se pudo completar el registro, revise los campos", 3000, () => {});
+      Toast.fail("No se pudo completar el registro, revise los campos", 1500, () => {});
     }
   }
 

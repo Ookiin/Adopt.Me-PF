@@ -45,11 +45,11 @@ export default function DetallePerro () {
     function onClick(e) {
       e.preventDefault()
       if (!user) {
-        Toast.fail("Debes iniciar sesion para poder adoptar", 3000, () => {});
+        Toast.fail("Debes iniciar sesion para poder adoptar", 1500, () => {});
     
       }
       if (!user || !detalleUser.usuario || !detalleUser.nombre || !detalleUser.telefono || !detalleUser.localidad || !detalleUser.nacimiento || !detalleUser.mail) {
-        Toast.fail("Debes completar el registro en tu perfil antes de adoptar", 3000, () => {});
+        Toast.fail("Debes completar el registro en tu perfil antes de adoptar", 1500, () => {});
       }
       if (user && detalleUser.usuario && detalleUser.nombre && detalleUser.telefono && detalleUser.localidad && detalleUser.nacimiento && detalleUser.mail) { 
       navigate("/contacto")

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import createanimal from "../../Actions/createanimal";
@@ -7,10 +7,14 @@ import Footer from "../Footer/Footer"
 import stl from "../DonarMascota/formularioDar.module.css"
 import FloatingUI from "../Floating UI/FloatingUI";
 import imagenDefault from "../../Imagenes/imagenDefault.png"
-import Toast from 'light-toast'
+import Toast from 'light-toast';
 
  
  export default function DarEnAdopcion() {
+
+
+
+  /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
  
  
  const navigate = useNavigate();
@@ -156,7 +160,7 @@ import Toast from 'light-toast'
         imagen: "",
         pichina: ""
       });
-      Toast.success("Mascota publicada correctamente", 3000, () => {
+      Toast.success("Mascota publicada correctamente", 1500, () => {
         navigate("/homepage")
       });
     // } else {
@@ -289,17 +293,41 @@ function handleChange(e) {
   // }
 
 
-/////////////////////////////////////////////////////////// TE KAVIO EL RETURN  ///////////////////////////////////////////////////
+/////////////////////////////////////////////////////////// GUARDANDO DATOS EN LOCALSTORAGE  ///////////////////////////////////////////////////
 
+  const { nombre, raza, peso, descripcion, castrado, vacunado, desparasitado} = input;
+
+  const handleLocalStorage = (e) => {
+   let value = e.target.value;
+   let name = e.target.name;
+
+   setInput((prev) => ({...prev, [name]: value}))
+};
+
+ useEffect(() => {
+   const nameS = JSON.parse(localStorage.getItem("nom"));
+   if (nombre === "" && raza === "" && peso === "" && descripcion === "" && castrado === "" && vacunado === "" 
+        && desparasitado === "") {
+     setInput((prev) => ({ ...prev, ...nameS}))
+   }
+ }, [nombre, raza, peso, descripcion, castrado, vacunado, desparasitado])
+
+ useEffect(() => {
+   localStorage.setItem("nom", JSON.stringify(input))
+ }, [nombre, raza, peso, descripcion, castrado, vacunado, desparasitado, input])
+
+
+///////////////////////////////////////////////////////////////////////  TE KAVIO EL RETURN  ///////////////////////////
   return (
     
   <div className={stl.formDarAdopcion}>
     <NavBar />
     <FloatingUI />
+  
 
           <div className={stl.titulo}>REGISTRA LOS DATOS DE LA MASCOTA</div>
           
-          <form className={stl.formularito} onSubmit={handleSubmit}>
+          <form className={stl.formularito} onSubmit={handleSubmit} >
 
           <div className={stl.imageContainer}>
 
@@ -363,7 +391,7 @@ function handleChange(e) {
                    
                 <label className={stl.titulos}>Nombre:</label>
               <div className={stl.opciones}>
-                <input onChange={handleChange}
+                <input onChange={ (e) => {handleChange(e); handleLocalStorage(e); }}
                 type="text" name="nombre" value={input.nombre}/>  
                 {errors.nombre && <p className={stl.error}>{errors.nombre}</p>}                      
             </div>

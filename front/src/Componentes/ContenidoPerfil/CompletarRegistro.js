@@ -137,13 +137,13 @@ export default function FormRegistro() {
         caca: "",
       });
 
-      Toast.success("Usuario creado correctamente", 3000, () => {
+      Toast.success("Usuario creado correctamente", 1500, () => {
         navigate("/homepage");
       });
     } else {
       Toast.fail(
         "No se pudo completar el registro, revise los campos",
-        3000,
+        1500,
         () => {}
       );
     }

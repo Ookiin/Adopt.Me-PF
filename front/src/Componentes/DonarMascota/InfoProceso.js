@@ -37,10 +37,10 @@ export default function InfoProceso() {
   function onClick(e) {
     e.preventDefault()
     if (!user) {
-      return Toast.fail("Debes iniciar sesion para poder poner en adopcion", 3000, () => {});
+      return Toast.fail("Debes iniciar sesion para poder poner en adopcion", 1500, () => {});
     }
     if (!user || !detalleUser.usuario || !detalleUser.nombre || !detalleUser.telefono || !detalleUser.localidad || !detalleUser.nacimiento || !detalleUser.mail) {
-      return Toast.fail("Debes completar el registro en tu perfil antes de poner en adopcion", 3000, () => {});
+      return Toast.fail("Debes completar el registro en tu perfil antes de poner en adopcion", 1500, () => {});
     }
     if (user && detalleUser.usuario && detalleUser.nombre && detalleUser.telefono && detalleUser.localidad && detalleUser.nacimiento && detalleUser.mail) { 
     navigate("/registroMascota")
