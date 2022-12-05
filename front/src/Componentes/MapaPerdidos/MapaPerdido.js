@@ -112,7 +112,7 @@ export default function MapLostPets() {
         <div className={stl.botones}>
         <button className={stl.botonMapa2} onClick={handleLocation}>Establecer mi Ubicacion</button>
         <button className={stl.botonMapa2} onClick={handleLocation2}>Guardar mi Ubicacion</button>
-        <Link to ="/homepage">
+        <Link to ="/reportarmascota">
             <button className={stl.botonMapa3} type="submit" onClick={handleSubmit} >Confirmar y Volver</button>
             </Link>
             </div>
