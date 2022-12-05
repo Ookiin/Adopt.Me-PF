@@ -2,15 +2,14 @@
 
 .navbar {
     /* background-color: #6D9886; */
+    background-color: #6D9886;
     color: #F7F7F7;
     display: flex;
     flex-wrap: nowrap;
     justify-content: space-between;
-    height: 300px;
-    width: 0;
+    height: 50px;
     box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
-    font-family: 'Viga', sans-serif;
-    position: fixed;
+    
 }
 
 .logo {
@@ -346,3 +345,39 @@ h4 {
   background-color: white;
   color: black;
 }
+
+.lighttheme {
+    background-color: #6D9886;
+    color: #F7F7F7;
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    height: 50px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+} 
+
+.darktheme {
+    background-color: #21312b;
+    color: #F7F7F7;
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    height: 50px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+
+  }
+
+  .darktheme .homepage{
+    background-color: #060707;
+      background-size: 33%;
+      background-repeat: repeat; 
+      position: relative;
+      height: 1400px;
+    
+      
+  }
+  
+  .darktheme .donacion .textoDonacion {
+    color: white;
+  }
+  

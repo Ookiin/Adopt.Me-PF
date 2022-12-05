@@ -1,13 +1,10 @@
 import React, { useState } from "react";
 import stl from "../NavBar/NavBar.module.css";
-import DayNightToggle from "react-day-and-night-toggle";
-import "./darkmode.css";
-import "./dropdown.css";
 import { Link } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
 
 export default function NavBar() {
-  const [darkTheme, setDarkTheme] = useState(false);
+  const [darkTheme] = useState(false);
   const { isAuthenticated } = useAuth0();
   const { logout } = useAuth0();
   const [open, setOpen] = useState(false);
@@ -22,7 +19,7 @@ export default function NavBar() {
   };
 
   return (
-    <div className={darkTheme ? "dark-theme" : "light-theme"}>
+    <div className={darkTheme ? stl.darktheme : stl.lighttheme}>
       <div className={stl.navbar}></div>
 
       <div className={stl.logo2}></div>
@@ -66,10 +63,7 @@ export default function NavBar() {
           {open ? <div></div> : <div></div>}
         </div>
         
-        <DayNightToggle
-          onChange={() => setDarkTheme(!darkTheme)}
-          checked={darkTheme}
-        />
+        
       </div>
 
       {!isAuthenticated && (
