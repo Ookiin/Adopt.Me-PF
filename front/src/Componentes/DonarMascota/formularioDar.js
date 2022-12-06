@@ -336,6 +336,7 @@ function handleChange(e) {
   console.log("optionS", optionS)
   if (edad === null && tamaño === null) {
     setInput((prev) => ({...prev, ...optionS}))
+
   }
  }, [])
 
@@ -433,7 +434,7 @@ function handleChange(e) {
 
             <label className={stl.titulos}>Edad:</label>
             <div className={stl.opciones}>                                
-            <select className={stl.edad} name="edad" onChange={(e) => {handleEdad(e); handleLocalTamEdad(e); }}>
+            <select className={stl.edad} name="edad" defaultValue="" onChange={(e) => {handleEdad(e); handleLocalTamEdad(e); }}>
                        <option value="" disabled hidden>Selecciona edad...</option>
                        <option>Menos de 45 dias</option>
                        <option>Mas de 45 dias</option>
@@ -445,8 +446,8 @@ function handleChange(e) {
 
             <label className={stl.titulos}>Tamaño:</label>
             <div className={stl.opciones}>                                     
-            <select className={stl.tamaño} name="tamaño" onChange={(e) => {handleTamaño(e); handleLocalTamEdad(e); }}>
-                       <option value="" disabled hidden>Seleccione tamaño...</option>
+            <select className={stl.tamaño} name="tamaño"  onChange={(e) => {handleTamaño(e); handleLocalTamEdad(e); }}>
+                       <option value="" disabled hidden >Seleccione tamaño...</option>
                        <option>Chico</option>
                        <option>Mediano</option>
                        <option>Grande</option>
