@@ -18,10 +18,6 @@ const AnimalPerdidoSchema = new Schema ({
         type: Array,
         required: false,
     },
-    localidad: {
-        type: String,
-        required: true,
-    },
     descripcion: {
         type: String,
         required: false,
