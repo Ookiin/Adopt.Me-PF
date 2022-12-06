@@ -2,10 +2,14 @@ const mongoose = require("mongoose");
 const { Schema } = mongoose;
 
 const comentarioModelSchema = new Schema({
-  comentario: {
+  titulo: {
     type: String,
-    required: false,
+    require: true,
   },
+  contenido: {
+    type: String,
+    require: true,
+  }
 });
 
 const comentarioModel = mongoose.model("comentario", comentarioModelSchema);
