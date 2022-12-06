@@ -8,6 +8,6 @@ const uri = `mongodb+srv://noesneda:${PASSWORD}@proyecto.hbyeplt.mongodb.net/?re
 mongoose.connect(uri, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
-  },
+},
   console.log("DB is conected")
 );
