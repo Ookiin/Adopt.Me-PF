@@ -1,0 +1,23 @@
+
+
+.posted {
+    border: 3px solid red; 
+    display: flex;
+    justify-content: center;
+    height: 100px;
+    flex-direction: column;
+}
+
+.tituloPosted {
+border: 1px solid yellow;
+height: 50px;
+display: flex;
+align-items: center;
+}
+
+.postedContenido {
+border: 1px solid blue;
+height: 50px;
+display: flex;
+align-items: center;
+}

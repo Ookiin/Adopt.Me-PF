@@ -1,0 +1,41 @@
+
+.creadorContainer {
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+    margin-bottom: 50px;
+}
+
+.createPost {
+   
+    margin-top: 10px;
+    
+}
+
+.foro {
+    max-width: 100%;
+    height: 1000px;
+}
+
+.postContenido {
+    width: 490px;
+    height: 200px;
+    
+}
+
+.post {
+    border: 3px solid black;
+    width: 500px;
+    height: 300px;
+    margin-top: 50px;
+    margin-bottom: 30px;
+}
+
+.tituloPost {
+  
+    margin-bottom: 20px;
+}
+
+.botonPost {
+    margin-top: 20px;
+}
