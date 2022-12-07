@@ -1,12 +1,12 @@
 import React from "react";
-import Example from "./Example"
+import EnAdopcionChart from "../PanelAdminCharts/EnAdopcionChart1"
 import NavBarPAdmin from "../PanelAdministrador/NavBarPAdmin" 
 
 const Mascotas = () => {
   return(
     <div>
        <NavBarPAdmin /> 
-       <Example />
+       <EnAdopcionChart />
    <div>
   </div>
     </div>
