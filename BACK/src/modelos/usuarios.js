@@ -15,7 +15,7 @@ const UsuarioSchema = new Schema({
     type: String,
     required: true,
   },
-  contraseña: {
+  contrasena: {
     type: String,
     required: false,
   },
@@ -37,16 +37,20 @@ const UsuarioSchema = new Schema({
   caca: {
     type: String,
   },
+  roles: [{
+    ref: 'roles',
+    type: Schema.Types.ObjectId
+  }]
 });
 
 // METODO PARA HASHEAR CONTRASEÑA
-UsuarioSchema.methods.encryptPassword = async (contraseña) => {
-  return bcrypt.hashSync(contraseña, bcrypt.genSaltSync(10));
+UsuarioSchema.methods.encryptPassword = async (contrasena) => {
+  return bcrypt.hashSync(contrasena, bcrypt.genSaltSync(10));
 };
 
 // METODO PARA TOMAR LA CONTRASEÑA Y HASHEARLA PARA COMPARARLA CON LA HASHEADA EN LA DB
-UsuarioSchema.methods.compararContraseña = async function (contraseña) {
-  return await bcrypt.compare(contraseña, this.contraseña);
+UsuarioSchema.statics.compareContraseña = async (contrasena, recibeContraseña) => {
+  return await bcrypt.compare(contrasena, recibeContraseña);
 };
 
 const UsuarioModel = mongoose.model("usuarios", UsuarioSchema);

@@ -7,7 +7,7 @@ const pagosMercadoPago = require("../BACK/src/rutas/mercadoPago");
 const animalPerdidoRutas = require("../BACK/src/rutas/animalesPerdidos");
 /* const pagosStripes = require("../BACK/src/rutas/stripes"); */
 const Stripe = require('stripe')
-
+const createRoles = require('../BACK/src/initialSetup')
 
 const morgan = require("morgan");
 require("dotenv").config();
@@ -23,6 +23,7 @@ const respuestaRutas = require("../BACK/src/rutas/respuesta");
 
 //inicializacion
 const app = express();
+createRoles();
 require("../BACK/src/db");
 require("./src/passport/local-auth");
 app.use(cors());

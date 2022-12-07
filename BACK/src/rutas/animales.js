@@ -5,8 +5,9 @@ require("../db");
 //const AnimalModel = require("../modelos/animales");
 const router = express.Router();
 const infoAnimal = require("../controllers/animalInfo");
+const {verifyToken, isAdmin} = require ('../middlewares/authJwt')
 
-router.post("/", postAnimal);
+router.post("/", verifyToken, isAdmin, postAnimal);
 
 router.get("/", getAnimales);
 
