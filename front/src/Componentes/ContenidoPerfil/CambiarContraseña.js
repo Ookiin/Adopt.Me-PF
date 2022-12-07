@@ -1,4 +1,4 @@
-import { Link, useParams, useNavigate } from "react-router-dom";
+/* import { Link, useParams, useNavigate } from "react-router-dom";
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import Footer from "../Footer/Footer";
@@ -153,3 +153,4 @@ export default function CambiarContraseña() {
     </div>
   );
 }
+ */
