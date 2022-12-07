@@ -1,5 +1,6 @@
 import React from "react";
 import stl from "../Footer/Footer.module.css";
+import { Link } from "react-router-dom";
 
 
 export default function Footer() {
@@ -46,11 +47,17 @@ export default function Footer() {
             </div>
 
             </div>
-
+            
             <div className={stl.iconos}>
-            <div className={stl.facebook}></div>
-          <div className={stl.instagram}></div>
-          <div className={stl.twitter}></div>
+                <Link to="">
+                    <div className={stl.facebook}></div>
+                </Link>
+                <Link to="https://www.instagram.com/adoptme6909/">
+                    <div className={stl.instagram}></div>
+                </Link>
+                <Link to="">
+                    <div className={stl.twitter}></div>
+                </Link>
             </div>
 
         </div>
