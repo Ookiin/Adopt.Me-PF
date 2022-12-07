@@ -60,8 +60,9 @@ const AnimalSchema = new Schema({
         required: false,
     },
     pichina: {
+        ref: 'usuarios',
         type: String,
-    }
+    },  
     
 });
 

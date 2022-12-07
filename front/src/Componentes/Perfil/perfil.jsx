@@ -10,7 +10,7 @@ import MiInformacion from "../ContenidoPerfil/MiInformacion";
 import MisFavoritos from "../ContenidoPerfil/MisFavoritos";
 import CambiarContraseña from "../ContenidoPerfil/CambiarContraseña";
 import CompletarRegistro from "../ContenidoPerfil/CompletarRegistro";
-import MisPublicaciones from "../ContenidoPerfil/MisPublicaciones";
+import MisMascotas from "../ContenidoPerfil/MisMascotas";
 import getDetalleUsuarioGoogle from "../../Actions/getDetalleUsuarioGoogle";
 
 
@@ -106,7 +106,7 @@ export default function Perfil() {
                         <br />
                         <br />
                         <div>
-                            <button onClick={(e) => onClick3(e)} className={css.boton}>Mis publicaciones</button>
+                            <button onClick={(e) => onClick3(e)} className={css.boton}>Mis Mascotas</button>
                         </div>
                         <br />
                         <br />
@@ -140,7 +140,7 @@ export default function Perfil() {
                         {Render === 1 && !detalleUser.usuario && !detalleUserGoogle.usuario ? <h1>Por favor, completa el registro para ver tus datos</h1> : null}
                         
                         {Render === 2 ? <MisFavoritos></MisFavoritos>: null }
-                        {Render === 3 ? <MisPublicaciones></MisPublicaciones> : null}
+                        {Render === 3 ? <MisMascotas></MisMascotas> : null}
                         {Render === 4 ? <CambiarContraseña></CambiarContraseña> : null}
                             
                         {Render === 5 && detalleUser.usuario ? <h1>Tu registro ya fue completado!! </h1> : null}

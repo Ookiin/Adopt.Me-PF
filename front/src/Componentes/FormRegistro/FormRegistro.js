@@ -22,8 +22,8 @@ export default function FormRegistro() {
 
   const [input, setInput] = useState({
     usuario: "",
-    contraseña: "",
-    repitaContraseña: "",
+    contrasena: "",
+    repitaContrasena: "",
     nombre: "",
     telefono: "",
     mail: "",
@@ -51,18 +51,18 @@ export default function FormRegistro() {
       errors.usuario = `El nombre de usuario ${input.usuario} no está disponible`;
     }
 
-    if (!input.contraseña) {
-      errors.contraseña = "Tenes que ingresar una contraseña";
+    if (!input.contrasena) {
+      errors.contrasena = "Tenes que ingresar una contraseña";
     } else if (
-      !/^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{8,16}$/.test(input.contraseña)
+      !/^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{8,16}$/.test(input.contrasena)
     ) {
-      errors.contraseña =
+      errors.contrasena =
         "La contraseña debe tener entre 8 y 16 caracteres, al menos un número, al menos una minúscula y al menos una mayúscula.";
     }
 
-    if (!input.repitaContraseña) {
-      errors.repitaContraseña = "Tenes que repetir la contraseña";
-    } else if (input.repitaContraseña !== input.contraseña) {
+    if (!input.repitaContrasena) {
+      errors.repitaContrasena = "Tenes que repetir la contraseña";
+    } else if (input.repitaContrasena !== input.contrasena) {
       errors.repitaContraseña = "Las contraseñas no coinciden";
     }
 
@@ -118,8 +118,8 @@ export default function FormRegistro() {
       dispatch(createuser(input));
       setInput({
         usuario: "",
-        contraseña: "",
-        repitaContraseña: "",
+        contrasena: "",
+        repitaContrasena: "",
         nombre: "",
         telefono: "",
         mail: "",
@@ -178,7 +178,7 @@ export default function FormRegistro() {
 
       <div className={stl.errores}>
         {errors.usuario && <p className={stl.error}>{errors.usuario}</p>}
-        {errors.contraseña && <p className={stl.error}>{errors.contraseña}</p>}
+        {errors.contraseña && <p className={stl.error}>{errors.contrasena}</p>}
         {errors.repitaContraseña && (
           <p className={stl.error}>{errors.repitaContraseña}</p>
         )}
@@ -215,8 +215,8 @@ export default function FormRegistro() {
               className={stl.inputs}
               required
               type="password"
-              name="contraseña"
-              value={input.contraseña}
+              name="contrasena"
+              value={input.contrasena}
               onChange={(e) => handleChange(e)}
             />{" "}
             <span></span>
@@ -228,8 +228,8 @@ export default function FormRegistro() {
               className={stl.inputs}
               required
               type="password"
-              name="repitaContraseña"
-              value={input.repitaContraseña}
+              name="repitaContrasena"
+              value={input.repitaContrasena}
               onChange={(e) => handleChange(e)}
             />{" "}
             <span></span>
