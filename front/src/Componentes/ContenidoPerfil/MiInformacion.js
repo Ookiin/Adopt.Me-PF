@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import Footer from "../Footer/Footer";
 import NavBar from "../NavBar/NavBar";
-import stl from "../FormRegistro/FormRegistro.module.css";
+import stl from "./MiInformacion.module.css";
 import createuser from "../../Actions/createuser";
 import getusers from "../../Actions/getusers";
 import FloatingUI from "../Floating UI/FloatingUI";
@@ -42,13 +42,13 @@ export default function MiInformacion(props) {
  */
   
   const [input, setInput] = useState({
-    usuario: "",
-    nombre: "",
-    telefono: "",
-    mail: "",
-    nacimiento: "",
-    localidad: "",
-    fotoPerfil: "",
+    usuario: props.datos.usuario,
+    nombre: props.datos.nombre,
+    telefono: props.datos.telefono,
+    mail: props.datos.mail,
+    nacimiento: props.datos.nacimiento,
+    localidad: props.datos.localidad,
+    fotoPerfil: props.datos.fotoPerfil,
   });
 
   const [errors, setErrors] = useState({});
@@ -210,7 +210,7 @@ export default function MiInformacion(props) {
             height="150"
             width="150"
           />
-
+          <br></br>
           <button
             id="btn-foto"
             name="fotoPerfil"
@@ -236,6 +236,7 @@ export default function MiInformacion(props) {
           />{" "}
           <span></span>
         </div>
+        <br></br>
 
         <div className={stl.datosRegistro} key={params.id}>
           <div>NOMBRE Y APELLIDO / REFUGIO: </div>
@@ -250,7 +251,8 @@ export default function MiInformacion(props) {
           />{" "}
           <span></span>
         </div>
-
+        <br></br>
+        
         <div className={stl.datosRegistro} key={params.id}>
           <div>TELÉFONO DE CONTACTO: </div>
           <input
@@ -264,6 +266,7 @@ export default function MiInformacion(props) {
           />{" "}
           <span></span>
         </div>
+        <br></br>
 
         <div className={stl.datosRegistro} key={params.id}>
           <div>E-MAIL: </div>
@@ -278,6 +281,7 @@ export default function MiInformacion(props) {
           />{" "}
           <span></span>
         </div>
+        <br></br>
 
         <div className={stl.datosRegistro} key={params.id}>
           <div>FECHA DE NACIMIENTO: </div>
@@ -292,6 +296,7 @@ export default function MiInformacion(props) {
           />{" "}
           <span></span>
         </div>
+        <br></br>
 
         <div className={stl.datosRegistro} key={params.id}>
           <div>LOCALIDAD: </div>
@@ -306,7 +311,7 @@ export default function MiInformacion(props) {
           />{" "}
           <span></span>
         </div>
-
+        <br></br>
         <div>
           <button
             className={stl.buttons}
