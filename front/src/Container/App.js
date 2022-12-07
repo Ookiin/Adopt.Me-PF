@@ -28,12 +28,12 @@ import MapLostPets from "../Componentes/MapaPerdidos/MapaPerdido";
 import LostPetsList from "../Componentes/MapaPerdidos/MapaPerdidos3";
 import PostDetail from "../Componentes/Blog/PostDetail";
 import PanelAdminis from "../Componentes/PanelAdministrador/PanelAdminis";
-import Mascotas from "../Componentes/PanelAItems/Mascotas";
-import Clientes from "../Componentes/PanelAItems/Clientes";
-import Donaciones from "../Componentes/PanelAItems/Donaciones";
-import Localizaciones from "../Componentes/PanelAItems/Localizaciones";
-import AdminFyQ from "../Componentes/PanelAItems/AdminFyQ";
-import Paginas from "../Componentes/PanelAItems/Paginas";
+import Mascotas from "../Componentes/PanelAItems/mascotas";
+import Clientes from "../Componentes/PanelAItems/clientes";
+import Donaciones from "../Componentes/PanelAItems/donaciones";
+import Localizaciones from "../Componentes/PanelAItems/localizaciones";
+import AdminFyQ from "../Componentes/PanelAItems/adminFyQ";
+import Paginas from "../Componentes/PanelAItems/paginas";
 
 
 function App() {
