@@ -297,7 +297,7 @@ function handleChange(e) {
 
 /////////////////////////////////////////////////////////// GUARDANDO DATOS EN LOCALSTORAGE  ///////////////////////////////////////////////////
 
-  const { nombre, raza, peso, descripcion, castrado, vacunado, desparasitado} = input;
+  const { nombre, raza, peso, descripcion, castrado, vacunado, desparasitado } = input;
 
   const handleLocalStorage = (e) => {
    let value = e.target.value;
@@ -316,7 +316,34 @@ function handleChange(e) {
 
  useEffect(() => {
    localStorage.setItem("nom", JSON.stringify(input))
- }, [nombre, raza, peso, descripcion, castrado, vacunado, desparasitado])
+ }, )
+
+ ////////////////////////////////////////////// EDAD Y TAMAÑO LOCALSTORE /////////////////////////////////////////////////
+
+ const { edad, tamaño } = input;
+
+ const handleLocalTamEdad = (e) => {
+  let value = e.target.value;
+  let name = e.target.name;
+  console.log("value", value)
+  console.log("name", name)
+
+  setInput((prev) => ({...prev, [name]: value}))
+ };
+
+ useEffect(() => {
+  const optionS = JSON.parse(localStorage.getItem("edadTamaño"));
+  console.log("optionS", optionS)
+  if (edad === null && tamaño === null) {
+    setInput((prev) => ({...prev, ...optionS}))
+
+  }
+ }, [])
+
+ useEffect(() => {
+  localStorage.setItem("edadTamaño", JSON.stringify(input))
+ }, )
+
 
 
 ///////////////////////////////////////////////////////////////////////  TE KAVIO EL RETURN  ///////////////////////////
@@ -407,7 +434,7 @@ function handleChange(e) {
 
             <label className={stl.titulos}>Edad:</label>
             <div className={stl.opciones}>                                
-            <select className={stl.edad} defaultValue="" onChange={handleEdad}>
+            <select className={stl.edad} name="edad" defaultValue="" onChange={(e) => {handleEdad(e); handleLocalTamEdad(e); }}>
                        <option value="" disabled hidden>Selecciona edad...</option>
                        <option>Menos de 45 dias</option>
                        <option>Mas de 45 dias</option>
@@ -419,8 +446,8 @@ function handleChange(e) {
 
             <label className={stl.titulos}>Tamaño:</label>
             <div className={stl.opciones}>                                     
-            <select className={stl.tamaño} defaultValue="" onChange={handleTamaño}>
-                       <option value="" disabled hidden>Seleccione tamaño...</option>
+            <select className={stl.tamaño} name="tamaño"  onChange={(e) => {handleTamaño(e); handleLocalTamEdad(e); }}>
+                       <option value="" disabled hidden >Seleccione tamaño...</option>
                        <option>Chico</option>
                        <option>Mediano</option>
                        <option>Grande</option>

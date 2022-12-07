@@ -25,11 +25,17 @@ import {
     GET_LOCATION_PERDIDOS,
     CREATE_LOCATION_PERDIDOS,
     GET_DOG_TAMAÑOS,
-    FILTRA_TAMAÑO,
     GET_CAT_TAMAÑOS,
     GET_DOG_EDAD,
     GET_CAT_EDAD,
-    CREATE_USER_GOOGLE
+    CREATE_USER_GOOGLE,
+    ORDEN_GATO,
+    ORDEN_PERRO,
+    CREATE_POST,
+    GET_POSTS,
+    GET_POST_ID,
+    CREATE_RESPUESTA,
+    GET_RESPUESTA
   } from "../Actions";
 
 
@@ -51,7 +57,11 @@ const initialState = {
    filtroPerdidos: [],
    detalleUsuario: [],
    locations: [],
-   locationsPerdidos: []
+   locationsPerdidos: [],
+   posts: [],
+   postDetails: [],
+   copiaPosts: [],
+   respuestas: []
 }
 
 
@@ -71,17 +81,41 @@ export default function rootReducer(state = initialState, action){
     case CREATE_USER:
       return { ...state };
 
+    case CREATE_POST:
+      return {...state};
+
+    case CREATE_RESPUESTA:
+      return {...state};
+
     case CREATE_ANIMAL:
       return { ...state };
     
     case GET_ANIMAL_BY_ID:
       return { ...state, animalesdetail: action.payload };
 
+      case GET_POST_ID:
+        return { ...state,
+        postDetails: action.payload
+      }
+
     case GET_USERS:
       return {
         ...state,
         users: action.payload,
       };
+
+      case GET_POSTS:
+        return {
+          ...state,
+          posts: action.payload,
+        };
+
+      case GET_RESPUESTA:
+        return {
+          ...state,
+          respuestas: action.payload
+        }
+
     case GET_GATO:
       return {
         ...state,
@@ -126,7 +160,39 @@ export default function rootReducer(state = initialState, action){
 
       case PAGO_STRIPES:
         return {...state};
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////FILTROS///////////////////////////////////////////////////////////////////////
+case ORDEN_PERRO: {
+  let sortedPerros = [];
+  if (action.payload === 'A-Z') {
+    sortedPerros = [...state.perrosCopia].sort((a, b) => a.nombre.localeCompare(b.nombre))
+      // a = 1, b = 2, c = 3, etc.
+      // localcompare permite comprarar dos cadenas teniendo en cuenta acentos y demas.
+  }
+  if (action.payload === 'Z-A') {
+    sortedPerros = [...state.perrosCopia].sort((a, b) => b.nombre.localeCompare(a.nombre));
+  }
+  return {
+      ...state,
+      perros: sortedPerros
+  }
+}
+
+case ORDEN_GATO: {
+  let sortedGatos = [];
+  if (action.payload === 'A-Z') {
+    sortedGatos = [...state.gatosCopia].sort((a, b) => a.nombre.localeCompare(b.nombre))
+      // a = 1, b = 2, c = 3, etc.
+      // localcompare permite comprarar dos cadenas teniendo en cuenta acentos y demas.
+  }
+  if (action.payload === 'Z-A') {
+    sortedGatos = [...state.gatosCopia].sort((a, b) => b.nombre.localeCompare(a.nombre));
+  }
+  return {
+      ...state,
+      gatos: sortedGatos
+  }
+}
+
 case GET_CAT_EDAD:
             let cat = state.gatosCopia;            
             let filterByEdadCat = cat.filter(

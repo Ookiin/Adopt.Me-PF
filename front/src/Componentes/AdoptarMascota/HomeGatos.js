@@ -62,6 +62,7 @@ const HomeGatos = () => {
    }
 
    const handleOrden = (e) => {
+    e.preventDefault();
     dispatch(ordenAlfaGato(e.target.value))
     setCurrentPage(1)
     setOrden(`Ordenado ${e.target.value}`)
@@ -102,9 +103,7 @@ const HomeGatos = () => {
         <div className={stl.filtros}>Filtar: 
                
                <select className={stl.op}onChange={(e) => handleOrden(e)}>
-                    <option disabled selected defaultValue>
-                        Alfabeticamente
-                    </option>
+                    <option disabled selected defaultValue>Alfabeticamente</option>
                     <option value='A-Z'>A-Z</option>
                     <option value='Z-A'>Z-A</option>
                 </select>
