@@ -8,6 +8,8 @@ import createuser from "../../Actions/createuser";
 import getusers from "../../Actions/getusers";
 import FloatingUI from "../Floating UI/FloatingUI";
 import Toast from "light-toast";
+import putUsuario from "../../Actions/putUsuario"
+const bcrypt = require("bcryptjs");
 
 export default function CambiarContraseña() {
   const params = useParams();
@@ -16,6 +18,19 @@ export default function CambiarContraseña() {
 
   const Allusers = useSelector((state) => state.users).data; // (o el estado global que usemos para guardar todos los usuarios)
   const detalleUserGoogle = useSelector((state) => state.detalleUsuarioGoogle);
+  const detalleUser = useSelector((state) => state.detalleUsuario);
+
+  let UserGoogle = false
+  if (detalleUserGoogle.nombre) {
+    UserGoogle = true
+  }
+
+  let contraseñaUsuario = ""
+  if (!UserGoogle) {
+    contraseñaUsuario = detalleUser.contraseña
+  }
+  
+  let id = detalleUser._id
 
   useEffect(() => {
     dispatch(getusers());
@@ -28,7 +43,7 @@ export default function CambiarContraseña() {
   });
 
   const [errors, setErrors] = useState({});
-  const [isSubmit, setisSubmit] = useState(false);
+  const [isSubmit, setisSubmit] = useState(true);
 
   function validation(input) {
     let errors = {};
@@ -47,7 +62,9 @@ export default function CambiarContraseña() {
     } else if (input.repitaContraseña !== input.nuevaContraseña) {
       errors.repitaContraseña = "Las contraseñas no coinciden";
     }
-
+    if (input.contraseñaActual !== contraseñaUsuario) {
+      errors.contraseña = "La contraseña actual ingresada no es correcta"
+    }
     if (Object.keys(errors).length === 0) {
       setisSubmit(true);
     }
@@ -55,20 +72,20 @@ export default function CambiarContraseña() {
     return errors;
   }
 
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
     //Si no hay errores, el isSubmit esta en true
     if (isSubmit) {
-      console.log(
-        "OK. Formulario recibido. Despacho la action con estos datos:"
-      );
-      console.log(input);
-      dispatch(input);
+      console.log("Este es el input antes de despachar")
+      console.log(input)
+
+      dispatch(putUsuario(input , id));
       setInput({
         contraseñaActual: "",
         nuevaContraseña: "",
         repitaContraseña: "",
       });
+
       Toast.success("La contraseña ha sido cambiada", 1500, () => {
         navigate("/perfil");
       });

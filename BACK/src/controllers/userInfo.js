@@ -1,5 +1,6 @@
 const UsuarioModel = require("../modelos/usuarios");
 const infoUser = {};
+const bcrypt = require("bcryptjs");
 
 getUsuarios = async (req, res) => {
   try {
@@ -11,7 +12,7 @@ getUsuarios = async (req, res) => {
 };
 
 postUsuario = async (req, res) => {
-  console.log(req.body)
+  console.log(req.body);
   const user = await UsuarioModel(req.body);
   try {
     if (user) {
@@ -41,8 +42,8 @@ getDetalleUsuario = async (req, res) => {
 };
 
 putUsuario = async (req, res) => {
-  console.log("ENTRE a la ruta PUTUSER")
-  console.log(req.body)
+  console.log("ENTRE a la ruta PUTUSERRRRRR");
+  console.log(req.body);
   const { id } = req.params; //es lo que buscamos
   const {
     //es lo que modificamos
@@ -50,12 +51,20 @@ putUsuario = async (req, res) => {
     nombre,
     mail,
     contraseña,
+    nuevaContraseña,
     localidad,
     nacimiento,
     publicaciones,
     telefono,
     fotoPerfil,
   } = req.body;
+
+  let hasheada = "";
+  if (nuevaContraseña) {
+    hasheada = await bcrypt.hash(req.body.nuevaContraseña, 10);
+  }
+  
+  console.log("HOLA ");
   try {
     let usuarios = await UsuarioModel.updateOne(
       { _id: id },
@@ -64,7 +73,7 @@ putUsuario = async (req, res) => {
           usuario,
           nombre,
           mail,
-          contraseña,
+          contraseña: nuevaContraseña ? hasheada : contraseña,
           localidad,
           nacimiento,
           publicaciones,
