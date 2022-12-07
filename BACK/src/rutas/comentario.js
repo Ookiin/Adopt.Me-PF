@@ -6,6 +6,7 @@ const infoBlog2 = require("../controllers/comentarioInfo");
 
 router.post("/", postComentario);
 router.get("/", getComentario);
+router.get("/:id", getComentarioId);
 router.put("/:id", putComentario);
 router.delete("/:id", deleteComentario);
 

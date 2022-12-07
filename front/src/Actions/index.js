@@ -35,3 +35,6 @@ export const GET_CAT_EDAD = "GET_CAT_EDAD";
 export const CREATE_USER_GOOGLE = "CREATE_USER_GOOGLE";
 export const CREATE_POST = "CREATE_POST";
 export const GET_POSTS = "GET_POSTS";
+export const GET_POST_ID = "GET_POST_ID";
+export const CREATE_RESPUESTA = "CREATE_RESPUESTA";
+export const GET_RESPUESTA = "GET_RESPUESTA";

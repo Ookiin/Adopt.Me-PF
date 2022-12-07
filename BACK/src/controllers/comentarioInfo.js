@@ -3,27 +3,44 @@ const infoBlog2 = {};
 
 postComentario = async (req, res) => {
   try {
-    const { titulo, contenido } = req.body;
+    const {
+       _id: _id, 
+       titulo, 
+       contenido } = req.body;
 
     const comentarios = new comentarioModel({
-      titulo, contenido
+      _id: _id, 
+      titulo, 
+      contenido
     });
     if (comentarios.length) await comentarios.save();
     const nuevoComentario = await comentarios.save();
     res.status(200).json(nuevoComentario);
   } catch (error) {
-    res.status(400).json({ msg: "no se guardo comentario" });
+    res.status(400).json({ msg: "No se guardo comentario" });
   }
 };
-//console.log(comentarios);
+
 getComentario = async (req, res) => {
   try {
     let comentario = await comentarioModel.find();
+   
     res.status(200).json(comentario);
+    console.log("post", comentario)
   } catch (error) {
-    res.status(400).json({ msg: "no se puede mostrar comentario" });
+    res.status(400).json({ msg: "No se puede mostrar comentario" });
   }
 };
+
+getComentarioId = async (req, res) => {
+  try {
+    const { id } = req.params;
+    let comId = await comentarioModel.findById(id);
+    res.status(200).send(comId)
+  } catch (error) {
+    res.status(400).json("Post no encontrado")
+  }
+}
 
 putComentario = async (req, res) => {
   const { id } = req.params;

@@ -286,12 +286,12 @@
   }
 
   .homepage {
-    background-image: url("../../Imagenes/pisadas.jpg");
-    background-size: contain;
+    background-image: url("../../Imagenes/Pet-Slide-Backgrounds.jpg");
+    background-size: 100% 100%;
     background-repeat: no-repeat;
-    background-position: 320px; 
+    /* background-position: 320px;  */
     position: relative;
-    height: 1400px;
+    /* height: 1400px; */
   }
 
 

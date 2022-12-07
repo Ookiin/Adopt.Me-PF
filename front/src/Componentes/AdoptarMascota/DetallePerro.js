@@ -19,6 +19,7 @@ export default function DetallePerro() {
   const dispatch = useDispatch();
   // console.log(id);
   const detail = useSelector((state) => state.animalesdetail);
+  console.log("detail", detail)
   const detalleUserGoogle = useSelector((state) => state.detalleUsuarioGoogle);
   console.log("Estos son los datos del userGoogle");
   console.log(detalleUserGoogle);

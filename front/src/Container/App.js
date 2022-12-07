@@ -26,6 +26,7 @@ import MapPets2 from "../Componentes/Maps/Maps3";
 import Blog from "../Componentes/Blog/Blog";
 import MapLostPets from "../Componentes/MapaPerdidos/MapaPerdido";
 import LostPetsList from "../Componentes/MapaPerdidos/MapaPerdidos3";
+import PostDetail from "../Componentes/Blog/PostDetail";
 import PanelAdminis from "../Componentes/PanelAdministrador/PanelAdminis";
 import Mascotas from "../Componentes/PanelAItems/Mascotas";
 import Clientes from "../Componentes/PanelAItems/Clientes";
@@ -33,6 +34,7 @@ import Donaciones from "../Componentes/PanelAItems/Donaciones";
 import Localizaciones from "../Componentes/PanelAItems/Localizaciones";
 import AdminFyQ from "../Componentes/PanelAItems/AdminFyQ";
 import Paginas from "../Componentes/PanelAItems/Paginas";
+
 
 function App() {
   return (
@@ -65,6 +67,7 @@ function App() {
           <Route exact path="/blog" element={<Blog />} />
           <Route exact path="/lostpets" element={<MapLostPets />} />
           <Route exact path="/viewlostpets" element={<LostPetsList />} />
+          <Route exact path="/comentario/:id" element={<PostDetail />} />
           <Route exact path="/panel-Administrador" element={<PanelAdminis />} />
           <Route exact path="/panel-Administrador/clientes" element={<Clientes />} />
           <Route exact path="/panel-Administrador/mascotas" element={<Mascotas />} />
@@ -72,6 +75,7 @@ function App() {
           <Route exact path="/panel-Administrador/localizaciones" element={<Localizaciones />} />
           <Route exact path="/panel-Administrador/paginas" element={<Paginas />} />
           <Route exact path="/panel-Administrador/adminis-fyq" element={<AdminFyQ/>} />
+
           
         </Routes>
       </div>
