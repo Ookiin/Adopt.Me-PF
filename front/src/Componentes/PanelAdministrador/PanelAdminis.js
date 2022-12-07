@@ -1,11 +1,13 @@
 import React from "react";
+import {Link} from "react-router-dom";
+import NavBarPAdmin from "./NavBarPAdmin"
 
 const PanelAdminis = () => {
-    return(
-        <div>
-holaa
-        </div>
-    )
+    return(//Barra de navegacion lateral
+       <div>
+         <NavBarPAdmin />
+       </div>
+    )    
 }
 
-export default PanelAdminis
+export default PanelAdminis;
