@@ -54,7 +54,6 @@ getPerrosPerdidos = async (req,res) => {
         edad,
         estado,
         tama,        
-        localidad,
         descripcion,        
         imagen,} = req.body;
   
@@ -64,8 +63,7 @@ getPerrosPerdidos = async (req,res) => {
         gato,        
         edad,
         estado,
-        tama,        
-        localidad,
+        tama,       
         descripcion,
         imagen,        
         })    

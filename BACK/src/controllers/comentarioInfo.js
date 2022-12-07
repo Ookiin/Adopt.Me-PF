@@ -3,10 +3,10 @@ const infoBlog2 = {};
 
 postComentario = async (req, res) => {
   try {
-    const { comentario } = req.body;
+    const { titulo, contenido } = req.body;
 
-    const comentarios = await new comentarioModel({
-      comentario,
+    const comentarios = new comentarioModel({
+      titulo, contenido
     });
     if (comentarios.length) await comentarios.save();
     const nuevoComentario = await comentarios.save();
@@ -27,7 +27,7 @@ getComentario = async (req, res) => {
 
 putComentario = async (req, res) => {
   const { id } = req.params;
-  const { comentario } = req.body;
+  const { contenido } = req.body;
   try {
     let comentario = await comentarioModel.updateOne(
       { _id: id },

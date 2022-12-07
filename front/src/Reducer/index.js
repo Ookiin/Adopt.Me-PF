@@ -25,13 +25,14 @@ import {
     GET_LOCATION_PERDIDOS,
     CREATE_LOCATION_PERDIDOS,
     GET_DOG_TAMAÑOS,
-    FILTRA_TAMAÑO,
     GET_CAT_TAMAÑOS,
     GET_DOG_EDAD,
     GET_CAT_EDAD,
     CREATE_USER_GOOGLE,
     ORDEN_GATO,
     ORDEN_PERRO
+    CREATE_POST,
+    GET_POSTS
   } from "../Actions";
 
 
@@ -53,7 +54,8 @@ const initialState = {
    filtroPerdidos: [],
    detalleUsuario: [],
    locations: [],
-   locationsPerdidos: []
+   locationsPerdidos: [],
+   posts: []
 }
 
 
@@ -73,6 +75,9 @@ export default function rootReducer(state = initialState, action){
     case CREATE_USER:
       return { ...state };
 
+    case CREATE_POST:
+      return {...state};
+
     case CREATE_ANIMAL:
       return { ...state };
     
@@ -84,6 +89,13 @@ export default function rootReducer(state = initialState, action){
         ...state,
         users: action.payload,
       };
+
+      case GET_POSTS:
+        return {
+          ...state,
+          posts: action.payload,
+        };
+
     case GET_GATO:
       return {
         ...state,

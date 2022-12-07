@@ -33,3 +33,5 @@ export const GET_CAT_TAMAÑOS = "GET_CAT_TAMAÑOS";
 export const GET_DOG_EDAD = "GET_DOG_EDAD";
 export const GET_CAT_EDAD = "GET_CAT_EDAD";
 export const CREATE_USER_GOOGLE = "CREATE_USER_GOOGLE";
+export const CREATE_POST = "CREATE_POST";
+export const GET_POSTS = "GET_POSTS";

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import createAnimalPerdido from '../../Actions/createAnimalPerdido';
@@ -57,7 +57,6 @@ function validation(input){
         estado: [],
         tama: [],
         peso: "",
-        localidad: "",
         descripcion: "",        
         imagen: ""
       });
@@ -77,7 +76,6 @@ console.log(input)
       estado: [],
       tama: [],
       peso: "",
-      localidad: "",
       descripcion: "",        
       imagen: ""
     })
@@ -220,6 +218,51 @@ console.log(input)
 
 /////////////////////////////////////////////////////////// TE KAVIO EL RETURN  ///////////////////////////////////////////////////
 
+const {descripcion } = input;
+
+  const handleDesc = (e) => {
+   let value = e.target.value;
+   let name = e.target.name;
+
+   setInput((prev) => ({...prev, [name]: value}))
+};
+
+ useEffect(() => {
+   const descS = JSON.parse(localStorage.getItem("desc"));
+   if (descripcion === "") {
+     setInput((prev) => ({ ...prev, ...descS}))
+   }
+ }, [])
+
+ useEffect(() => {
+   localStorage.setItem("desc", JSON.stringify(input))
+ }, )
+
+ ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+ const { estado, tama } = input;
+
+ const handleEstadoTama = (e) => {
+  let value = e.target.value;
+  let name = e.target.name;
+
+  setInput((prev) => ({...prev, [name]: value}))
+ };
+
+ useEffect(() => {
+  const estadoS = JSON.parse(localStorage.getItem("estadoTamaño"));
+  console.log("estadoS", estadoS)
+  if (estado === null && tama === null) {
+    setInput((prev) => ({...prev, ...estadoS}))
+
+  }
+ }, [])
+
+ useEffect(() => {
+  localStorage.setItem("estadoTamaño", JSON.stringify(input))
+ }, )
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   return (
     
   <div className={stl.paginareportar}>
@@ -269,15 +312,15 @@ console.log(input)
           
             <div className={stl.opciones2}>
                 <label className={stl.titulos2}>Perro:</label>
-                <input className={stl.inputs2} onChange={ (e) => { handleCheck2(e); handlePerro(e); }}
+                <input className={stl.inputs2} defaultValue="" onChange={ (e) => { handleCheck2(e); handlePerro(e); }}
                 type="checkbox" name="perro" checked={isChecked2} value={input.perro}/>                        
             </div>
             </div>
 
             <div className={stl.opciones}>                                     
             <label className={stl.titulos}>Estado:</label>
-            <select className={stl.tamaño} onChange={handleEstado}>
-                       <option></option>
+            <select className={stl.tamaño} defaultValue="" onChange={(e) => {handleEstado(e); handleEstadoTama(e); }}>
+                      <option value="" disabled hidden>Selecciona estado...</option>
                        <option>Perdido</option>
                        <option>Encontrado</option>                       
                        </select>
@@ -285,8 +328,8 @@ console.log(input)
 
             <div className={stl.opciones}>                                     
             <label className={stl.titulos}>Tamaño:</label>
-            <select className={stl.tamaño} onChange={handleTamaño}>
-                       <option></option>
+            <select className={stl.tamaño} defaultValue="" onChange={(e) => {handleTamaño(e); handleEstadoTama(e); }}>
+            <option value="" disabled hidden>Selecciona tamaño...</option>
                        <option>Chico</option>
                        <option>Mediano</option>
                        <option>Grande</option>
@@ -304,7 +347,7 @@ console.log(input)
 
             <div className={stl.opciones}>
             <label className={stl.titulos}>Descripcion:</label>
-                <input onChange={handleChange} type="text" name="descripcion" value={input.descripcion}/>
+                <input onChange={(e) => {handleChange(e); handleDesc(e); }} type="text" name="descripcion" value={input.descripcion}/>
                
            </div>
           </div>
