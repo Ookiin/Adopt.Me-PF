@@ -1,0 +1,41 @@
+
+.detallescontenido {
+    white-space: pre-wrap;
+    border: 1px solid red;
+    height: 100%;
+}
+
+.posteoDetalles {
+    border: 5px solid black;
+    width: 900px;
+    height: 400px;
+    display: flex;
+    flex-direction: column;
+}
+
+.paginaDetalles {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 30px;
+    flex-direction: column;
+}
+
+.tituloDetalles {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    border: 2px solid black;
+    margin-bottom: 40px;
+}
+
+.textDetalles {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    border: 2px solid black;
+    height: 100%;
+    overflow: auto;
+}
+
+

@@ -14,7 +14,7 @@ export default function Directorio () {
         <div>
 
         <NavBar />
-        <br></br>
+        
         <div className={stl.paginadirectorio} key={params.id}>
             
             <FloatingUI />

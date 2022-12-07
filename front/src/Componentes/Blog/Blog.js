@@ -15,7 +15,6 @@ export default function Blog() {
     /////////////////////// TRAIGO LOS POSTEOS //////////////////////////////////////////7
 
     const allPosts = useSelector((state) => state.posts);
-    console.log("allPosts", allPosts)
     
     useEffect(() => {
         dispatch(getPosts())
@@ -53,7 +52,8 @@ export default function Blog() {
         })
     }
 
-    ////////////////////////////////////////////////////////////////////////////////////////////
+
+    //////////////////////////////////////////////////////////////////////////////////////////////////////
 
     return (
         <div className="foro">
@@ -75,7 +75,7 @@ export default function Blog() {
             <div>
                 <textarea className="postContenido" type="textarea" resize="none" name="contenido" 
                 value={input.contenido} onChange={handleContenido} />
-                <div>Contenido</div>
+                <div>Tu Consulta</div>
             </div>
 
             <button className="botonPost" type="submit">Enviar</button>
@@ -92,11 +92,12 @@ export default function Blog() {
 
                 return (
 
-                    <Post 
+                    <Post
+                    id = {p._id} 
                     titulo = {p.titulo}
                     contenido = {p.contenido}
                     />
-                    
+                 
                 )
             })}
           </div>

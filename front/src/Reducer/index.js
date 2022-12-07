@@ -30,7 +30,10 @@ import {
     GET_CAT_EDAD,
     CREATE_USER_GOOGLE,
     CREATE_POST,
-    GET_POSTS
+    GET_POSTS,
+    GET_POST_ID,
+    CREATE_RESPUESTA,
+    GET_RESPUESTA
   } from "../Actions";
 
 
@@ -53,7 +56,10 @@ const initialState = {
    detalleUsuario: [],
    locations: [],
    locationsPerdidos: [],
-   posts: []
+   posts: [],
+   postDetails: [],
+   copiaPosts: [],
+   respuestas: []
 }
 
 
@@ -76,11 +82,19 @@ export default function rootReducer(state = initialState, action){
     case CREATE_POST:
       return {...state};
 
+    case CREATE_RESPUESTA:
+      return {...state};
+
     case CREATE_ANIMAL:
       return { ...state };
     
     case GET_ANIMAL_BY_ID:
       return { ...state, animalesdetail: action.payload };
+
+      case GET_POST_ID:
+        return { ...state,
+        postDetails: action.payload
+      }
 
     case GET_USERS:
       return {
@@ -93,6 +107,12 @@ export default function rootReducer(state = initialState, action){
           ...state,
           posts: action.payload,
         };
+
+      case GET_RESPUESTA:
+        return {
+          ...state,
+          respuestas: action.payload
+        }
 
     case GET_GATO:
       return {
