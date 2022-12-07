@@ -418,4 +418,8 @@ h4 {
       height: 30px;
       font-size: 13px;
     }
+
+    .AvatarPerfil{
+      border-radius: 20;
+    }
   } 

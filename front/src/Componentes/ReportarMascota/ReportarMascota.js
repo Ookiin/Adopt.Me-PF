@@ -319,6 +319,7 @@ const {descripcion } = input;
 
             <div className={stl.opciones}>                                     
             <label className={stl.titulos}>Estado:</label>
+            <br></br>
             <select className={stl.tamaño} defaultValue="" onChange={(e) => {handleEstado(e); handleEstadoTama(e); }}>
                       <option value="" disabled hidden>Selecciona estado...</option>
                        <option>Perdido</option>

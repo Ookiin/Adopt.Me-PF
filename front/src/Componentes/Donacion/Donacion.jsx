@@ -1,5 +1,7 @@
 import React from "react";
+import Footer from "../Footer/Footer";
 import Metamask from "../Metamask/Metamask";
+import NavBar from "../NavBar/NavBar";
 import Paypal from "../Paypal/Paypal";
 // import App from "../Stripes/Stripe";
 import stl from "./Donacion.module.css";
@@ -15,9 +17,10 @@ export default function Donar() {
     // const [checkout, setCheckOut] = useState(false)
 
     return (
-
-        <div className={stl.pagina}>  
-
+        <div>
+            <NavBar></NavBar>
+            <div className={stl.pagina}>  
+            
             <form className={stl.formulario}>
 
                 <h3 className={stl.titulo}>Adopt.Me - Donaciones</h3>
@@ -55,20 +58,23 @@ export default function Donar() {
 
                 {/* <div className={stl.botonstripes}>
                 <Elements stripe={stripePromise}>
-       <div >
-         <div >
-           <div >
-       <CheckoutForm />
-           </div>
-         </div>
-       </div>    
-       </Elements>
-                </div> */}
+                    <div >
+                        <div >
+                        <div >
+                    <CheckoutForm />
+                        </div>
+                        </div>
+                    </div>    
+                    </Elements>
+                                </div> */}
 
+             </div>
+        
+            </form>
+            </div>
+            <Footer></Footer>
         </div>
         
-       </form>
-        </div>
         
     )
 }

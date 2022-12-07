@@ -4,10 +4,46 @@ import FloatingUI from "../Floating UI/FloatingUI";
 import Footer from "../Footer/Footer";
 import NavBar from "../NavBar/NavBar";
 import stl from "./HomePage.module.css";
+import { useAuth0 } from "@auth0/auth0-react";
+import { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import getDetalleUsuarioGoogle from "../../Actions/getDetalleUsuarioGoogle";
+import getDetalleUsuario from "../../Actions/getDetalleUsuario"
+
 
 
 
 export default function HomePage() {
+  const { user, isAuthenticated } = useAuth0()
+  const dispatch = useDispatch();
+
+
+  const detalleUser = useSelector((state) => state.detalleUsuario); // Estado global con los datos del usuario
+  console.log("Estos son los datos de detalleUser")
+  console.log(detalleUser)
+  
+  let usuarioIdRaro = ""
+    let id = ""
+    if (isAuthenticated) {
+        if (user.sub.startsWith("google")) {
+            usuarioIdRaro = user.sub
+            id = usuarioIdRaro.substring(14)
+        }
+        else {
+            usuarioIdRaro = user.sub
+            id = usuarioIdRaro.substring(6)
+        }
+    }
+    
+
+    useEffect(() => {
+        dispatch(getDetalleUsuarioGoogle(id));
+    }, [id, dispatch]);
+
+    useEffect(() => {
+            dispatch(getDetalleUsuario(id));
+    }, [id, dispatch]);
+    
 
   return (
     <div className={stl.homepage}>
