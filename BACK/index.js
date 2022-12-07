@@ -6,7 +6,7 @@ const pagosPayPalRutas = require("../BACK/src/rutas/pagosPayPal");
 const pagosMercadoPago = require("../BACK/src/rutas/mercadoPago");
 const animalPerdidoRutas = require("../BACK/src/rutas/animalesPerdidos");
 /* const pagosStripes = require("../BACK/src/rutas/stripes"); */
-const Stripe = require('stripe')
+const Stripe = require('stripe') 
 
 
 const morgan = require("morgan");
