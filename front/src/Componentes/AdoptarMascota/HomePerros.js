@@ -9,7 +9,7 @@ import Footer from "../Footer/Footer";
 import FloatingUI from "../Floating UI/FloatingUI";
 import getperro from "../../Actions/getperros";
 import getDogByName from "../../Actions/getDogByName";
-import ordenAlfabetico from "../../Actions/ordenAlfabetico";
+import ordenAlfaPerro from "../../Actions/ordenAlfaPerro";
 import getdogtamaños from "../../Actions/getDogTamaños";
 import getDogEdad from "../../Actions/getDogEdad";
 
@@ -64,7 +64,8 @@ export default function HomePerros () {
 
 
    const handleOrden = (e) => {
-     dispatch(ordenAlfabetico(e.target.value))
+     e.preventDefault();
+     dispatch(ordenAlfaPerro(e.target.value))
      setCurrentPage(1)
      setOrden(`Ordenado ${e.target.value}`)
    }
