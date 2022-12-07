@@ -8,6 +8,7 @@
     "passport-local": "^1.0.0",
     "react-dropzone": "^14.2.3",
     "react-stripe-checkout": "^2.6.3",
+    "recharts": "^2.1.16",
     "sweetalert2": "^11.6.15",
     "sweetalert2-react-content": "^5.0.7"
   }
