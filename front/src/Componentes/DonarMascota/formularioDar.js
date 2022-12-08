@@ -549,7 +549,7 @@ return null
          {/* <Link to ="/registroMascota">  */}
              {/* <button className={stl.botonMapa3} type="submit" onClick={handleSubmit}>Confirmar y Volver</button>  */}
              {/* </Link>  */}
-            </div>
+             </div>
 
         <MapContainer center={position} zoom={13} scrollWheelZoom={false}>
         <FlyMapTo />
@@ -569,7 +569,7 @@ return null
         
     </MapContainer>
     
-            </div>
+            </div> 
 
             <label className={stl.titulos}>Descripción:</label>
             <div className={stl.opciones}>
@@ -629,6 +629,3 @@ return null
         <Footer />
     </div>
   )}
-
-  //
-  
