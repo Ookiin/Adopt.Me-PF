@@ -23,7 +23,7 @@ import CartelCompletarRegistro from "../ContenidoPerfil/CartelCompletarRegistro"
 export default function Perfil() {
     const { logout } = useAuth0()
     const dispatch = useDispatch();
-    const [Render, setRender] = useState(0); 
+    const [Render, setRender] = useState(1); 
 
     const { user, isAuthenticated } = useAuth0()
     console.log(isAuthenticated)
