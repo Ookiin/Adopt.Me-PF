@@ -18,7 +18,7 @@ const HomeGatos = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
-    const allPets = useSelector((state) => state.gatos);
+    // const allPets = useSelector((state) => state.gatos);
     const copiaGatos = useSelector((state)=>state.gatosCopia);
 
     const [currentPage, setCurrentPage] = useState(1) 
@@ -26,7 +26,7 @@ const HomeGatos = () => {
 
     const lastPetIndex = currentPage * mascotasPerPage 
     const firstPetIndex = lastPetIndex - mascotasPerPage 
-    const currentPets = allPets.slice(firstPetIndex,lastPetIndex) 
+    const currentPets = copiaGatos.slice(firstPetIndex,lastPetIndex) 
 
 
     const [input, setInput] = useState("");
@@ -136,7 +136,7 @@ const HomeGatos = () => {
 
         <Paging 
         mascotasPerPage={mascotasPerPage} 
-        allPets={allPets.length} 
+        allPets={copiaGatos.length} 
         currentPage={currentPage} 
         actualPage={actualPage}
         currentPets={currentPets}
