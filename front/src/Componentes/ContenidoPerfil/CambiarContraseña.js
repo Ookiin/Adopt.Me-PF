@@ -1,9 +1,9 @@
-/* import { Link, useParams, useNavigate } from "react-router-dom";
+ import { Link, useParams, useNavigate } from "react-router-dom";
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import Footer from "../Footer/Footer";
 import NavBar from "../NavBar/NavBar";
-import stl from "../FormRegistro/FormRegistro.module.css";
+import stl from "./CambiarContraseña.module.css"
 import createuser from "../../Actions/createuser";
 import getusers from "../../Actions/getusers";
 import FloatingUI from "../Floating UI/FloatingUI";
@@ -45,22 +45,20 @@ export default function CambiarContraseña() {
   const [errors, setErrors] = useState({});
   const [isSubmit, setisSubmit] = useState(true);
 
-  function validation(input) {
+  async function validation(input) {
     let errors = {};
     // hay que validar que la contraseña actual sea esa.
-
-    if (!input.contraseña) {
-      errors.contraseña = "Tenes que ingresar una contraseña";
-    } else if (
-      !/^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{8,16}$/.test(input.contraseña)
-    ) {
-      errors.contraseña =
-        "La contraseña debe tener entre 8 y 16 caracteres, al menos un número, al menos una minúscula y al menos una mayúscula.";
+    if (await bcrypt.hash(input.contraseñaActual,10) !== detalleUser.contrasena) {
+      errors.contraseña = "La contraseña ingresada no coincide con la contraseña actual"
     }
-    if (!input.repitaContraseña) {
-      errors.repitaContraseña = "Tenes que repetir la contraseña";
-    } else if (input.repitaContraseña !== input.nuevaContraseña) {
+    if (!input.contraseñaActual || !input.nuevaContraseña || !input.repitaContraseña) {
+      errors.contraseña = "Tenes que completar todos los campos";
+    }
+    if (input.repitaContraseña !== input.nuevaContraseña) {
       errors.repitaContraseña = "Las contraseñas no coinciden";
+    }
+    if (!/^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{8,16}$/.test(input.nuevaContraseña)) {
+      errors.contraseña = "La contraseña debe tener entre 8 y 16 caracteres, al menos un número, al menos una minúscula y al menos una mayúscula.";
     }
     if (input.contraseñaActual !== contraseñaUsuario) {
       errors.contraseña = "La contraseña actual ingresada no es correcta"
@@ -68,9 +66,10 @@ export default function CambiarContraseña() {
     if (Object.keys(errors).length === 0) {
       setisSubmit(true);
     }
-
+  
     return errors;
   }
+  
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -108,11 +107,12 @@ export default function CambiarContraseña() {
 
   return (
     <div>
-      <h1>Cambiar contraseña</h1>
-
+      <div className={stl.form}>
+        <br></br>
+        <br></br>
       <form onSubmit={(e) => handleSubmit(e)}>
         <div className={stl.datosRegistro} key={params.id}>
-          <div>CONTRASEÑA ACTUAL: </div>
+          <div className={stl.label}>CONTRASEÑA ACTUAL: </div>
           <input
             onChange={(e) => handleChange(e)}
             name="contraseñaActual"
@@ -122,7 +122,7 @@ export default function CambiarContraseña() {
         <br></br>
 
         <div className={stl.datosRegistro} key={params.id}>
-          <div>CONTRASEÑA NUEVA:</div>
+          <div className={stl.label}>CONTRASEÑA NUEVA:</div>
           <input
             onChange={(e) => handleChange(e)}
             name="nuevaContraseña"
@@ -132,25 +132,30 @@ export default function CambiarContraseña() {
         <br></br>
 
         <div className={stl.datosRegistro} key={params.id}>
-          <div>REPITA CONTRASEÑA: </div>
+          <div className={stl.label}>REPITA CONTRASEÑA: </div>
           <input
             onChange={(e) => handleChange(e)}
             name="repitaContraseña"
             value={input.repitaContraseña}
           />{" "}
         </div>
-
+        <br></br>
+        <br></br>
         <div>
           <button
-            className={stl.buttons}
+            className={stl.botonActualizar}
             type="submit"
             disabled={isSubmit ? false : true}
           >
             CAMBIAR CONTRASEÑA
-          </button>
+            </button>
+            <br></br>
+        <br></br>
         </div>
       </form>
     </div>
+    </div>
+    
   );
 }
- */
+ 

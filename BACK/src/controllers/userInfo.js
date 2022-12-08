@@ -50,7 +50,7 @@ putUsuario = async (req, res) => {
     usuario,
     nombre,
     mail,
-    contraseña,
+    contrasena,
     nuevaContraseña,
     localidad,
     nacimiento,
@@ -63,8 +63,9 @@ putUsuario = async (req, res) => {
   if (nuevaContraseña) {
     hasheada = await bcrypt.hash(req.body.nuevaContraseña, 10);
   }
-  
-  console.log("HOLA ");
+  console.log(nuevaContraseña);
+  console.log(hasheada);
+
   try {
     let usuarios = await UsuarioModel.updateOne(
       { _id: id },
@@ -73,7 +74,7 @@ putUsuario = async (req, res) => {
           usuario,
           nombre,
           mail,
-          contraseña: nuevaContraseña ? hasheada : contraseña,
+          contrasena: hasheada,
           localidad,
           nacimiento,
           publicaciones,

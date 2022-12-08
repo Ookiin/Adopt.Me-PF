@@ -9,21 +9,20 @@ import getusers from "../../Actions/getusers";
 import FloatingUI from "../Floating UI/FloatingUI";
 
 import { useAuth0 } from "@auth0/auth0-react";
-import getDetalleUsuario from "../../Actions/getDetalleUsuario"
+import getDetalleUsuario from "../../Actions/getDetalleUsuario";
 import putUser from "../../Actions/putUsuario";
 
-import Toast from 'light-toast';
-
+import Toast from "light-toast";
 
 export default function MiInformacion(props) {
   const params = useParams();
   const dispatch = useDispatch();
   const navigate = useNavigate(); // Metodo de router que me redirige a la ruta que yo le diga
   const Allusers = useSelector((state) => state.users).data; // (o el estado global que usemos para guardar todos los usuarios)
-  console.log("estos son los props")
-  console.log(props)
+  console.log("estos son los props");
+  console.log(props);
 
-  const id = props.datos._id
+  const id = props.datos._id;
   /*
   const { user, isAuthenticated } = useAuth0()
   const usuarioIdRaro = user.sub
@@ -40,7 +39,7 @@ export default function MiInformacion(props) {
     dispatch(getusers());
   }, [dispatch]);
  */
-  
+
   const [input, setInput] = useState({
     usuario: props.datos.usuario,
     nombre: props.datos.nombre,
@@ -54,7 +53,6 @@ export default function MiInformacion(props) {
   const [errors, setErrors] = useState({});
   const [isSubmit, setisSubmit] = useState(true);
 
-  
   function validation(input) {
     let errors = {};
     let noRepeatUser = Allusers.filter((u) => u.usuario === input.usuario);
@@ -148,7 +146,7 @@ export default function MiInformacion(props) {
         fotoPerfil: "",
       });
 
-     Toast.success("Usuario actualizado correctamente", 1500, () => {
+      Toast.success("Usuario actualizado correctamente", 1500, () => {
         navigate("/homepage");
       });
     } else {
@@ -159,7 +157,7 @@ export default function MiInformacion(props) {
   function handleChange(e) {
     e.preventDefault();
     setInput((prev) => ({ ...prev, [e.target.name]: e.target.value })); // e.target.name seria el input que se va a estar modificando
-    
+
     setErrors(
       validation({
         // voy a tomar el valor del input que se modifico y voy a ir llenando el estado
@@ -195,133 +193,137 @@ export default function MiInformacion(props) {
 
   return (
     <div>
-      <h1>MIS DATOS:</h1>
-
-      <form
-        onSubmit={(e) => handleSubmit(e)}
-        action="/usuarios/signup"
-        method="POST"
-      >
-        <div className={stl.datosRegistro} key={params.id}>
-          <img
-            src={props.datos.fotoPerfil}
-            id="user-photo"
-            alt=""
-            height="150"
-            width="150"
-          />
-          <br></br>
-          <button
-            id="btn-foto"
-            name="fotoPerfil"
-            onClick={(e) => handleOpenWidget(e)}
-            className={stl.botonImagen}
-          >
-            SELECCIONE FOTO DE PERFIL
-          </button>
-          <span></span>
-          {errors.fotoPerfil && <p>{errors.fotoPerfil}</p>}
-        </div>
-        <br></br>
-              
-        <div className={stl.datosRegistro} key={params.id}>
-          <div>NOMBRE DE USUARIO: </div>
-          <input
-            className={stl.inputs}
-            type="text"
-            name="usuario"
-            value={input.usuario}
-            onChange={(e) => handleChange(e)}
-            placeholder={props.datos.usuario}
-          />{" "}
-          <span></span>
-        </div>
-        <br></br>
-
-        <div className={stl.datosRegistro} key={params.id}>
-          <div>NOMBRE Y APELLIDO / REFUGIO: </div>
-          <input
-            className={stl.inputs}
-            type="text"
-            required
-            name="nombre"
-            value={input.nombre}
-            onChange={(e) => handleChange(e)}
-            placeholder={props.datos.nombre}
-          />{" "}
-          <span></span>
-        </div>
-        <br></br>
         
-        <div className={stl.datosRegistro} key={params.id}>
-          <div>TELÉFONO DE CONTACTO: </div>
-          <input
-            className={stl.inputs}
-            type="text"
-            required
-            name="telefono"
-            value={input.telefono}
-            onChange={(e) => handleChange(e)}
-            placeholder={props.datos.telefono}
-          />{" "}
-          <span></span>
-        </div>
+      <div className={stl.form}>
         <br></br>
+        <br></br>
+        <form
+          onSubmit={(e) => handleSubmit(e)}
+          action="/usuarios/signup"
+          method="POST"
+        >
+          <div className={stl.datosRegistro} key={params.id}>
+            <img
+              src={props.datos.fotoPerfil}
+              id="user-photo"
+              alt=""
+              height="200"
+              width="200"
+            />
+            <br></br>
+            <button
+              id="btn-foto"
+              name="fotoPerfil"
+              onClick={(e) => handleOpenWidget(e)}
+              className={stl.buttons}
+            >
+              SELECCIONE FOTO DE PERFIL
+            </button>
+            <span></span>
+            {errors.fotoPerfil && <p>{errors.fotoPerfil}</p>}
+          </div>
+          <br></br>
 
-        <div className={stl.datosRegistro} key={params.id}>
-          <div>E-MAIL: </div>
-          <input
-            className={stl.inputs}
-            type="email"
-            required
-            name="mail"
-            value={input.mail}
-            onChange={(e) => handleChange(e)}
-            placeholder={props.datos.mail}
-          />{" "}
-          <span></span>
-        </div>
-        <br></br>
+          <div className={stl.datosRegistro} key={params.id}>
+            <div className={stl.label}>NOMBRE DE USUARIO: </div>
+            <input
+              className={stl.input}
+              type="text"
+              name="usuario"
+              value={input.usuario}
+              onChange={(e) => handleChange(e)}
+              placeholder={props.datos.usuario}
+            />{" "}
+            <span></span>
+          </div>
+          <br></br>
 
-        <div className={stl.datosRegistro} key={params.id}>
-          <div>FECHA DE NACIMIENTO: </div>
-          <input
-            className={stl.inputs}
-            required
-            type="date"
-            name="nacimiento"
-            value={input.nacimiento}
-            placeholder="dd-mm-yyyy"
-            onChange={(e) => handleChange(e)}
-          />{" "}
-          <span></span>
-        </div>
-        <br></br>
+          <div className={stl.datosRegistro} key={params.id}>
+            <div className={stl.label}>NOMBRE Y APELLIDO / REFUGIO: </div>
+            <input
+              className={stl.input}
+              type="text"
+              required
+              name="nombre"
+              value={input.nombre}
+              onChange={(e) => handleChange(e)}
+              placeholder={props.datos.nombre}
+            />{" "}
+            <span></span>
+          </div>
+          <br></br>
 
-        <div className={stl.datosRegistro} key={params.id}>
-          <div>LOCALIDAD: </div>
-          <input
-            className={stl.inputs}
-            type="text"
-            required
-            name="localidad"
-            value={input.localidad}
-            onChange={(e) => handleChange(e)}
-            placeholder={props.datos.localidad}
-          />{" "}
-          <span></span>
-        </div>
-        <br></br>
-        <div>
-          <button
-            className={stl.buttons}
-            type="submit"
-            disabled={isSubmit ? false : true}
-          >
-            ACTUALIZAR DATOS
-          </button>
-        </div>
-      </form>
+          <div className={stl.datosRegistro} key={params.id}>
+            <div className={stl.label}>TELÉFONO DE CONTACTO: </div>
+            <input
+              className={stl.input}
+              type="text"
+              required
+              name="telefono"
+              value={input.telefono}
+              onChange={(e) => handleChange(e)}
+              placeholder={props.datos.telefono}
+            />{" "}
+            <span></span>
+          </div>
+          <br></br>
+
+          <div className={stl.datosRegistro} key={params.id}>
+            <div className={stl.label}>E-MAIL: </div>
+            <input
+              className={stl.input}
+              type="email"
+              required
+              name="mail"
+              value={input.mail}
+              onChange={(e) => handleChange(e)}
+              placeholder={props.datos.mail}
+            />{" "}
+            <span></span>
+          </div>
+          <br></br>
+
+          <div className={stl.datosRegistro} key={params.id}>
+            <div className={stl.label}>FECHA DE NACIMIENTO: </div>
+            <input
+              className={stl.input}
+              required
+              type="date"
+              name="nacimiento"
+              value={input.nacimiento}
+              placeholder="dd-mm-yyyy"
+              onChange={(e) => handleChange(e)}
+            />{" "}
+            <span></span>
+          </div>
+          <br></br>
+
+          <div className={stl.datosRegistro} key={params.id}>
+            <div className={stl.label}>LOCALIDAD: </div>
+            <input
+              className={stl.input}
+              type="text"
+              required
+              name="localidad"
+              value={input.localidad}
+              onChange={(e) => handleChange(e)}
+              placeholder={props.datos.localidad}
+            />{" "}
+            <span></span>
+          </div>
+          <br></br>
+          <div>
+            <br></br>
+            <button
+              className={stl.botonActualizar}
+              type="submit"
+              disabled={isSubmit ? false : true}
+            >
+              ACTUALIZAR DATOS
+            </button>
+          </div>
+        </form>
+      </div>
     </div>
   );
 }

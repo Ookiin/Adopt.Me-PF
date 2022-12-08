@@ -12,6 +12,12 @@ import CambiarContraseña from "../ContenidoPerfil/CambiarContraseña";
 import CompletarRegistro from "../ContenidoPerfil/CompletarRegistro";
 import MisMascotas from "../ContenidoPerfil/MisMascotas";
 import getDetalleUsuarioGoogle from "../../Actions/getDetalleUsuarioGoogle";
+import Footer from "../Footer/Footer";
+import CartelPerfil from "../ContenidoPerfil/CartelRegistroCompleto";
+import CartelRegistroCompleto from "../ContenidoPerfil/CartelRegistroCompleto";
+import CartelCambiarContraseña from "../ContenidoPerfil/CartelCambiarContraseña";
+import CartelCompletarRegistro from "../ContenidoPerfil/CartelCompletarRegistro";
+
 
 
 export default function Perfil() {
@@ -96,33 +102,33 @@ export default function Perfil() {
                         <br />
                         <br />
                         <div>
-                            <button onClick={(e) => onClick1(e)} className={css.boton}>Mi informacion</button>
+                            <button onClick={(e) => onClick1(e)} className={css.botonSideBar}>Mi informacion</button>
                         </div>
                         <br />
                         <br />
                         <div>
-                            <button onClick={(e) => onClick2(e)} className={css.boton}>Mis favoritos</button>
+                            <button onClick={(e) => onClick2(e)} className={css.botonSideBar}>Mis favoritos</button>
                         </div>
                         <br />
                         <br />
                         <div>
-                            <button onClick={(e) => onClick3(e)} className={css.boton}>Mis Mascotas</button>
+                            <button onClick={(e) => onClick3(e)} className={css.botonSideBar}>Mis Mascotas</button>
                         </div>
                         <br />
                         <br />
                         <div>
-                            <button onClick={(e) => onClick4(e)} className={css.boton}>Cambiar contraseña</button>
+                            <button onClick={(e) => onClick4(e)} className={css.botonSideBar}>Cambiar contraseña</button>
                         </div>
                         <br />
                         <br />
                         <div>
-                            <button onClick={(e) => onClick5(e)} className={css.boton}>Completar registro</button>
+                            <button onClick={(e) => onClick5(e)} className={css.botonSideBar}>Completar registro</button>
                         </div>
                         <br />
                         <br />
                         <div>
                             <Link to="/homepage">
-                                <button className={css.boton}>Inicio</button>
+                                <button className={css.botonSideBar}>Inicio</button>
                             </Link>
                         </div>
                         <br />
@@ -131,26 +137,32 @@ export default function Perfil() {
 
                     <div className={css.contenido}> 
                         <br />
-                        <br /><br />
-                        <br /><br />
                         <br />
+                        
                         <div>
                         {Render === 1 && detalleUser.usuario ? <MiInformacion datos={detalleUser} /> : null}
                         {Render === 1 && detalleUserGoogle.usuario ? <MiInformacion datos={detalleUserGoogle} /> : null}
-                        {Render === 1 && !detalleUser.usuario && !detalleUserGoogle.usuario ? <h1>Por favor, completa el registro para ver tus datos</h1> : null}
+                        {Render === 1 && !detalleUser.usuario && !detalleUserGoogle.usuario ? <CartelCompletarRegistro></CartelCompletarRegistro> : null}
                         
                         {Render === 2 ? <MisFavoritos></MisFavoritos>: null }
                         {Render === 3 ? <MisMascotas></MisMascotas> : null}
-                        {Render === 4 ? <CambiarContraseña></CambiarContraseña> : null}
+
+                        
+                        {Render === 4 && detalleUser.usuario  ?  <CambiarContraseña></CambiarContraseña> : null}
+                        {Render === 4 && detalleUserGoogle.usuario ? <CartelCambiarContraseña></CartelCambiarContraseña> : null}
+                        {Render === 4 && !detalleUserGoogle.usuario && !detalleUser.usuario ? <CartelCambiarContraseña></CartelCambiarContraseña> : null}
+                       
                             
-                        {Render === 5 && detalleUser.usuario ? <h1>Tu registro ya fue completado!! </h1> : null}
-                        {Render === 5 && detalleUserGoogle.usuario ? <h1>Tu registro ya fue completado! </h1> : null}
+                        {Render === 5 && detalleUser.usuario ? <CartelRegistroCompleto></CartelRegistroCompleto> : null}
+                        {Render === 5 && detalleUserGoogle.usuario ? <CartelRegistroCompleto></CartelRegistroCompleto> : null}
                         {Render === 5 && !detalleUser.usuario && !detalleUserGoogle.usuario ? <CompletarRegistro></CompletarRegistro> : null}
                         </div>
                         
                         
                     </div>
+                    
                 </div>
+                <Footer></Footer>
             </div>
 
             
