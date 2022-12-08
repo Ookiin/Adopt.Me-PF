@@ -1,4 +1,4 @@
-import stl from "../PanelAdminCharts/EnAdopcion.module.css";
+import stl from "./Estado.module.css";
 import React, { PureComponent } from 'react';
 import { BarChart, Bar, Cell, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 import { useSelector, useDispatch } from "react-redux";
@@ -7,47 +7,47 @@ import { useSelector, useDispatch } from "react-redux";
 const data = [
   {
     name: 'En adopcion',
-   /*  uv: 4000, */
+   
     pv: 40,
     amt: 3000,
   },
   {
     name: 'Adoptados',
-  /*   uv: 3000, */
+
     pv: 20,
     amt: 2210,
   },
   {
     name: 'Perdidos',
-   /*  uv: 2000, */
+ 
     pv: 10,
     amt: 2290,
   },
   {
     name: 'Buscados',
-   /*  uv: 2780, */
+ 
     pv: 30,
     amt: 2200,
   },
   
 ];
 
-export default function EnAdopcionChart () {
+export default function EstadoMascotas () {
 
 const animales = useSelector((state) => state.animales);
-const animalesPerd = useSelector((state) => state.animalesPerdidos);
+/* const animalesPerd = useSelector((state) => state.animalesPerdidos); */
 
- 
+
 
 
 
 return (
     <div className={stl.grafica}>
         <div className={stl.title}>ESTADO DE LAS MASCOTAS</div>
-      <ResponsiveContainer width="60%" aspect={3}>
+      <ResponsiveContainer width="80%" aspect={3}>
         <BarChart
-          width={100}
-          height={300}
+          width={50}
+          height={500}
           data={data}
           margin={{
             top: 5,
