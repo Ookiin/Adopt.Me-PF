@@ -153,6 +153,8 @@ const HomeGatos = () => {
                         id = {g._id}
                         gato = {g.gato}
                         nombre = {g.nombre}
+                        imagen={g.imagen}
+                        edad={g.edad}
                         />                  
                 )
             })}

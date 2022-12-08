@@ -24,7 +24,6 @@ export default function Card({ nombre, raza, id, perro, edad, imagen }) {
           <div class="card__thumb" />
           <div class="card__header-text">
             <div class="card__title">{nombre}</div>            
-            <div class="card__status">{raza}</div>
             <div>{perro}</div>
             {/* <div>{id}</div> */}
           </div>
@@ -56,7 +55,6 @@ export default function Card({ nombre, raza, id, perro, edad, imagen }) {
             <div class="card__thumb" />
             <div class="card__header-text">
               <div class="card__title">{nombre}</div>            
-              <div class="card__status">{raza}</div>
               <div>{perro}</div>
               {/* <div>{id}</div> */}
             </div>

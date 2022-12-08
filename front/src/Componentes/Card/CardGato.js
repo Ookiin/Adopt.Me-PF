@@ -3,7 +3,7 @@ import React from "react";
 import "./Card.css";
 import { Link } from "react-router-dom";
 
-export default function CardGato({ nombre, raza, id, gato, imagen, edad}) {
+export default function CardGato({ nombre, raza, id, gato, edad, imagen }) {
 
   
 
@@ -26,7 +26,6 @@ export default function CardGato({ nombre, raza, id, gato, imagen, edad}) {
           <div class="card__thumb" />
           <div class="card__header-text">
             <div class="card__title">{nombre}</div>            
-            <div class="card__status">{raza}</div>
             <div>{gato}</div>
             {/* <div>{id}</div> */}
           </div>
@@ -58,7 +57,6 @@ export default function CardGato({ nombre, raza, id, gato, imagen, edad}) {
           <div class="card__thumb" />
           <div class="card__header-text">
             <div class="card__title">{nombre}</div>            
-            <div class="card__status">{raza}</div>
             <div>{gato}</div>
             {/* <div>{id}</div> */}
           </div>

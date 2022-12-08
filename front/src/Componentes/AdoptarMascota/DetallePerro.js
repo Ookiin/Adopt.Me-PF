@@ -87,7 +87,7 @@ export default function DetallePerro() {
               Estado: <p className={stl.details}>{detail.estado}</p>
             </div>
             <div className={stl.titulos2}>
-              Tamaño: <p className={stl.details}>{detail.tamaño}</p>
+              Tamaño: <p className={stl.details}>{detail.tama}</p>
             </div>
             <div className={stl.titulos2}>
               Peso: <p className={stl.details}>{detail.peso}</p>
