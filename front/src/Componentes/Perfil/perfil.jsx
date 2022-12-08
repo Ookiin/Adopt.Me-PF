@@ -26,8 +26,6 @@ export default function Perfil() {
     const [Render, setRender] = useState(1); 
 
     const { user, isAuthenticated } = useAuth0()
-    console.log(isAuthenticated)
-    console.log(user)
 
     
     let usuarioIdRaro = ""
@@ -55,12 +53,8 @@ export default function Perfil() {
     
 
     const detalleUser = useSelector((state) => state.detalleUsuario); // Estado global con los datos del usuario
-    console.log("Estos son los datos de detalleUser")
-    console.log(detalleUser)
 
-    const detalleUserGoogle = useSelector((state) => state.detalleUsuarioGoogle)
-    console.log("Estos son los datos del userGoogle")
-    console.log(detalleUserGoogle)
+    const detalleUserGoogle = useSelector((state) => state.detalleUsuarioGoogle) 
 
     /////////////////// ON CLICKS ////////////////////////
 

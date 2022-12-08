@@ -174,7 +174,7 @@ h4 {
   position: absolute;
   margin-top: 180px;
   flex-direction: column;
-  margin-left: 134px;
+  margin-left: 197px;
   width: 140px;
   justify-content: space-around;
   background-color: #F2E7D5;
@@ -380,6 +380,25 @@ h4 {
   .darktheme .donacion .textoDonacion {
     color: white;
   }
+
+   .AvatarPerfil{
+      /* border: 1px solid red; */
+      background-image: url("../../Imagenes//avatarvacio.jpg");
+      background-size: contain;
+      background-repeat: no-repeat;
+      width: 30px;
+      height: 30px;
+      border-radius: 20px;
+      margin-left: 261px;
+    }
+  
+  
+  .imagenPerfil {
+    border-radius: 20px;
+    cursor: pointer;
+    margin-top: -7px;
+    /* margin-left: -90px; */
+  }
   
   /*///////////////////////////////////// MEDIA QUERIES CELULARES MODO VERTICAL ////////////////////////////////////////////////*/
 
@@ -418,8 +437,5 @@ h4 {
       height: 30px;
       font-size: 13px;
     }
-
-    .AvatarPerfil{
-      border-radius: 20;
-    }
-  } 
+  }
+   

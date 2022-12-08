@@ -48,6 +48,7 @@ export default function PostDetail() {
     ///////////////////////////////////////////////////////////////////////
 
     const allRespuestas = useSelector((state) => state.respuestas);
+    console.log("allrespuestas", allRespuestas)
 
     useEffect(() => {
         dispatch(getRespuesta())
@@ -70,7 +71,7 @@ export default function PostDetail() {
 
             <div className="postResponse">
                 {allRespuestas && allRespuestas.map(r => {
-
+                    if (postDetalles._id)
                     return (
 
                         <PostResponse 
@@ -87,7 +88,7 @@ export default function PostDetail() {
 
                 <div>
                 <div>Tu Comentario: </div>
-                    <textarea className="textRespuesta" type="textarea" resize="none" name="respuesta"
+                    <textarea id={postDetalles._id} className="textRespuesta" type="textarea" resize="none" name="respuesta"
                     value={input.respuesta} onChange={handleRespuesta} />
                 </div>
 
