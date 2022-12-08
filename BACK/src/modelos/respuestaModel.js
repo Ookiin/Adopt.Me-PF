@@ -6,6 +6,9 @@ const RespuestaModelSchema = new Schema({
     type: String,
     required: false,
   },
+  caquina: {
+    type: String,
+  }
 });
 
 const RespuestaModel = mongoose.model("respuesta", RespuestaModelSchema);

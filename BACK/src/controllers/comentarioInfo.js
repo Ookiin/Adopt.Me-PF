@@ -6,12 +6,14 @@ postComentario = async (req, res) => {
     const {
        _id: _id, 
        titulo, 
-       contenido } = req.body;
+       contenido,
+      caquina } = req.body;
 
     const comentarios = new comentarioModel({
       _id: _id, 
       titulo, 
-      contenido
+      contenido,
+      caquina
     });
     if (comentarios.length) await comentarios.save();
     const nuevoComentario = await comentarios.save();
