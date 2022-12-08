@@ -61,11 +61,17 @@ const initialState = {
    posts: [],
    postDetails: [],
    copiaPosts: [],
-   respuestas: []
+   respuestas: [],
+   edad: 'edad',
+   tamaño: 'All'
 }
 
 
 export default function rootReducer(state = initialState, action){
+
+const gatos = state.gatos
+const perros = state.perros
+
     switch(action.type){
 
     case GET_MASCOTAS:     
@@ -173,7 +179,7 @@ case ORDEN_PERRO: {
   }
   return {
       ...state,
-      perros: sortedPerros
+      perrosCopia: sortedPerros
   }
 }
 
@@ -189,70 +195,80 @@ case ORDEN_GATO: {
   }
   return {
       ...state,
-      gatos: sortedGatos
+      gatosCopia: sortedGatos
   }
 }
 
-case GET_CAT_EDAD:
-            let cat = state.gatosCopia;            
-            let filterByEdadCat = cat.filter(
-                (e)=>e.edad.map(
-                    (e)=>e.edad).includes(
-                        action.payload === 'Mayor a 45 dias'|| action.payload === 'Menor a 45 dias' || action.payload === 'Adulto' || action.payload === 'Anciano')
-                 || e.edad.includes(action.payload))            
-            if(action.payload === 'edad')filterByEdadCat = cat;           
-            
-            console.log(filterByEdadCat);
-            return{
-                ...state,
-                gatos: filterByEdadCat,                            
-            };
-case GET_DOG_EDAD:
-            let filterEdad = state.perrosCopia;
-            console.log(filterEdad);
-            let filterByEdadDog = filterEdad.filter(
-                (e)=>e.edad.map(
-                    (e)=>e.edad).includes(
-                        action.payload === 'Mayor a 45 dias'|| action.payload === 'Menor a 45 dias' || action.payload === 'Adulto' || action.payload === 'Anciano')
-                 || e.edad.includes(action.payload))            
-            if(action.payload === 'edad')filterByEdadDog = filterEdad;           
-            
-            console.log(filterByEdadDog);
-            return{
-                ...state,
-                perros: filterByEdadDog,                            
-            };
+
+case GET_CAT_EDAD: {
+
+  const filteredByTamaño = state.tamaño === 'All' ?
+      gatos
+      : gatos.filter(g => g.tama?.includes(state.tamaño));
+
+  const filteredCats = action.payload === 'edad' && filteredByTamaño.length ?
+      filteredByTamaño :
+      filteredByTamaño.filter(e => e.edad?.includes(action.payload));
+
+  return {
+      ...state,
+      gatosCopia: filteredCats,
+      edad: action.payload
+  }
+};
+
+case GET_DOG_EDAD: {
+
+  const filteredByTamaño = state.tamaño === 'All' ?
+      perros
+      : perros.filter(p => p.tama?.includes(state.tamaño));
+
+  const filteredDogs = action.payload === 'edad' && filteredByTamaño.length ?
+      filteredByTamaño :
+      filteredByTamaño.filter(e => e.edad?.includes(action.payload));
+
+  return {
+      ...state,
+      perrosCopia: filteredDogs,
+      edad: action.payload
+  }
+};
 
             
-case GET_DOG_TAMAÑOS:
-            let filter = state.perrosCopia;
-            let filterByT = filter.filter(
-                (t)=>t.tama.map(
-                    (ty)=>ty.tama).includes(
-                        action.payload === 'Chico'|| action.payload === 'Grande' || action.payload === 'Mediano')
-                 || t.tama.includes(action.payload))            
-            if(action.payload === 'All')filterByT = filter;           
-            
-            console.log(filterByT);
-            return{
-                ...state,
-                perros: filterByT,                            
-            };
+case GET_DOG_TAMAÑOS: {
 
-            case GET_CAT_TAMAÑOS:
-              let filterCat = state.gatosCopia;
-              let filterByTa = filterCat.filter(
-                  (t)=>t.tama.map(
-                      (ty)=>ty.tama).includes(
-                          action.payload === 'Chico'|| action.payload === 'Grande' || action.payload === 'Mediano')
-                   || t.tama.includes(action.payload))            
-              if(action.payload === 'All')filterByTa = filterCat;           
-              
-              console.log(filterByTa);
-              return{
-                  ...state,
-                  gatos: filterByTa,                            
-              };
+  const filteredByEdad = state.edad === 'edad' ?
+  perros
+  : perros.filter(p => p.edad?.includes(state.edad));
+
+  const filteredDogs = action.payload === 'All' && filteredByEdad.length ?
+  filteredByEdad :
+  filteredByEdad.filter(e => e.tama?.includes(action.payload));
+
+  return {
+      ...state,
+      perrosCopia: filteredDogs,
+      tamaño: action.payload
+  }
+};
+
+
+case GET_CAT_TAMAÑOS: {
+
+  const filteredByEdad = state.edad === 'edad' ?
+  gatos
+  : gatos.filter(p => p.edad?.includes(state.edad));
+
+  const filteredCats = action.payload === 'All' && filteredByEdad.length ?
+  filteredByEdad :
+  filteredByEdad.filter(e => e.tama?.includes(action.payload));
+
+  return {
+      ...state,
+      gatosCopia: filteredCats,
+      tamaño: action.payload
+  }
+};
                
   
         
