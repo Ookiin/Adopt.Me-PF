@@ -41,7 +41,7 @@
     font-family: 'Viga', sans-serif;
   }
 
-  .form{
+  .formUser{
     margin-top: 0px;
     background-color:  #6D9886;
     width: 900px;
@@ -50,7 +50,7 @@
     border: solid black 8px;
   }
 
-  input{
+  .input{
     background-color: rgba(112, 106, 106, 0.623);
     border-radius: 2rem;
     height: 60px;
