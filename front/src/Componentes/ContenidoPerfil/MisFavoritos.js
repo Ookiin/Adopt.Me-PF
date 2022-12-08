@@ -1,6 +1,14 @@
+
+import stl from "./MisFavoritos.module.css"
+
+
 export default function MisFavoritos() {
     
     return (
-        <h1> Mis Favoritos</h1>
+        <div>
+            <div className={stl.cartel}>
+                
+            </div>
+        </div>
     )
 };

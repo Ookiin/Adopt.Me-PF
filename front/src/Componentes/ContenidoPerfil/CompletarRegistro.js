@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import Footer from "../Footer/Footer";
 import NavBar from "../NavBar/NavBar";
-import stl from "../FormRegistro/FormRegistro.module.css";
+import stl from "./CompletarRegistro.module.css"
 import createuser from "../../Actions/createuser";
 import getusers from "../../Actions/getusers";
 import FloatingUI from "../Floating UI/FloatingUI";
@@ -178,14 +178,15 @@ export default function FormRegistro() {
       </div>
 
       <div className={stl.form} key={params.id}>
-        <div className={stl.titulomayor}>Completar registro</div>
+        <br></br>
+        <br></br>
         <form
           onSubmit={(e) => handleSubmit(e)}
           action="/usuarios/signup"
           method="POST"
         >
           <div className={stl.datosRegistro} key={params.id}>
-            <div>NOMBRE DE USUARIO: </div>
+            <div className={stl.label}>NOMBRE DE USUARIO: </div>
             <input
               className={stl.inputs}
               type="text"
@@ -196,9 +197,10 @@ export default function FormRegistro() {
             />{" "}
             <span></span>
           </div>
+          <br></br>
 
           <div className={stl.datosRegistro} key={params.id}>
-            <div>TELÉFONO DE CONTACTO: </div>
+            <div className={stl.label}>TELÉFONO DE CONTACTO: </div>
             <input
               className={stl.inputs}
               type="text"
@@ -209,9 +211,10 @@ export default function FormRegistro() {
             />{" "}
             <span></span>
           </div>
+          <br></br>
 
           <div className={stl.datosRegistro} key={params.id}>
-            <div>FECHA DE NACIMIENTO: </div>
+            <div className={stl.label}>FECHA DE NACIMIENTO: </div>
             <input
               className={stl.inputs}
               required
@@ -223,9 +226,10 @@ export default function FormRegistro() {
             />{" "}
             <span></span>
           </div>
+          <br></br>
 
           <div className={stl.datosRegistro} key={params.id}>
-            <div>LOCALIDAD: </div>
+            <div className={stl.label}>LOCALIDAD: </div>
             <input
               className={stl.inputs}
               type="text"
@@ -236,23 +240,21 @@ export default function FormRegistro() {
             />{" "}
             <span></span>
           </div>
-
+          <br></br>
+          <br></br>
           <div>
             <button
-              className={stl.buttons}
+              className={stl.botonActualizar}
               type="submit"
               disabled={isSubmit ? false : true}
             >
               ACEPTAR
             </button>
-
-            <Link to="/givepet">
-              <button className={stl.buttons}>CANCELAR</button>
-            </Link>
+            <br></br>
+            <br></br>
           </div>
         </form>
       </div>
-      <Footer />
     </div>
   );
 }
