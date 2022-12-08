@@ -1,14 +1,14 @@
- import { Link, useParams, useNavigate } from "react-router-dom";
+import { Link, useParams, useNavigate } from "react-router-dom";
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import Footer from "../Footer/Footer";
 import NavBar from "../NavBar/NavBar";
-import stl from "./CambiarContraseña.module.css"
+import stl from "./CambiarContraseña.module.css";
 import createuser from "../../Actions/createuser";
 import getusers from "../../Actions/getusers";
 import FloatingUI from "../Floating UI/FloatingUI";
 import Toast from "light-toast";
-import putUsuario from "../../Actions/putUsuario"
+import putUsuario from "../../Actions/putUsuario";
 const bcrypt = require("bcryptjs");
 
 export default function CambiarContraseña() {
@@ -20,17 +20,12 @@ export default function CambiarContraseña() {
   const detalleUserGoogle = useSelector((state) => state.detalleUsuarioGoogle);
   const detalleUser = useSelector((state) => state.detalleUsuario);
 
-  let UserGoogle = false
+  let UserGoogle = false;
   if (detalleUserGoogle.nombre) {
-    UserGoogle = true
+    UserGoogle = true;
   }
 
-  let contraseñaUsuario = ""
-  if (!UserGoogle) {
-    contraseñaUsuario = detalleUser.contraseña
-  }
-  
-  let id = detalleUser._id
+  let id = detalleUser._id;
 
   useEffect(() => {
     dispatch(getusers());
@@ -43,42 +38,50 @@ export default function CambiarContraseña() {
   });
 
   const [errors, setErrors] = useState({});
-  const [isSubmit, setisSubmit] = useState(true);
+  const [isSubmit, setisSubmit] = useState(false);
 
   async function validation(input) {
     let errors = {};
     // hay que validar que la contraseña actual sea esa.
-    if (await bcrypt.hash(input.contraseñaActual,10) !== detalleUser.contrasena) {
-      errors.contraseña = "La contraseña ingresada no coincide con la contraseña actual"
+    if (
+      (await bcrypt.hash(input.contraseñaActual, 10)) !== detalleUser.contrasena
+    ) {
+      // hasheo la contraseña que tipea el usuario, paara compararla con la hasheada guardada en la db
+      errors.contraseñaActual =
+        "La contraseña ingresada no coincide con la contraseña actual";
     }
-    if (!input.contraseñaActual || !input.nuevaContraseña || !input.repitaContraseña) {
+    if (
+      !input.contraseñaActual ||
+      !input.nuevaContraseña ||
+      !input.repitaContraseña
+    ) {
       errors.contraseña = "Tenes que completar todos los campos";
+    }
+    if (
+      !/^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{8,16}$/.test(input.nuevaContraseña)
+    ) {
+      errors.contraseña =
+        "La contraseña debe tener entre 8 y 16 caracteres, al menos un número, al menos una minúscula y al menos una mayúscula.";
     }
     if (input.repitaContraseña !== input.nuevaContraseña) {
       errors.repitaContraseña = "Las contraseñas no coinciden";
     }
-    if (!/^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{8,16}$/.test(input.nuevaContraseña)) {
-      errors.contraseña = "La contraseña debe tener entre 8 y 16 caracteres, al menos un número, al menos una minúscula y al menos una mayúscula.";
-    }
-    if (input.contraseñaActual !== contraseñaUsuario) {
-      errors.contraseña = "La contraseña actual ingresada no es correcta"
-    }
+
     if (Object.keys(errors).length === 0) {
       setisSubmit(true);
     }
-  
+
     return errors;
   }
-  
 
   async function handleSubmit(e) {
     e.preventDefault();
     //Si no hay errores, el isSubmit esta en true
     if (isSubmit) {
-      console.log("Este es el input antes de despachar")
-      console.log(input)
+      console.log("Este es el input antes de despachar");
+      console.log(input);
 
-      dispatch(putUsuario(input , id));
+      dispatch(putUsuario(input, id));
       setInput({
         contraseñaActual: "",
         nuevaContraseña: "",
@@ -107,55 +110,66 @@ export default function CambiarContraseña() {
 
   return (
     <div>
+      <div className={stl.errores}>
+        {errors.contraseña && <p className={stl.errores}>{errors.contrasena}</p>}
+      </div>
+
       <div className={stl.form}>
         <br></br>
         <br></br>
-      <form onSubmit={(e) => handleSubmit(e)}>
-        <div className={stl.datosRegistro} key={params.id}>
-          <div className={stl.label}>CONTRASEÑA ACTUAL: </div>
-          <input
-            onChange={(e) => handleChange(e)}
-            name="contraseñaActual"
-            value={input.contraseñaActual}
-          />{" "}
-        </div>
-        <br></br>
+        <form onSubmit={(e) => handleSubmit(e)}>
+          <div className={stl.datosRegistro} key={params.id}>
+            <div className={stl.label}>CONTRASEÑA ACTUAL: </div>
+            <input
+              className={stl.input}
+              onChange={(e) => handleChange(e)}
+              name="contraseñaActual"
+              value={input.contraseñaActual}
+            />{" "}
+            {errors.contraseñaActual && (
+              <p className={stl.errores}>{errors.contrasenaActual}</p>
+            )}
+          </div>
+          <br></br>
 
-        <div className={stl.datosRegistro} key={params.id}>
-          <div className={stl.label}>CONTRASEÑA NUEVA:</div>
-          <input
-            onChange={(e) => handleChange(e)}
-            name="nuevaContraseña"
-            value={input.nuevaContraseña}
-          />{" "}
-        </div>
-        <br></br>
+          <div className={stl.datosRegistro} key={params.id}>
+            <div className={stl.label}>CONTRASEÑA NUEVA:</div>
+            <input
+              className={stl.input}
+              onChange={(e) => handleChange(e)}
+              name="nuevaContraseña"
+              value={input.nuevaContraseña}
+            />{" "}
+          </div>
+          <br></br>
 
-        <div className={stl.datosRegistro} key={params.id}>
-          <div className={stl.label}>REPITA CONTRASEÑA: </div>
-          <input
-            onChange={(e) => handleChange(e)}
-            name="repitaContraseña"
-            value={input.repitaContraseña}
-          />{" "}
-        </div>
-        <br></br>
-        <br></br>
-        <div>
-          <button
-            className={stl.botonActualizar}
-            type="submit"
-            disabled={isSubmit ? false : true}
-          >
-            CAMBIAR CONTRASEÑA
+          <div className={stl.datosRegistro} key={params.id}>
+            <div className={stl.label}>REPITA CONTRASEÑA: </div>
+            <input
+              className={stl.input}
+              onChange={(e) => handleChange(e)}
+              name="repitaContraseña"
+              value={input.repitaContraseña}
+            />{" "}
+            {errors.repitaContraseña && (
+              <p className={stl.errores}>{errors.repitaContraseña}</p>
+            )}
+          </div>
+          <br></br>
+          <br></br>
+          <div>
+            <button
+              className={stl.botonActualizar}
+              type="submit"
+              disabled={isSubmit ? false : true}
+            >
+              CAMBIAR CONTRASEÑA
             </button>
             <br></br>
-        <br></br>
-        </div>
-      </form>
+            <br></br>
+          </div>
+        </form>
+      </div>
     </div>
-    </div>
-    
   );
 }
- 

@@ -51,7 +51,7 @@ export default function MiInformacion(props) {
   });
 
   const [errors, setErrors] = useState({});
-  const [isSubmit, setisSubmit] = useState(true);
+  const [isSubmit, setisSubmit] = useState(false);
 
   function validation(input) {
     let errors = {};
@@ -69,21 +69,6 @@ export default function MiInformacion(props) {
       errors.usuario = `El nombre de usuario ${input.usuario} no está disponible`;
     }
 
-    if (!input.contraseña) {
-      errors.contraseña = "Tenes que ingresar una contraseña";
-    } else if (
-      !/^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{8,16}$/.test(input.contraseña)
-    ) {
-      errors.contraseña =
-        "La contraseña debe tener entre 8 y 16 caracteres, al menos un número, al menos una minúscula y al menos una mayúscula.";
-    }
-
-    if (!input.repitaContraseña) {
-      errors.repitaContraseña = "Tenes que repetir la contraseña";
-    } else if (input.repitaContraseña !== input.contraseña) {
-      errors.repitaContraseña = "Las contraseñas no coinciden";
-    }
-
     if (!input.nombre) {
       errors.nombre = "Tenes que ingresar un nombre";
     } else if (!/^[a-z\s]+$/i.test(input.nombre)) {
@@ -95,14 +80,15 @@ export default function MiInformacion(props) {
     } else if (input.telefono.length > 15) {
       errors.telefono = "El teléfono no es válido";
     }
-
+    
     if (!input.mail) {
       errors.mail = "Tenes que ingresar un e-mail";
     } else if (!/[A-Z0-9._%+-]+@[A-Z0-9-]+.+.[A-Z]{2,4}/gim.test(input.mail)) {
       errors.mail = "El e-mail no es válido";
-    } else if (noRepeatMail.length) {
-      errors.mail = "Ya existe una cuenta vinculada a ese mail";
     }
+    /*else if (noRepeatMail.length) {
+      errors.mail = "Ya existe una cuenta vinculada a ese mail";
+    }*/
 
     if (!input.nacimiento) {
       errors.nacimiento = "Tenes que ingresar una fecha de nacimiento";
@@ -193,7 +179,15 @@ export default function MiInformacion(props) {
 
   return (
     <div>
-        
+        <div className={stl.errores}>
+        {errors.usuario && <p className={stl.error}>{errors.usuario}</p>}
+        {errors.nombre && <p className={stl.error}>{errors.nombre}</p>}
+        {errors.telefono && <p className={stl.error}>{errors.telefono}</p>}
+        {errors.mail && <p className={stl.error}>{errors.mail}</p>}
+        {errors.nacimiento && <p className={stl.error}>{errors.nacimiento}</p>}
+        {errors.localidad && <p className={stl.error}>{errors.localidad}</p>}
+      </div>
+
       <div className={stl.form}>
         <br></br>
         <br></br>

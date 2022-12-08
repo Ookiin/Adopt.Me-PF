@@ -12,19 +12,19 @@
     height: 100;
     margin-top: 0px;
     margin-left: 180px;
-    background-color: rgba(255, 255, 255, 0.226);
+    background-color: rgba(255, 255, 255, 0);
     
 }
 
 .sideBar{
-    background-color: rgba(255, 255, 255, 0.246);
+    background-color: rgba(255, 255, 255, 0);
     width: 30%;
     height: 100;
     
 }
 
 .contenido{
-    background-color:rgba(255, 255, 255, 0.27);
+    background-color:rgba(255, 255, 255, 0);
     width: 70%;
     height: 100;
     margin-top: 0px;
