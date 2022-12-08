@@ -134,7 +134,7 @@ postAnimal = async (req, res) => {
       vacunado,
       desparasitado,
       imagen,     
-      pichina, 
+      pichina,
       longitude,
       latitude    
       })    
