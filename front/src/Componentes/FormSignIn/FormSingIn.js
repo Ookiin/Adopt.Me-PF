@@ -30,7 +30,7 @@ export default function FormSignIn() {
   function validation(input) {
     let errors = {};
     let existUser = Allusers.filter((u) => u.usuario == input.usuario);
-    console.log(existUser)
+
 
     ///////////////////////////////////////////////////////
     if (!input.usuario) {
