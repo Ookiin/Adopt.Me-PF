@@ -8,7 +8,11 @@ import stl from "../DonarMascota/formularioDar.module.css"
 import FloatingUI from "../Floating UI/FloatingUI";
 import imagenDefault from "../../Imagenes/imagenDefault.png"
 import Toast from 'light-toast';
-
+import { MapContainer, Marker, Popup, TileLayer, useMap } from "react-leaflet";
+import Markers from "../Maps/Markers";
+import createLocation from "../../Actions/createLocation";
+import { IconLocation } from "../Maps/IconLocation";
+import "../DonarMascota/formularioDar.css"
  
  export default function DarEnAdopcion() {
 
@@ -21,7 +25,30 @@ import Toast from 'light-toast';
  const dispatch = useDispatch();
 
  const usuario = useSelector((state) => state.detalleUsuario)
- // console.log(usuario._id)
+
+  /////////////////////////////////////////////////////////// TOMA MI UBICACION ACTUAL SEGUN MI GPS ///////////////////
+
+  const [geo, setGeo] = useState({
+    longitude: -61.043988,
+    latitude: -34.7361,
+  })
+  
+  useEffect(() => {
+    navigator.geolocation.getCurrentPosition(
+        function (position) {
+            setGeo({
+                latitude: position.coords.latitude,
+                longitude: position.coords.longitude,
+            })
+        }, 
+        function(error) {
+            console.log(error)
+        }, {
+            enableHighAccuracy: true
+        });
+  }, [])
+
+  ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
  const [input, setInput] = useState({
         perro: false,
@@ -37,14 +64,16 @@ import Toast from 'light-toast';
         vacunado: "",
         desparasitado: "",
         imagen: "",
-        pichina: usuario._id
+        pichina: usuario._id,
+        latitude: "",
+        longitude: ""
       });
 
   const [imagenes, setImagenes] = useState([]);
   // console.log(input.pichina)
   const [errors, setErrors] = useState({});
   // const [isSubmit, setisSubmit] = useState(false);
-
+console.log("input 1", input)
   
   ////////////////////////////////////////////////////// VALIDACION ///////////////////////////////////////////////////////////////
 
@@ -143,7 +172,10 @@ import Toast from 'light-toast';
     //Si no hay errores, el isSubmit esta en true
     // if (isSubmit === true) {
 
+      dispatch(createLocation(input));
       dispatch(createanimal(input));
+      
+
       setInput({
         perro: false,
         gato: false,
@@ -158,8 +190,11 @@ import Toast from 'light-toast';
         vacunado: "",
         desparasitado: "",
         imagen: "",
-        pichina: ""
+        pichina: "",
+        latitude: "",
+        longitude: ""
       });
+      console.log("input 2", input)
       Toast.success("Mascota publicada correctamente", 1500, () => {
         navigate("/homepage")
       });
@@ -218,6 +253,28 @@ function handleChange(e) {
 
   const [isChecked, setIsChecked] = useState(false);
   const [isChecked2, setIsChecked2] = useState(false);
+
+  ///////////////////////////////////////////////////// GUARDA LA UBICACION EN LA BASE DE DATOS //////////////////////
+
+function handleLocation() {
+  setInput({
+    ...input,
+          latitude: geo.latitude,
+          longitude: geo.longitude
+  })
+ console.log("handle 1", input.latitude)
+  Toast.success("Ubicacion Establecida. Por favor seleccione 'Guardar mi Ubicacion'", 1000, () => {});
+}
+
+function handleLocation2() {
+  setInput({
+    ...input,
+          latitude: geo.latitude,
+          longitude: geo.longitude
+  })
+  console.log("handle 2", input.longitude)
+  Toast.success("Ubicacion Guardada con exito", 1000, () => {});
+}
   
  /////////////////////// HANDLE DE GATO ////////////////////////////////////77
  
@@ -325,15 +382,13 @@ function handleChange(e) {
  const handleLocalTamEdad = (e) => {
   let value = e.target.value;
   let name = e.target.name;
-  console.log("value", value)
-  console.log("name", name)
 
   setInput((prev) => ({...prev, [name]: value}))
  };
 
  useEffect(() => {
   const optionS = JSON.parse(localStorage.getItem("edadTamaño"));
-  console.log("optionS", optionS)
+  
   if (edad === null && tamaño === null) {
     setInput((prev) => ({...prev, ...optionS}))
 
@@ -345,6 +400,23 @@ function handleChange(e) {
  }, )
 
 
+/////////////////////////////////////////////////// GUARDA MI UBICACION ACTUAL EN UN ESTADO Y RENDERIZO  ///////
+
+const position = [geo.latitude, geo.longitude]
+
+const local = position
+
+function FlyMapTo() {
+
+const map = useMap()
+
+useEffect(() => {
+    map.flyTo(local)
+    
+}, {enableHighAccuracy: true})
+
+return null
+}
 
 ///////////////////////////////////////////////////////////////////////  TE KAVIO EL RETURN  ///////////////////////////
   return (
@@ -414,9 +486,7 @@ function handleChange(e) {
                 <input className={stl.inputs2} onChange={ (e) => { handleCheck2(e); handlePerro(e); }}
                 type="checkbox" name="perro" checked={isChecked2} value={input.perro}/>                        
             </div>
-            </div>
-
-                     
+            </div>                     
                    
                 <label className={stl.titulos}>Nombre:</label>
               <div className={stl.opciones}>
@@ -446,7 +516,7 @@ function handleChange(e) {
 
             <label className={stl.titulos}>Tamaño:</label>
             <div className={stl.opciones}>                                     
-            <select className={stl.tamaño} name="tamaño"  onChange={(e) => {handleTamaño(e); handleLocalTamEdad(e); }}>
+            <select className={stl.tamaño} name="tamaño" defaultValue="" onChange={(e) => {handleTamaño(e); handleLocalTamEdad(e); }}>
                        <option value="" disabled hidden >Seleccione tamaño...</option>
                        <option>Chico</option>
                        <option>Mediano</option>
@@ -461,17 +531,50 @@ function handleChange(e) {
                 type="text" name="peso" value={input.peso}/>
                 {errors.peso && <p className={stl.error}>{errors.peso}</p>}          
             </div>
-
+{/* 
             <div className={stl.opciones}>
             <label className={stl.titulos}>Localidad:</label>
             <Link to = "/map">
                 <button className={stl.botonUbicacion}>Establecer tu ubicacion</button>
                 </Link>
+                    </div> */}
+
+           <div>
+            <p>Por favor. Para guardar su ubicacion exitosamente<br></br>
+        Primero seleccione "Establecer mi Ubicacion", y luego "Guardar mi Ubicacion".</p>
+        <p>Finalmente "Confirmar y Volver"</p>
+        <div className={stl.botones}>
+        <button className={stl.botonMapa2} onClick={handleLocation}>Establecer mi Ubicacion</button>
+        <button className={stl.botonMapa2} onClick={handleLocation2}>Guardar mi Ubicacion</button>
+         {/* <Link to ="/registroMascota">  */}
+             {/* <button className={stl.botonMapa3} type="submit" onClick={handleSubmit}>Confirmar y Volver</button>  */}
+             {/* </Link>  */}
+            </div>
+
+        <MapContainer center={position} zoom={13} scrollWheelZoom={false}>
+        <FlyMapTo />
+        <TileLayer
+          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"/>
+
+        <Marker position={position} icon={IconLocation}>
+ 
+           <Popup>
+               Esta es mi ubicacion
+          </Popup>
+
+    </Marker>
+
+    <Markers />
+        
+    </MapContainer>
+    
             </div>
 
             <label className={stl.titulos}>Descripción:</label>
             <div className={stl.opciones}>
             <textarea
+            className={stl.textareaDonar}
               required
               type="text"
               name="descripcion"
@@ -486,7 +589,7 @@ function handleChange(e) {
           
             <div className={stl.opciones}>
             <label className={stl.titulos}>Esta Castrado? (Si/No):</label>
-                <input onChange={handleChange}type="text" name="castrado" value={input.castrado}/>
+                <input className={stl.inputs3} onChange={handleChange}type="text" name="castrado" value={input.castrado}/>
                 {errors.castrado && <p className={stl.error}>{errors.castrado}</p>}
             </div> 
 
@@ -494,7 +597,7 @@ function handleChange(e) {
 
             <div className={stl.opciones}>
             <label className={stl.titulos}>Esta Vacunado? (Si/No):</label>
-                <input onChange={handleChange} type="text" name="vacunado"  value={input.vacunado}/>
+                <input className={stl.inputs3} onChange={handleChange} type="text" name="vacunado"  value={input.vacunado}/>
                 {errors.vacunado && <p className={stl.error}>{errors.vacunado}</p>}
             </div>  
 
@@ -502,7 +605,7 @@ function handleChange(e) {
 
             <div className={stl.opciones}>
             <label className={stl.titulos}>Esta desparasitado? (Si/No):</label>
-                <input onChange={handleChange} type="text" name="desparasitado"  value={input.desparasitado}/>
+                <input className={stl.inputs3} onChange={handleChange} type="text" name="desparasitado"  value={input.desparasitado}/>
                 {errors.vacunado && <p className={stl.error}>{errors.vacunado}</p>}
             </div>  
             </div>
@@ -511,7 +614,7 @@ function handleChange(e) {
             <button
               className={stl.boton}
               type="submit"
-              onClick={handleImagen}
+              onClick={handleImagen }
               // disabled={isSubmit ? false : true}
             >
               PONER EN ADOPCIÓN
@@ -526,3 +629,6 @@ function handleChange(e) {
         <Footer />
     </div>
   )}
+
+  //
+  

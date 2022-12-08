@@ -2,11 +2,12 @@ import React, { useEffect, useState } from "react"
 import {MapContainer, TileLayer, useMap} from "react-leaflet"
 import "leaflet/dist/leaflet.css"
 import "./Maps.css";
-import Markers from "./Markers";
+
 import NavBar from "../NavBar/NavBar";
 import Footer from "../Footer/Footer";
 import { Link } from "react-router-dom";
 import stl from "../Maps/Maps.module.css";
+import Markers from "./Markers";
 
 
 export default function MapPets() {
@@ -52,6 +53,7 @@ useEffect(() => {
 
     <div>
        <NavBar />
+       <div className={stl.ubicacionmapa}>
         <MapContainer center={position} zoom={13} scrollWheelZoom={false}>
         <FlyMapTo />
         <TileLayer
@@ -65,8 +67,11 @@ useEffect(() => {
         <Link to ="/adoptdog">
         <button className={stl.botonMapa}>Volver</button>
         </Link>
+        </div>
         <Footer />
     </div>
     )
 
 }
+
+//

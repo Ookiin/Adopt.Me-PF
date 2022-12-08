@@ -1,4 +1,3 @@
-
 const express = require("express");
 const { get } = require("mongoose");
 require("../db");
@@ -7,7 +6,7 @@ const router = express.Router();
 const infoAnimal = require("../controllers/animalInfo");
 const {verifyToken, isAdmin} = require ('../middlewares/authJwt')
 
-router.post("/", verifyToken, isAdmin, postAnimal);
+router.post("/", postAnimal);
 
 router.get("/", getAnimales);
 
@@ -34,3 +33,4 @@ router.put("/:id", putAnimal);
 router.delete("/:id", deleteAnimal);
 
 module.exports = router;
+//

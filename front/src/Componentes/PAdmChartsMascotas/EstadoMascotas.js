@@ -1,45 +1,56 @@
 import stl from "./Estado.module.css";
-import React, { PureComponent } from 'react';
+import React, { PureComponent, useEffect } from 'react';
 import { BarChart, Bar, Cell, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 import { useSelector, useDispatch } from "react-redux";
+import getmascotas from "../../Actions/getmascotas";
 
 
 const data = [
   {
     name: 'En adopcion',
    
-    pv: 40,
-    amt: 3000,
+    pv: 4,
+    // amt: 3000,
   },
   {
-    name: 'Adoptados',
+    name: 'En adopcion',
 
-    pv: 20,
-    amt: 2210,
+    pv: 2,
+    // amt: 2210,
   },
   {
-    name: 'Perdidos',
+    name: 'En adopcion',
  
-    pv: 10,
-    amt: 2290,
+    pv: 1,
+    // amt: 2290,
   },
   {
-    name: 'Buscados',
+    name: 'En adopcion',
  
-    pv: 30,
-    amt: 2200,
+    pv: 3,
+    // amt: 2200,
   },
   
 ];
 
 export default function EstadoMascotas () {
 
-const animales = useSelector((state) => state.animales);
-/* const animalesPerd = useSelector((state) => state.animalesPerdidos); */
+const dispatch = useDispatch()
+  const allpets = useSelector((state) => state.animales)
+  
+useEffect(() => {
+  dispatch(getmascotas())
+}, [dispatch])
 
+// const cantidad = []
 
+// for (let i = 0; i < allpets.length; i++) {
+//   cantidad.push(allpets[i])
+// }
 
+// const cant = cantidad.map(({ estado }) => estado)
 
+// const pv = cant.length
 
 return (
     <div className={stl.grafica}>
@@ -48,7 +59,7 @@ return (
         <BarChart
           width={50}
           height={500}
-          data={data}
+          data={allpets}
           margin={{
             top: 5,
             right: 30,
@@ -57,12 +68,12 @@ return (
           }}
         >
           <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="name" />
+          <XAxis dataKey="estado" />
           <YAxis />
           <Tooltip />
           <Legend />
-          <Bar dataKey="pv" fill="#8884d8" />
-          {/* <Bar dataKey="uv" fill="#82ca9d" /> */}
+          <Bar data="estado.length" fill="#8884d8" />
+          {/* <Bar dataKey="3" fill="#82ca9d" /> */}
         </BarChart>
       </ResponsiveContainer>
     </div>

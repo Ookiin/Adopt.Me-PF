@@ -19,7 +19,7 @@ export default function HomePerros () {
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
-    // const allPets = useSelector((state) => state.perros);
+    const allPets = useSelector((state) => state.perros);
     const copiaPerros = useSelector((state)=>state.perrosCopia)
 
     const [currentPage, setCurrentPage] = useState(1) 
@@ -27,7 +27,7 @@ export default function HomePerros () {
 
     const lastPetIndex = currentPage * mascotasPerPage 
     const firstPetIndex = lastPetIndex - mascotasPerPage 
-    const currentPets = copiaPerros.slice(firstPetIndex,lastPetIndex) 
+    const currentPets = allPets.slice(firstPetIndex,lastPetIndex) 
 
     const [setInput] = useState("");
     const [setOrden] = useState("");
@@ -85,7 +85,6 @@ export default function HomePerros () {
    return(
         <div className={stl.paginaadopcionperros}>
             <NavBar />
-            <FloatingUI />
         <div className={stl.tituloPerros}>Perros en Adopcion</div>
 <br></br><br></br>
         <div>
@@ -126,6 +125,7 @@ export default function HomePerros () {
                 <option value = 'Anciano'>Anciano</option>                                  
             </select> 
         </div>
+            <FloatingUI />
         <br/>
         <div>
             <button className={stl.btnNavHome} onClick={handleClick}>HomePerros</button>
@@ -140,7 +140,7 @@ export default function HomePerros () {
 
         <Paging 
         mascotasPerPage={mascotasPerPage} 
-        allPets={copiaPerros.length} 
+        allPets={allPets.length} 
         currentPage={currentPage}
         actualPage={actualPage}
         currentPets={currentPets}
@@ -171,3 +171,5 @@ export default function HomePerros () {
     </div>
     )
 }
+//
+  
