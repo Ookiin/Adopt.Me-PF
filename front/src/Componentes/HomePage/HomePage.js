@@ -3,10 +3,44 @@ import { Link } from "react-router-dom";
 import Footer from "../Footer/Footer";
 import NavBar from "../NavBar/NavBar";
 import stl from "./HomePage.module.css";
-
-
+import { useAuth0 } from "@auth0/auth0-react";
+import { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import getDetalleUsuario from "../../Actions/getDetalleUsuario"
+import getDetalleUsuarioGoogle from "../../Actions/getDetalleUsuarioGoogle";
 
 export default function HomePage() {
+  const { user, isAuthenticated } = useAuth0()
+  const dispatch = useDispatch()
+    
+  let usuarioIdRaro = ""
+  let id = ""
+  if (isAuthenticated) {
+      if (user.sub.startsWith("google")) {
+          usuarioIdRaro = user.sub
+          id = usuarioIdRaro.substring(14)
+      }
+      else {
+          usuarioIdRaro = user.sub
+          id = usuarioIdRaro.substring(6)
+      }
+  }
+  
+
+  useEffect(() => {
+      dispatch(getDetalleUsuarioGoogle(id));
+  }, [id, dispatch]);
+
+  useEffect(() => {
+          dispatch(getDetalleUsuario(id));
+  }, [id, dispatch]);
+  
+  
+
+  const detalleUser = useSelector((state) => state.detalleUsuario); // Estado global con los datos del usuario
+
+  const detalleUserGoogle = useSelector((state) => state.detalleUsuarioGoogle) 
+
 
   return (
     <div className={stl.homepage}>
