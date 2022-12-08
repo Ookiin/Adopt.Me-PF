@@ -16,32 +16,37 @@ export default function PostDetail() {
     const dispatch = useDispatch()
 
     const postDetalles = useSelector((state) => state.postDetails)
-    console.log("postdetail me trae esto : ---->", postDetalles)
+   
+
     
     useEffect(() => {
         dispatch(getComentarioId(id))   
     }, [id, dispatch])
 
     const [input, setInput] = useState({
-        respuesta: ""
+        respuesta: "",
+        caquina: postDetalles._id
     })
-
+   
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-    function handleSubmit(e) {
+     function handleSubmit(e) {
         e.preventDefault()
 
         dispatch(createRespuesta(input));
-        setInput({
-            respuesta: ""
+       setInput({
+            respuesta: "",
+            caquina: postDetalles._id
         })
+       
         Toast.success("Respuesta enviada con exito", 1000, () => {})
     }
 
-    function handleRespuesta(e) {
-        setInput({
+     function handleRespuesta(e) {
+       setInput({
             ...input,
-            respuesta: e.target.value
+            respuesta: e.target.value,
+            caquina: postDetalles._id
         })
     }
 
@@ -50,11 +55,27 @@ export default function PostDetail() {
     const allRespuestas = useSelector((state) => state.respuestas);
     console.log("allrespuestas", allRespuestas)
 
+    // const caquinas = []
+    // for (let i  = 0; i < allRespuestas.length; i++) {
+    //     caquinas.push(allRespuestas[i])
+    // }
+
+    console.log("allresuestas", allRespuestas)
+
+    const lalala = allRespuestas.filter(({caquina}) => caquina)
+
+    console.log("id respuesta", lalala)
+
     useEffect(() => {
         dispatch(getRespuesta())
     }, [dispatch])
 
+
+    const algo = postDetalles._id
+    console.log("algo", algo)
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+if (lalala === algo) {
 
     return (
         <>
@@ -68,12 +89,12 @@ export default function PostDetail() {
              <div className="textDetalles"><div className="detallescontenido">{postDetalles.contenido}</div></div>
 
             </div>
-
+            
             <div className="postResponse">
+                 
                 {allRespuestas && allRespuestas.map(r => {
-                    if (postDetalles._id)
-                    return (
 
+                    return ( 
                         <PostResponse 
                         id = {r._id}
                         respuesta = {r.respuesta}
@@ -81,6 +102,7 @@ export default function PostDetail() {
 
                     )
                 })} 
+
             </div>
 
             
@@ -99,4 +121,41 @@ export default function PostDetail() {
         <Footer />
         </>
     )
+            } else {
+                return (
+                    <>
+                    <NavBar />
+                    <div className="paginaDetalles">
+            
+                         <div className="posteoDetalles">
+            
+                        <div className="tituloDetalles">Titulo: <p>{postDetalles.titulo}</p></div>
+            
+                         <div className="textDetalles"><div className="detallescontenido">{postDetalles.contenido}</div></div>
+            
+                        </div>
+                        
+                        <div className="postResponse">
+                             
+                           <p>Sin comentarios</p>
+            
+                        </div>
+            
+                        
+                        <form className="contenedorRespuesta" onSubmit={handleSubmit}>
+            
+                            <div>
+                            <div>Tu Comentario: </div>
+                                <textarea id={postDetalles._id} className="textRespuesta" type="textarea" resize="none" name="respuesta"
+                                value={input.respuesta} onChange={handleRespuesta} />
+                            </div>
+            
+                            <button className="botonRespuesta" type="submit">Enviar</button>
+                            </form>
+                        </div>
+            
+                    <Footer />
+                    </>
+                )
+            }
 }
