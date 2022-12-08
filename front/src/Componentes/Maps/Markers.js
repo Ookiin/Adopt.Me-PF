@@ -44,6 +44,3 @@ export default function Markers() {
     )
     
   }
-
-
-//
