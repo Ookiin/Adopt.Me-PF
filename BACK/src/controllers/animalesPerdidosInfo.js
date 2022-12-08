@@ -55,7 +55,9 @@ getPerrosPerdidos = async (req,res) => {
         estado,
         tama,        
         descripcion,        
-        imagen,} = req.body;
+        imagen,
+        lng,
+        lat} = req.body;
   
         const animales = await new AnimalesPerdidosModel({
         _id: _id,
@@ -65,7 +67,9 @@ getPerrosPerdidos = async (req,res) => {
         estado,
         tama,       
         descripcion,
-        imagen,        
+        imagen, 
+        lng,
+        lat       
         })    
         if (animales.length) await animales.save()
         const nuevoAnimal = await animales.save()      

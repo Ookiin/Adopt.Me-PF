@@ -10,8 +10,8 @@
 }
 
 .formularito {
-    height: 1100px;
-    width: 600px;
+    height: 1600px;
+    width: 800px;
     display: flex;
     justify-content: center;
     flex-direction: column;
@@ -57,6 +57,7 @@
     /* margin-bottom: 10px; */
     /* border: 2px solid green; */
     font-size: 15px;
+    
 }
 
 .titulos2 {
@@ -93,7 +94,7 @@
     margin: 0;
     outline: 2px solid transparent;
     padding: 9px 10px;
-    margin-right: 95px;
+    margin-right: 155px;
     margin-top: 36px;
     text-align: center;
     text-transform: none;
@@ -149,7 +150,7 @@
     height: 200px;
     margin-top: -40px;
     margin-bottom: 20px;
-    margin-right: 150px;
+    margin-right: 250px;
   }
 
   .botonFoto {
@@ -288,4 +289,69 @@
 
 textarea {
   resize: none;
+}
+
+.botonMapa2 {
+  appearance: button;
+  background-color: transparent;
+  background-image: linear-gradient(to bottom, #fff, #f8eedb);
+  border: 0 solid #e5e7eb;
+  border-radius: .5rem;
+  box-sizing: border-box;
+  color: #482307;
+  column-gap: 1rem;
+  cursor: pointer;
+  display: inline-flex;
+  font-family: 'Viga', sans-serif;  
+  font-size: 100%;
+  font-weight: 700;
+  line-height: 24px;
+  margin: 0;
+  outline: 2px solid transparent;
+  padding: 9px 10px;
+  /* border: 1px solid blue; */
+  margin-left: 10px;
+  text-align: center;
+  text-transform: none;
+  transition: all .1s cubic-bezier(.4, 0, .2, 1);
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  box-shadow: -6px 8px 10px rgba(81,41,10,0.1),0px 2px 2px rgba(81,41,10,0.2);
+  width: 200px;
+  margin-bottom: 20px;
+  margin-left: 20px;
+  justify-content: center;
+  margin-top: 40px;
+}
+
+.botonMapa2:active {
+  background-color: #f3f4f6;
+  box-shadow: -1px 2px 5px rgba(81,41,10,0.15),0px 1px 1px rgba(81,41,10,0.15);
+  transform: translateY(0.125rem);
+}
+
+.botonMapa2:focus {
+  box-shadow: rgba(72, 35, 7, .46) 0 0 0 4px, -6px 8px 10px rgba(81,41,10,0.1), 0px 2px 2px rgba(81,41,10,0.2);
+}
+
+.botonMapa2:hover {
+  box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
+  transform: translateY(-4px);
+  background-color: white;
+  color: black;
+}
+
+.botones {
+  display: flex;
+  justify-content: center;
+}
+
+.inputs3 {
+  margin-left: 30px;
+}
+
+.textareaDonar {
+  width: 400px;
+  height: 100px;
 }

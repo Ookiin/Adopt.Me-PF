@@ -155,3 +155,13 @@
     display: flex;
     justify-content: center;
   }
+
+  .ubicacionmapa {
+    width: 600px;
+    margin-left: 470px;
+  }
+
+  .imagenMarcador {
+    width: 60px;
+    height: 60px;
+  }

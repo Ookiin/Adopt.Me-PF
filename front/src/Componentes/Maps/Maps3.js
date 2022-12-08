@@ -51,6 +51,7 @@ useEffect(() => {
 
     <div>
        <NavBar />
+       <div className={stl.ubicacionmapa}>
         <MapContainer center={position} zoom={13} scrollWheelZoom={false}>
         <FlyMapTo />
         <TileLayer
@@ -64,6 +65,7 @@ useEffect(() => {
         <Link to ="/adoptcat">
         <button className={stl.botonMapa}>Volver</button>
         </Link>
+        </div>
         <Footer />
     </div>
     )

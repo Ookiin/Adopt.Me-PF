@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import createAnimalPerdido from '../../Actions/createAnimalPerdido';
@@ -9,6 +9,10 @@ import stl from "../ReportarMascota/ReportarMascota.module.css"
 import FloatingUI from "../Floating UI/FloatingUI";
 import imagenDefault from "../../Imagenes/imagenDefault.png"
 import Toast from 'light-toast';
+import { MapContainer, Marker, Popup, TileLayer, useMap } from "react-leaflet";
+import MarkersLost from "../MapaPerdidos/Marcadores";
+import createLocationPerdidos from "../../Actions/createLocationPerdidos";
+import { IconLocation } from "../Maps/IconLocation";
 
 
 ////////////////////////////////////////////////////// VALIDACION ///////////////////////////////////////////////////////////////
@@ -58,9 +62,11 @@ function validation(input){
         tama: [],
         peso: "",
         descripcion: "",        
-        imagen: ""
+        imagen: "",
+        lng: "",
+        lat: ""
       });
-console.log(input)
+      console.log("input", input)
   const [imagenes, setImagenes] = useState([]);
       
   const [errors, setErrors] = useState({});
@@ -68,6 +74,7 @@ console.log(input)
     function handleSubmit(e){
          e.preventDefault();
 
+    dispatch(createLocationPerdidos(input))
     dispatch(createAnimalPerdido(input, imagenes));
 
     setInput({
@@ -77,9 +84,11 @@ console.log(input)
       tama: [],
       peso: "",
       descripcion: "",        
-      imagen: ""
+      imagen: "",
+      lng: "",
+      lat: ""
     })
-    
+  
     // setImagenes([])
     Toast.success("Mascota agregada", 1500, () => {
       navigate("/homepage")
@@ -262,6 +271,86 @@ const {descripcion } = input;
   localStorage.setItem("estadoTamaño", JSON.stringify(input))
  }, )
 
+ ////////////////////////////////////////////////////////////////////////////////////////////////////
+
+ 
+function handleLocation(e) {
+  e.preventDefault()
+  setInput({
+    ...input,
+          lat: geo.lat,
+          lng: geo.lng
+  })
+  Toast.success("Ubicacion Establecida. Por favor seleccione 'Guardar mi Ubicacion'", 1500, () => {});
+}
+
+function handleLocation2(e) {
+  e.preventDefault()
+  setInput({
+    ...input,
+          lat: geo.lat,
+          lng: geo.lng
+  })
+  Toast.success("Ubicacion Guardada con exito. Por favor seleccione 'Confirmar y volver'", 1500, () => {});
+}
+
+//////////////////////////////////////////////////////////////////////////////////////////////
+
+const [geo, setGeo] = useState({
+  lng: -61.043988,
+  lat: -34.7361,
+})
+
+useEffect(() => {
+  navigator.geolocation.getCurrentPosition(
+      function (position) {
+          setGeo({
+              lng: position.coords.longitude,
+              lat: position.coords.latitude
+          })
+      }, 
+      function(error) {
+          console.log(error)
+      }, {
+          enableHighAccuracy: true
+      });
+      
+}, [])
+
+
+const [draggable, setDraggable] = useState(false)
+const markerRef = useRef(null)
+const eventHandlers = useMemo(
+() => ({
+  dragend() {
+    const marker = markerRef.current
+    if (marker != null) {
+      setGeo(marker.getLatLng())
+    }
+  },
+}),
+[],
+)
+const toggleDraggable = useCallback(() => {
+setDraggable((d) => !d)
+}, [])
+
+const position = [geo.lat, geo.lng]
+
+const local = position
+
+function FlyMapTo() {
+
+const map = useMap()
+
+useEffect(() => {
+    map.flyTo(local)
+    
+}, {enableHighAccuracy: true})
+
+return null
+}
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   return (
     
@@ -337,12 +426,51 @@ const {descripcion } = input;
                         </div>
         
 
-            <div className={stl.opciones}>
-              <Link to ="/lostpets">
+            <div className={stl.opcionesMapa}>
+              {/* <Link to ="/lostpets">
                 <button className={stl.botonubicacion}>Establecer ubicacion donde se perdio o vio por ultima vez
                   la mascota
                 </button>
-                  </Link>        
+                  </Link>         */}
+        <p>Por favor. Para guardar su ubicacion exitosamente<br></br>
+        Primero mueva el marcador de posicion para el<br></br>
+         lugar donde perdio 
+        su mascota o vio una mascota perdida. <br></br><br></br>Despues seleccione "Establecer mi Ubicacion", 
+        y luego "Guardar mi Ubicacion".</p>
+        <p>Finalmente "Confirmar y Volver"</p>
+        <div className={stl.botones}>
+        <button className={stl.botonubicacion} onClick={handleLocation}>Establecer mi Ubicacion</button>
+        <button className={stl.botonubicacion} onClick={handleLocation2}>Guardar mi Ubicacion</button>
+        {/* <Link to ="/reportarmascota">
+            <button className={stl.botonMapa3} type="submit" onClick={handleSubmit} >Confirmar y Volver</button>
+            </Link> */}
+            </div>
+
+        <MapContainer center={position} zoom={13} scrollWheelZoom={false}>
+        <FlyMapTo />
+        <TileLayer
+          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"/>
+
+        <Marker
+        draggable={draggable}
+        eventHandlers={eventHandlers}
+        position={geo}
+        ref={markerRef}
+        icon={IconLocation}>
+        <Popup minWidth={90}>
+          <div onClick={toggleDraggable}>
+            {draggable
+              ? 'Ya puedes arrastrarlo'
+              : 'Hace "Click" aqui para arrastrarlo'}
+          </div>
+        </Popup>
+      </Marker>
+
+    <MarkersLost />
+        
+    </MapContainer>
+
             </div>
 
             <div className={stl.opciones}>

@@ -7,7 +7,7 @@ const router = express.Router();
 const infoAnimal = require("../controllers/animalInfo");
 const {verifyToken, isAdmin} = require ('../middlewares/authJwt')
 
-router.post("/", verifyToken, isAdmin, postAnimal);
+router.post("/", postAnimal);
 
 router.get("/", getAnimales);
 

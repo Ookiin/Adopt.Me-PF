@@ -85,7 +85,6 @@ export default function HomePerros () {
    return(
         <div className={stl.paginaadopcionperros}>
             <NavBar />
-            <FloatingUI />
         <div className={stl.tituloPerros}>Perros en Adopcion</div>
 <br></br><br></br>
         <div>
@@ -126,6 +125,7 @@ export default function HomePerros () {
                 <option value = 'Anciano'>Anciano</option>                                  
             </select> 
         </div>
+            <FloatingUI />
         <br/>
         <div>
             <button className={stl.btnNavHome} onClick={handleClick}>HomePerros</button>

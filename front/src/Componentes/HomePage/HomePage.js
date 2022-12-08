@@ -1,6 +1,5 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import FloatingUI from "../Floating UI/FloatingUI";
 import Footer from "../Footer/Footer";
 import NavBar from "../NavBar/NavBar";
 import stl from "./HomePage.module.css";
@@ -13,7 +12,6 @@ export default function HomePage() {
     <div className={stl.homepage}>
       
       <NavBar />
-      <FloatingUI />
       
       <div className={stl.donacion}>
         <p className={stl.textoDonacion}>Realiza tu donacion</p>
