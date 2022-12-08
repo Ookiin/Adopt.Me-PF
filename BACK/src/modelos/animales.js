@@ -60,7 +60,7 @@ const AnimalSchema = new Schema({
         required: false,
     },
     pichina: {
-        ref: 'usuarios',
+        // ref: 'usuarios',
         type: String,
     }, 
     latitude: {

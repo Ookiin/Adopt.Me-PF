@@ -190,7 +190,7 @@ console.log("input 1", input)
         vacunado: "",
         desparasitado: "",
         imagen: "",
-        pichina: "",
+        pichina: usuario._id,
         latitude: "",
         longitude: ""
       });
