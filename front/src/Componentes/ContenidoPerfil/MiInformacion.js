@@ -202,6 +202,7 @@ export default function MiInformacion(props) {
           action="/usuarios/signup"
           method="POST"
         >
+          <br></br>
           <div className={stl.datosRegistro} key={params.id}>
             <img
               src={props.datos.fotoPerfil}
