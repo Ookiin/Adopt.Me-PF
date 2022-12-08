@@ -124,4 +124,3 @@ export default function MapView() {
     </div>
     )
 }
-

@@ -197,7 +197,7 @@ export default function MiInformacion(props) {
       <div className={stl.form}>
         <br></br>
         <br></br>
-        <form
+        <form className={stl.formUser}
           onSubmit={(e) => handleSubmit(e)}
           action="/usuarios/signup"
           method="POST"

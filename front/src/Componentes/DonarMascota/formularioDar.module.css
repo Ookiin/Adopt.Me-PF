@@ -10,13 +10,13 @@
 }
 
 .formularito {
-    height: 1600px;
+    height: 1700px;
     width: 800px;
     display: flex;
     justify-content: center;
     flex-direction: column;
     align-items: flex-end;
-    margin-left: 440px;
+    margin-left: 370px;
     margin-top: 80px;
     margin-bottom: 100px;
     box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;    
@@ -48,33 +48,8 @@
     margin-top: 20px;
 }
 
-.boton {
-    /* margin-top: 24px;
-    margin-right: 137px; */
-}
-
 .titulos {
-    /* margin-bottom: 10px; */
-    /* border: 2px solid green; */
     font-size: 15px;
-    
-}
-
-.titulos2 {
-    /* font-size: 16px;
-    border: 1px solid blue;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-left: 90px; */
-}
-
-.inputs2 {
-  /* border: 1px solid green;
-  display: flex;
-  justify-content: center; */
-  /* margin-left: 106px; */
-  
 }
 
 .boton {
@@ -276,17 +251,6 @@
    margin-bottom: -17px;
   }
 
-.opcionesinputs {
-  /* border: 1px solid black;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-direction: column;
-  height: 500px;
-  width: 300px; */
-  /* width: 500px; */
-}
-
 textarea {
   resize: none;
 }
@@ -356,5 +320,5 @@ textarea {
   height: 100px;
 }
 
-/*
+
   
