@@ -51,11 +51,14 @@ function FlyMapTo() {
    
 
     return ( 
+
     <div className="map">
+
        <NavBar />
 
         <p>Estas son las mascotas perdidas reportadas</p>
 
+        <div className={stl.mapPerdidos}>
         <MapContainer center={local} zoom={13} scrollWheelZoom={false} >
         <FlyMapTo />
         <TileLayer 
@@ -66,12 +69,18 @@ function FlyMapTo() {
 
             
         </MapContainer > 
+        </div>
 
         <Link to ="/buscarmascota">
         <button className={stl.botonMapa}>Volver</button>
         </Link>
+
         <Footer />
+
     </div>
     )
 
 }
+
+//
+  
