@@ -25,6 +25,7 @@ import "../DonarMascota/formularioDar.css"
  const dispatch = useDispatch();
 
  const usuario = useSelector((state) => state.detalleUsuario)
+ const detalleUserGoogle = useSelector((state) => state.detalleUsuarioGoogle) 
 
   /////////////////////////////////////////////////////////// TOMA MI UBICACION ACTUAL SEGUN MI GPS ///////////////////
 
@@ -65,6 +66,7 @@ import "../DonarMascota/formularioDar.css"
         desparasitado: "",
         imagen: "",
         pichina: usuario._id,
+        pichina2: detalleUserGoogle.id,
         latitude: "",
         longitude: ""
       });
@@ -191,6 +193,7 @@ console.log("input 1", input)
         desparasitado: "",
         imagen: "",
         pichina: usuario._id,
+        pichina2: detalleUserGoogle.id,
         latitude: "",
         longitude: ""
       });

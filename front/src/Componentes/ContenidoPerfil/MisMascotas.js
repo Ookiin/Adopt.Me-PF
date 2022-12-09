@@ -1,50 +1,63 @@
-import { Link, useParams, useNavigate } from "react-router-dom";
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import getusers from "../../Actions/getusers";
-import { useAuth0 } from "@auth0/auth0-react";
 import stl from "./MisMascotas.module.css"
 import CardGato from '../Card/CardGato';
 import getgato from "../../Actions/getgatos";
+import { useAuth0 } from "@auth0/auth0-react";
 import getperro from "../../Actions/getperros";
+import getmascotas from "../../Actions/getmascotas";
+import getDetalleUsuario from "../../Actions/getDetalleUsuario";
 
 
 
 export default function MisMascotas() {
     
     const dispatch = useDispatch();
-    const allpets = useSelector((state)=>state.gatos);
-    const userID = useSelector((state)=>state.users).data;
-    const detail = useSelector((state) => state.animalesdetail);
-    
-    const detalleUser = useSelector((state) => state.detalleUsuario); // Estado global con los datos del usuario
-    console.log("Estos son los datos de detalleUser")
-    // console.log(detalleUser)
-    
-    const detalleUserGoogle = useSelector((state) => state.detalleUsuarioGoogle)
-    console.log("Estos son los datos del userGoogle")
-    // console.log(detalleUserGoogle)
-    
-    // let id = detalleUser._id
-    const userId = [];
-    for (let i = 0; i < allpets.length; i++){
-        userId.push(allpets[i])
+    const gatos = useSelector((state)=>state.gatos);
+    const { user, isAuthenticated } = useAuth0()
+ 
+    const gatoId = [];
+    for (let i = 0; i < gatos.length; i++){
+        gatoId.push(gatos[i])
     }
+    // const mapeo = gatoId.map(id =>id.pichina)
+    // console.log(mapeo);
+    console.log(gatoId);
+    
+    let usuarioIdRaro = ""
+    let id = ""
+    if (isAuthenticated) {
+        if (user.sub.startsWith("google")) {
+            usuarioIdRaro = user.sub
+            id = usuarioIdRaro.substring(14)
+        }
+        else {
+            usuarioIdRaro = user.sub
+            id = usuarioIdRaro.substring(6)
+        }
+    }   
 
+    const mapeo = id? gatos.filter(({pichina}) => pichina === id): gatos.filter(({pichina}) => pichina === usuarioIdRaro)
+    console.log(mapeo, 'SOY MAPEO');
     
-    console.log(userId, 'soy userId');
-    
+    console.log(id, 'soy userId');    
     
     useEffect(() => {
+        dispatch(getDetalleUsuario());
+        dispatch(getDetalleUsuario());
         dispatch(getgato());
     }, [dispatch]);
+//     useEffect(() => {
+//         dispatch(getDetalleUsuario(id));
+// }, [id, dispatch]);
+
     
    return(
     
     <div className={stl.cartel}>
 
 
-            {allpets && allpets.map(p =>{
+            {mapeo && mapeo.map(p =>{
 
                 return(
                   

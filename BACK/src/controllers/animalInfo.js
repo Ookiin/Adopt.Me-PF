@@ -116,6 +116,7 @@ postAnimal = async (req, res) => {
       desparasitado,
       imagen,      
       pichina,
+      pichina2,
       longitude,
       latitude} = req.body;
 
@@ -135,6 +136,7 @@ postAnimal = async (req, res) => {
       desparasitado,
       imagen,     
       pichina,
+      pichina2,
       longitude,
       latitude    
       })    
