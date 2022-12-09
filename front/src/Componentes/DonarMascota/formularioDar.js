@@ -57,7 +57,7 @@ import "../DonarMascota/formularioDar.css"
         raza: "",
         edad: [],
         estado: "En adopción",
-        tamaño: [],
+        tama: [],
         peso: "",
         descripcion: "",
         castrado: "",
@@ -96,8 +96,8 @@ console.log("input 1", input)
       errors.edad = "Tenes que indicar la edad"
     }
 
-    if(!input.tamaño || input.tamaño === []) {
-      errors.tamaño = "Tenes que indicar el tamaño"
+    if(!input.tama || input.tama === []) {
+      errors.tama = "Tenes que indicar el tamaño"
     }
 
     if (!input.peso) {
@@ -183,7 +183,7 @@ console.log("input 1", input)
         raza: "",
         edad: [],
         estado: "En adopción",
-        tamaño: [],
+        tama: [],
         peso: "",
         descripcion: "",
         castrado: "",
@@ -244,10 +244,10 @@ function handleChange(e) {
    } 
 
    function handleTamaño(e) {
-    if (input.tamaño.length === 0)
+    if (input.tama.length === 0)
     setInput({
       ...input,
-      tamaño: [...input.tamaño, e.target.value]
+      tama: [...input.tama, e.target.value]
     })
  } 
 
@@ -377,7 +377,7 @@ function handleLocation2() {
 
  ////////////////////////////////////////////// EDAD Y TAMAÑO LOCALSTORE /////////////////////////////////////////////////
 
- const { edad, tamaño } = input;
+ const { edad, tama } = input;
 
  const handleLocalTamEdad = (e) => {
   let value = e.target.value;
@@ -389,7 +389,7 @@ function handleLocation2() {
  useEffect(() => {
   const optionS = JSON.parse(localStorage.getItem("edadTamaño"));
   
-  if (edad === null && tamaño === null) {
+  if (edad === null && tama === null) {
     setInput((prev) => ({...prev, ...optionS}))
 
   }
@@ -516,13 +516,13 @@ return null
 
             <label className={stl.titulos}>Tamaño:</label>
             <div className={stl.opciones}>                                     
-            <select className={stl.tamaño} name="tamaño" defaultValue="" onChange={(e) => {handleTamaño(e); handleLocalTamEdad(e); }}>
+            <select className={stl.tamaño} name="tama" defaultValue="" onChange={(e) => {handleTamaño(e); handleLocalTamEdad(e); }}>
                        <option value="" disabled hidden >Seleccione tamaño...</option>
                        <option>Chico</option>
                        <option>Mediano</option>
                        <option>Grande</option>
                        </select>
-                       {errors.tamaño && <p className={stl.error}>{errors.tamaño}</p>}
+                       {errors.tama && <p className={stl.error}>{errors.tama}</p>}
                        </div>
         
             <label className={stl.titulos}>Peso (en Kg):</label>
