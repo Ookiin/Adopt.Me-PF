@@ -114,7 +114,7 @@ export default function FormRegistro() {
   }*/
 
   function handleSubmit(e) {
-    console.log("Ingreso al handleSubmit");
+    console.log("Ingreso al handleSubmit") ;
     e.preventDefault();
     console.log(Allusers);
     //Si no hay errores, el isSubmit esta en true
