@@ -8,7 +8,7 @@ import createuser from "../../Actions/createuser";
 import getusers from "../../Actions/getusers";
 import FloatingUI from "../Floating UI/FloatingUI";
 import userImageDefault from "../../Imagenes/userImageDefault.png";
-import Toast from 'light-toast';
+import Toast from "light-toast";
 
 export default function FormRegistro() {
   const params = useParams();
@@ -61,7 +61,7 @@ export default function FormRegistro() {
     }
 
     if (!input.repitaContrasena) {
-      errors.repitaContrasena = "Tenes que repetir la contraseña";
+      errors.repitaContraseña = "Tenes que repetir la contraseña";
     } else if (input.repitaContrasena !== input.contrasena) {
       errors.repitaContraseña = "Las contraseñas no coinciden";
     }
@@ -74,7 +74,11 @@ export default function FormRegistro() {
 
     if (!input.telefono) {
       errors.telefono = "Tenes que ingresar un telefono";
-    } else if (input.telefono.length > 15) {
+    }
+    if (!/^[0-9]*(\.?)[0-9]+$/.test(input.telefono)) {
+      errors.telefono = "Este campo solo debe contener numeros"
+    }
+     if (input.telefono.length > 15) {
       errors.telefono = "El teléfono no es válido";
     }
 
@@ -102,19 +106,29 @@ export default function FormRegistro() {
       });
     }
 
+    if (!input.localidad) {
+      errors.localidad = "Tenes que ingresar una localidad";
+    }
+
     if (Object.keys(errors).length === 0) {
       setisSubmit(true);
+    }
+    if (Object.keys(errors).length !== 0) {
+      setisSubmit(false);
     }
 
     return errors;
   }
 
+  console.log("Estos son los errores");
+  console.log(errors);
+
   function handleSubmit(e) {
     e.preventDefault();
     //Si no hay errores, el isSubmit esta en true
     if (isSubmit) {
-      console.log("Se despacha el create con estos valores")
-      console.log(input)
+      console.log("Se despacha el create con estos valores");
+      console.log(input);
       dispatch(createuser(input));
       setInput({
         usuario: "",
@@ -129,9 +143,13 @@ export default function FormRegistro() {
       });
       Toast.success("Usuario creado correctamente", 1500, () => {
         navigate("/prueba");
-      });    
+      });
     } else {
-      Toast.fail("No se pudo completar el registro, revise los campos", 1500, () => {});
+      Toast.fail(
+        "No se pudo completar el registro, revise los campos",
+        1500,
+        () => {}
+      );
     }
   }
 
@@ -176,18 +194,7 @@ export default function FormRegistro() {
       <NavBar />
       <FloatingUI />
 
-      <div className={stl.errores}>
-        {errors.usuario && <p className={stl.error}>{errors.usuario}</p>}
-        {errors.contraseña && <p className={stl.error}>{errors.contrasena}</p>}
-        {errors.repitaContraseña && (
-          <p className={stl.error}>{errors.repitaContraseña}</p>
-        )}
-        {errors.nombre && <p className={stl.error}>{errors.nombre}</p>}
-        {errors.telefono && <p className={stl.error}>{errors.telefono}</p>}
-        {errors.mail && <p className={stl.error}>{errors.mail}</p>}
-        {errors.nacimiento && <p className={stl.error}>{errors.nacimiento}</p>}
-        {errors.localidad && <p className={stl.error}>{errors.localidad}</p>}
-      </div>
+      <div className={stl.errores}></div>
 
       <div className={stl.form} key={params.id}>
         <div className={stl.titulomayor}>Registro de Usuario</div>
@@ -196,6 +203,28 @@ export default function FormRegistro() {
           action="/usuarios/signup"
           method="POST"
         >
+          <div className={stl.datosRegistro} key={params.id}>
+            <img
+              src={userImageDefault}
+              id="user-photo"
+              alt=""
+              height="200"
+              width="200"
+            />
+            <br></br>
+            <button
+              id="btn-foto"
+              name="fotoPerfil"
+              onClick={(e) => handleOpenWidget(e)}
+              className={stl.BotonFoto}
+            >
+              SELECCIONE FOTO DE PERFIL
+            </button>
+            <span></span>
+            
+            {errors.fotoPerfil && (<p className={stl.err}>{errors.fotoPerfil}</p>)}
+            
+          </div>
           <div className={stl.datosRegistro} key={params.id}>
             <div>NOMBRE DE USUARIO: </div>
             <input
@@ -206,6 +235,9 @@ export default function FormRegistro() {
               value={input.usuario}
               onChange={(e) => handleChange(e)}
             />{" "}
+            
+              {errors.usuario && <p className={stl.err}>{errors.usuario}</p>}
+            
             <span></span>
           </div>
 
@@ -219,6 +251,11 @@ export default function FormRegistro() {
               value={input.contrasena}
               onChange={(e) => handleChange(e)}
             />{" "}
+            
+              {errors.contrasena && (
+                <p className={stl.err}>{errors.contrasena}</p>
+              )}
+            
             <span></span>
           </div>
 
@@ -232,6 +269,11 @@ export default function FormRegistro() {
               value={input.repitaContrasena}
               onChange={(e) => handleChange(e)}
             />{" "}
+            
+              {errors.repitaContraseña && (
+                <p className={stl.err}>{errors.repitaContraseña}</p>
+              )}
+           
             <span></span>
           </div>
 
@@ -244,10 +286,10 @@ export default function FormRegistro() {
               name="nombre"
               value={input.nombre}
               onChange={(e) => handleChange(e)}
-            />{" "}
-            <span></span>
+            />
+              {errors.nombre && <p className={stl.err}>{errors.nombre}</p>}
           </div>
-
+            
           <div className={stl.datosRegistro} key={params.id}>
             <div>TELÉFONO DE CONTACTO: </div>
             <input
@@ -258,6 +300,11 @@ export default function FormRegistro() {
               value={input.telefono}
               onChange={(e) => handleChange(e)}
             />{" "}
+            
+              {errors.telefono && (
+                <p className={stl.err}>{errors.telefono}</p>
+              )}
+            
             <span></span>
           </div>
 
@@ -271,6 +318,9 @@ export default function FormRegistro() {
               value={input.mail}
               onChange={(e) => handleChange(e)}
             />{" "}
+           
+              {errors.mail && <p className={stl.err}>{errors.mail}</p>}
+            
             <span></span>
           </div>
 
@@ -285,6 +335,11 @@ export default function FormRegistro() {
               placeholder="dd-mm-yyyy"
               onChange={(e) => handleChange(e)}
             />{" "}
+           
+              {errors.nacimiento && (
+                <p className={stl.err}>{errors.nacimiento}</p>
+              )}
+           
             <span></span>
           </div>
 
@@ -298,29 +353,15 @@ export default function FormRegistro() {
               value={input.localidad}
               onChange={(e) => handleChange(e)}
             />{" "}
+            
+              {errors.localidad && (
+                <p className={stl.err}>{errors.localidad}</p>
+              )}
+           
             <span></span>
           </div>
 
-          <div className={stl.datosRegistro} key={params.id}>
-            <img
-              src={userImageDefault}
-              id="user-photo"
-              alt=""
-              height="150"
-              width="150"
-            />
-
-            <button
-              id="btn-foto"
-              name="fotoPerfil"
-              onClick={(e) => handleOpenWidget(e)}
-              className={stl.botonImagen}
-            >
-              SELECCIONE FOTO DE PERFIL
-            </button>
-            <span></span>
-            {errors.fotoPerfil && <p>{errors.fotoPerfil}</p>}
-          </div>
+         
 
           <div>
             <button
@@ -340,5 +381,4 @@ export default function FormRegistro() {
       <Footer />
     </div>
   );
-  
 }
