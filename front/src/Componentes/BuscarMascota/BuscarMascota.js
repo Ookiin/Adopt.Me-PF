@@ -134,9 +134,9 @@ export default function BuscarMascota() {
         <button className={stl.boton}>VOLVER</button>
       </Link>
 
-      <Footer />
 
 </div>
+      <Footer />
 </div>
   
   );
