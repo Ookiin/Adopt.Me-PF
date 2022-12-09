@@ -47,7 +47,7 @@ export default function FormRegistro() {
     if (!input.usuario) {
       errors.usuario = "Tenes que ingresar un nombre de usuario";
     } else if (
-      !/^(?=.*[a-zA-Z]{1,})(?=.*[\d]{0,})[a-zA-Z0-9]{1,15}$/.test(input.usuario)
+      !/^(?=.[a-zA-Z]{1,})(?=.[\d]{0,})[a-zA-Z0-9]{1,15}$/.test(input.usuario)
     ) {
       // max 15 caracteres alfanumericos
       errors.usuario = "El nombre de usuario no es válido";
