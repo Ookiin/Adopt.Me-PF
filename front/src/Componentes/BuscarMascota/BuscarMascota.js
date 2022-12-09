@@ -57,8 +57,8 @@ export default function BuscarMascota() {
 
 
   return (
-    <>
-      <div className={stl.paginaadopcionperros} key={params.id}></div>
+
+      <div className={stl.paginaadopcionperros} key={params.id}>
       <NavBar />
       <FloatingUI />
       <div>
@@ -129,7 +129,6 @@ export default function BuscarMascota() {
                )
            })}
 
-</div>
       
       <Link to="/homepage">
         <button className={stl.boton}>VOLVER</button>
@@ -137,6 +136,8 @@ export default function BuscarMascota() {
 
       <Footer />
 
-    </>
+</div>
+</div>
+  
   );
 };

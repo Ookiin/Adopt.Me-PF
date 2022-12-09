@@ -63,13 +63,13 @@ export default function PostDetail() {
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     return (
-        <>
+        <div className="pagina">
         <NavBar />
-        <div className="paginaDetalles">
+        <div className="paginaDetalles" >
 
              <div className="posteoDetalles">
 
-            <div className="tituloDetalles">Titulo: <p>{postDetalles.titulo}</p></div>
+            <div className="tituloDetalles"><div>{postDetalles.titulo}</div></div>
 
              <div className="textDetalles"><div className="detallescontenido">{postDetalles.contenido}</div></div>
 
@@ -105,6 +105,6 @@ export default function PostDetail() {
             </div>
 
         <Footer />
-        </>
+        </div>
     )
 }

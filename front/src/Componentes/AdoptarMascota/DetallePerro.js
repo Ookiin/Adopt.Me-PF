@@ -10,19 +10,23 @@ import FloatingUI from "../Floating UI/FloatingUI";
 import getDetalleUsuario from "../../Actions/getDetalleUsuario";
 import { useAuth0 } from "@auth0/auth0-react";
 import Toast from "light-toast";
+import getusers from "../../Actions/getusers";
 
 export default function DetallePerro() {
   const { id } = useParams();
   const navigate = useNavigate();
-  // const params = useParams();
   const { user, isAuthenticated } = useAuth0();
   const dispatch = useDispatch();
-  // console.log(id);
   const detail = useSelector((state) => state.animalesdetail);
-  console.log("detail", detail)
   const detalleUserGoogle = useSelector((state) => state.detalleUsuarioGoogle);
-  console.log("Estos son los datos del userGoogle");
-  console.log(detalleUserGoogle);
+  const petOwner = useSelector((state) => state.users)
+
+  
+ 
+
+  useEffect(() => {
+    dispatch(getusers())
+  }, []) 
 
   useEffect(() => {
     dispatch(getmascotasbyid(id));
@@ -34,14 +38,26 @@ export default function DetallePerro() {
     _id = usuarioIdRaro.substring(6);
   }
 
+ ///////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+ const algo = detail
+ console.log("algo", algo)
+
+ const algo2 = petOwner
+ console.log("users", algo2)
+
+//  const ownerPet = algo2.filter(({ _id }) => _id === algo.pichina)
+
+//  console.log("ownerPet", ownerPet)
+
+
+ //////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
   useEffect(() => {
     dispatch(getDetalleUsuario(_id));
   }, [_id, dispatch]);
 
-  console.log(isAuthenticated);
-
-  const detalleUser = useSelector((state) => state.detalleUsuario); // Estado global con los datos del usuario
-  console.log(detalleUser);
+  const detalleUser = useSelector((state) => state.detalleUsuario); 
 
   function onClick(e) {
     e.preventDefault();
@@ -61,9 +77,14 @@ export default function DetallePerro() {
       );
     }
     if ((user && detalleUser.usuario) || detalleUserGoogle.usuario) {
-      navigate("/contacto");
+      return Toast.info(`Esta es la informacion del usuario que dio en \n adopcion esta mascota: \n Nombre: 
+      ${petOwner.nombre} \n Telefono: ${petOwner.telefono} \n Email: ${petOwner.email}`, 10000, () => {
+
+        navigate("/homepage");
+      })
     }
   }
+
 
   return (
     <div className={stl.paginaAdopcion}>

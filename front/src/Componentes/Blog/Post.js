@@ -10,10 +10,10 @@ export default function Post({titulo, contenido, id}) {
 
             
         <div className="tituloPosted">
-            <div classname="inputPosted" type="text">{titulo}</div>
+            <div classname="inputPosted"type="text">{titulo}</div>
         </div>
-
-        <div>
+        
+        <div className="contenidoContenedor">
             <div className="postedContenido" type="textarea" resize="none">{contenido}</div>
         </div>
              
