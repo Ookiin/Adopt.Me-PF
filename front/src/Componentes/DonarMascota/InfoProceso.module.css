@@ -3,16 +3,17 @@
 .donarmascota    {
     font-family: "Viga", sans-serif;
     color: #393e46;
-    background-image: url("../../Imagenes/pisadas.jpg");
-    background-size: contain;
+    background-image: url("../../Imagenes/Pet-Slide-Backgrounds.jpg");
+    background-size: 100% 100%;
     background-repeat: no-repeat    ;
-    background-position: -280px;
+    /* background-position: -280px; */
   }
 
   .tituloDonarMascota {
     font-family: "Viga", sans-serif;
     font-size: 45px;
     text-shadow: 2px 2px rgb(38, 37, 37);
+    margin-left: 100px;
   }
 
 .botones2 {
@@ -66,7 +67,7 @@
 
   .h3s {
     width: 900px;
-    margin-left: 280px;
+    margin-left: 380px;
     padding: 10px;
     list-style: none;
   }

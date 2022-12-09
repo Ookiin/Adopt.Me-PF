@@ -62,12 +62,15 @@ export default function Blog() {
         <div className="creadorContainer">
             
         <div className="createPost">
-        Crea un nuevo Post
+        <div className="tituloForo">Foro Adopt.Me</div>
         <div className="post">
   
          <form onSubmit={handleSubmit}>
+            
+            <div className="posteo">
 
             <div className="tituloPost">  
+            <div><br></br></div>
                 <input classname="inputPost" type="text" name="titulo" value={input.titulo} onChange={handleTitulo}/>
                 <div>Titulo</div>
             </div>
@@ -76,6 +79,7 @@ export default function Blog() {
                 <textarea className="postContenido" type="textarea" resize="none" name="contenido" 
                 value={input.contenido} onChange={handleContenido} />
                 <div>Tu Consulta</div>
+            </div>
             </div>
 
             <button className="botonPost" type="submit">Enviar</button>
@@ -86,7 +90,7 @@ export default function Blog() {
          </div>
           </div>
 
-          <div>
+          <div className="posteos">
 
             {allPosts && allPosts.map(p => {
 

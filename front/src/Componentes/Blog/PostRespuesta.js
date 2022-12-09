@@ -6,9 +6,10 @@ export default function PostResponse({respuesta}) {
         <>
         <div className="contenedorRespuesta">
 
-        <div>
+        <div className="respuesta">
+            <br></br>
         <div>Comentario </div>
-            <div className="textRespuesta" type="text">{respuesta}</div>
+            <div className="textRespuesta" type="text"><div className="texto">{respuesta}</div></div>
         </div>
 
         </div>
