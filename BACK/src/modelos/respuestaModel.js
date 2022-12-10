@@ -8,6 +8,9 @@ const RespuestaModelSchema = new Schema({
   },
   caquina: {
     type: String,
+  }, 
+  respuestaOwner: {
+    type: String
   }
 });
 

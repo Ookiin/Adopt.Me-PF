@@ -9,6 +9,8 @@ import Footer from "../Footer/Footer";
 import Toast from 'light-toast';
 import createRespuesta from "../../Actions/createRespuesta";
 import getRespuesta from "../../Actions/getRespuesta";
+import getDetalleUsuario from "../../Actions/getDetalleUsuario";
+import { useAuth0 } from "@auth0/auth0-react";
 
 export default function PostDetail() {
 
@@ -17,15 +19,47 @@ export default function PostDetail() {
 
     const postDetalles = useSelector((state) => state.postDetails)
 
+       ////////////////////////////////////////////////////////////////////////////////////////
     
-    useEffect(() => {
-        dispatch(getComentarioId(id))   
-    }, [id, dispatch])
+       const { user, isAuthenticated } = useAuth0();
+    
+       let _id = undefined;
+       if (user) {
+           const usuarioIdRaro = user.sub;
+           _id = usuarioIdRaro.substring(6);
+       }
+       
+       useEffect(() => {
+           dispatch(getDetalleUsuario(_id));
+       }, [_id, dispatch]);
+       
+       
+       const detalleUser = useSelector((state) => state.detalleUsuario); 
+       const detalleUserGoogle = useSelector((state) => state.detalleUsuarioGoogle);
+   
+     function onClick(e) {
+       e.preventDefault();
+       if (!user) {
+         return Toast.fail(
+           "Debes iniciar sesion para responder este Post",
+           1500,
+           () => {}
+         );
+       }
+       if ((user && detalleUser.usuario) || detalleUserGoogle.usuario) {
+        e.preventDefault()
 
-    const [input, setInput] = useState({
-        respuesta: "",
-        caquina: postDetalles._id
-    })
+        dispatch(createRespuesta(input));
+        dispatch(getRespuesta())
+       setInput({
+            respuesta: "",
+            caquina: postDetalles._id,
+            respuestaOwner: ""
+        })
+       
+        Toast.success("Respuesta enviada con exito", 1000, () => {})
+         }
+     }
    
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -33,9 +67,11 @@ export default function PostDetail() {
         e.preventDefault()
 
         dispatch(createRespuesta(input));
+        dispatch(getRespuesta())
        setInput({
             respuesta: "",
-            caquina: postDetalles._id
+            caquina: postDetalles._id,
+            respuestaOwner: detalleUser.nombre
         })
        
         Toast.success("Respuesta enviada con exito", 1000, () => {})
@@ -45,9 +81,20 @@ export default function PostDetail() {
        setInput({
             ...input,
             respuesta: e.target.value,
-            caquina: postDetalles._id
+            caquina: postDetalles._id,
+            respuestaOwner: detalleUser.nombre
         })
     }
+
+    useEffect(() => {
+        dispatch(getComentarioId(id))   
+    }, [id, dispatch])
+
+    const [input, setInput] = useState({
+        respuesta: "",
+        caquina: postDetalles._id,
+        respuestaOwner: detalleUser.nombre
+    })
 
     ///////////////////////////////////////////////////////////////////////
     
@@ -69,6 +116,8 @@ export default function PostDetail() {
 
              <div className="posteoDetalles">
 
+                <div>Post creado por: {postDetalles.owner}</div>
+
             <div className="tituloDetalles"><div>{postDetalles.titulo}</div></div>
 
              <div className="textDetalles"><div className="detallescontenido">{postDetalles.contenido}</div></div>
@@ -84,6 +133,7 @@ export default function PostDetail() {
                         <PostResponse 
                         id = {r._id}
                         respuesta = {r.respuesta}
+                        respuestaOwner ={r.respuestaOwner}
                         />
 
                     )
@@ -102,7 +152,7 @@ export default function PostDetail() {
                     </div>
                 </div>
 
-                <button className="botonRespuesta" type="submit">Enviar</button>
+                <button className="botonRespuesta" type="submit" onClick={onClick}>Enviar</button>
                 </form>
             </div>
 

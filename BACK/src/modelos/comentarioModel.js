@@ -9,6 +9,9 @@ const comentarioModelSchema = new Schema({
   contenido: {
     type: String,
     require: true,
+  },
+  owner: {
+    type: String
   }
 });
 
