@@ -21,24 +21,12 @@ export default function MiInformacion(props) {
   const Allusers = useSelector((state) => state.users).data; // (o el estado global que usemos para guardar todos los usuarios)
   console.log("estos son los props");
   console.log(props);
-
+  
   const id = props.datos._id;
-  /*
-  const { user, isAuthenticated } = useAuth0()
-  const usuarioIdRaro = user.sub
-  
-
-  useEffect(() => {
-    dispatch(getDetalleUsuario(id));
-  }, [dispatch]);
-  const detalleUser = useSelector((state) => state.detalleUsuario); // Estado global con los datos del usuario
-  
-  console.log(detalleUser)
-  
+ 
   useEffect(() => {
     dispatch(getusers());
   }, [dispatch]);
- */
 
   const [input, setInput] = useState({
     usuario: props.datos.usuario,
@@ -55,17 +43,19 @@ export default function MiInformacion(props) {
 
   function validation(input) {
     let errors = {};
+    
     let noRepeatUser = Allusers.filter((u) => u.usuario === input.usuario);
     let noRepeatMail = Allusers.filter((u) => u.mail === input.mail);
 
     if (!input.usuario) {
       errors.usuario = "Tenes que ingresar un nombre de usuario";
-    } else if (
+    }
+    if (
       !/^(?=.*[a-zA-Z]{1,})(?=.*[\d]{0,})[a-zA-Z0-9]{1,15}$/.test(input.usuario)
     ) {
-      // max 15 caracteres alfanumericos
       errors.usuario = "El nombre de usuario no es válido";
-    } else if (noRepeatUser.length) {
+    }
+     if (noRepeatUser.length) {
       errors.usuario = `El nombre de usuario ${input.usuario} no está disponible`;
     }
 
@@ -77,22 +67,28 @@ export default function MiInformacion(props) {
 
     if (!input.telefono) {
       errors.telefono = "Tenes que ingresar un telefono";
-    } else if (input.telefono.length > 15) {
+    }
+    if (!/^[0-9]*(\.?)[0-9]+$/.test(input.telefono)) {
+      errors.telefono = "Este campo solo debe contener numeros"
+    }
+    if (input.telefono.length > 15) {
       errors.telefono = "El teléfono no es válido";
     }
-    
+
     if (!input.mail) {
       errors.mail = "Tenes que ingresar un e-mail";
-    } else if (!/[A-Z0-9._%+-]+@[A-Z0-9-]+.+.[A-Z]{2,4}/gim.test(input.mail)) {
+    }
+    if (!/[A-Z0-9._%+-]+@[A-Z0-9-]+.+.[A-Z]{2,4}/gim.test(input.mail)) {
       errors.mail = "El e-mail no es válido";
     }
-    /*else if (noRepeatMail.length) {
+    if (noRepeatMail.length) {
       errors.mail = "Ya existe una cuenta vinculada a ese mail";
-    }*/
+    }
 
     if (!input.nacimiento) {
       errors.nacimiento = "Tenes que ingresar una fecha de nacimiento";
-    } else if (
+    }
+    if (
       input.nacimiento.length > 10 ||
       !/^[0-9-]+$/.test(input.nacimiento)
     ) {
@@ -106,13 +102,23 @@ export default function MiInformacion(props) {
       });
     }
 
+    if (!input.localidad) {
+      errors.localidad = "Tenes que ingresar una localidad";
+    }
+
     if (Object.keys(errors).length === 0) {
       setisSubmit(true);
+    }
+    if (Object.keys(errors).length !== 0) {
+      setisSubmit(false);
     }
 
     return errors;
   }
 
+  console.log("estos son los errors")
+  console.log(errors)
+   
   function handleSubmit(e) {
     e.preventDefault();
     //Si no hay errores, el isSubmit esta en true
@@ -179,19 +185,11 @@ export default function MiInformacion(props) {
 
   return (
     <div>
-        <div className={stl.errores}>
-        {errors.usuario && <p className={stl.error}>{errors.usuario}</p>}
-        {errors.nombre && <p className={stl.error}>{errors.nombre}</p>}
-        {errors.telefono && <p className={stl.error}>{errors.telefono}</p>}
-        {errors.mail && <p className={stl.error}>{errors.mail}</p>}
-        {errors.nacimiento && <p className={stl.error}>{errors.nacimiento}</p>}
-        {errors.localidad && <p className={stl.error}>{errors.localidad}</p>}
-      </div>
-
       <div className={stl.form}>
         <br></br>
         <br></br>
-        <form className={stl.formUser}
+        <form
+          className={stl.formUser}
           onSubmit={(e) => handleSubmit(e)}
           action="/usuarios/signup"
           method="POST"
@@ -215,7 +213,7 @@ export default function MiInformacion(props) {
               SELECCIONE FOTO DE PERFIL
             </button>
             <span></span>
-            {errors.fotoPerfil && <p>{errors.fotoPerfil}</p>}
+            {errors.fotoPerfil && <p className={stl.err}>{errors.fotoPerfil}</p>}
           </div>
           <br></br>
 
@@ -228,8 +226,8 @@ export default function MiInformacion(props) {
               value={input.usuario}
               onChange={(e) => handleChange(e)}
               placeholder={props.datos.usuario}
-            />{" "}
-            <span></span>
+            />
+            {errors.usuario && <p className={stl.err}>{errors.usuario}</p>}
           </div>
           <br></br>
 
@@ -243,8 +241,8 @@ export default function MiInformacion(props) {
               value={input.nombre}
               onChange={(e) => handleChange(e)}
               placeholder={props.datos.nombre}
-            />{" "}
-            <span></span>
+            />
+            {errors.nombre && <p className={stl.err}>{errors.nombre}</p>}
           </div>
           <br></br>
 
@@ -258,8 +256,8 @@ export default function MiInformacion(props) {
               value={input.telefono}
               onChange={(e) => handleChange(e)}
               placeholder={props.datos.telefono}
-            />{" "}
-            <span></span>
+            />
+            {errors.telefono && <p className={stl.err}>{errors.telefono}</p>}
           </div>
           <br></br>
 
@@ -273,8 +271,8 @@ export default function MiInformacion(props) {
               value={input.mail}
               onChange={(e) => handleChange(e)}
               placeholder={props.datos.mail}
-            />{" "}
-            <span></span>
+            />
+            {errors.mail && <p className={stl.err}>{errors.mail}</p>}
           </div>
           <br></br>
 
@@ -288,8 +286,10 @@ export default function MiInformacion(props) {
               value={input.nacimiento}
               placeholder="dd-mm-yyyy"
               onChange={(e) => handleChange(e)}
-            />{" "}
-            <span></span>
+            />
+            {errors.nacimiento && (
+              <p className={stl.err}>{errors.nacimiento}</p>
+            )}
           </div>
           <br></br>
 
@@ -303,8 +303,10 @@ export default function MiInformacion(props) {
               value={input.localidad}
               onChange={(e) => handleChange(e)}
               placeholder={props.datos.localidad}
-            />{" "}
-            <span></span>
+            />
+            {errors.localidad && (
+              <p className={stl.err}>{errors.localidad}</p>
+            )}
           </div>
           <br></br>
           <div>
