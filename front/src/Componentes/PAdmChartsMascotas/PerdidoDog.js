@@ -1,9 +1,8 @@
 import React, { PureComponent, useEffect } from 'react';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
-import stl from "../PAdmChartsMascotas/EnAdopcion.module.css"
-import { useDispatch, useSelector } from "react-redux";
-import getmascotas from "../../Actions/getmascotas";
-
+import stl from "../PAdmChartsMascotas/PerdidoDog.module.css"
+import { useSelector, useDispatch } from "react-redux";
+import getPerrosPerdidos from "../../Actions/getPerrosPerdidos";
 /* const data = [
   {
     name: 'Perros',
@@ -20,43 +19,44 @@ import getmascotas from "../../Actions/getmascotas";
   
 ]; */
 
-export default function EnAdopcion (){
-
-const dispatch = useDispatch()
-const allpets = useSelector((state) => state.animales)
+export default function PerdidoDog (){
+  
+  const dispatch = useDispatch()
+  const perdidosDog = useSelector((state) => state.perrosPerdidos)
   
 useEffect(() => {
-  dispatch(getmascotas())
+  dispatch(getPerrosPerdidos())
 }, [dispatch])
-
-console.log("allpets", allpets)
-
   
+
+console.log("perdidosDog", perdidosDog)
+
 return (
   <div className={stl.grafica}>
-   <div className={stl.title}>MASCOTAS EN ADOPCION</div>
+   <div className={stl.title}>ESTADO PERROS</div>
     <ResponsiveContainer width="70%" aspect={3}>
      <BarChart
       width={70}
       height={400}
-      data={allpets}
+      data={perdidosDog}
       margin={{
         top: 5,
         right: 30,
         left: 20,
         bottom: 5,
-      }}
+      }}//scale="point" padding={{ left: 10, right: 10 }}
       barSize={20}
     >
       <XAxis type= "category" dataKey="estado" />
-      <YAxis type= "number" dataKey="estado.length"/> 
-      <Tooltip />
-      <Legend />
+      <YAxis type= "number" dataKey="estado.length"/>
+      {/* <Tooltip />
+      <Legend /> */}
       <CartesianGrid strokeDasharray="3 3" />
-      <Bar  dataKey="estado.length" fill="#8884d8" background={{ fill: '#eee' }} />
+      <Bar dataKey="estado.length" fill="#8884d8" background={{ fill: '#eee' }}  />
+      
     </BarChart>
   </ResponsiveContainer>
   </div>
-    );
+);
   
 }
