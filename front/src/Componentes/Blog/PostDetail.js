@@ -96,8 +96,10 @@ export default function PostDetail() {
 
                 <div>
                 <div>Tu Comentario: </div>
-                    <textarea id={postDetalles._id} className="textRespuesta" type="textarea" resize="none" name="respuesta"
+                <div >
+                    <textarea className="textRespuesta" id={postDetalles._id}  type="textarea" resize="none" name="respuesta"
                     value={input.respuesta} onChange={handleRespuesta} />
+                    </div>
                 </div>
 
                 <button className="botonRespuesta" type="submit">Enviar</button>

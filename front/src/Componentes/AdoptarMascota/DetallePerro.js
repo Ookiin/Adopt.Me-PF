@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import getmascotasbyid from "../../Actions/getmascotabyid";
@@ -11,6 +11,8 @@ import getDetalleUsuario from "../../Actions/getDetalleUsuario";
 import { useAuth0 } from "@auth0/auth0-react";
 import Toast from "light-toast";
 import getusers from "../../Actions/getusers";
+import { MapContainer, Marker, Popup, TileLayer, useMap } from "react-leaflet";
+import { IconLocation } from "../Maps/IconLocation";
 
 export default function DetallePerro() {
 
@@ -83,6 +85,39 @@ export default function DetallePerro() {
 
    ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+   const [geo, setGeo] = useState({
+       longitude: -61.043988,
+       latitude: -34.7361,
+    })
+
+  const position = [geo.latitude, geo.longitude]
+
+    const local = position
+
+    function FlyMapTo() {
+
+      const map = useMap()
+  
+      useEffect(() => {
+          map.flyTo(local)
+          
+      }, {enableHighAccuracy: true})
+  
+      return null
+  }
+
+  function handleLocation() {
+    setGeo({
+          latitude: detail.latitude,
+          longitude: detail.longitude
+    })
+   
+    Toast.success("Reubicandose a la ubicacion de esta mascota", 1500, () => {});
+}
+
+
+   ////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
   return (
     <div className={stl.paginaAdopcion}>
       <NavBar />
@@ -121,6 +156,36 @@ export default function DetallePerro() {
             </div>
 
           </div>
+
+          <div className={stl.ubicacionMascota}>
+
+     
+            <MapContainer center={position} zoom={13} scrollWheelZoom={false}>
+                <FlyMapTo />
+                <TileLayer
+                  attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                  url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"/>
+
+                 
+
+                    return (
+
+                  <Marker
+                  position={[geo.latitude, geo.longitude]} 
+                  icon={IconLocation}> 
+                  <Popup>
+                    <img className={stl.imagenMarcador}src={detail.imagen} alt="" /><br></br>
+                    Esta es la ubicacion<br></br> de esta mascota
+                  </Popup>
+                  </Marker>
+                    )
+                
+            </MapContainer>
+            <button onClick={handleLocation} className={stl.verUbicacion}>Ver ubicacion de esta mascota</button>
+                    
+
+          </div>
+
 
           <Link to="/contacto">
             <button

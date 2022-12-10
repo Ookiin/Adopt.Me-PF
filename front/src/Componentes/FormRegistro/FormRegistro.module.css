@@ -1,10 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Viga&display=swap');
 
 .registro {
-    background-image: url("../../Imagenes/pisadas.jpg");
-    background-size: contain;
-    background-repeat: repeat-y;
-    height: 500px;
+    background-image: url("../../Imagenes/Pet-Slide-Backgrounds.jpg");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    /* height: 500px; */
     font-family: 'Viga', sans-serif;
     font-size: 15px;
 }
@@ -70,6 +70,7 @@
     box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;    
     background-color: #F2E7D5;
     font-family: 'Viga', sans-serif;
+    border-radius: 10px;
   }
   
   .inputs {
@@ -215,3 +216,18 @@
   
 }
  
+/*///////////////////////////////////////////////////////////*/
+
+@media (min-width: 481px) and (max-width: 767px) {
+
+.form {
+  margin-left: 30px;
+  width: 430px;
+}
+
+.inputs {
+  margin-left: 115px;
+}
+
+
+}
