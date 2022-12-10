@@ -45,3 +45,12 @@
   .label{
     font-size: 30px;
   }
+
+  .err{
+    color: red;
+    font-size: 13px;
+    font-family: 'Viga', sans-serif;
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+  
