@@ -98,4 +98,20 @@
     color: black;
   }
 
- 
+ /*///////////////////////////////////////////////////////////////*/
+
+ @media (min-width: 481px) and (max-width: 767px) {
+
+    .post {
+        width: 360px;
+    }
+
+    .postContenido {
+        width: 290px;
+    }
+
+    .posteos {
+        width: 460px;
+    }
+
+ }

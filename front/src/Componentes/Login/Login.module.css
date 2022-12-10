@@ -1,8 +1,8 @@
 
 
 .fondo {
-    background-image: url("../../Imagenes/pisadas.jpg");
-    background-size: contain;
+    background-image: url("../../Imagenes/Pet-Slide-Backgrounds.jpg");
+    background-size: 100% 100%;
     background-repeat: no-repeat;
 }
 
@@ -68,3 +68,17 @@
     background-size: contain;
     background-repeat: no-repeat;
   }
+
+  /*///////////////////////////////////////////////////////////*/
+
+@media (min-width: 481px) and (max-width: 767px) {
+
+.imagenLogIn {
+  margin-left: 170px;
+}
+
+.botonLogin {
+  margin-left: 50px;
+}
+
+}

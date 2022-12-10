@@ -104,3 +104,33 @@ background-color: #FCF9BE;
     background-color: white;
     color: black;
   }
+
+  /*///////////////////////////////////////////////////////////*/
+
+  @media (min-width: 481px) and (max-width: 767px) {
+
+    .posted {
+      width: 400px;
+      margin-left: 40px;
+    }
+
+    .tituloPosted {
+      width: 250px;
+      margin-left: 130px;
+    }
+
+    .postedContenido {
+      width: 250px;
+      margin-left: 20px;
+    }
+
+    .botonComentar {
+      margin-left: 110px;
+      margin-top: -30px;
+      width: 55px;
+      height: 25px;
+      font-size: 10px;
+      align-items: center;
+    }
+
+  }
