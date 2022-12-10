@@ -1,10 +1,12 @@
 import React from "react";
-import EstadoMascotas from "../PAdmChartsMascotas/EstadoMascotas";
 import EnAdopcion from "../PAdmChartsMascotas/EnAdopcion";
 import Adoptados from "../PAdmChartsMascotas/Adoptados";
 import Perdidos from "../PAdmChartsMascotas/Perdidos";
-import Buscados from "../PAdmChartsMascotas/Buscados";
-import NavBarPAdmin from "../PanelAdministrador/NavBarPAdmin" 
+import PerdidoDog from "../PAdmChartsMascotas/PerdidoDog";
+import NavBarPAdmin from "../PanelAdministrador/NavBarPAdmin"; 
+import PerdidosCat from "../PAdmChartsMascotas/PerdidoCat";
+import PerrosEnAdopcion from "../PAdmChartsMascotas/PerrosEnAdopcion";
+import GatosEnAdopcion from "../PAdmChartsMascotas/GatosEnAdopcion";
 
 const Mascotas = () => {
   return(
@@ -16,19 +18,25 @@ const Mascotas = () => {
         <NavBarPAdmin /> 
       </div>
       <div>
-       <EstadoMascotas />
-      </div>
-      <div>
        <EnAdopcion />
       </div>
       <div>
-       <Adoptados /> 
+        <GatosEnAdopcion />
       </div>
+      <div>
+        <PerrosEnAdopcion />
+      </div>
+       {/* <div>
+       <Adoptados /> 
+      </div>  */}
       <div>
        <Perdidos />
       </div>
       <div>
-       <Buscados/>
+      <PerdidosCat />
+      </div>
+      <div>
+      <PerdidoDog />
       </div>   
     </div>
   )

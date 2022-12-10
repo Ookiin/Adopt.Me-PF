@@ -1,8 +1,8 @@
 import React, { PureComponent, useEffect } from 'react';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
-import stl from "../PAdmChartsMascotas/EnAdopcion.module.css"
+import stl from "../PAdmChartsClientes/TotalUsuarios.module.css"
 import { useDispatch, useSelector } from "react-redux";
-import getmascotas from "../../Actions/getmascotas";
+import getusers from "../../Actions/getusers";
 
 /* const data = [
   {
@@ -20,26 +20,27 @@ import getmascotas from "../../Actions/getmascotas";
   
 ]; */
 
-export default function EnAdopcion (){
+export default function TotalUsuarios (){
 
-const dispatch = useDispatch()
-const allpets = useSelector((state) => state.animales)
-  
+  const dispatch = useDispatch()
+  const allUsersData = useSelector((state) => state.users)
+  const allUsers = allUsersData.data
+
 useEffect(() => {
-  dispatch(getmascotas())
+  dispatch(getusers())
 }, [dispatch])
 
-console.log("allpets", allpets)
+console.log("allUsers", allUsers) 
 
   
 return (
   <div className={stl.grafica}>
-   <div className={stl.title}>MASCOTAS EN ADOPCION</div>
+   <div className={stl.title}>USUARIOS REGISTRADOS EN LA PAGINA</div>
     <ResponsiveContainer width="70%" aspect={3}>
      <BarChart
       width={70}
       height={400}
-      data={allpets}
+      data={allUsers}
       margin={{
         top: 5,
         right: 30,
@@ -48,12 +49,12 @@ return (
       }}
       barSize={20}
     >
-      <XAxis type= "category" dataKey="estado" />
-      <YAxis type= "number" dataKey="estado.length"/> 
+      <XAxis type= "category" dataKey="usuario" />
+      <YAxis type= "number" dataKey="usuario.length"/> 
       <Tooltip />
       <Legend />
       <CartesianGrid strokeDasharray="3 3" />
-      <Bar  dataKey="estado.length" fill="#8884d8" background={{ fill: '#eee' }} />
+      <Bar  dataKey="usuario.length" fill="#8884d8" background={{ fill: '#eee' }} />
     </BarChart>
   </ResponsiveContainer>
   </div>

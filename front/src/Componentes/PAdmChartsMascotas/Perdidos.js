@@ -1,8 +1,9 @@
-import React, { PureComponent } from 'react';
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
+import React, { PureComponent, useEffect } from 'react';
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 import stl from "../PAdmChartsMascotas/Perdidos.module.css"
-
-const data = [
+import { useSelector, useDispatch } from "react-redux";
+import getAnimalesPerdidos from "../../Actions/getAnimalesPerdidos";
+/* const data = [
   {
     name: 'Perros',
     uv: 4000,
@@ -16,37 +17,46 @@ const data = [
     amt: 2210,
   },
   
-];
+]; */
 
 export default function Perdidos (){
   
-
+  const dispatch = useDispatch()
+  const perdidos = useSelector((state) => state.animalesPerdidos)
   
+useEffect(() => {
+  dispatch(getAnimalesPerdidos())
+}, [dispatch])
+  
+
+console.log("perdidos", perdidos)
+
 return (
   <div className={stl.grafica}>
-      <div className={stl.title}>MASCOTAS PERDIDAS</div>
-      <ResponsiveContainer width="70%" aspect={3}>
-        <LineChart
-          width={70}
-          height={400}
-          data={data}
-          margin={{
-            top: 5,
-            right: 30,
-            left: 20,
-            bottom: 5,
-          }}
-        >
-          <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="name" />
-          <YAxis />
-          <Tooltip />
-          <Legend />
-          <Line type="monotone" dataKey="pv" stroke="#8884d8" activeDot={{ r: 8 }} />
-          <Line type="monotone" dataKey="uv" stroke="#82ca9d" />
-        </LineChart>
-      </ResponsiveContainer>
-      </div>
-    );
+   <div className={stl.title}>ESTADO GENERAL DE MASCOTAS REPORTADAS</div>
+    <ResponsiveContainer width="70%" aspect={3}>
+     <BarChart
+      width={70}
+      height={400}
+      data={perdidos}
+      margin={{
+        top: 5,
+        right: 30,
+        left: 20,
+        bottom: 5,
+      }}//scale="point" padding={{ left: 10, right: 10 }}
+      barSize={20}
+    >
+      <XAxis type= "category" dataKey="estado" />
+      <YAxis type= "number" dataKey="estado.length"/>
+      {/* <Tooltip />
+      <Legend /> */}
+      <CartesianGrid strokeDasharray="3 3" />
+      <Bar dataKey="estado.length" fill="#8884d8" background={{ fill: '#eee' }}  />
+      
+    </BarChart>
+  </ResponsiveContainer>
+  </div>
+);
   
 }
