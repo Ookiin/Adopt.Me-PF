@@ -178,7 +178,7 @@ export default function HomePage() {
       </div>
          <div>{/* BOTONSITO PARA IR AL PANEL DE ADMINIS */}
             <Link to="/panel-Administrador">
-               <button className={stl.botonOtrosServicios}>
+               <button className={stl.botonadmin}>
                  PANEL ADMINISTRADOR
                </button>
             </Link>

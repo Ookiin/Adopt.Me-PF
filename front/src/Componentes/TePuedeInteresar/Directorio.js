@@ -61,8 +61,9 @@ export default function Directorio () {
                 <button className={stl.botondirectorio}>VOLVER</button>
             </Link>
             
+      
             <Footer />
-
+           
         </div>
         </div>
     )

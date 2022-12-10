@@ -138,6 +138,7 @@ export default function HomePerros () {
            </Link>
         </div>
 
+        <div className={stl.paginado}>
         <Paging 
         mascotasPerPage={mascotasPerPage} 
         allPets={allPets.length} 
@@ -145,6 +146,7 @@ export default function HomePerros () {
         actualPage={actualPage}
         currentPets={currentPets}
         />
+        </div>
 
         <div className={stl.listadoCards}> 
      
