@@ -40,31 +40,41 @@ export default function CambiarContraseña() {
   const [errors, setErrors] = useState({});
   const [isSubmit, setisSubmit] = useState(false);
 
-  async function validation(input) {
+  
+  
+  
+  console.log("Contraseña")
+  console.log(input.contraseñaActual)
+
+  let hasheada =  bcrypt.hash(input.contraseñaActual,10)
+
+  console.log("Contraseña hasheada")
+  console.log(hasheada)
+
+
+  function validation(input) {
     let errors = {};
     // hay que validar que la contraseña actual sea esa.
-    if (
-      (await bcrypt.hash(input.contraseñaActual, 10)) !== detalleUser.contrasena
-    ) {
-      // hasheo la contraseña que tipea el usuario, paara compararla con la hasheada guardada en la db
+    /*
+    if (noCoinciden) {
       errors.contraseñaActual =
         "La contraseña ingresada no coincide con la contraseña actual";
+    }*/
+    if (
+      !/^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{8,16}$/.test(input.nuevaContraseña)
+    ) {
+      errors.nuevaContraseña =
+        "La contraseña debe tener entre 8 y 16 caracteres, al menos un número, al menos una minúscula y al menos una mayúscula.";
+    }
+    if (input.repitaContraseña !== input.nuevaContraseña) {
+      errors.repitaContraseña = "Las contraseñas no coinciden";
     }
     if (
       !input.contraseñaActual ||
       !input.nuevaContraseña ||
       !input.repitaContraseña
     ) {
-      errors.contraseña = "Tenes que completar todos los campos";
-    }
-    if (
-      !/^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{8,16}$/.test(input.nuevaContraseña)
-    ) {
-      errors.contraseña =
-        "La contraseña debe tener entre 8 y 16 caracteres, al menos un número, al menos una minúscula y al menos una mayúscula.";
-    }
-    if (input.repitaContraseña !== input.nuevaContraseña) {
-      errors.repitaContraseña = "Las contraseñas no coinciden";
+      errors.campos = "Tenes que completar todos los campos";
     }
 
     if (Object.keys(errors).length === 0) {
@@ -73,6 +83,9 @@ export default function CambiarContraseña() {
 
     return errors;
   }
+
+  console.log("estos son los errores");
+  console.log(errors);
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -110,10 +123,6 @@ export default function CambiarContraseña() {
 
   return (
     <div>
-      <div className={stl.errores}>
-        {errors.contraseña && <p className={stl.errores}>{errors.contrasena}</p>}
-      </div>
-
       <div className={stl.form}>
         <br></br>
         <br></br>
@@ -125,9 +134,9 @@ export default function CambiarContraseña() {
               onChange={(e) => handleChange(e)}
               name="contraseñaActual"
               value={input.contraseñaActual}
-            />{" "}
+            />
             {errors.contraseñaActual && (
-              <p className={stl.errores}>{errors.contrasenaActual}</p>
+              <p className={stl.err}>{errors.contraseñaActual}</p>
             )}
           </div>
           <br></br>
@@ -139,7 +148,10 @@ export default function CambiarContraseña() {
               onChange={(e) => handleChange(e)}
               name="nuevaContraseña"
               value={input.nuevaContraseña}
-            />{" "}
+            />
+            {errors.nuevaContraseña && (
+              <p className={stl.err}>{errors.nuevaContraseña}</p>
+            )}
           </div>
           <br></br>
 
@@ -150,13 +162,14 @@ export default function CambiarContraseña() {
               onChange={(e) => handleChange(e)}
               name="repitaContraseña"
               value={input.repitaContraseña}
-            />{" "}
+            />
             {errors.repitaContraseña && (
-              <p className={stl.errores}>{errors.repitaContraseña}</p>
+              <p className={stl.err}>{errors.repitaContraseña}</p>
             )}
           </div>
           <br></br>
           <br></br>
+          {errors.campos && <p className={stl.err}>{errors.campos}</p>}
           <div>
             <button
               className={stl.botonActualizar}

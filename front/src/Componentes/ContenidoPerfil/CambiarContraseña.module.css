@@ -63,3 +63,11 @@
     width: 200px;
   }
   
+
+  .err{
+    color: rgb(175, 25, 25);
+    font-size: 25px;
+    font-family: 'Viga', sans-serif;
+    margin-top: 0;
+    margin-bottom: 0;
+  }
