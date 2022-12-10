@@ -21,6 +21,7 @@
     margin-bottom: 100px;
     box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;    
     background-color: #F2E7D5;
+    border-radius: 10px;
 }
 
 .titulo {
@@ -320,5 +321,54 @@ textarea {
   height: 100px;
 }
 
+.mapaInfo {
+  margin-top: 60px;
+}
 
-  
+/*//////////////////////////////////////////////////////////////////////////////////////7*/
+
+
+@media (min-width: 481px) and (max-width: 767px) {
+
+  .titulo {
+    font-size: 30px;
+    margin-top: 60px;
+  }
+
+  .formularito {
+    border-radius: 10px;
+    margin-left: 16px;
+    width: 450px;
+    height: 1800px;
+  }
+
+  .imageContainer {
+    margin-right: 70px;
+    margin-top: -10px;
+  }
+
+  .contenedordatos {
+    margin-right: 20px;
+    width: 400px;
+  }
+
+  .mapaInfo {
+    margin-top: 60px;
+    margin-left: 30px;
+    width: 400px;
+  }
+
+  .botonMapa2 {
+    margin-bottom: -60px;
+    width: 140px;
+    margin-right: 32px;
+  }
+
+  .boton {
+    /* border: 1px solid red; */
+    font-size: 10px;
+    margin-left: 160px;
+    margin-top: 50px;
+  }
+
+}

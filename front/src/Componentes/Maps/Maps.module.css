@@ -165,3 +165,17 @@
   width: 60px;
   height: 60px;
 }
+
+/*/////////////////////////////////////////////////7*/
+
+@media (min-width: 481px) and (max-width: 767px) {
+
+  .ubicacionmapa {  
+    margin-left: 5px;
+  }
+
+  .botonMapa {
+    margin-left: -90px;
+  }
+
+}
