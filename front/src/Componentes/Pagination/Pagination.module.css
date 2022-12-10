@@ -71,9 +71,10 @@
 }
 
 .buttonpaging {
-  width: 40px;
-  height: 40px;
-  font-size: 15px;
+  width: 30px;
+  height: 30px;
+  font-size: 13px;
+  align-items: center;
 }
 
 }
