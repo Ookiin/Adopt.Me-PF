@@ -20,10 +20,10 @@
 }
 
 .paginaadopcionperros {
-    background-image: url("../../Imagenes/pisadas.jpg");
-    background-size:40%;
+    background-image: url("../../Imagenes/Pet-Slide-Backgrounds.jpg");
+    background-size: 100% 100%;
     background-repeat: no-repeat;
-    background-position: -130px;
+    /* background-position: -130px; */
 }
 
 .labelSearch {
@@ -215,4 +215,31 @@
     position: absolute; 
     margin-left: 550px;
     margin-top: -4px;
+  }
+
+  /*////////////////////////////////// MEDIA QUERIE CELULARES //////////////////////////////7*/
+
+
+  @media (min-width: 481px) and (max-width: 767px) {
+
+
+    .filtros {
+      position: absolute;
+      margin-left: 40px;
+      width: 400px;
+    }
+
+    .btnNavHome {
+      margin-top: 40px;
+    }
+
+    .paginado {
+      margin-left: -510px;
+    }
+
+    .ico {
+      margin-right: -210px;
+      margin-left: 44px;
+    }
+    
   }

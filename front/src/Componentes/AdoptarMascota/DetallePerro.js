@@ -13,6 +13,7 @@ import Toast from "light-toast";
 import getusers from "../../Actions/getusers";
 
 export default function DetallePerro() {
+
   const { id } = useParams();
   const navigate = useNavigate();
   const { user, isAuthenticated } = useAuth0();
@@ -21,16 +22,13 @@ export default function DetallePerro() {
   const detalleUserGoogle = useSelector((state) => state.detalleUsuarioGoogle);
   const petOwner = useSelector((state) => state.users)
 
-  
- 
-
-  useEffect(() => {
-    dispatch(getusers())
-  }, []) 
+  //////////////////////////////////////////////////////////////////////////////////////////////
 
   useEffect(() => {
     dispatch(getmascotasbyid(id));
   }, [id, dispatch]);
+  
+  //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
   let _id = undefined;
   if (user) {
@@ -38,24 +36,10 @@ export default function DetallePerro() {
     _id = usuarioIdRaro.substring(6);
   }
 
- ///////////////////////////////////////////////////////////////////////////////////////////////////////////
-
- const algo = detail
- console.log("algo", algo)
-
- const algo2 = petOwner
- console.log("users", algo2)
-
-//  const ownerPet = algo2.filter(({ _id }) => _id === algo.pichina)
-
-//  console.log("ownerPet", ownerPet)
-
-
- //////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
   useEffect(() => {
     dispatch(getDetalleUsuario(_id));
   }, [_id, dispatch]);
+
 
   const detalleUser = useSelector((state) => state.detalleUsuario); 
 
@@ -77,14 +61,28 @@ export default function DetallePerro() {
       );
     }
     if ((user && detalleUser.usuario) || detalleUserGoogle.usuario) {
-      return Toast.info(`Esta es la informacion del usuario que dio en \n adopcion esta mascota: \n Nombre: 
-      ${petOwner.nombre} \n Telefono: ${petOwner.telefono} \n Email: ${petOwner.email}`, 10000, () => {
-
-        navigate("/homepage");
-      })
+      return Toast.info(`Esta es la informacion del usuario que dio en adopcion esta mascota: \n
+      Se enviara un mail con estos datos a tu correo electronico \n 
+      Nombre: ${petOwner.nombre} \n 
+      Telefono: ${petOwner.telefono} \n 
+      Email: ${petOwner.mail}`, 10000, () => {navigate("/homepage")}
+      )
     }
   }
 
+   ///////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+   useEffect(() => {
+      dispatch(getusers())
+}, []) 
+
+ const ownerPet = petOwner.data
+
+const ownerPet2 = ownerPet ? ownerPet.filter(({ _id }) => _id === detail.pichina) : [];
+  
+console.log("owner", ownerPet)
+
+////////////////////////////////////////////////////////////////////////////////////////////////////7
 
   return (
     <div className={stl.paginaAdopcion}>

@@ -12,6 +12,7 @@ import FloatingUI from "../Floating UI/FloatingUI";
 import getCatTamaños from "../../Actions/getCatTamaños";
 import getCatEdad from '../../Actions/getCatEdad';
 import getCatsLocal from "../../Actions/getCatsLocal"
+import Footer from "../Footer/Footer";
 
 const HomeGatos = () => {
 
@@ -102,18 +103,18 @@ const HomeGatos = () => {
         </div>
         <div className={stl.filtros}>Filtar: 
                
-               <select className={stl.op}onChange={(e) => handleOrden(e)}>
+               <select className={stl.op} onChange={(e) => handleOrden(e)}>
                     <option disabled selected defaultValue>Alfabeticamente</option>
                     <option value='A-Z'>A-Z</option>
                     <option value='Z-A'>Z-A</option>
                 </select>
-                <select onChange={(e)=>handleTamaño(e)}>
+                <select className={stl.op} onChange={(e)=>handleTamaño(e)}>
                 <option value='All' disabled selected defaultValue>Tamaño</option>
                 <option value = 'Mediano'>Mediano</option>
                 <option value = 'Chico'>Chico</option>
                 <option value = 'Grande'>Grande</option>                               
                 </select> 
-                <select onChange={(e)=>handleEdad(e)}>
+                <select className={stl.op} onChange={(e)=>handleEdad(e)}>
                 <option value='edad' disabled selected defaultValue>Edad</option>
                 <option value = 'Menos de 45 dias'>Menos de 45 dias</option>
                 <option value = 'Mas de 45 dias'>Mas de 45 dias</option>
@@ -134,6 +135,7 @@ const HomeGatos = () => {
            </Link>
         </div>
 
+        <div className={stl.paginado}>
         <Paging 
         mascotasPerPage={mascotasPerPage} 
         allPets={copiaGatos.length} 
@@ -141,6 +143,7 @@ const HomeGatos = () => {
         actualPage={actualPage}
         currentPets={currentPets}
         />
+        </div>
 
         <div className={stl.listadoCards}>
 
@@ -162,6 +165,7 @@ const HomeGatos = () => {
 
         </div>
 
+            <Footer />
         </div>
     )
 }

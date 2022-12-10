@@ -10,7 +10,7 @@
 }
 
 .adoptar {
-    
+    border-radius: 10px;
     height: 700px;
     width: 500px;
     align-items: center; 
@@ -19,7 +19,7 @@
   } 
 
 .darEnAdopcion {
-    
+    border-radius: 10px;
     height: 300px;
     width: 600px;
     box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
@@ -46,11 +46,12 @@
     background-color: #F2E7D5; 
     opacity:0;
     animation: smooth-appear 1s ease forwards;
+    border-radius: 10px;
 }
 
-.otroServicios:hover {
+/* .otroServicios:hover {
  
-}
+} */
 
 .perros {
     background-image: url("../../Imagenes/Perros.jpg");
@@ -216,7 +217,7 @@
     margin-top: -124px;
     background-color: #F2E7D5;  
     /* border: 1px solid red; */
-
+    border-radius: 10px;
   }
 
   .reportarTitulo {
@@ -504,4 +505,134 @@
   }
 }
 
+/*//////////////////////////// MEDIA QUERIE PARA CELULARES ///////////////////////*/
+
+@media (min-width: 481px) and (max-width: 767px) {
+
+  .banner {
+    height: 75.5px;
+  }
+
+  .titulobanner {
+    width: 200px;
+    font-size: 14px;
+    margin-left: 30px;
+    margin-top: 28px;
+  }
+
+  .textoDonacion {
+    font-size: 15px;
+    margin-top: -30px;
+    margin-right: -90px;
+  }
+
+  .botonDonar {
+    display: flex;
+    align-items: center;
+    width: 50px;
+    font-size: 10px;
+    height: 30px;
+    margin-top: 20px;
+    margin-right: 10px;
+  }
+
+  .donacion {
+    height: 30px;
+  }
+
+  .adoptarDarEnAdopcion {
+    width: 100%;
+  }
+
+  .adoptar {
+    /* border: 1px solid red; */
+    margin-left: 36px;
+    width: 400px;
+    height: 500px;
+    border-radius: 15px;
+  }
+
+  .darEnAdopcion {
+    /* border: 1px solid blue; */
+    margin-top: 940px;
+    margin-left: -420px;
+    width: 400px;
+    position: absolute;
+    border-radius: 15px;
+  }
+
+  .reportarMascota {
+    /* border: 1px solid green; */
+    position: absolute;
+    width: 400px;
+    margin-left: -420px;
+    margin-top: 570px;
+    border-radius: 15px;
+  }
+
+  .mensajemascotas {
+    background-image: url("");
+    font-size: 0px;
+    position:absolute;
+    margin-left: -400px;
+    width: 0px;
+    height: 0px;
+  }
+
+.homepage {
+  height: 1900px;
+  width: 100%;
+}
+
+.banner2 {
+  background-image: url("");
+  width: 0px;
+  height: 0px;
+}
+
+.perros {
+  width: 155px;
+  height: 134.5px;
+}
+
+.gatos {
+  width: 155px;
+  height: 134.5px;
+}
+
+.parrafo {
+  font-size: 11px;
+  margin-top: 5px;
+}
+
+.parrafoReportar {
+  font-size: 12px;
+}
+
+.parrafoDarEnAdopcion {
+  font-size: 11px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.botonDarAdopcion {
+  margin-top: 20px;
+}
+
+.otrosServicios {
+  /* border: 1px solid red; */
+  border-radius: 15px;
+  position: absolute;
+  width: 400px;
+  height: 130px;
+  font-size: 10px;
+  margin-left: 52px;
+  margin-top: 800px;
+}
+
+.botonadmin {
+  margin-top: 950px;
+}
+
+}
 

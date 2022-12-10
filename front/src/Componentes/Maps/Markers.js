@@ -31,7 +31,7 @@ export default function Markers() {
       icon={IconLocation}> 
       <Popup>
         <Link to ={`/animales/${p._id}`}>
-        Imagen:<img className={stl.imagenMarcador}src={p.imagen} alt="" /><br></br>
+        <img className={stl.imagenMarcador}src={p.imagen} alt="" /><br></br>
         edad:{p.edad}<br></br>
         Nombre:{p.nombre}<br></br>
         Peso:{p.peso}<br></br>

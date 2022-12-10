@@ -49,15 +49,12 @@ export default function Footer() {
             </div>
             
             <div className={stl.iconos}>
-                <Link to="">
-                    <div className={stl.facebook}></div>
-                </Link>
-                <Link to="https://www.instagram.com/adoptme6909/">
-                    <div className={stl.instagram}></div>
-                </Link>
-                <Link to="">
-                    <div className={stl.twitter}></div>
-                </Link>
+                
+                    <a href="https://www.facebook.com/profile.php?id=100088704424730" target="_blank" rel="noreferrer" className={stl.facebook}></a>
+               
+            
+                    <a href="https://www.instagram.com/adopt.me.adopcion.mascotas/" target="_blank" rel="noreferrer" className={stl.instagram}></a>
+              
             </div>
 
         </div>

@@ -79,3 +79,30 @@
     color: #6D9886;
     font-size: 27px;
   }
+
+  /*////////////////////////////////////////////*/
+
+  @media (min-width: 481px) and (max-width: 767px) {
+
+    .ley {
+      margin-left: 50px;
+      font-size: 15px;
+      width: 400px;
+    }
+
+    .titulo {
+      font-size: 30px;
+      margin-top: 70px;
+    }
+
+    .h3s {
+      font-size: 20px;
+    }
+
+    li {
+      margin-left: 15px;
+      font-size: 12px;
+      width: 400px;
+    }
+
+  }

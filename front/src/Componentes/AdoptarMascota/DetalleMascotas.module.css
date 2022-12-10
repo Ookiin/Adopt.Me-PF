@@ -1,20 +1,21 @@
 @import url('https://fonts.googleapis.com/css2?family=Viga&display=swap');
 
 .paginaAdopcion {
-    background-image: url("../../Imagenes/pisadas.jpg");
-    background-size: contain;
+    background-image: url("../../Imagenes/Pet-Slide-Backgrounds.jpg");
+    background-size: 100% 100%;
     background-repeat: no-repeat;
-    background-position: -200px;
+    /* background-position: -200px; */
     font-family: 'Viga', sans-serif;
 }
 
 .img {
     /* border: 1px solid red; */
-    width: 600px;
-    height: 400px;  
+    width: 700px;
+    height: 500px;  
     margin-top: 110px;
     margin-left: 50px;
-    border: inset;
+    /* border: inset; */
+    border-radius: 10px;
     box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
 }
 
@@ -25,11 +26,12 @@
     box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;    
     background-color: #F2E7D5;
     /* border: 2px solid yellow; */
-    width: 800px;
-    height: 700px;
-    margin-left: 370px;
+    width: 600px;
+    height: 560px;
+    margin-left: 480px;
     margin-top: 150px;
     margin-bottom: 150px;
+    border-radius: 10px;
 }
 
 .tituloAdopcion {
@@ -104,12 +106,12 @@
   }
 
   .details {
-    margin-left: 400px;
+    margin-left: 250px;
     display:flex;
     position: absolute;
     margin-top: -28px;
     border: 2px;
-    color: red;
+    color: #E14D2A;
     font-size: 23px;
 
   }
