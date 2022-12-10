@@ -18,15 +18,17 @@ export default function DetallePerro() {
   const navigate = useNavigate();
   const { user, isAuthenticated } = useAuth0();
   const dispatch = useDispatch();
-  const detail = useSelector((state) => state.animalesdetail);
   const detalleUserGoogle = useSelector((state) => state.detalleUsuarioGoogle);
+  const detail = useSelector((state) => state.animalesdetail);
   const petOwner = useSelector((state) => state.users)
 
+  
   //////////////////////////////////////////////////////////////////////////////////////////////
-
+  
   useEffect(() => {
     dispatch(getmascotasbyid(id));
-  }, [id, dispatch]);
+    dispatch(getusers())
+  }, []);
   
   //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -53,7 +55,7 @@ export default function DetallePerro() {
       );
     }
 
-    if (!detalleUser.usuario && detalleUserGoogle.length == 0) {
+    if (!detalleUser.usuario && detalleUserGoogle.length === 0) {
       return Toast.fail(
         "Debes completar el registro en tu perfil antes de adoptar",
         1500,
@@ -63,26 +65,23 @@ export default function DetallePerro() {
     if ((user && detalleUser.usuario) || detalleUserGoogle.usuario) {
       return Toast.info(`Esta es la informacion del usuario que dio en adopcion esta mascota: \n
       Se enviara un mail con estos datos a tu correo electronico \n 
-      Nombre: ${petOwner.nombre} \n 
-      Telefono: ${petOwner.telefono} \n 
-      Email: ${petOwner.mail}`, 10000, () => {navigate("/homepage")}
+      Nombre: ${nombre} \n 
+      Telefono: ${telefono} \n 
+      Email: ${mail}`, 10000, () => {navigate("/homepage")}
       )
     }
   }
 
-   ///////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-   useEffect(() => {
-      dispatch(getusers())
-}, []) 
-
- const ownerPet = petOwner.data
-
-const ownerPet2 = ownerPet ? ownerPet.filter(({ _id }) => _id === detail.pichina) : [];
+  //////////////////////////////// DATOS DEL USUARIO QUE DIO EN ADOPCION ESTA MASCOTA //////////////////////////////
   
-console.log("owner", ownerPet)
+  const ownerPet = petOwner.data
+  const ownerPet2 = ownerPet ? ownerPet.filter(({ _id }) => _id === detail.pichina) : [];
 
-////////////////////////////////////////////////////////////////////////////////////////////////////7
+  const nombre = ownerPet2.map(({ nombre }) => nombre)
+  const telefono = ownerPet2.map(({ telefono }) => telefono)
+  const mail = ownerPet2.map(({ mail }) => mail)
+
+   ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 
   return (
     <div className={stl.paginaAdopcion}>
@@ -120,6 +119,7 @@ console.log("owner", ownerPet)
             <div className={stl.titulos2}>
               Vacunado: <p className={stl.details}>{detail.vacunado}</p>
             </div>
+
           </div>
 
           <Link to="/contacto">

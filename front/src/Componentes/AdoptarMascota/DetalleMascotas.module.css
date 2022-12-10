@@ -116,4 +116,37 @@
 
   }
 
-  
+  /*////////////////////////////////////////////////////*/
+
+  @media (min-width: 481px) and (max-width: 767px) {
+
+    .img {
+      width: 400px;
+      height: 200px;
+      margin-left: 10px;
+    }
+
+    .cardDetalles {
+      border: 1px solid red;
+      margin-left: 30px;
+      width: 440px;
+      height: 500px;
+      margin-top: 30px;
+    }
+
+    .tituloAdopcion {
+      font-size: 30px;
+    }
+
+    .titulos2 {
+      font-size: 16px;
+      margin-left: 35px;
+    }
+
+    .details {
+      font-size: 16px;
+      margin-left: 200px;
+      margin-top: -20px;
+    }
+
+  }

@@ -106,6 +106,7 @@ export default function BuscarMascota() {
         </Link>
       </div>
 
+    <div className={stl.paginado}>
       <Paging
         mascotasPerPage={mascotasPerPage} 
         allPets={allPets.length} 
@@ -113,7 +114,8 @@ export default function BuscarMascota() {
         actualPage={actualPage}
         currentPets={currentPets}
        />
-
+  </div>
+  
     <div className={stl.listadoCards}>
 
       {currentPets.length > 0 && currentPets.map(a =>{

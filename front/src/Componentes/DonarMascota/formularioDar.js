@@ -542,9 +542,9 @@ return null
                 </Link>
                     </div> */}
 
-           <div>
-            <p>Por favor. Para guardar su ubicacion exitosamente<br></br>
-        Primero seleccione "Establecer mi Ubicacion", y luego "Guardar mi Ubicacion".</p>
+           <div >
+            <p className={stl.mapaInfo}>Por favor. Para guardar su ubicacion exitosamente<br></br>
+        <br></br>Primero seleccione "Establecer mi Ubicacion", y luego "Guardar mi Ubicacion".</p>
         <p>Finalmente "Confirmar y Volver"</p>
         <div className={stl.botones}>
         <button className={stl.botonMapa2} onClick={handleLocation}>Establecer mi Ubicacion</button>
@@ -554,6 +554,7 @@ return null
              {/* </Link>  */}
              </div>
 
+        <div className={stl.contenedorMapa}>
         <MapContainer center={position} zoom={13} scrollWheelZoom={false}>
         <FlyMapTo />
         <TileLayer
@@ -572,6 +573,7 @@ return null
         
     </MapContainer>
     
+    </div>
             </div> 
 
             <label className={stl.titulos}>Descripción:</label>

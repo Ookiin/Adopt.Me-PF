@@ -58,12 +58,12 @@ export default function ReportarMaltrato () {
 
             <div>
                 <h3 className={stl.h3s}>¿Que hacer si el hecho ocurre en la vía pública?</h3>
-                <p>Llamá al 911. En Ciudad de Buenos Aires también podés llamar al 0800-333-47225 que es el teléfono del Ministerio Público Fiscal de la Ciudad que funciona las 24 horas.</p>
+                <p className={stl.ps}>Llamá al 911. En Ciudad de Buenos Aires también podés llamar al 0800-333-47225 que es el teléfono del Ministerio Público Fiscal de la Ciudad que funciona las 24 horas.</p>
             </div>
 
             <div>
                 <h3 className={stl.h3s}>¿Que hacer si el hecho ocurre en un lugar privado?</h3>
-                <p>Si el hecho sucede en una casa, galpón, quinta, etc. no ingreses. Identificá el lugar (calle, número, etc.) y a las personas y llamá al 911.</p>
+                <p className={stl.ps}>Si el hecho sucede en una casa, galpón, quinta, etc. no ingreses. Identificá el lugar (calle, número, etc.) y a las personas y llamá al 911.</p>
             </div>
 
             <div>

@@ -432,9 +432,9 @@ return null
                   la mascota
                 </button>
                   </Link>         */}
-        <p>Por favor. Para guardar su ubicacion exitosamente<br></br>
-        Primero mueva el marcador de posicion para el<br></br>
-         lugar donde perdio 
+        <p className={stl.ps}>Por favor. Para guardar su ubicacion exitosamente<br></br>
+        Primero haga click en el marcador para moverlo  <br></br>a la posicion
+         donde perdio 
         su mascota o vio una mascota perdida. <br></br><br></br>Despues seleccione "Establecer mi Ubicacion", 
         y luego "Guardar mi Ubicacion".</p>
         <p>Finalmente "Confirmar y Volver"</p>
@@ -475,7 +475,7 @@ return null
 
             <div className={stl.opciones}>
             <label className={stl.titulos}>Descripcion:</label>
-                <input onChange={(e) => {handleChange(e); handleDesc(e); }} type="text" name="descripcion" value={input.descripcion}/>
+                <textarea className={stl.textareaRepor} onChange={(e) => {handleChange(e); handleDesc(e); }} type="textarea" name="descripcion" value={input.descripcion}/>
                
            </div>
           </div>

@@ -75,3 +75,26 @@
   .h2s {
     color: #6D9886;
   }
+
+/*///////////////////////////////////////////////////////////////////////*/
+
+  @media (min-width: 481px) and (max-width: 767px) {
+
+    .h3s {
+      margin-left: 50px;
+      font-size: 15px;
+      width: 400px;
+    }
+
+    .h2s {
+      font-size: 20px;
+      margin-left: 50px;
+    }
+
+    .tituloDonarMascota {
+      font-size: 30px;
+      margin-top: 60px;
+      margin-left: 20px;
+    }
+
+  }
