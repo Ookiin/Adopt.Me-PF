@@ -65,7 +65,7 @@ import "../DonarMascota/formularioDar.css"
         vacunado: "",
         desparasitado: "",
         imagen: "",
-        pichina: usuario._id,
+        pichina: detalleUserGoogle.usuario ? detalleUserGoogle._id : usuario._id,
         pichina2: detalleUserGoogle.id,
         latitude: "",
         longitude: ""
@@ -173,7 +173,7 @@ console.log("input 1", input)
 
     //Si no hay errores, el isSubmit esta en true
     // if (isSubmit === true) {
-
+    console.log(input)
       dispatch(createLocation(input));
       dispatch(createanimal(input));
       
@@ -192,8 +192,8 @@ console.log("input 1", input)
         vacunado: "",
         desparasitado: "",
         imagen: "",
-        pichina: usuario._id,
-        pichina2: detalleUserGoogle.id,
+        pichina: detalleUserGoogle.usuario ? detalleUserGoogle._id : usuario._id,
+        pichina2: "",
         latitude: "",
         longitude: ""
       });
