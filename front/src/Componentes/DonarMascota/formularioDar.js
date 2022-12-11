@@ -66,7 +66,7 @@ import "../DonarMascota/formularioDar.css"
         desparasitado: "",
         imagen: "",
         pichina: detalleUserGoogle.usuario ? detalleUserGoogle._id : usuario._id,
-        pichina2: detalleUserGoogle.id,
+        
         latitude: "",
         longitude: ""
       });
@@ -193,7 +193,6 @@ console.log("input 1", input)
         desparasitado: "",
         imagen: "",
         pichina: detalleUserGoogle.usuario ? detalleUserGoogle._id : usuario._id,
-        pichina2: "",
         latitude: "",
         longitude: ""
       });
