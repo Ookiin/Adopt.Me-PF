@@ -67,11 +67,11 @@ const AnimalSchema = new Schema({
         // ref: 'usuarios',
         type: String,
     },    
-    latitude: {
+    lat: {
         type: String,
         required: false,
     },
-    longitude: {
+    lng: {
         type: String,
         required: false,
       },

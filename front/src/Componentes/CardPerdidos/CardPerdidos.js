@@ -3,7 +3,7 @@ import React from "react";
 import "./CardPerdidos.css";
 import { Link } from "react-router-dom";
 
-export default function Card({ descripcion, id, tama, estado, imagen}) {
+export default function CardPerdidos({ descripcion, id, tama, estado, imagen}) {
 
   if(!imagen) {
   return (
@@ -23,8 +23,6 @@ export default function Card({ descripcion, id, tama, estado, imagen}) {
           <div class="card__header-text">
             <div class="card__title">Estado: {estado}</div>            
             <div class="card__status">Tamaño: {tama}</div>
-            
-            {/* <div>{id}</div> */}
           </div>
         </div>
         <p class="card__description">{descripcion}</p>
@@ -33,7 +31,7 @@ export default function Card({ descripcion, id, tama, estado, imagen}) {
   </div>
 </div>
     </div>
-  );
+  )
   } else {
     return (
       <div class="cardstodas">
