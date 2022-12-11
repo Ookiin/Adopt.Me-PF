@@ -378,15 +378,15 @@ case GET_CAT_TAMAÑOS: {
         case GET_GATO_PERDIDO:            
             return{
                 ...state,
-                gatosPerdidos: action.payload,
+                animalesPerdidosCopia: action.payload,
             }
 
           case GET_PERRO_PERDIDO:
             return{
               ...state,
-              perrosPerdidos: action.payload,
-              
+              animalesPerdidosCopia: action.payload,
             }
+
         case CREATE_ANIMAL_PERDIDO:
             return{
                 ...state,                      
