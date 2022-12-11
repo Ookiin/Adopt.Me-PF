@@ -108,7 +108,7 @@ deleteUsuario = async (req, res) => {
 
 emailBienvenida = async (req, res) => {
   const {mail} = req.body
-  console.log('entre al sendMail')
+  // console.log('entre al sendMail')
   try{
     const transporter = nodemailer.createTransport({
       host: "smtp.gmail.com",
@@ -120,14 +120,14 @@ emailBienvenida = async (req, res) => {
       },
     });
 
-    console.log('console.log dentro del try')
+    // console.log('console.log dentro del try')
     user = await UsuarioModel.findOne ({mail: mail});
-    console.log('usuario creado', user)
-    console.log('mail del usuario', user.mail)
+    // console.log('usuario creado', user)
+    // console.log('mail del usuario', user.mail)
     // const token = jwt.sign({ username: user.mail }, 'SECRET', {expiresIn: '24h'});
     // linkVerificacion = `http://localhost:3000/confirmar_email/${token}`;
 
-    console.log('console.log antes de sendMail')
+    // console.log('console.log antes de sendMail')
     await transporter.sendMail({
       from: '"Adopt.me 🐾" <adoptmeargentina@gmail.com>', // sender address
       to: mail, // list of receivers
