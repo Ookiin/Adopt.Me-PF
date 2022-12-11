@@ -11,6 +11,7 @@ import getDetalleUsuario from "../../Actions/getDetalleUsuario";
 import { useAuth0 } from "@auth0/auth0-react";
 import Toast from "light-toast";
 import getusers from "../../Actions/getusers";
+// import emailInfoAdoptante from "../../Actions/emailInfoAdoptante"
 import { MapContainer, Marker, Popup, TileLayer, useMap } from "react-leaflet";
 import { IconLocation } from "../Maps/IconLocation";
 
@@ -86,11 +87,11 @@ export default function DetallePerro() {
    ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 
    const [geo, setGeo] = useState({
-       longitude: -61.043988,
-       latitude: -34.7361,
+       lng: -61.043988,
+       lat: -34.7361,
     })
 
-  const position = [geo.latitude, geo.longitude]
+  const position = [geo.lat, geo.lng]
 
     const local = position
 
@@ -108,8 +109,8 @@ export default function DetallePerro() {
 
   function handleLocation() {
     setGeo({
-          latitude: detail.latitude,
-          longitude: detail.longitude
+          lat: detail.lat,
+          lng: detail.lng
     })
    
     Toast.success("Reubicandose a la ubicacion de esta mascota", 1500, () => {});
@@ -171,7 +172,7 @@ export default function DetallePerro() {
                     return (
 
                   <Marker
-                  position={[geo.latitude, geo.longitude]} 
+                  position={[geo.lat, geo.lng]} 
                   icon={IconLocation}> 
                   <Popup>
                     <img className={stl.imagenMarcador}src={detail.imagen} alt="" /><br></br>

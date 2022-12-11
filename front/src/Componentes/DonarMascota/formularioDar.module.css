@@ -10,7 +10,7 @@
 }
 
 .formularito {
-    height: 1700px;
+    height: 1800px;
     width: 800px;
     display: flex;
     justify-content: center;
@@ -235,12 +235,12 @@
   }
 
   .contenedordatos {
-    /* border: 1px solid red; */
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    margin-right: 114px;
+    margin-left: 40px;
+    margin-right: 68px;
 
   }
 
@@ -325,6 +325,11 @@ textarea {
   margin-top: 60px;
 }
 
+.contenedorMapa {
+  /* border: 1px solid red; */
+  margin-left: 40px;
+}
+
 /*//////////////////////////////////////////////////////////////////////////////////////7*/
 
 
@@ -339,7 +344,7 @@ textarea {
     border-radius: 10px;
     margin-left: 16px;
     width: 450px;
-    height: 1800px;
+    height: 1900px;
   }
 
   .imageContainer {
@@ -348,13 +353,13 @@ textarea {
   }
 
   .contenedordatos {
-    margin-right: 20px;
+    margin-right: 25px;
     width: 400px;
   }
 
   .mapaInfo {
     margin-top: 60px;
-    margin-left: 30px;
+    margin-left: 80px;
     width: 400px;
   }
 
@@ -369,6 +374,10 @@ textarea {
     font-size: 10px;
     margin-left: 160px;
     margin-top: 50px;
+  }
+
+  .contenedorMapa {
+    margin-right: 30px;
   }
 
 }

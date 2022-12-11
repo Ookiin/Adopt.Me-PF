@@ -18,7 +18,7 @@ const locationRutas = require("../BACK/src/rutas/locations");
 const lostLocationRutas = require("../BACK/src/rutas/lostLocation");
 const comentarioRutas = require("../BACK/src/rutas/comentario");
 const respuestaRutas = require("../BACK/src/rutas/respuesta");
-
+const likesRutas = require("../Back/src/rutas/likes");
 
 //inicializacion
 const app = express();
@@ -61,6 +61,7 @@ app.use("/lostlocation", lostLocationRutas);
 app.use("/payment", Stripe)
 app.use("/comentario", comentarioRutas);
 app.use("/respuesta", respuestaRutas);
+app.use("/likes", likesRutas)
 // app.use("/payment", pagosStripes);
 
 

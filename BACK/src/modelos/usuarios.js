@@ -40,7 +40,12 @@ const UsuarioSchema = new Schema({
   roles: [{
     ref: 'roles',
     type: Schema.Types.ObjectId
-  }]
+  }],
+  // status: {
+  //   type: String,
+  //   required: true,
+  //   default: 'UNVERIFIED'
+  // }
 });
 
 // METODO PARA HASHEAR CONTRASEÑA

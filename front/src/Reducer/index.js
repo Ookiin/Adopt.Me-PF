@@ -35,7 +35,11 @@ import {
     GET_POSTS,
     GET_POST_ID,
     CREATE_RESPUESTA,
-    GET_RESPUESTA
+    GET_RESPUESTA,
+    GET_LIKES,
+    CREATE_LIKE,
+    EMAIL_BIENVENIDA,
+    EMAIL_INFO_ADOPTANTE
   } from "../Actions";
 
 
@@ -64,7 +68,8 @@ const initialState = {
    copiaPosts: [],
    respuestas: [],
    edad: 'edad',
-   tamaño: 'All'
+   tamaño: 'All',
+   likes: []
 }
 
 
@@ -91,6 +96,9 @@ const perros = state.perros
     case CREATE_POST:
       return {...state};
 
+      case CREATE_LIKE:
+        return {...state};
+
     case CREATE_RESPUESTA:
       return {...state};
 
@@ -104,6 +112,11 @@ const perros = state.perros
         return { ...state,
         postDetails: action.payload
       }
+
+      case GET_LIKES:
+        return {...state,
+        likes: action.payload
+        }
 
     case GET_USERS:
       return {
@@ -387,6 +400,16 @@ case GET_CAT_TAMAÑOS: {
         return {
           ...state,
         }
+
+        case EMAIL_BIENVENIDA:
+          return {
+            ...state
+          }
+
+          case EMAIL_INFO_ADOPTANTE:
+            return {
+              ...state
+            }
 
         
     default:

@@ -113,10 +113,8 @@ postAnimal = async (req, res) => {
       desparasitado,
       imagen,
       pichina,
-
-      longitude,
-      latitude,
-    } = req.body;
+      lng,
+      lat} = req.body;
 
     const animales = await new AnimalModel({
       _id: _id,
@@ -134,13 +132,13 @@ postAnimal = async (req, res) => {
       desparasitado,
       imagen,
       pichina,
-
-      longitude,
-      latitude,
-    });
-    if (animales.length) await animales.save();
-    const nuevoAnimal = await animales.save();
-    res.status(200).json(nuevoAnimal);
+      lng,
+      lat    
+      })    
+      if (animales.length) await animales.save()
+      const nuevoAnimal = await animales.save()      
+      res.status(200).json(nuevoAnimal)      
+    
   } catch (error) {
     res.status(400).json({ msg: "no se creó el posteo" });
   }

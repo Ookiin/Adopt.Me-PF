@@ -7,13 +7,13 @@ postComentario = async (req, res) => {
        _id: _id, 
        titulo, 
        contenido,
-       owner } = req.body;
+       owner,} = req.body;
 
     const comentarios = new comentarioModel({
       _id: _id, 
       titulo, 
       contenido,
-      owner
+      owner,
     });
     if (comentarios.length) await comentarios.save();
     const nuevoComentario = await comentarios.save();

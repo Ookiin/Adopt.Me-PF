@@ -127,6 +127,7 @@ export default function BuscarMascota() {
         tama = {a.tama}       
         description = {a.descripcion}
         estado = {a.estado}
+        imagen = {a.imagen}
         />                  
                )
            })}

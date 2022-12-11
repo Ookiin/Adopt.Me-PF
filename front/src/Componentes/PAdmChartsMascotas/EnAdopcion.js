@@ -31,6 +31,7 @@ useEffect(() => {
 
 console.log("allpets", allpets)
 
+
   
 return (
   <div className={stl.grafica}>
@@ -48,7 +49,7 @@ return (
       }}
       barSize={20}
     >
-      <XAxis type= "category" dataKey="estado" />
+      <XAxis type= "category" dataKey="estado" span="none" allowDuplicatedCategory={false}/>
       <YAxis type= "number" dataKey="estado.length"/> 
       <Tooltip />
       <Legend />
