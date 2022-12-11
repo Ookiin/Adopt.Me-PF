@@ -7,7 +7,7 @@
 }
 
 .formul {
-  height: 1300px;
+  height: 1400px;
   width: 900px;
   display: flex;
   justify-content: center;
@@ -18,6 +18,7 @@
   margin-bottom: 100px;
   box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;    
   background-color: #F2E7D5;
+  border-radius: 10px;
 }
 
 .tituloperdido {
@@ -229,3 +230,61 @@
   margin-left: 120px;
 }
 
+.textareaRepor {
+  margin-top: 30px;
+  width: 400px;
+  height: 100px;
+}
+
+.titulos {
+  margin-right: 30px;
+}
+
+/*//////////////////////////////////////////////////////////*/
+
+@media (min-width: 481px) and (max-width: 767px) {
+
+  .tituloperdido {
+    font-size: 30px;
+  }
+
+  .formul {
+    margin-left: 16px;
+    width: 450px;
+    border-radius: 10px;
+  }
+
+  .ps {
+    font-size: 14px;
+    width: 340px;
+    margin-left: 74px;
+  }
+
+  .botonubicacion {
+    margin-left: 18px;
+    margin-right: 20px;
+    margin-top: 40px;
+    margin-bottom: -80px;
+  }
+
+  .titulos {
+    font-size: 16px;
+    margin-right: 20px;
+    margin-left: 26px;
+  }
+
+  .textareaRepor {
+    margin-top: 30px;
+    height: 100px;
+    width: 250px;
+  }
+
+  .botonperdido {
+    margin-top: 20px;
+  }
+
+  .imageContainer2 {
+    margin-top: 10px;
+  }
+
+}

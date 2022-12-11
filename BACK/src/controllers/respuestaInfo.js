@@ -3,11 +3,12 @@ const infoBlog = {};
 
 postRespuesta = async (req, res) => {
   try {
-    const { respuesta, caquina } = req.body;
+    const { respuesta, caquina, respuestaOwner } = req.body;
 
     const respuestas = await new respuestaModel({
       respuesta,
-      caquina
+      caquina,
+      respuestaOwner,
     });
     if (respuestas.length) await respuestas.save();
     const nuevaRespuesta = await respuestas.save();

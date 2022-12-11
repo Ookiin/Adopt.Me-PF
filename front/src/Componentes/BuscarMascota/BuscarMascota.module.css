@@ -258,3 +258,29 @@
     background-color: white;
     color: black;
   }
+
+  .ubicacionMascota {
+    margin-top: 10px;
+  }
+
+  /*///////////////////////////////////////////////////////////*/
+
+  @media (min-width: 481px) and (max-width: 767px) {
+
+    .tituloPerros {
+      font-size: 30px;
+      margin-top: 50px;
+    }
+
+    .paginado {
+      margin-left: -160px;
+    }
+
+    .filtros {
+      margin-left: 140px;
+      width: 200px;
+      margin-bottom: 20px;
+    }
+
+
+  }

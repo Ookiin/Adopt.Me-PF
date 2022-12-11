@@ -54,6 +54,7 @@ const initialState = {
    animalesPerdidos: [],
    animalesPerdidosCopia: [],
    gatosPerdidos: [],
+   perrosPerdidos: [],
    animalesPerdidosDetail: [],
    users: [],
    filtroPerdidos: [],
@@ -325,12 +326,12 @@ case GET_CAT_TAMAÑOS: {
         case GET_GATO_PERDIDO:            
             return{
                 ...state,
-                animalesPerdidos: action.payload,
+                gatosPerdidos: action.payload,
             }
           case GET_PERRO_PERDIDO:
             return{
               ...state,
-              animalesPerdidos: action.payload,
+              perrosPerdidos: action.payload,
               
             }
         case CREATE_ANIMAL_PERDIDO:

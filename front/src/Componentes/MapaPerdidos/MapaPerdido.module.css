@@ -162,3 +162,18 @@
     margin-left: 460px;
   }
   
+  .imagenMarcador {
+    width: 60px;
+    height: 60px;
+  }
+
+  /*/////////////////////////////////////////////////////////*/
+
+  @media (min-width: 481px) and (max-width: 767px) {
+
+    .mapPerdidos {
+      margin-left: 0px;
+      width: 200px;
+    }
+
+  }

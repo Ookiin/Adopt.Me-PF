@@ -1,0 +1,14 @@
+.imagen{
+    height: 100px;
+    width: 100px;
+    margin-top: 10px;
+}
+
+.card{
+    border: solid 5px black;
+    border-radius: 50px;
+    width: 300px;
+    margin-left: 40px;
+    margin-top: 20px;
+    float: left;
+}

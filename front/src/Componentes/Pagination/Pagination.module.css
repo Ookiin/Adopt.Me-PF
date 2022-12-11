@@ -64,7 +64,20 @@
   color: black;
 }
 
+@media (min-width: 481px) and (max-width: 767px) {
 
+.pagination {
+  width: 460px;
+}
+
+.buttonpaging {
+  width: 30px;
+  height: 30px;
+  font-size: 13px;
+  align-items: center;
+}
+
+}
 
 
 

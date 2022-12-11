@@ -143,3 +143,23 @@
     width: 800px;
     height: 500px;
   }
+
+  /*///////////////////////////////////////////////////////////////////////////////////*/
+
+  @media (min-width: 481px) and (max-width: 767px) {
+
+    .grupohogares {
+      width: 300px;
+    }
+
+    .titulodirectorio {
+      font-size: 30px;
+      margin-left: -20px;
+    }
+
+    .hogarestransito {
+      padding: 0;
+      margin: 10px;
+    }
+
+  }

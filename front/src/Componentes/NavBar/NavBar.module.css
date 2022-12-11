@@ -405,11 +405,12 @@ h4 {
   @media (min-width: 481px) and (max-width: 767px) {
     .logo {
       font-size: 23px;
-      margin-left: -80px;
+      margin-left: -100px;
+      margin-right: -40px;
     }
 
     .algomas {
-      margin-left: -70px;  
+      margin-left: -100px;  
     }
 
     .login {
@@ -420,7 +421,8 @@ h4 {
       width: 30px;
       height: 33px;
       font-size: 10px;
-      margin-right: 4px;
+      margin-right: -24px;
+      margin-left: 30px;
     }
 
     .buttons {
@@ -431,11 +433,24 @@ h4 {
       margin-left: -30px;
     }
 
-    .buttonPerfil {
-      margin-left: -86px;
-      width: 50px;
-      height: 30px;
-      font-size: 13px;
-    }
+  .imagenPerfil {
+  }
+
+  .AvatarPerfil {
+    margin-left: 20px;
+  }
+
+  .menuPerfil {
+    margin-left: -40px;
+  }
+
+  .logo2 {
+    width: 40px;
+    background-repeat: no-repeat;
+    height: 40px;
+    margin-left: 30px;
+  }
+
+
   }
    

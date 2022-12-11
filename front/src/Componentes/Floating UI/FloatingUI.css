@@ -227,4 +227,38 @@
     right: 20px;
   }
 
+  @media (min-width: 481px) and (max-width: 767px) {
+
+    .nd1 {
+      width: 0px;
+      height: 0px;
+     
+    }
+
+    .nd3 {
+      width: 0px;
+      height: 0px;
+    }
+
+    .nd4 {
+      width: 0px;
+      height: 0px;
+    }
+
+    .nds {
+      width: 0px;
+      height: 0px;
+      background-image: url("");
+      border: 1px solid red;
+      margin-left: 10px;
+    }
+
+    #floating-button {
+      width: 0px;
+      height: 0px;
+      background-image: url("");
+    }
+
+  }
+
   

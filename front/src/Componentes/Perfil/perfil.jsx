@@ -133,7 +133,7 @@ export default function Perfil() {
                         <br />
                         <br />
                         
-                        <div>
+                        <div className={css.datos}>
                         {Render === 1 && detalleUser.usuario ? <MiInformacion datos={detalleUser} /> : null}
                         {Render === 1 && detalleUserGoogle.usuario ? <MiInformacion datos={detalleUserGoogle} /> : null}
                         {Render === 1 && !detalleUser.usuario && !detalleUserGoogle.usuario ? <CartelCompletarRegistro></CartelCompletarRegistro> : null}

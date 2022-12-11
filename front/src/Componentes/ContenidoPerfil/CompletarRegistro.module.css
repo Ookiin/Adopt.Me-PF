@@ -5,7 +5,7 @@
     height: 700px;
     margin-left: 50px;
     border-radius: 10%;
-    border: solid black 8px;
+    /* border: solid black 8px; */
 }
 
 
@@ -45,3 +45,12 @@
   .label{
     font-size: 30px;
   }
+
+  .err{
+    color: red;
+    font-size: 13px;
+    font-family: 'Viga', sans-serif;
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+  
