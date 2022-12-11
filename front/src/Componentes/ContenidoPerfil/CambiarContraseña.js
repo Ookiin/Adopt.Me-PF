@@ -40,26 +40,12 @@ export default function CambiarContraseña() {
   const [errors, setErrors] = useState({});
   const [isSubmit, setisSubmit] = useState(false);
 
-  
-  
-  
-  console.log("Contraseña")
-  console.log(input.contraseñaActual)
-
-  let hasheada =  bcrypt.hash(input.contraseñaActual,10)
-
-  console.log("Contraseña hasheada")
-  console.log(hasheada)
-
+  console.log("Contraseña");
+  console.log(input.contraseñaActual);
 
   function validation(input) {
     let errors = {};
-    // hay que validar que la contraseña actual sea esa.
-    /*
-    if (noCoinciden) {
-      errors.contraseñaActual =
-        "La contraseña ingresada no coincide con la contraseña actual";
-    }*/
+    
     if (
       !/^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{8,16}$/.test(input.nuevaContraseña)
     ) {
@@ -89,6 +75,14 @@ export default function CambiarContraseña() {
 
   async function handleSubmit(e) {
     e.preventDefault();
+    let hasheada = await bcrypt.compare(
+      input.contraseñaActual,
+      detalleUser.contrasena
+    );
+    if (!hasheada) {
+      return alert ("contraseña actual incorrecta");
+    }
+
     //Si no hay errores, el isSubmit esta en true
     if (isSubmit) {
       console.log("Este es el input antes de despachar");

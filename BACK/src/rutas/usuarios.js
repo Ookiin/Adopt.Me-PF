@@ -26,4 +26,10 @@ router.post("/google/signup", postSignupGoogle);
 
 router.get("/google/:id", getUserGoogle);
 
+router.post("/emailbienvenida", emailBienvenida);
+
+router.post("/emailInfoAdoptante", emailInfoAdoptante);
+
+// router.put("/confirmar_email/:token", putVerificacion);
+
 module.exports = router;
