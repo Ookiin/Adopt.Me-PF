@@ -38,3 +38,5 @@ export const GET_POSTS = "GET_POSTS";
 export const GET_POST_ID = "GET_POST_ID";
 export const CREATE_RESPUESTA = "CREATE_RESPUESTA";
 export const GET_RESPUESTA = "GET_RESPUESTA";
+export const EMAIL_BIENVENIDA = "EMAIL_BIENVENIDA";
+// export const VERIFICADO = "VERIFICADO"

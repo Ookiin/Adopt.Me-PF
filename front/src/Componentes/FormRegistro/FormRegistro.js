@@ -6,6 +6,7 @@ import NavBar from "../NavBar/NavBar";
 import stl from "../FormRegistro/FormRegistro.module.css";
 import createuser from "../../Actions/createuser";
 import getusers from "../../Actions/getusers";
+import emailBienvenida from "../../Actions/emailBienvenida"
 import FloatingUI from "../Floating UI/FloatingUI";
 import userImageDefault from "../../Imagenes/userImageDefault.png";
 import Toast from 'light-toast';
@@ -34,6 +35,7 @@ export default function FormRegistro() {
 
   const [errors, setErrors] = useState({});
   const [isSubmit, setisSubmit] = useState(false);
+  const [sent, setSent] = useState(false)
 
   function validation(input) {
     let errors = {};
@@ -115,7 +117,8 @@ export default function FormRegistro() {
     if (isSubmit) {
       console.log("Se despacha el create con estos valores")
       console.log(input)
-      dispatch(createuser(input));
+      setSent(true);
+      dispatch(createuser(input), emailBienvenida(input.mail));
       setInput({
         usuario: "",
         contrasena: "",
@@ -146,6 +149,13 @@ export default function FormRegistro() {
       })
     );
   }
+
+  // function handleSend(e) {
+  //   e.preventDefault();
+  //   setSent(true);
+  //   dispatch(emailConfirmacion(input.mail));
+  //   console.log('input.mail', input.mail)
+  // }
 
   function handleOpenWidget(e) {
     // console.log("Entre el handleOpenWidget");
