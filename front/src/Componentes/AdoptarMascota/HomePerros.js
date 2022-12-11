@@ -19,7 +19,7 @@ export default function HomePerros () {
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
-    const allPets = useSelector((state) => state.perros);
+    // const allPets = useSelector((state) => state.perros);
     const copiaPerros = useSelector((state)=>state.perrosCopia)
 
     const [currentPage, setCurrentPage] = useState(1) 
@@ -27,12 +27,11 @@ export default function HomePerros () {
 
     const lastPetIndex = currentPage * mascotasPerPage 
     const firstPetIndex = lastPetIndex - mascotasPerPage 
-    const currentPets = allPets.slice(firstPetIndex,lastPetIndex) 
+    const currentPets = copiaPerros.slice(firstPetIndex,lastPetIndex) 
 
     const [setInput] = useState("");
     const [setOrden] = useState("");
     const [searchDog, setSearchDog] = useState("");
-    useState(copiaPerros)
 
     const actualPage = (pageNumber) => {setCurrentPage(pageNumber)}
 
@@ -141,7 +140,7 @@ export default function HomePerros () {
         <div className={stl.paginado}>
         <Paging 
         mascotasPerPage={mascotasPerPage} 
-        allPets={allPets.length} 
+        allPets={copiaPerros.length} 
         currentPage={currentPage}
         actualPage={actualPage}
         currentPets={currentPets}
