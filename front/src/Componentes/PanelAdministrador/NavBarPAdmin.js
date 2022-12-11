@@ -6,6 +6,8 @@ import {Link} from "react-router-dom";
 const NavBarPAdmin = () => {
 
     return(
+    <div className={stl.NavBarPAdmin}>
+
     <div className={stl.menuCollapsed}>
        <div >
           <div ><span>PANEL DE ADMINISTRADOR</span></div>
@@ -16,7 +18,7 @@ const NavBarPAdmin = () => {
           </div>
        </div>
        <div >
-          <div ><img alt="logo" src={logo}/></div>
+          <div className={stl.logo2}></div>
           <div ><span>ADOPT.ME</span></div>
        </div>
        <div>
@@ -35,7 +37,7 @@ const NavBarPAdmin = () => {
             
             <div>
             <Link to="/panel-Administrador/mascotas">
-                <button className={stl.botonesAdmin} >MASCOTAS</button>
+                <button className={stl.botonesAdmin}>MASCOTAS</button>
             </Link>
             </div>
             
@@ -72,6 +74,7 @@ const NavBarPAdmin = () => {
           </div>
        </div>
        
+    </div>
     </div>
 )    
 }
