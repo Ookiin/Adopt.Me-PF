@@ -47,7 +47,7 @@ return (
       }}//scale="point" padding={{ left: 10, right: 10 }}
       barSize={20}
     >
-      <XAxis type= "category" dataKey="estado" />
+      <XAxis type= "category" dataKey="estado" allowDuplicatedCategory={false}/>
       <YAxis type= "number" dataKey="estado.length"/>
       {/* <Tooltip />
       <Legend /> */}
