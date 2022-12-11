@@ -58,7 +58,6 @@ export default function MapLostPets() {
             lat: "",
             lng: ""
     })
-    console.log("viendo si guarda", location)
 
     function handleLocation() {
         setLocation({

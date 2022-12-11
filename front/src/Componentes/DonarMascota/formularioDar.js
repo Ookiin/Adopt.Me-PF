@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import createanimal from "../../Actions/createanimal";
@@ -30,16 +30,16 @@ import "../DonarMascota/formularioDar.css"
   /////////////////////////////////////////////////////////// TOMA MI UBICACION ACTUAL SEGUN MI GPS ///////////////////
 
   const [geo, setGeo] = useState({
-    longitude: -61.043988,
-    latitude: -34.7361,
+    lng: -61.043988,
+    lat: -34.7361,
   })
   
   useEffect(() => {
     navigator.geolocation.getCurrentPosition(
         function (position) {
             setGeo({
-                latitude: position.coords.latitude,
-                longitude: position.coords.longitude,
+                lat: position.coords.latitude,
+                lng: position.coords.longitude,
             })
         }, 
         function(error) {
@@ -67,8 +67,8 @@ import "../DonarMascota/formularioDar.css"
         imagen: "",
         pichina: detalleUserGoogle.usuario ? detalleUserGoogle._id : usuario._id,
         pichina2: detalleUserGoogle.id,
-        latitude: "",
-        longitude: ""
+        lat: "",
+        lng: ""
       });
 
   const [imagenes, setImagenes] = useState([]);
@@ -194,8 +194,8 @@ console.log("input 1", input)
         imagen: "",
         pichina: detalleUserGoogle.usuario ? detalleUserGoogle._id : usuario._id,
         pichina2: "",
-        latitude: "",
-        longitude: ""
+        lat: "",
+        lng: ""
       });
       console.log("input 2", input)
       Toast.success("Mascota publicada correctamente", 1500, () => {
@@ -262,20 +262,18 @@ function handleChange(e) {
 function handleLocation() {
   setInput({
     ...input,
-          latitude: geo.latitude,
-          longitude: geo.longitude
+          lat: geo.lat,
+          lng: geo.lng
   })
- console.log("handle 1", input.latitude)
   Toast.success("Ubicacion Establecida. Por favor seleccione 'Guardar mi Ubicacion'", 1000, () => {});
 }
 
 function handleLocation2() {
   setInput({
     ...input,
-          latitude: geo.latitude,
-          longitude: geo.longitude
+          lat: geo.lat,
+          lng: geo.lng
   })
-  console.log("handle 2", input.longitude)
   Toast.success("Ubicacion Guardada con exito", 1000, () => {});
 }
   
@@ -405,7 +403,7 @@ function handleLocation2() {
 
 /////////////////////////////////////////////////// GUARDA MI UBICACION ACTUAL EN UN ESTADO Y RENDERIZO  ///////
 
-const position = [geo.latitude, geo.longitude]
+const position = [geo.lat, geo.lng]
 
 const local = position
 
@@ -420,6 +418,25 @@ useEffect(() => {
 
 return null
 }
+
+/////////////////////////////////////////////////////  MARCADOR MOVIBLE /////////////////////////////////////////////////////7
+
+const [draggable, setDraggable] = useState(false)
+    const markerRef = useRef(null)
+    const eventHandlers = useMemo(
+      () => ({
+        dragend() {
+          const marker = markerRef.current
+          if (marker != null) {
+            setGeo(marker.getLatLng())
+          }
+        },
+      }),
+      [],
+    )
+    const toggleDraggable = useCallback(() => {
+      setDraggable((d) => !d)
+    }, [])
 
 ///////////////////////////////////////////////////////////////////////  TE KAVIO EL RETURN  ///////////////////////////
   return (
@@ -534,44 +551,46 @@ return null
                 type="text" name="peso" value={input.peso}/>
                 {errors.peso && <p className={stl.error}>{errors.peso}</p>}          
             </div>
-{/* 
-            <div className={stl.opciones}>
-            <label className={stl.titulos}>Localidad:</label>
-            <Link to = "/map">
-                <button className={stl.botonUbicacion}>Establecer tu ubicacion</button>
-                </Link>
-                    </div> */}
 
            <div >
             <p className={stl.mapaInfo}>Por favor. Para guardar su ubicacion exitosamente<br></br>
-        <br></br>Primero seleccione "Establecer mi Ubicacion", y luego "Guardar mi Ubicacion".</p>
+            <br></br>1. Primero haga click sobre el marcador azul y muevalo hasta donde se encuentra la mascota
+        <br></br>2. Despues seleccione "Establecer mi Ubicacion"<br></br>3. Luego "Guardar mi Ubicacion".</p>
         <p>Finalmente "Confirmar y Volver"</p>
         <div className={stl.botones}>
         <button className={stl.botonMapa2} onClick={handleLocation}>Establecer mi Ubicacion</button>
         <button className={stl.botonMapa2} onClick={handleLocation2}>Guardar mi Ubicacion</button>
-         {/* <Link to ="/registroMascota">  */}
-             {/* <button className={stl.botonMapa3} type="submit" onClick={handleSubmit}>Confirmar y Volver</button>  */}
-             {/* </Link>  */}
              </div>
 
         <div className={stl.contenedorMapa}>
+
         <MapContainer center={position} zoom={13} scrollWheelZoom={false}>
-        <FlyMapTo />
-        <TileLayer
-          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"/>
 
-        <Marker position={position} icon={IconLocation}>
- 
-           <Popup>
-               Esta es mi ubicacion
-          </Popup>
+                <FlyMapTo />
+                <TileLayer
+                  attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                  url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"/>
 
-    </Marker>
+                <Marker
+                    draggable={draggable}
+                    eventHandlers={eventHandlers}
+                    position={geo}
+                    ref={markerRef}
+                    icon={IconLocation}>
 
-    <Markers />
+                        <Popup minWidth={90}>
+                          <div onClick={toggleDraggable}>
+                            {draggable
+                              ? 'Ya puedes arrastrarlo'
+                              : 'Hace "Click" aqui para arrastrarlo'}
+                          </div>
+                        </Popup>
+
+                </Marker>
+
+                <Markers />
         
-    </MapContainer>
+        </MapContainer>
     
     </div>
             </div> 

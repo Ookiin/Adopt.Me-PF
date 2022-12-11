@@ -12,11 +12,11 @@ getLocation = async (req, res) => {
 
 postLocation = async (req, res) => {
   try {
-    const { longitude, latitude } = req.body;
+    const { lng, lat } = req.body;
 
     const locations = await new locationModel({
-      longitude,
-      latitude,
+      lng,
+      lat,
     });
     if (locations.length) await locations.save();
     const nuevaLocation = await locations.save();

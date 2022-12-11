@@ -32,9 +32,11 @@ export default function LandingPage() {
        
          <div className={stl.icons}>
           <p className={stl.fineslucro}>@Adopt.Me Es una pagina sin fines de lucro</p>
-          <div className={stl.facebook}></div>
-          <div className={stl.instagram}></div>
-          <div className={stl.twitter}></div>
+          
+          <a href="https://www.facebook.com/profile.php?id=100088704424730" target="_blank" rel="noreferrer" className={stl.facebook}></a>
+
+          <a href="https://www.instagram.com/adopt.me.adopcion.mascotas/" target="_blank" rel="noreferrer" className={stl.instagram}></a>
+
         </div>
 
       </div>
