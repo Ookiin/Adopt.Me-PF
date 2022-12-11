@@ -107,8 +107,9 @@ deleteUsuario = async (req, res) => {
 };
 
 emailBienvenida = async (req, res) => {
-  const {mail} = req.body
-  // console.log('entre al sendMail')
+  const {mail, nombre} = req.body
+  console.log(req.body)
+
   try{
     const transporter = nodemailer.createTransport({
       host: "smtp.gmail.com",
@@ -120,21 +121,13 @@ emailBienvenida = async (req, res) => {
       },
     });
 
-    // console.log('console.log dentro del try')
-    user = await UsuarioModel.findOne ({mail: mail});
-    // console.log('usuario creado', user)
-    // console.log('mail del usuario', user.mail)
-    // const token = jwt.sign({ username: user.mail }, 'SECRET', {expiresIn: '24h'});
-    // linkVerificacion = `http://localhost:3000/confirmar_email/${token}`;
-
-    // console.log('console.log antes de sendMail')
     await transporter.sendMail({
       from: '"Adopt.me 🐾" <adoptmeargentina@gmail.com>', // sender address
       to: mail, // list of receivers
       subject: "Bienvenidx a Adopt.me!", // Subject line
       html: `
       <div>
-      <h2>Hola ${user.nombre}!<h2/>
+      <h2>Hola ${nombre}!<h2/>
       <p>Gracias por unirte a la comunidad de Adopt.me! Adoptar es ser parte de la solución.</p>
       <div/>
       `
@@ -167,5 +160,48 @@ emailBienvenida = async (req, res) => {
 //     console.log(error);
 //   }
 // };
+
+emailInfoAdoptante = async (req, res) => {
+  const {pichina, nombre, mail, telefono} = req.body
+
+  try{
+    const transporter = nodemailer.createTransport({
+      host: "smtp.gmail.com",
+      port: 465,
+      secure: true, // true for 465, false for other ports
+      auth: {
+        user: USERGMAIL,
+        pass: PASSWORDGMAIL
+      },
+    });
+
+    adoptante = await UsuarioModel.findOne ({mail: mail});
+    user = await UsuarioModel.findOne ({pichina: pichina});
+
+    await transporter.sendMail({
+      from: '"Adopt.me 🐾" <adoptmeargentina@gmail.com>', // sender address
+      to: mail, // list of receivers
+      subject: "Estas a un paso de concretar la adopción!", // Subject line
+      html: `
+      <div>
+      <h2>Hola ${adoptante.nombre}!</h2>
+      <p>Te dejamos los datos del responsable de tu futura mascota para que puedas ponerte en contacto y concretar la adopción:</p>
+      <ul>
+      <li>Nombre: ${user.nombre}</li>
+      <li>E-mail: ${user.mail}</li>
+      <li>Teléfono de contacto: ${user.telefono}</li>
+      </ul>
+      <p>Gracias por confiar en Adopt.Me!</p>
+      </div>
+      `
+    });
+    
+    return res.send('Ok')
+
+  }catch (error){
+      emailStatus = error
+      res.status(400).json({ msg: "Algo salió mal" });
+  }
+}
 
 module.exports = infoUser;

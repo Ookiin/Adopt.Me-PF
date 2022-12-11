@@ -11,6 +11,7 @@ import getDetalleUsuario from "../../Actions/getDetalleUsuario";
 import { useAuth0 } from "@auth0/auth0-react";
 import Toast from "light-toast";
 import getusers from "../../Actions/getusers";
+import emailInfoAdoptante from "../../Actions/emailInfoAdoptante"
 
 export default function DetallePerro() {
   const { id } = useParams();
@@ -77,10 +78,11 @@ export default function DetallePerro() {
       );
     }
     if ((user && detalleUser.usuario) || detalleUserGoogle.usuario) {
+      dispatch(emailInfoAdoptante(petOwner.nombre, petOwner.mail, petOwner.telefono));
       return Toast.info(`Esta es la informacion del usuario que dio en \n adopcion esta mascota: \n Nombre: 
       ${petOwner.nombre} \n Telefono: ${petOwner.telefono} \n Email: ${petOwner.email}`, 10000, () => {
 
-        navigate("/homepage");
+        navigate("/contacto");
       })
     }
   }

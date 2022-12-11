@@ -35,7 +35,6 @@ export default function FormRegistro() {
 
   const [errors, setErrors] = useState({});
   const [isSubmit, setisSubmit] = useState(false);
-  const [sent, setSent] = useState(false)
 
   function validation(input) {
     let errors = {};
@@ -115,10 +114,11 @@ export default function FormRegistro() {
     e.preventDefault();
     //Si no hay errores, el isSubmit esta en true
     if (isSubmit) {
-      console.log("Se despacha el create con estos valores")
-      console.log(input)
-      setSent(true);
-      dispatch(createuser(input), emailBienvenida(input.mail));
+      // console.log("Se despacha el create con estos valores")
+      // console.log(input)
+      dispatch(createuser(input));
+      dispatch(emailBienvenida(input));
+      
       setInput({
         usuario: "",
         contrasena: "",
