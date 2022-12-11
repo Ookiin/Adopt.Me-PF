@@ -10,37 +10,35 @@ getAnimales = async (req, res) => {
   }
 };
 
-getPerros = async (req,res) => {  
+getPerros = async (req, res) => {
   try {
-  let animalitos = await AnimalModel.find({perro: true});
-  console.log(animalitos);           
-  if(animalitos.length) 
-  await res.status(200).json(animalitos)
-} catch (error) {
-  res.status(400).json('UPS! no se encontraron perritos')    
-}
-} 
-
-getGatos = async (req,res) => {
-  try {
-    let animalitos1 = await AnimalModel.find({gato: true});
-    console.log(animalitos1);
-    if(animalitos1.length)
-    await res.status(200).json(animalitos1) 
+    let animalitos = await AnimalModel.find({ perro: true });
+    console.log(animalitos);
+    if (animalitos.length) await res.status(200).json(animalitos);
   } catch (error) {
-    res.status(400).json('UPS! No se encontraron gatitos')   
+    res.status(400).json("UPS! no se encontraron perritos");
   }
-}
+};
 
+getGatos = async (req, res) => {
+  try {
+    let animalitos1 = await AnimalModel.find({ gato: true });
+    console.log(animalitos1);
+    if (animalitos1.length) await res.status(200).json(animalitos1);
+  } catch (error) {
+    res.status(400).json("UPS! No se encontraron gatitos");
+  }
+};
 
 getPerrosByName = async (req, res) => {
   try {
     const { nombre } = req.query;
-    console.log({nombre});
-    let mascotaName = await AnimalModel.findOne({nombre: { $regex: nombre, $options:"i"}}); 
+    console.log({ nombre });
+    let mascotaName = await AnimalModel.findOne({
+      nombre: { $regex: nombre, $options: "i" },
+    });
     console.log(mascotaName);
-    if(mascotaName.length) await res.status(200).send(mascotaName)
-    
+    if (mascotaName.length) await res.status(200).send(mascotaName);
   } catch (error) {
     res.status(400).json(`no encontrado`);
   }
@@ -49,78 +47,57 @@ getPerrosByName = async (req, res) => {
 getGatosByName = async (req, res) => {
   try {
     const { nombre } = req.query;
-    console.log({nombre});
-    let gatoName= await AnimalModel.find({nombre: { $regex: nombre, $options:"i"}}); 
+    console.log({ nombre });
+    let gatoName = await AnimalModel.find({
+      nombre: { $regex: nombre, $options: "i" },
+    });
     console.log(gatoName);
-    if(gatoName.length) await res.status(200).json(gatoName)
-   
+    if (gatoName.length) await res.status(200).json(gatoName);
   } catch (error) {
     res.status(400).json(`no encontrado`);
   }
 };
 
-getLocalidad = async (req,res) => {
+getLocalidad = async (req, res) => {
   try {
-    const {localidad} = req.query;
+    const { localidad } = req.query;
     console.log(localidad);
-    let ubicacion = await AnimalModel.find({localidad: { $regex: localidad, $options:"i"}});
+    let ubicacion = await AnimalModel.find({
+      localidad: { $regex: localidad, $options: "i" },
+    });
     console.log(ubicacion);
-    if (ubicacion.length) await res.status(200).json(ubicacion)
+    if (ubicacion.length) await res.status(200).json(ubicacion);
   } catch (error) {
-    res.status(400).json('UPS! algo salio mal')   
+    res.status(400).json("UPS! algo salio mal");
   }
-}
+};
 
-getTamaño = async (req,res) => {
+getTamaño = async (req, res) => {
   try {
-    
-    const {tama} = req.body;        
-    let tamas = await AnimalModel.find({tam:{path: ''}});   
-    const mapeado = await tamas.map(t=>t.tama)   ;   
+    const { tama } = req.body;
+    let tamas = await AnimalModel.find({ tam: { path: "" } });
+    const mapeado = await tamas.map((t) => t.tama);
     console.log(tamas);
-    if (tamas) await res.status(200).json(mapeado)
+    if (tamas) await res.status(200).json(mapeado);
   } catch (error) {
-    res.status(400).json('UPS! algo salio mal')   
+    res.status(400).json("UPS! algo salio mal");
   }
 };
-getEdad = async (req,res) => {
+getEdad = async (req, res) => {
   try {
-    
-    const {edad} = req.body;        
-    let edades = await AnimalModel.find({eda:{path: ''}});   
-    const mapeados = await edades.map(t=>t.edad);   
+    const { edad } = req.body;
+    let edades = await AnimalModel.find({ eda: { path: "" } });
+    const mapeados = await edades.map((t) => t.edad);
     console.log(edades);
-    if (edades) await res.status(200).json(mapeados)
+    if (edades) await res.status(200).json(mapeados);
   } catch (error) {
-    res.status(400).json('UPS! algo salio mal')   
+    res.status(400).json("UPS! algo salio mal");
   }
 };
-
 
 postAnimal = async (req, res) => {
   try {
-
-    const {  
-      _id: _id,    
-      perro,
-      gato,
-      nombre,
-      raza,
-      edad,
-      estado,
-      tama,
-      peso,
-      descripcion,
-      castrado,
-      vacunado,
-      desparasitado,
-      imagen,      
-      pichina,
-      pichina2,
-      lng,
-      lat} = req.body;
-
-      const animales = await new AnimalModel({
+    const {
       _id: _id,
       perro,
       gato,
@@ -134,9 +111,27 @@ postAnimal = async (req, res) => {
       castrado,
       vacunado,
       desparasitado,
-      imagen,     
+      imagen,
       pichina,
-      pichina2,
+      lng,
+      lat} = req.body;
+
+    const animales = await new AnimalModel({
+      _id: _id,
+      perro,
+      gato,
+      nombre,
+      raza,
+      edad,
+      estado,
+      tama,
+      peso,
+      descripcion,
+      castrado,
+      vacunado,
+      desparasitado,
+      imagen,
+      pichina,
       lng,
       lat    
       })    
@@ -152,18 +147,17 @@ postAnimal = async (req, res) => {
 getDetalleAnimal = async (req, res) => {
   try {
     const { id } = req.params;
-    console.log({id});
-    let anmId = await AnimalModel.findById(id); 
+    console.log({ id });
+    let anmId = await AnimalModel.findById(id);
     console.log(anmId);
     res.status(200).send(anmId);
-    
   } catch (error) {
     res.status(400).json(`no encontrado`);
   }
 };
 
 putAnimal = async (req, res) => {
-  const { id } = req.params; 
+  const { id } = req.params;
   const {
     perro,
     gato,
@@ -179,7 +173,7 @@ putAnimal = async (req, res) => {
     vacunado,
     imagen,
     longitude,
-    latitude
+    latitude,
   } = req.body;
   try {
     let mascota = await AnimalModel.updateOne(
@@ -187,7 +181,7 @@ putAnimal = async (req, res) => {
       {
         $set: {
           perro,
-          gato,          
+          gato,
           nombre,
           raza,
           edad,
@@ -200,7 +194,7 @@ putAnimal = async (req, res) => {
           vacunado,
           imagen,
           longitude,
-          latitude
+          latitude,
         },
       }
     );
