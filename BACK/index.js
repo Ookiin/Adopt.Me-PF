@@ -19,7 +19,6 @@ const lostLocationRutas = require("../BACK/src/rutas/lostLocation");
 const comentarioRutas = require("../BACK/src/rutas/comentario");
 const respuestaRutas = require("../BACK/src/rutas/respuesta");
 
-
 //inicializacion
 const app = express();
 createRoles();

@@ -35,7 +35,9 @@ import {
     GET_POSTS,
     GET_POST_ID,
     CREATE_RESPUESTA,
-    GET_RESPUESTA
+    GET_RESPUESTA,
+    EMAIL_BIENVENIDA,
+    EMAIL_INFO_ADOPTANTE
   } from "../Actions";
 
 
@@ -387,6 +389,16 @@ case GET_CAT_TAMAÑOS: {
         return {
           ...state,
         }
+
+        case EMAIL_BIENVENIDA:
+          return {
+            ...state
+          }
+
+          case EMAIL_INFO_ADOPTANTE:
+            return {
+              ...state
+            }
 
         
     default:
