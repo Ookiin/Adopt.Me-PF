@@ -32,6 +32,7 @@
     "react-leaflet": "^4.2.0",
     "react-multi-carousel": "^2.8.2",
     "react-next-paging": "^7.0.7",
+    "react-pro-sidebar": "^1.0.0-alpha.9",
     "react-redux": "^8.0.5",
     "react-router-dom": "^6.4.3",
     "react-scripts": "^5.0.1",
