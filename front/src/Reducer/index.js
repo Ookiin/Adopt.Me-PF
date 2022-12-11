@@ -37,7 +37,7 @@ import {
     CREATE_RESPUESTA,
     GET_RESPUESTA,
     GET_LIKES,
-    CREATE_LIKE
+    CREATE_LIKE,
     EMAIL_BIENVENIDA,
     EMAIL_INFO_ADOPTANTE
   } from "../Actions";
