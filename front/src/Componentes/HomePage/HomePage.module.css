@@ -571,7 +571,7 @@
   }
 
   .mensajemascotas {
-    background-image: url("");
+    background-image: none;
     font-size: 0px;
     position:absolute;
     margin-left: -400px;
@@ -585,7 +585,7 @@
 }
 
 .banner2 {
-  background-image: url("");
+  background-image: none;
   width: 0px;
   height: 0px;
 }

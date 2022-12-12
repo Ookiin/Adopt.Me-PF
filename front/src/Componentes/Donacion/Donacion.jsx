@@ -28,7 +28,7 @@ export default function Donar() {
            
            <div className={stl.datos}>
 
-               <label>Nombre:</label>
+               {/* <label>Nombre:</label>
                <input placeholder="Nombre"></input>
 
                <label>Apellido:</label>
@@ -43,7 +43,7 @@ export default function Donar() {
                     <option>Adopteros Argentina (Bs.As)</option>
                     <option>El Campito Refugio (Bs.As)</option>                    
                 </select>
-               </label>
+               </label> */}
 
            </div>
 
