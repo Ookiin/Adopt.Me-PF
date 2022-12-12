@@ -3,6 +3,7 @@ import Footer from "../Footer/Footer";
 import Metamask from "../Metamask/Metamask";
 import NavBar from "../NavBar/NavBar";
 import Paypal from "../Paypal/Paypal";
+import Purchases from "../Paypal/Purchase";
 // import App from "../Stripes/Stripe";
 import stl from "./Donacion.module.css";
 // import {Elements, CardElement, useStripe, useElements} from '@stripe/react-stripe-js';
@@ -48,12 +49,16 @@ export default function Donar() {
 
            <div className={stl.metodosPago}>
                 
-                <div className={stl.botonpaypal}>
+                {/* <div className={stl.botonpaypal}>
                 <Paypal />
-                </div>
+                </div> */}
 
                 <div className={stl.botonmetamask}>
                 <Metamask />
+                </div>
+
+                <div>
+                    <Purchases />
                 </div>
 
                 {/* <div className={stl.botonstripes}>
