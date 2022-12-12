@@ -30,6 +30,7 @@ export default function MisFavoritos() {
                         <CardFavoritos
                         id = {f._id} 
                         nombre = {f.nombre}
+                        favoritos = {f.favoritos}
                         />
 
                     )

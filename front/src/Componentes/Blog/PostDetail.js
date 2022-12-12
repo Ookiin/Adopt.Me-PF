@@ -122,10 +122,16 @@ export default function PostDetail() {
     const favo = postDetalles._id  
    
     const [fav, setFav] = useState({
-        favoritos: postDetalles._id,
-        userFav: detalleUser._id,
-        nombre: postDetalles.titulo
+        favoritos: "",
+        userFav: "",
+        nombre: ""
     })
+
+    useEffect(() => {
+        setFav({ favoritos: postDetalles._id,
+                userFav: detalleUser._id,
+                nombre: postDetalles.titulo})
+        }, [postDetalles, detalleUser])
     
     function handleFavoritos(e) {
         if (!user) {
@@ -148,6 +154,7 @@ export default function PostDetail() {
                     nombre: postDetalles.titulo
                 })
                 Toast.success("Agregado a Mis Favoritos", 1000, () => {})
+
             }}
     }
 
@@ -160,7 +167,7 @@ export default function PostDetail() {
 
              <div className="posteoDetalles">
 
-                <div className="botonfavoritos" onClick={handleFavoritos}>Fav</div>
+                <div className="botonfavoritos" onClick={handleFavoritos}>Fav</div><br></br>
 
                 <div>Post creado por: {postDetalles.owner}</div>
 
