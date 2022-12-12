@@ -18,7 +18,7 @@ export default function BuscarMascota() {
   const params = useParams();
   const dispatch = useDispatch();
   
-  const allPets = useSelector((state)=>state.animalesPerdidos);
+  const allPets = useSelector((state)=>state.animalesPerdidosCopia);
   const [currentPage, setCurrentPage] = useState(1);
   const [mascotasPerPage] = useState(4);
   const lastPetIndex = currentPage * mascotasPerPage; 
@@ -33,24 +33,26 @@ export default function BuscarMascota() {
     setCurrentPage(1)
   }, [dispatch]);
 
-   function handleTamaño (e){  
-     e.preventDefault();   
-   dispatch(getTamañofiltro(e.target.value));
+
+  function handleTamaño (e){  
+    e.preventDefault();   
+    dispatch(getTamañofiltro(e.target.value));
   };
-   function handleEstado (e){  
-     e.preventDefault();   
-     dispatch(filtradoEstadoPerdido(e.target.value));
+  function handleEstado (e){  
+    e.preventDefault();   
+    dispatch(filtradoEstadoPerdido(e.target.value));
   };
-   function handleGato (e){  
-     e.preventDefault();   
-     dispatch(getGatoPerdido(e.target.value))    
+  function handleGato (e){  
+    e.preventDefault();   
+    dispatch(getGatoPerdido(e.target.value))    
   };
-   function handlePerro (e){  
-     e.preventDefault();   
-     dispatch(getPerroPerdido(e.target.value)); 
+  function handlePerro (e){  
+    e.preventDefault();   
+    dispatch(getPerroPerdido(e.target.value)); 
   };
-   function handleRecargar (e){  
-     e.preventDefault();   
+  function handleRecargar (e){  
+    e.preventDefault();   
+
     dispatch(getAnimalesPerdidos(e.target.value));
     setCurrentPage(1)
   };

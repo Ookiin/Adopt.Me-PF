@@ -11,7 +11,7 @@ import {
     GET_CAT_NAME,
     GET_DOG_LOCALIDAD,
     GET_CAT_LOCALIDAD,
-    GET_TAMAÑO_PERDIDOS, 
+    // GET_TAMAÑO_PERDIDOS, 
     GET_ANIMALES_PERDIDOS,
     GET_TAMAÑO_FILTRO,
     GET_DETAIL_MASCOTA_PERDIDA,
@@ -80,9 +80,14 @@ const initialState = {
 
    edad: 'edad',
    tamaño: 'All',
+
    
    likes: [],
-   favoritos: []
+   favoritos: [],
+
+   tamañoPerdidos: 'All',
+   estadoPerdidos: 'estado',
+   
 }
 
 
@@ -90,6 +95,7 @@ export default function rootReducer(state = initialState, action){
 
 const gatos = state.gatos
 const perros = state.perros
+const animalesPerdidos = state.animalesPerdidos
 
     switch(action.type){
 
@@ -310,27 +316,45 @@ case GET_CAT_TAMAÑOS: {
         
 //------------------------------------------Animales Perdidos Inicio-----------------------------------------------------------------------//
    
-        case GET_TAMAÑO_FILTRO:
-            let filtered = state.animalesPerdidosCopia;
-            let filterByTam = filtered.filter(
-                (t)=>t.tama.map(
-                    (ty)=>ty.tama).includes(
-                        action.payload === 'Chico'|| action.payload === 'Grande' || action.payload === 'Mediano')
-                 || t.tama.includes(action.payload))            
-            if(action.payload === 'All')filterByTam = filtered;           
+        // case GET_TAMAÑO_FILTRO:
+        //     let filtered = state.animalesPerdidosCopia;
+        //     let filterByTam = filtered.filter(
+        //         (t)=>t.tama.map(
+        //             (ty)=>ty.tama).includes(
+        //                 action.payload === 'Chico'|| action.payload === 'Grande' || action.payload === 'Mediano')
+        //          || t.tama.includes(action.payload))            
+        //     if(action.payload === 'All')filterByTam = filtered;           
             
-            console.log(filterByTam);
-            return{
-                ...state,
-                animalesPerdidos: filterByTam,                            
+        //     console.log(filterByTam);
+        //     return{
+        //         ...state,
+        //         animalesPerdidos: filterByTam,                            
+        //     };
+
+        //     case GET_TAMAÑO_PERDIDOS:
+                
+        //       return{
+        //           ...state,
+        //           filtroPerdidos: action.payload,
+        //       }
+
+            case GET_TAMAÑO_FILTRO: {
+
+              const filteredByEstado = state.estadoPerdidos === 'estado' ?
+              animalesPerdidos
+              : animalesPerdidos.filter(p => p.estado?.includes(state.estadoPerdidos));
+            
+              const filteredPerdidos = action.payload === 'All' && filteredByEstado.length ?
+              filteredByEstado :
+              filteredByEstado.filter(e => e.tama?.includes(action.payload));
+            
+              return {
+                  ...state,
+                  animalesPerdidosCopia: filteredPerdidos,
+                  tamañoPerdidos: action.payload
+              }
             };
 
-            case GET_TAMAÑO_PERDIDOS:
-                
-                return{
-                    ...state,
-                    filtroPerdidos: action.payload,
-                }
         case GET_DETAIL_MASCOTA_PERDIDA:
             return{
                 ...state,
@@ -343,30 +367,51 @@ case GET_CAT_TAMAÑOS: {
                 animalesPerdidos: action.payload,
                 animalesPerdidosCopia: action.payload,
             }
-        case FILTRADO_ESTADO_PERDIDO:
-            let animPerdidos = state.animalesPerdidosCopia;
-            let filterByEstado = animPerdidos.filter(
-                (e)=>e.estado.map(
-                    (e)=>e.estado).includes(
-                        action.payload === 'Perdido'|| action.payload === 'Encontrado')
-                 || e.estado.includes(action.payload))            
-            if(action.payload === 'estado')filterByEstado = animPerdidos;          
-            console.log(filterByEstado);
-            return{
-                ...state,
-                animalesPerdidos: filterByEstado, 
-            };
+
+        // case FILTRADO_ESTADO_PERDIDO:
+        //     let animPerdidos = state.animalesPerdidosCopia;
+        //     let filterByEstado = animPerdidos.filter(
+        //         (e)=>e.estado.map(
+        //             (e)=>e.estado).includes(
+        //                 action.payload === 'Perdido'|| action.payload === 'Encontrado')
+        //          || e.estado.includes(action.payload))            
+        //     if(action.payload === 'estado')filterByEstado = animPerdidos;          
+        //     console.log(filterByEstado);
+        //     return{
+        //         ...state,
+        //         animalesPerdidos: filterByEstado, 
+        //     };
+
+        case FILTRADO_ESTADO_PERDIDO: {
+
+          const filteredByTamaño = state.tamañoPerdidos === 'All' ?
+          animalesPerdidos
+              : animalesPerdidos.filter(p => p.tama?.includes(state.tamañoPerdidos));
+        
+          const filteredPerdidos = action.payload === 'estado' && filteredByTamaño.length ?
+              filteredByTamaño :
+              filteredByTamaño.filter(e => e.estado?.includes(action.payload));
+        
+          return {
+              ...state,
+              animalesPerdidosCopia: filteredPerdidos,
+              estadoPerdidos: action.payload
+          }
+        };
+
+
         case GET_GATO_PERDIDO:            
             return{
                 ...state,
-                gatosPerdidos: action.payload,
+                animalesPerdidosCopia: action.payload,
             }
+
           case GET_PERRO_PERDIDO:
             return{
               ...state,
-              perrosPerdidos: action.payload,
-              
+              animalesPerdidosCopia: action.payload,
             }
+
         case CREATE_ANIMAL_PERDIDO:
             return{
                 ...state,                      
