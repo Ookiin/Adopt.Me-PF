@@ -33,6 +33,7 @@ export default function BuscarMascota() {
     setCurrentPage(1)
   }, [dispatch]);
 
+
   function handleTamaño (e){  
     e.preventDefault();   
     dispatch(getTamañofiltro(e.target.value));
@@ -51,6 +52,7 @@ export default function BuscarMascota() {
   };
   function handleRecargar (e){  
     e.preventDefault();   
+
     dispatch(getAnimalesPerdidos(e.target.value));
     setCurrentPage(1)
   };

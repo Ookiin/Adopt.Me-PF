@@ -11,6 +11,8 @@ import createRespuesta from "../../Actions/createRespuesta";
 import getRespuesta from "../../Actions/getRespuesta";
 import getDetalleUsuario from "../../Actions/getDetalleUsuario";
 import { useAuth0 } from "@auth0/auth0-react";
+import createFavorito from "../../Actions/createFavorito";
+import getFavoritos from "../../Actions/getFavorito";
 
 export default function PostDetail() {
 
@@ -59,6 +61,7 @@ export default function PostDetail() {
        
         Toast.success("Respuesta enviada con exito", 1000, () => {})
          }
+      
      }
    
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -96,7 +99,7 @@ export default function PostDetail() {
         respuestaOwner: detalleUser.nombre
     })
 
-    ///////////////////////////////////////////////////////////////////////
+    ///////////////////////////////////////////////////////// RESPUESTAS //////////////////////////////////////////
     
     useEffect(() => {
         dispatch(getRespuesta())
@@ -107,7 +110,48 @@ export default function PostDetail() {
     const algo3 = allRespuestas.filter(({ caquina }) => caquina === postDetalles._id)
 
 
-    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    ///////////////////////////////////////////////////////// AGREGAR A FAVORITOS //////////////////////////////////////////
+
+    const fafafa = useSelector((state) => state.favoritos)
+    const favorara = fafafa.map(({ favoritos }) => favoritos)
+   
+    useEffect(() => {
+        dispatch(getFavoritos())
+    }, [dispatch])
+
+    const favo = postDetalles._id  
+   
+    const [fav, setFav] = useState({
+        favoritos: postDetalles._id,
+        userFav: detalleUser._id,
+        nombre: postDetalles.titulo
+    })
+    
+    function handleFavoritos(e) {
+        if (!user) {
+            return Toast.fail(
+              "Debes iniciar sesion para agregar a Favoritos",
+              1500,
+              () => {}
+            );
+          }
+        if ((user && detalleUser.usuario) || detalleUserGoogle.usuario) {
+            e.preventDefault()
+            
+            if (favorara.includes(favo)) {
+                Toast.fail("Ya tienes agregado este post en Mis Favoritos", 1000, () => {})
+            } else { 
+                dispatch(createFavorito(fav))
+                setFav({
+                    favoritos: postDetalles._id,
+                    userFav: detalleUser._id,
+                    nombre: postDetalles.titulo
+                })
+                Toast.success("Agregado a Mis Favoritos", 1000, () => {})
+            }}
+    }
+
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     return (
         <div className="pagina">
@@ -115,6 +159,8 @@ export default function PostDetail() {
         <div className="paginaDetalles" >
 
              <div className="posteoDetalles">
+
+                <div className="botonfavoritos" onClick={handleFavoritos}>Fav</div>
 
                 <div>Post creado por: {postDetalles.owner}</div>
 
