@@ -33,25 +33,25 @@ export default function BuscarMascota() {
     setCurrentPage(1)
   }, [dispatch]);
 
-  async function handleTamaño (e){  
-    await e.preventDefault();   
-    await dispatch(getTamañofiltro(e.target.value));
+   function handleTamaño (e){  
+     e.preventDefault();   
+   dispatch(getTamañofiltro(e.target.value));
   };
-  async function handleEstado (e){  
-    await e.preventDefault();   
-    await dispatch(filtradoEstadoPerdido(e.target.value));
+   function handleEstado (e){  
+     e.preventDefault();   
+     dispatch(filtradoEstadoPerdido(e.target.value));
   };
-  async function handleGato (e){  
-    await e.preventDefault();   
-    await dispatch(getGatoPerdido(e.target.value))    
+   function handleGato (e){  
+     e.preventDefault();   
+     dispatch(getGatoPerdido(e.target.value))    
   };
-  async function handlePerro (e){  
-    await e.preventDefault();   
-    await dispatch(getPerroPerdido(e.target.value)); 
+   function handlePerro (e){  
+     e.preventDefault();   
+     dispatch(getPerroPerdido(e.target.value)); 
   };
-  async function handleRecargar (e){  
-    await e.preventDefault();   
-    await dispatch(getAnimalesPerdidos(e.target.value));
+   function handleRecargar (e){  
+     e.preventDefault();   
+    dispatch(getAnimalesPerdidos(e.target.value));
     setCurrentPage(1)
   };
 

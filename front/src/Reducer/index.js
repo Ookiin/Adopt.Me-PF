@@ -39,37 +39,50 @@ import {
     GET_LIKES,
     CREATE_LIKE,
     EMAIL_BIENVENIDA,
-    EMAIL_INFO_ADOPTANTE
+    EMAIL_INFO_ADOPTANTE,
+    GET_FAVORITOS,
+    CREATE_FAVORITO
   } from "../Actions";
 
 
 const initialState = {
    animales: [],
+   animalesdetail: [],
+
    perrosCopia: [],
    gatosCopia: [],
+
    detalleUsuarioGoogle: [],
+   detalleUsuario: [],
+   users: [],
+
    gatos: [],
+   gatosPerdidos: [],
+
    perros: [],
-   animalesdetail: [],
+   perrosPerdidos: [],
+
    tamañoFiltrado: [],
    edadFiltrado: [],
+
    animalesPerdidos: [],
    animalesPerdidosCopia: [],
-   gatosPerdidos: [],
-   perrosPerdidos: [],
    animalesPerdidosDetail: [],
-   users: [],
    filtroPerdidos: [],
-   detalleUsuario: [],
+   
    locations: [],
    locationsPerdidos: [],
+
    posts: [],
    postDetails: [],
    copiaPosts: [],
    respuestas: [],
+
    edad: 'edad',
    tamaño: 'All',
-   likes: []
+   
+   likes: [],
+   favoritos: []
 }
 
 
@@ -102,6 +115,9 @@ const perros = state.perros
     case CREATE_RESPUESTA:
       return {...state};
 
+      case CREATE_FAVORITO:
+        return {...state}
+
     case CREATE_ANIMAL:
       return { ...state };
     
@@ -129,6 +145,12 @@ const perros = state.perros
           ...state,
           posts: action.payload,
         };
+
+        case GET_FAVORITOS:
+          return {
+            ...state,
+            favoritos: action.payload,
+          }
 
       case GET_RESPUESTA:
         return {

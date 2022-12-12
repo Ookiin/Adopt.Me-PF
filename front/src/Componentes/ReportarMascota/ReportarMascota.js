@@ -164,7 +164,7 @@ function validation(input){
   } else {
       setInput({
       ...input,
-      [e.target.name]: false
+      [e.target.value]: false
      })
   }}
 
@@ -318,38 +318,38 @@ useEffect(() => {
 }, [])
 
 
-const [draggable, setDraggable] = useState(false)
-const markerRef = useRef(null)
-const eventHandlers = useMemo(
-() => ({
-  dragend() {
-    const marker = markerRef.current
-    if (marker != null) {
-      setGeo(marker.getLatLng())
-    }
-  },
-}),
-[],
-)
-const toggleDraggable = useCallback(() => {
-setDraggable((d) => !d)
-}, [])
+            const [draggable, setDraggable] = useState(false)
+            const markerRef = useRef(null)
+            const eventHandlers = useMemo(
+            () => ({
+              dragend() {
+                const marker = markerRef.current
+                if (marker != null) {
+                  setGeo(marker.getLatLng())
+                }
+              },
+            }),
+            [],
+            )
+            const toggleDraggable = useCallback(() => {
+            setDraggable((d) => !d)
+            }, [])
 
-const position = [geo.lat, geo.lng]
+            const position = [geo.lat, geo.lng]
 
-const local = position
+            const local = position
 
-function FlyMapTo() {
+            function FlyMapTo() {
 
-const map = useMap()
+            const map = useMap()
 
-useEffect(() => {
-    map.flyTo(local)
-    
-}, {enableHighAccuracy: true})
+            useEffect(() => {
+                map.flyTo(local)
+                
+            }, {enableHighAccuracy: true})
 
-return null
-}
+            return null
+            }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   return (

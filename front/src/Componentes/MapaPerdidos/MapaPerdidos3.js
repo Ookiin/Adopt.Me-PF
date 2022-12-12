@@ -12,16 +12,16 @@ import MarkersLost from "./Marcadores";
 export default function LostPetsList() {
 
    const [geo, setGeo] = useState({
-    longitude: -61.043988,
-    latitude: -34.7361,
+    lng: -61.043988,
+    lat: -34.7361,
 })
 
 useEffect(() => {
     navigator.geolocation.getCurrentPosition(
         function (position) {
             setGeo({
-                longitude: position.coords.longitude,
-                latitude: position.coords.latitude
+                lng: position.coords.longitude,
+                lat: position.coords.latitude
             })
         }, 
         function(error) {
@@ -33,7 +33,7 @@ useEffect(() => {
     
 }, [])
 
-const position = [geo.latitude, geo.longitude]
+const position = [geo.lat, geo.lng]
 
 const local = position
 
