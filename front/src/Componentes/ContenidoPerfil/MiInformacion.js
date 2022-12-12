@@ -55,7 +55,7 @@ export default function MiInformacion(props) {
     ) {
       errors.usuario = "El nombre de usuario no es válido";
     }
-     if (noRepeatUser.length) {
+    if (noRepeatUser.length && input.usuario !== props.datos.usuario) {
       errors.usuario = `El nombre de usuario ${input.usuario} no está disponible`;
     }
 
@@ -81,7 +81,7 @@ export default function MiInformacion(props) {
     if (!/[A-Z0-9._%+-]+@[A-Z0-9-]+.+.[A-Z]{2,4}/gim.test(input.mail)) {
       errors.mail = "El e-mail no es válido";
     }
-    if (noRepeatMail.length) {
+    if (noRepeatMail.length && input.mail !== props.datos.mail) {
       errors.mail = "Ya existe una cuenta vinculada a ese mail";
     }
 
@@ -109,15 +109,17 @@ export default function MiInformacion(props) {
     if (Object.keys(errors).length === 0) {
       setisSubmit(true);
     }
-    if (Object.keys(errors).length !== 0) {
-      setisSubmit(false);
-    }
+    
 
     return errors;
   }
 
+  console.log(Object.keys(errors).length)
+  console.log("isSUBMIT?")
+  console.log(isSubmit)
   console.log("estos son los errors")
   console.log(errors)
+  console.log(isSubmit.length)
    
   function handleSubmit(e) {
     e.preventDefault();
