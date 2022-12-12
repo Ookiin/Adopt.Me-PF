@@ -11,7 +11,7 @@ import getDetalleUsuario from "../../Actions/getDetalleUsuario";
 import { useAuth0 } from "@auth0/auth0-react";
 import Toast from "light-toast";
 import getusers from "../../Actions/getusers";
-// import emailInfoAdoptante from "../../Actions/emailInfoAdoptante"
+import emailInfoAdoptante from "../../Actions/emailInfoAdoptante"
 import { MapContainer, Marker, Popup, TileLayer, useMap } from "react-leaflet";
 import { IconLocation } from "../Maps/IconLocation";
 import getDetalleUsuarioGoogle from "../../Actions/getDetalleUsuarioGoogle";
@@ -84,6 +84,16 @@ export default function DetallePerro() {
       );
     }
     if ((user && detalleUser.usuario) || detalleUserGoogle.usuario) {
+
+      dispatch(emailInfoAdoptante(input));
+      setInput({
+        nombre: "",
+        telefono: "",
+        mail: "",
+        mailUsuario: "",
+        nombreUsuario: ""
+      });
+
       return Toast.info(
         `Esta es la informacion del usuario que dio en adopcion esta mascota: \n
       Se enviara un mail con estos datos a tu correo electronico \n 
@@ -108,6 +118,16 @@ export default function DetallePerro() {
   const nombre = ownerPet2.map(({ nombre }) => nombre);
   const telefono = ownerPet2.map(({ telefono }) => telefono);
   const mail = ownerPet2.map(({ mail }) => mail);
+  const mailUsuario = usuario.mail;
+  const nombreUsuario = usuario.nombre
+
+  const [input, setInput] = useState({
+    nombre: nombre,
+    telefono: telefono,
+    mail: mail,
+    mailUsuario: mailUsuario,
+    nombreUsuario: nombreUsuario
+  });
 
   ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 

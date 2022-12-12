@@ -162,7 +162,7 @@ emailBienvenida = async (req, res) => {
 // };
 
 emailInfoAdoptante = async (req, res) => {
-  const {nombre, telefono, mail, mailUsuario} = req.body
+  const {nombre, telefono, mail, mailUsuario, nombreUsuario} = req.body
   console.log('nombre', nombre)
   console.log('req body', req.body)
 
@@ -186,7 +186,7 @@ emailInfoAdoptante = async (req, res) => {
       subject: "Estas a un paso de concretar la adopción!", // Subject line
       html: `
       <div>
-      <h2>Hola!</h2>
+      <h2>Hola ${nombreUsuario}!</h2>
       <p>Te dejamos los datos del responsable de tu futura mascota para que puedas ponerte en contacto y concretar la adopción:</p>
       <ul>
       <li>Nombre: ${nombre}</li>
