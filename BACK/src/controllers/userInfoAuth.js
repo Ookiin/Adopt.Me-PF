@@ -27,20 +27,18 @@ postSignup = async (req, res) => {
 
          if(roles){
             const encuentraRole= await roleModel.findOne({nombre: {$in: roles}})
-            console.log(encuentraRole);
+            
             newUser.roles = encuentraRole;            
          } else{
             const rol = await roleModel.findOne({nombre: 'user'})
             newUser.roles = [rol._id];
-         }        
-         
+         }          
          const savedUser = await newUser.save()
-         console.log(savedUser);
-         
+              
          const token = jwt.sign({id: savedUser._id}, SECRET, {
              expiresIn: 86400
          });
-         console.log(token);
+     
           res.status(200).json(token)
         
      
@@ -58,7 +56,6 @@ postSignup = async (req, res) => {
         expiresIn: 86400
     });
 
-    console.log(userFound);
     res.json({token, userFound})
     
   };
@@ -69,12 +66,7 @@ postSignup = async (req, res) => {
       if (err) throw err;
       if (doc) res.send("El usuario ya existe");
       if (!doc) {
-        console.log(
-          "entre al /signup, voy a crear el usuario, este es el req.body"
-        );
-        console.log(req.body);
-        console.log("esta es la contraseña");
-        console.log(req.body.contraseña);
+       
         const usuarioNuevo = new UsuarioModel({
           usuario: req.body.usuario,
           nombre: req.body.nombre,
@@ -86,7 +78,6 @@ postSignup = async (req, res) => {
           caca: req.body.caca,
         });
         await usuarioNuevo.save();
-        console.log(usuarioNuevo);
         res.send("Usuario creado exitosamente");
       }
     });

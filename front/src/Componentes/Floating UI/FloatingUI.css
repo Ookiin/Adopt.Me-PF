@@ -248,7 +248,7 @@
     .nds {
       width: 0px;
       height: 0px;
-      background-image: url("");
+      background-image: none;
       border: 1px solid red;
       margin-left: 10px;
     }
@@ -256,7 +256,7 @@
     #floating-button {
       width: 0px;
       height: 0px;
-      background-image: url("");
+      background-image: none;
     }
 
   }

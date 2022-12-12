@@ -28,14 +28,10 @@ export default function InfoProceso() {
           dispatch(getDetalleUsuario(id));
   }, [dispatch]);
   
-  console.log(isAuthenticated)
 
   const detalleUser = useSelector((state) => state.detalleUsuario); // Estado global con los datos del usuario
-  console.log(detalleUser)
-
   const detalleUserGoogle = useSelector((state) => state.detalleUsuarioGoogle)
-    console.log("Estos son los datos del userGoogle")
-    console.log(detalleUserGoogle)
+
 
   
   function onClick(e) {
