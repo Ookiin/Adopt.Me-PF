@@ -1,0 +1,10 @@
+
+
+@media (min-width: 481px) and (max-width: 767px) {
+
+    #paypal-button-container {
+        width: 250px;
+        margin-left: 35px;
+    }
+    
+    }

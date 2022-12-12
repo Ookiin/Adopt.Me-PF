@@ -76,3 +76,17 @@ label {
     margin-top: 160px;
     margin-left: 54px;
  }
+
+ /*////////////////////////////////////////////////////////////////////////////////////////*/
+
+ @media (min-width: 481px) and (max-width: 767px) {
+
+    .formulario {
+        width: 400px;
+    }
+
+    .metodosPago {
+        width: 340px;
+    }
+
+ }

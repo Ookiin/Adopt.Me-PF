@@ -89,49 +89,37 @@ export default function Perfil() {
                 <div className={css.miniContainer}>
                     
                     <div className={css.sideBar}>
-                        <br />
-                        <br />
-                        <br />
-                        <br />
-                        <br />
-                        <br />
+                       
                         <div>
                             <button onClick={(e) => onClick1(e)} className={css.botonSideBar}>Mi informacion</button>
                         </div>
-                        <br />
-                        <br />
+                       
                         <div>
                             <button onClick={(e) => onClick2(e)} className={css.botonSideBar}>Mis favoritos</button>
                         </div>
-                        <br />
-                        <br />
+                     
                         <div>
                             <button onClick={(e) => onClick3(e)} className={css.botonSideBar}>Mis Mascotas</button>
                         </div>
-                        <br />
-                        <br />
+                      
                         <div>
                             <button onClick={(e) => onClick4(e)} className={css.botonSideBar}>Cambiar contraseña</button>
                         </div>
-                        <br />
-                        <br />
+                       
                         <div>
                             <button onClick={(e) => onClick5(e)} className={css.botonSideBar}>Completar registro</button>
                         </div>
-                        <br />
-                        <br />
+                      
                         <div>
                             <Link to="/homepage">
                                 <button className={css.botonSideBar}>Inicio</button>
                             </Link>
                         </div>
-                        <br />
-                        <br />
+                        
                     </div>
 
                     <div className={css.contenido}> 
-                        <br />
-                        <br />
+                        
                         
                         <div className={css.datos}>
                         {Render === 1 && detalleUser.usuario ? <MiInformacion datos={detalleUser} /> : null}

@@ -19,15 +19,17 @@
     background-color: rgba(255, 255, 255, 0);
     width: 30%;
     height: 100;
-    margin-top: -10px;
+    margin-top: 100px;
+    
 }
 
 
 .datos {
   width: 300px;
+  
 }
 
-.boton{
+ .boton{
     
   appearance: button;
   background-color: transparent;
@@ -58,7 +60,8 @@
   font-size: 17px;
   width: 120px;
   justify-content: center;
-}
+  
+} 
 
 .botonSideBar{
   appearance: button;
@@ -72,11 +75,11 @@
   cursor: pointer;
   display: inline-flex;
   font-family: 'Viga', sans-serif;  font-size: 100%;
-  font-weight: 1000;
+  font-weight: 300;
   line-height: 20px;
   margin: 0;
   outline: 2px solid transparent;
-  padding: 30px 90px;
+  /* padding: 30px 90px; */
   margin-right: 90px;
   text-align: center;
   text-transform: none;
@@ -90,6 +93,7 @@
   font-size: 23px;
   width: 200px;
   justify-content: center;
+  margin-top: 30px;
 }
 
 
@@ -108,5 +112,29 @@
   transform: translateY(-7px);
   background-color: white;
   color: black;
+}
+
+/*////////////////////////////////////////////////////////////////////////////////77*/
+
+@media (min-width: 481px) and (max-width: 767px) {
+
+  .sideBar {
+    /* border: 1px solid red; */
+    margin-top: 100px;
+    position: absolute;
+    
+  }
+
+  .botonSideBar {
+    width: 60px;
+    height: 50px;
+    /* border: 1px solid green; */
+    font-size: 10px;
+    border-radius: 5px;
+    margin-left: -140px;
+    margin-top: 20px;
+  }
+
+
 }
 
