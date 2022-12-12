@@ -14,39 +14,53 @@ import getusers from "../../Actions/getusers";
 // import emailInfoAdoptante from "../../Actions/emailInfoAdoptante"
 import { MapContainer, Marker, Popup, TileLayer, useMap } from "react-leaflet";
 import { IconLocation } from "../Maps/IconLocation";
+import getDetalleUsuarioGoogle from "../../Actions/getDetalleUsuarioGoogle";
 
 export default function DetallePerro() {
-
   const { id } = useParams();
   const navigate = useNavigate();
-  const { user, isAuthenticated } = useAuth0();
   const dispatch = useDispatch();
-  const detalleUserGoogle = useSelector((state) => state.detalleUsuarioGoogle);
   const detail = useSelector((state) => state.animalesdetail);
-  const petOwner = useSelector((state) => state.users)
+  const petOwner = useSelector((state) => state.users);
+  const detalleUser = useSelector((state) => state.detalleUsuario);
+  const detalleUserGoogle = useSelector((state) => state.detalleUsuarioGoogle);
+  const { user, isAuthenticated } = useAuth0();
 
-  
   //////////////////////////////////////////////////////////////////////////////////////////////
-  
+
   useEffect(() => {
     dispatch(getmascotasbyid(id));
-    dispatch(getusers())
+    dispatch(getusers());
   }, []);
-  
+
   //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-  let _id = undefined;
-  if (user) {
-    const usuarioIdRaro = user.sub;
-    _id = usuarioIdRaro.substring(6);
+  let usuarioIdRaro = "";
+  let _id = "";
+  if (isAuthenticated) {
+    if (user.sub.startsWith("google")) {
+      usuarioIdRaro = user.sub;
+      _id = usuarioIdRaro.substring(14);
+    } else {
+      usuarioIdRaro = user.sub;
+      _id = usuarioIdRaro.substring(6);
+    }
   }
 
   useEffect(() => {
+    dispatch(getDetalleUsuarioGoogle(_id));
+  }, [id, dispatch]);
+
+  useEffect(() => {
     dispatch(getDetalleUsuario(_id));
-  }, [_id, dispatch]);
+  }, [id, dispatch]);
 
+  // Usuario va a tener los datos del usuario logueado, sin importar si esta logueado con google o normal
+  let usuario = detalleUserGoogle.usuario ? detalleUserGoogle : detalleUser;
 
-  const detalleUser = useSelector((state) => state.detalleUsuario); 
+  console.log("Estos son los detalles del usaurio");
+  console.log(usuario);
+  ///////////////////////////////////////////////////////////////////////////////////////
 
   function onClick(e) {
     e.preventDefault();
@@ -66,58 +80,69 @@ export default function DetallePerro() {
       );
     }
     if ((user && detalleUser.usuario) || detalleUserGoogle.usuario) {
-      return Toast.info(`Esta es la informacion del usuario que dio en adopcion esta mascota: \n
+      return Toast.info(
+        `Esta es la informacion del usuario que dio en adopcion esta mascota: \n
       Se enviara un mail con estos datos a tu correo electronico \n 
       Nombre: ${nombre} \n 
       Telefono: ${telefono} \n 
-      Email: ${mail}`, 10000, () => {navigate("/homepage")}
-      )
+      Email: ${mail}`,
+        10000,
+        () => {
+          navigate("/homepage");
+        }
+      );
     }
   }
 
   //////////////////////////////// DATOS DEL USUARIO QUE DIO EN ADOPCION ESTA MASCOTA //////////////////////////////
-  
-  const ownerPet = petOwner.data
-  const ownerPet2 = ownerPet ? ownerPet.filter(({ _id }) => _id === detail.pichina) : [];
 
-  const nombre = ownerPet2.map(({ nombre }) => nombre)
-  const telefono = ownerPet2.map(({ telefono }) => telefono)
-  const mail = ownerPet2.map(({ mail }) => mail)
+  const ownerPet = petOwner.data;
+  const ownerPet2 = ownerPet
+    ? ownerPet.filter(({ _id }) => _id === detail.pichina)
+    : [];
 
-   ///////////////////////////////////////////////////////////////////////////////////////////////////////////
+  const nombre = ownerPet2.map(({ nombre }) => nombre);
+  const telefono = ownerPet2.map(({ telefono }) => telefono);
+  const mail = ownerPet2.map(({ mail }) => mail);
 
-   const [geo, setGeo] = useState({
-       lng: -61.043988,
-       lat: -34.7361,
-    })
+  ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-  const position = [geo.lat, geo.lng]
+  const [geo, setGeo] = useState({
+    lng: -61.043988,
+    lat: -34.7361,
+  });
 
-    const local = position
+  const position = [geo.lat, geo.lng];
 
-    function FlyMapTo() {
+  const local = position;
 
-      const map = useMap()
-  
-      useEffect(() => {
-          map.flyTo(local)
-          
-      }, {enableHighAccuracy: true})
-  
-      return null
+  function FlyMapTo() {
+    const map = useMap();
+
+    useEffect(
+      () => {
+        map.flyTo(local);
+      },
+      { enableHighAccuracy: true }
+    );
+
+    return null;
   }
 
   function handleLocation() {
     setGeo({
-          lat: detail.lat,
-          lng: detail.lng
-    })
-   
-    Toast.success("Reubicandose a la ubicacion de esta mascota", 1500, () => {});
-}
+      lat: detail.lat,
+      lng: detail.lng,
+    });
 
+    Toast.success(
+      "Reubicandose a la ubicacion de esta mascota",
+      1500,
+      () => {}
+    );
+  }
 
-   ////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
   return (
     <div className={stl.paginaAdopcion}>
@@ -155,38 +180,33 @@ export default function DetallePerro() {
             <div className={stl.titulos2}>
               Vacunado: <p className={stl.details}>{detail.vacunado}</p>
             </div>
-
           </div>
 
           <div className={stl.ubicacionMascota}>
-
-     
             <MapContainer center={position} zoom={13} scrollWheelZoom={false}>
-                <FlyMapTo />
-                <TileLayer
-                  attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-                  url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"/>
-
-                 
-
-                    return (
-
-                  <Marker
-                  position={[geo.lat, geo.lng]} 
-                  icon={IconLocation}> 
-                  <Popup>
-                    <img className={stl.imagenMarcador}src={detail.imagen} alt="" /><br></br>
-                    Esta es la ubicacion<br></br> de esta mascota
-                  </Popup>
-                  </Marker>
-                    )
-                
+              <FlyMapTo />
+              <TileLayer
+                attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+              />
+              return (
+              <Marker position={[geo.lat, geo.lng]} icon={IconLocation}>
+                <Popup>
+                  <img
+                    className={stl.imagenMarcador}
+                    src={detail.imagen}
+                    alt=""
+                  />
+                  <br></br>
+                  Esta es la ubicacion<br></br> de esta mascota
+                </Popup>
+              </Marker>
+              )
             </MapContainer>
-            <button onClick={handleLocation} className={stl.verUbicacion}>Ver ubicacion de esta mascota</button>
-                    
-
+            <button onClick={handleLocation} className={stl.verUbicacion}>
+              Ver ubicacion de esta mascota
+            </button>
           </div>
-
 
           <Link to="/contacto">
             <button
