@@ -114,12 +114,8 @@ export default function MiInformacion(props) {
     return errors;
   }
 
-  console.log(Object.keys(errors).length)
-  console.log("isSUBMIT?")
-  console.log(isSubmit)
   console.log("estos son los errors")
   console.log(errors)
-  console.log(isSubmit.length)
    
   function handleSubmit(e) {
     e.preventDefault();
