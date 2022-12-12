@@ -11,7 +11,7 @@ import getDetalleUsuario from "../../Actions/getDetalleUsuario";
 import { useAuth0 } from "@auth0/auth0-react";
 import Toast from "light-toast";
 import getusers from "../../Actions/getusers";
-// import emailInfoAdoptante from "../../Actions/emailInfoAdoptante"
+import emailInfoAdoptante from "../../Actions/emailInfoAdoptante"
 import { MapContainer, Marker, Popup, TileLayer, useMap } from "react-leaflet";
 import { IconLocation } from "../Maps/IconLocation";
 
@@ -32,6 +32,7 @@ export default function DetallePerro() {
     dispatch(getmascotasbyid(id));
     dispatch(getusers())
   }, []);
+
   
   //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -48,6 +49,10 @@ export default function DetallePerro() {
 
   const detalleUser = useSelector((state) => state.detalleUsuario); 
 
+  console.log('user', user)
+
+  // console.log('detalle user', detalleUser)
+
   function onClick(e) {
     e.preventDefault();
     if (!user) {
@@ -58,6 +63,7 @@ export default function DetallePerro() {
       );
     }
 
+
     if (!detalleUser.usuario && detalleUserGoogle.length === 0) {
       return Toast.fail(
         "Debes completar el registro en tu perfil antes de adoptar",
@@ -66,6 +72,14 @@ export default function DetallePerro() {
       );
     }
     if ((user && detalleUser.usuario) || detalleUserGoogle.usuario) {
+
+      dispatch(emailInfoAdoptante(input));
+      setInput({
+        nombre: "",
+        telefono: "",
+        mail: "",
+        mailUsuario: ""
+      });
       return Toast.info(`Esta es la informacion del usuario que dio en adopcion esta mascota: \n
       Se enviara un mail con estos datos a tu correo electronico \n 
       Nombre: ${nombre} \n 
@@ -83,7 +97,16 @@ export default function DetallePerro() {
   const nombre = ownerPet2.map(({ nombre }) => nombre)
   const telefono = ownerPet2.map(({ telefono }) => telefono)
   const mail = ownerPet2.map(({ mail }) => mail)
+  const mailUsuario = user.email
 
+  console.log('mail usuario', mailUsuario)
+
+  const [input, setInput] = useState({
+    nombre: nombre,
+    telefono: telefono,
+    mail: mail,
+    mailUsuario: mailUsuario
+  });
    ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 
    const [geo, setGeo] = useState({

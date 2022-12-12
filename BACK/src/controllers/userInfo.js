@@ -162,7 +162,9 @@ emailBienvenida = async (req, res) => {
 // };
 
 emailInfoAdoptante = async (req, res) => {
-  const {pichina, nombre, mail, telefono} = req.body
+  const {nombre, telefono, mail, mailUsuario} = req.body
+  console.log('nombre', nombre)
+  console.log('req body', req.body)
 
   try{
     const transporter = nodemailer.createTransport({
@@ -175,21 +177,21 @@ emailInfoAdoptante = async (req, res) => {
       },
     });
 
-    adoptante = await UsuarioModel.findOne ({mail: mail});
-    user = await UsuarioModel.findOne ({pichina: pichina});
+    // adoptante = await UsuarioModel.findOne ({mail: mail});
+    // user = await UsuarioModel.findOne ({pichina: pichina});
 
     await transporter.sendMail({
       from: '"Adopt.me 🐾" <adoptmeargentina@gmail.com>', // sender address
-      to: mail, // list of receivers
+      to: mailUsuario, // list of receivers
       subject: "Estas a un paso de concretar la adopción!", // Subject line
       html: `
       <div>
-      <h2>Hola ${adoptante.nombre}!</h2>
+      <h2>Hola!</h2>
       <p>Te dejamos los datos del responsable de tu futura mascota para que puedas ponerte en contacto y concretar la adopción:</p>
       <ul>
-      <li>Nombre: ${user.nombre}</li>
-      <li>E-mail: ${user.mail}</li>
-      <li>Teléfono de contacto: ${user.telefono}</li>
+      <li>Nombre: ${nombre}</li>
+      <li>E-mail: ${mail}</li>
+      <li>Teléfono de contacto: ${telefono}</li>
       </ul>
       <p>Gracias por confiar en Adopt.Me!</p>
       </div>
