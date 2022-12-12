@@ -1,15 +1,15 @@
 import { Link, useParams, useNavigate } from "react-router-dom";
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import Footer from "../Footer/Footer";
-import NavBar from "../NavBar/NavBar";
+// import Footer from "../Footer/Footer";
+// import NavBar from "../NavBar/NavBar";
 import stl from "./MiInformacion.module.css";
-import createuser from "../../Actions/createuser";
+// import createuser from "../../Actions/createuser";
 import getusers from "../../Actions/getusers";
-import FloatingUI from "../Floating UI/FloatingUI";
+// import FloatingUI from "../Floating UI/FloatingUI";
 
-import { useAuth0 } from "@auth0/auth0-react";
-import getDetalleUsuario from "../../Actions/getDetalleUsuario";
+// import { useAuth0 } from "@auth0/auth0-react";
+// import getDetalleUsuario from "../../Actions/getDetalleUsuario";
 import putUser from "../../Actions/putUsuario";
 
 import Toast from "light-toast";

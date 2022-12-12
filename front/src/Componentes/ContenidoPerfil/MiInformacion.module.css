@@ -156,3 +156,33 @@
     margin-top: 0;
     margin-bottom: 0;
   }
+
+  /*///////////////////////////////////////////////////////////////////////////////////////////////////////////*/
+
+  @media (min-width: 481px) and (max-width: 767px) {
+
+    .formUser {
+      width: 300px;
+      margin-left: 30px;
+      height: 900px;
+    }
+
+    .buttons {
+      font-size: 10px;
+    }
+
+    .botonActualizar {
+      width: 200px;
+      font-size: 14px;
+      height: 50px;
+      margin-top: -20px;
+    }
+
+    .label {
+      font-size: 15px;
+    }
+
+    .input {
+      font-size: 13px;
+    }
+  }
