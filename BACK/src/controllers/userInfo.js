@@ -77,7 +77,7 @@ putUsuario = async (req, res) => {
           usuario,
           nombre,
           mail,
-          contrasena: hasheada,
+          contrasena: hasheada ? hasheada : contrasena,
           localidad,
           nacimiento,
           publicaciones,
