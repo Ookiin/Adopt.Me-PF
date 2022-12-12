@@ -1,14 +1,76 @@
-import React from "react";
 import EnAdopcion from "../PAdmChartsMascotas/EnAdopcion";
-import Adoptados from "../PAdmChartsMascotas/Adoptados";
 import Perdidos from "../PAdmChartsMascotas/Perdidos";
-import PerdidoDog from "../PAdmChartsMascotas/PerdidoDog";
 import NavBarPAdmin from "../PanelAdministrador/NavBarPAdmin"; 
-import PerdidosCat from "../PAdmChartsMascotas/PerdidoCat";
+import stl from "./mascotas.module.css";
+import React, { useEffect, useState } from "react";
+import {useDispatch, useSelector} from 'react-redux';
+import  { useNavigate}  from "react-router-dom";
+import getmascotas from "../../Actions/getmascotas";
+/* import Adoptados from "../PAdmChartsMascotas/Adoptados"; */
+/* import PerdidoDog from "../PAdmChartsMascotas/PerdidoDog"; */
+/* import PerdidosCat from "../PAdmChartsMascotas/PerdidoCat";
 import PerrosEnAdopcion from "../PAdmChartsMascotas/PerrosEnAdopcion";
-import GatosEnAdopcion from "../PAdmChartsMascotas/GatosEnAdopcion";
+import GatosEnAdopcion from "../PAdmChartsMascotas/GatosEnAdopcion"; */
+import FloatingUI from "../Floating UI/FloatingUI";
+import Footer from "../Footer/Footer";
+import Card from "../Card/Card";
+import Paging from "../Pagination/Pagination"
 
 const Mascotas = () => {
+
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  // const allPets = useSelector((state) => state.gatos);
+  const AllAnimals = useSelector((state)=>state.animales);
+
+  const [currentPage, setCurrentPage] = useState(1) 
+  const [mascotasPerPage] = useState(4)
+
+  const lastPetIndex = currentPage * mascotasPerPage 
+  const firstPetIndex = lastPetIndex - mascotasPerPage 
+  const currentPets = AllAnimals.slice(firstPetIndex,lastPetIndex) 
+
+
+  const [input, setInput] = useState("");
+  const [orden, setOrden] = useState(""); 
+  const [search, setSearch] = useState("");
+/*   const [localCat, setlocalCat] = useState(""); */
+
+  const actualPage = (pageNumber) => {setCurrentPage(pageNumber)}
+
+  useEffect(()=>{
+      dispatch(getmascotas())
+      setCurrentPage(1)
+  }, [dispatch])
+  
+
+     const handleClick = (e) => {
+      e.preventDefault()
+      window.location.reload();
+      } 
+
+  const handleInput = (e) => {
+      e.preventDefault();
+      setSearch(e.target.value)
+  }
+
+  const handleSubmit = (e) => {//mando la accion y me trae el dog
+      e.preventDefault();
+      if(search){
+      dispatch(getmascotas(search))
+      setInput("")
+      navigate("/panel-Administrador") 
+      actualPage(1)
+      }
+ }
+ const handleOrden = (e) => {
+  e.preventDefault();
+  dispatch(getmascotas(e.target.value))
+  setCurrentPage(1)
+  setOrden(`Ordenado ${e.target.value}`)
+}
+
   return(
     <div>
       <div>
@@ -19,25 +81,75 @@ const Mascotas = () => {
       </div>
       <div>
        <EnAdopcion />
-      </div>
-      <div>
-        <GatosEnAdopcion />
-      </div>
-      <div>
-        <PerrosEnAdopcion />
-      </div>
-       {/* <div>
-       <Adoptados /> 
-      </div>  */}
+      </div>   
       <div>
        <Perdidos />
       </div>
       <div>
-      <PerdidosCat />
+        <label className={stl.labelSearch}>Nombre:</label>
+           <input className={stl.inputNav}
+               value={search}
+               type="text"
+               placeholder=" Nombre..."
+               onChange={handleInput}>
+           </input>
+           <button className={stl.btnNav}
+               type="submit"
+               onClick={handleSubmit}>Ir</button>    
       </div>
-      <div>
-      <PerdidoDog />
+      <div className={stl.filtros}>Filtar: 
+               
+               <select className={stl.op} onChange={(e) => handleOrden(e)}>
+                    <option disabled selected defaultValue>
+                        Alfabeticamente
+                    </option>
+                    <option value='A-Z'>A-Z</option>
+                    <option value='Z-A'>Z-A</option>
+                </select>
+      </div>
+      <FloatingUI />
+        <br/>
+        <div>
+            <button className={stl.btnNavHome} onClick={handleClick}>Home</button>
+        </div>
+      {/* <div>
+       <EnAdopcion />
       </div>   
+      <div>
+       <Perdidos />
+      </div> */}
+      <div className={stl.paginado}>
+        <Paging 
+        mascotasPerPage={mascotasPerPage} 
+        allPets={AllAnimals.length} 
+        currentPage={currentPage}
+        actualPage={actualPage}
+        currentPets={currentPets}
+        />
+        </div>
+
+        <div className={stl.listadoCards}> 
+     
+
+        {currentPets.length > 0 && currentPets.map(p => {
+
+                   
+            return (                                          
+                
+                     <Card
+                     id={p._id}
+                     perro = {p.perro}
+                     nombre={p.nombre}                     
+                     imagen={p.imagen}
+                     edad={p.edad}
+                     />                                                                                             
+            )})     
+                                  
+        }
+        
+      </div>
+
+      <Footer />
     </div>
   )
 }

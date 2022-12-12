@@ -16,12 +16,12 @@ const Clientes = () => {
        <div>
         <TotalUsuarios />
        </div>
-       <div>
+      {/*  <div>
         <UserDonaMascota />
        </div>
        <div>
         <UserQueAdopto />
-       </div>
+       </div> */}
     </div>
   )
 }
