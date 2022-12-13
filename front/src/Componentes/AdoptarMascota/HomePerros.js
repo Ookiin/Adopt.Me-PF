@@ -21,7 +21,6 @@ export default function HomePerros () {
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
-    // const allPets = useSelector((state) => state.perros);
     const copiaPerros = useSelector((state)=>state.perrosCopia)
     const sinAdopcion = copiaPerros
     const sinAdoptar = sinAdopcion.filter(({ adoptado }) => adoptado === false)

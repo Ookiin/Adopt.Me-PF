@@ -8,7 +8,6 @@ export default function CardUser({ id, usuario, nombre}) {
 
   return (
     <div>
-      <div>Id: {id}</div>
       <div>Usiario: {usuario}</div>
       <div>Nombre: {nombre}</div>   
     </div>
