@@ -213,191 +213,191 @@ export default function FormRegistro() {
       <NavBar />
       <FloatingUI />
 
-      <div className={stl.errores}></div>
-
-      <div className={stl.form} key={params.id}>
-        <div className={stl.titulomayor}>Registro de Usuario</div>
-        <form
-          onSubmit={(e) => handleSubmit(e)}
-          action="/usuarios/signup"
-          method="POST"
-        >
-          <div className={stl.datosRegistro} key={params.id}>
-            <img
-              src={userImageDefault}
-              id="user-photo"
-              alt=""
-              height="200"
-              width="200"
-            />
-            <br></br>
-            <button
-              id="btn-foto"
-              name="fotoPerfil"
-              onClick={(e) => handleOpenWidget(e)}
-              className={stl.BotonFoto}
-            >
-              SELECCIONE FOTO DE PERFIL
-            </button>
-            <span></span>
+      {cartelito ? <Cartelito input={input} /> :
+        <div className={stl.form} key={params.id}>
+          <div className={stl.titulomayor}>Registro de Usuario</div>
+          <form
+            onSubmit={(e) => handleSubmit(e)}
+            action="/usuarios/signup"
+            method="POST"
+          >
+            <div className={stl.datosRegistro} key={params.id}>
+              <img
+                src={userImageDefault}
+                id="user-photo"
+                alt=""
+                height="200"
+                width="200"
+              />
+              <br></br>
+              <button
+                id="btn-foto"
+                name="fotoPerfil"
+                onClick={(e) => handleOpenWidget(e)}
+                className={stl.BotonFoto}
+              >
+                SELECCIONE FOTO DE PERFIL
+              </button>
+              <span></span>
             
-            {errors.fotoPerfil && (<p className={stl.err}>{errors.fotoPerfil}</p>)}
+              {errors.fotoPerfil && (<p className={stl.err}>{errors.fotoPerfil}</p>)}
             
-          </div>
-          <div className={stl.datosRegistro} key={params.id}>
-            <div>NOMBRE DE USUARIO: </div>
-            <input
-              className={stl.inputs}
-              type="text"
-              pipo
-              name="usuario"
-              value={input.usuario}
-              onChange={(e) => handleChange(e)}
-            />{" "}
+            </div>
+            <div className={stl.datosRegistro} key={params.id}>
+              <div>NOMBRE DE USUARIO: </div>
+              <input
+                className={stl.inputs}
+                type="text"
+                pipo
+                name="usuario"
+                value={input.usuario}
+                onChange={(e) => handleChange(e)}
+              />{" "}
             
               {errors.usuario && <p className={stl.err}>{errors.usuario}</p>}
             
-            <span></span>
-          </div>
+              <span></span>
+            </div>
 
-          <div className={stl.datosRegistro} key={params.id}>
-            <div>CONTRASEÑA: </div>
-            <input
-              className={stl.inputs}
-              required
-              type="password"
-              name="contrasena"
-              value={input.contrasena}
-              onChange={(e) => handleChange(e)}
-            />{" "}
+            <div className={stl.datosRegistro} key={params.id}>
+              <div>CONTRASEÑA: </div>
+              <input
+                className={stl.inputs}
+                required
+                type="password"
+                name="contrasena"
+                value={input.contrasena}
+                onChange={(e) => handleChange(e)}
+              />{" "}
             
               {errors.contrasena && (
                 <p className={stl.err}>{errors.contrasena}</p>
               )}
             
-            <span></span>
-          </div>
+              <span></span>
+            </div>
 
-          <div className={stl.datosRegistro} key={params.id}>
-            <div>REPITA CONTRASEÑA: </div>
-            <input
-              className={stl.inputs}
-              required
-              type="password"
-              name="repitaContrasena"
-              value={input.repitaContrasena}
-              onChange={(e) => handleChange(e)}
-            />{" "}
+            <div className={stl.datosRegistro} key={params.id}>
+              <div>REPITA CONTRASEÑA: </div>
+              <input
+                className={stl.inputs}
+                required
+                type="password"
+                name="repitaContrasena"
+                value={input.repitaContrasena}
+                onChange={(e) => handleChange(e)}
+              />{" "}
             
               {errors.repitaContraseña && (
                 <p className={stl.err}>{errors.repitaContraseña}</p>
               )}
            
-            <span></span>
-          </div>
+              <span></span>
+            </div>
 
-          <div className={stl.datosRegistro} key={params.id}>
-            <div>NOMBRE Y APELLIDO / REFUGIO: </div>
-            <input
-              className={stl.inputs}
-              type="text"
-              required
-              name="nombre"
-              value={input.nombre}
-              onChange={(e) => handleChange(e)}
-            />
+            <div className={stl.datosRegistro} key={params.id}>
+              <div>NOMBRE Y APELLIDO / REFUGIO: </div>
+              <input
+                className={stl.inputs}
+                type="text"
+                required
+                name="nombre"
+                value={input.nombre}
+                onChange={(e) => handleChange(e)}
+              />
               {errors.nombre && <p className={stl.err}>{errors.nombre}</p>}
-          </div>
+            </div>
             
-          <div className={stl.datosRegistro} key={params.id}>
-            <div>TELÉFONO DE CONTACTO: </div>
-            <input
-              className={stl.inputs}
-              type="text"
-              required
-              name="telefono"
-              value={input.telefono}
-              onChange={(e) => handleChange(e)}
-            />{" "}
+            <div className={stl.datosRegistro} key={params.id}>
+              <div>TELÉFONO DE CONTACTO: </div>
+              <input
+                className={stl.inputs}
+                type="text"
+                required
+                name="telefono"
+                value={input.telefono}
+                onChange={(e) => handleChange(e)}
+              />{" "}
             
               {errors.telefono && (
                 <p className={stl.err}>{errors.telefono}</p>
               )}
             
-            <span></span>
-          </div>
+              <span></span>
+            </div>
 
-          <div className={stl.datosRegistro} key={params.id}>
-            <div>E-MAIL: </div>
-            <input
-              className={stl.inputs}
-              type="email"
-              required
-              name="mail"
-              value={input.mail}
-              onChange={(e) => handleChange(e)}
-            />{" "}
+            <div className={stl.datosRegistro} key={params.id}>
+              <div>E-MAIL: </div>
+              <input
+                className={stl.inputs}
+                type="email"
+                required
+                name="mail"
+                value={input.mail}
+                onChange={(e) => handleChange(e)}
+              />{" "}
            
               {errors.mail && <p className={stl.err}>{errors.mail}</p>}
             
-            <span></span>
-          </div>
+              <span></span>
+            </div>
 
-          <div className={stl.datosRegistro} key={params.id}>
-            <div>FECHA DE NACIMIENTO: </div>
-            <input
-              className={stl.inputs}
-              required
-              type="date"
-              name="nacimiento"
-              value={input.nacimiento}
-              placeholder="dd-mm-yyyy"
-              onChange={(e) => handleChange(e)}
-            />{" "}
+            <div className={stl.datosRegistro} key={params.id}>
+              <div>FECHA DE NACIMIENTO: </div>
+              <input
+                className={stl.inputs}
+                required
+                type="date"
+                name="nacimiento"
+                value={input.nacimiento}
+                placeholder="dd-mm-yyyy"
+                onChange={(e) => handleChange(e)}
+              />{" "}
            
               {errors.nacimiento && (
                 <p className={stl.err}>{errors.nacimiento}</p>
               )}
            
-            <span></span>
-          </div>
+              <span></span>
+            </div>
 
-          <div className={stl.datosRegistro} key={params.id}>
-            <div>LOCALIDAD: </div>
-            <input
-              className={stl.inputs}
-              type="text"
-              required
-              name="localidad"
-              value={input.localidad}
-              onChange={(e) => handleChange(e)}
-            />{" "}
+            <div className={stl.datosRegistro} key={params.id}>
+              <div>LOCALIDAD: </div>
+              <input
+                className={stl.inputs}
+                type="text"
+                required
+                name="localidad"
+                value={input.localidad}
+                onChange={(e) => handleChange(e)}
+              />{" "}
             
               {errors.localidad && (
                 <p className={stl.err}>{errors.localidad}</p>
               )}
            
-            <span></span>
-          </div>
+              <span></span>
+            </div>
 
-          <div>
-            <button
-              className={stl.buttons}
-              type="submit"
-              disabled={isSubmit ? false : true}
-            >
-              ACEPTAR
-            </button>
+            <div>
+              <button
+                className={stl.buttons}
+                type="submit"
+                disabled={isSubmit ? false : true}
+              >
+                ACEPTAR
+              </button>
 
-            <Link to="/homepage">
-              <button className={stl.buttons}>CANCELAR</button>
-            </Link>
-          </div>
-        </form>
+              <Link to="/homepage">
+                <button className={stl.buttons}>CANCELAR</button>
+              </Link>
+            </div>
+          </form>
 
-        {cartelito ? <Cartelito input={input}/> : null}
+      
 
-      </div>
+        </div>
+      }
       <Footer />
     </div>
   );

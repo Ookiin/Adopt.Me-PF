@@ -2,22 +2,21 @@ import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import React, { useState, useEffect } from "react";
 import getDetalleUsuarioSinValidar from "../../Actions/getDetalleUsuarioSinValidar";
+import postUsuario from "../../Actions/postUsuario";
 
 export default function Validacion() {
   const { id } = useParams();
   const dispatch = useDispatch();
 
   // Crear un estado global de usuarioSinValidar
-  const usuario = useSelector(
-    (state) => state.detalleUsuarioSinValidar
-  ); // (o el estado global que usemos para guardar todos los usuarios)
+  const usuario = useSelector((state) => state.detalleUsuarioSinValidar); // (o el estado global que usemos para guardar todos los usuarios)
 
   // Despachar la action para que guarde en el estado el detalle del usuario
   useEffect(() => {
     dispatch(getDetalleUsuarioSinValidar(id));
   }, [dispatch]);
 
-  console.log(usuario)
+  console.log(usuario);
 
   const [input, setInput] = useState({
     usuario: usuario.usuario,
@@ -31,8 +30,18 @@ export default function Validacion() {
   });
 
   function onClick(e) {
-    e.preventDefault()
-    
+    e.preventDefault();
+    dispatch(postUsuario(input));
+    setInput({
+      usuario: "",
+      contrasena: "",
+      nombre: "",
+      telefono: "",
+      mail: "",
+      nacimiento: "",
+      localidad: "",
+      fotoPerfil: "",
+    });
   }
 
   return (

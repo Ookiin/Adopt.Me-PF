@@ -27,18 +27,47 @@ getUserSinValidar = async (req, res) => {
 };
 
 postUsuario = async (req, res) => {
-  console.log(req.body);
-  const user = await UsuarioModel(req.body);
-  try {
-    if (user) {
-      await user.save();
-      res.status(200).json(user);
-    } else {
-      res.status(400).json({ msg: "no se creó el usuario" });
-    }
-  } catch (error) {
-    res.status(400).json({ msg: "no se creó el usuario" });
+  const {
+    contrasena,
+    nombre,
+    usuario,
+    mail,
+    telefono,
+    localidad,
+    fotoPerfil,
+    nacimiento,
+    roles,
+  } = req.body;
+
+  // const existente = UsuarioModel.find({email})
+  const contraseñaHasheada = await bcrypt.hash(contrasena, 10);
+  const newUser = new UsuarioModel({
+    nombre,
+    usuario,
+    mail,
+    telefono,
+    localidad,
+    fotoPerfil,
+    nacimiento,
+    roles,
+    contrasena: contraseñaHasheada,
+  });
+
+  if (roles) {
+    const encuentraRole = await roleModel.findOne({ nombre: { $in: roles } });
+
+    newUser.roles = encuentraRole;
+  } else {
+    const rol = await roleModel.findOne({ nombre: "user" });
+    newUser.roles = [rol._id];
   }
+  const savedUser = await newUser.save();
+
+  const token = jwt.sign({ id: savedUser._id }, SECRET, {
+    expiresIn: 86400,
+  });
+
+  res.status(200).json(token);
 };
 
 getDetalleUsuario = async (req, res) => {
