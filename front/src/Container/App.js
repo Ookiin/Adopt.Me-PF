@@ -71,12 +71,11 @@ function App() {
           <Route exact path="/panel-Administrador" element={<PanelAdminis />} />
           <Route exact path="/panel-Administrador/clientes" element={<Clientes />} />
           <Route exact path="/panel-Administrador/mascotas" element={<Mascotas />} />
+          <Route exact path="/panel-Administrador/mascotas/animales/:id" element={<DetallePerro />} />
           <Route exact path="/panel-Administrador/donaciones" element={<Donaciones />} />
           <Route exact path="/panel-Administrador/localizaciones" element={<Localizaciones />} />
           <Route exact path="/panel-Administrador/paginas" element={<Paginas />} />
           <Route exact path="/panel-Administrador/adminis-fyq" element={<AdminFyQ/>} />
-
-          
         </Routes>
       </div>
     </BrowserRouter>

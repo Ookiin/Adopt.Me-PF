@@ -4,13 +4,8 @@ import NavBarPAdmin from "../PanelAdministrador/NavBarPAdmin";
 import stl from "./mascotas.module.css";
 import React, { useEffect, useState } from "react";
 import {useDispatch, useSelector} from 'react-redux';
-import  { useNavigate}  from "react-router-dom";
+import  { Link, useNavigate}  from "react-router-dom";
 import getmascotas from "../../Actions/getmascotas";
-/* import Adoptados from "../PAdmChartsMascotas/Adoptados"; */
-/* import PerdidoDog from "../PAdmChartsMascotas/PerdidoDog"; */
-/* import PerdidosCat from "../PAdmChartsMascotas/PerdidoCat";
-import PerrosEnAdopcion from "../PAdmChartsMascotas/PerrosEnAdopcion";
-import GatosEnAdopcion from "../PAdmChartsMascotas/GatosEnAdopcion"; */
 import FloatingUI from "../Floating UI/FloatingUI";
 import Footer from "../Footer/Footer";
 import Card from "../Card/Card";
@@ -131,23 +126,25 @@ const Mascotas = () => {
         <div className={stl.listadoCards}> 
      
 
-        {currentPets.length > 0 && currentPets.map(p => {
+        {currentPets.length > 0 ? currentPets.map((p, l) => {
 
-                   
-            return (                                          
+              return (  
+                <Link to={`/animales/${p._id}`}  key={l}>     
+               <div>
+
                 
                      <Card
                      id={p._id}
-                     perro = {p.perro}
                      nombre={p.nombre}                     
                      imagen={p.imagen}
-                     edad={p.edad}
-                     />                                                                                             
-            )})     
+                     />  
+                     </div>
+               </Link>                                                                                           
+            )
+          }): <div>no hay
+              </div>     
                                   
-        }
-        
-      </div>
+        }</div>
 
       <Footer />
     </div>
