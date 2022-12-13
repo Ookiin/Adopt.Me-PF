@@ -1,15 +1,15 @@
 import { Link, useParams, useNavigate } from "react-router-dom";
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-// import Footer from "../Footer/Footer";
-// import NavBar from "../NavBar/NavBar";
+import Footer from "../Footer/Footer";
+import NavBar from "../NavBar/NavBar";
 import stl from "./MiInformacion.module.css";
-// import createuser from "../../Actions/createuser";
+import createuser from "../../Actions/createuser";
 import getusers from "../../Actions/getusers";
-// import FloatingUI from "../Floating UI/FloatingUI";
+import FloatingUI from "../Floating UI/FloatingUI";
 
-// import { useAuth0 } from "@auth0/auth0-react";
-// import getDetalleUsuario from "../../Actions/getDetalleUsuario";
+import { useAuth0 } from "@auth0/auth0-react";
+import getDetalleUsuario from "../../Actions/getDetalleUsuario";
 import putUser from "../../Actions/putUsuario";
 
 import Toast from "light-toast";
@@ -19,11 +19,9 @@ export default function MiInformacion(props) {
   const dispatch = useDispatch();
   const navigate = useNavigate(); // Metodo de router que me redirige a la ruta que yo le diga
   const Allusers = useSelector((state) => state.users).data; // (o el estado global que usemos para guardar todos los usuarios)
-  console.log("estos son los props");
-  console.log(props);
-  
+
   const id = props.datos._id;
- 
+
   useEffect(() => {
     dispatch(getusers());
   }, [dispatch]);
@@ -39,13 +37,21 @@ export default function MiInformacion(props) {
   });
 
   const [errors, setErrors] = useState({});
-  const [isSubmit, setisSubmit] = useState(false);
+  const [isSubmit, setisSubmit] = useState(true);
+
+  let noRepeatUser = undefined;
+  let noRepeatMail = undefined;
+  //Lo meto en un if pq me rompia el filter
+  if (Allusers) {
+    noRepeatUser = Allusers.filter((u) => u.usuario === input.usuario);
+    noRepeatMail = Allusers.filter((u) => u.mail === input.mail);
+  }
+
+  console.log("no repetir mail");
+  console.log(noRepeatMail);
 
   function validation(input) {
     let errors = {};
-    
-    let noRepeatUser = Allusers.filter((u) => u.usuario === input.usuario);
-    let noRepeatMail = Allusers.filter((u) => u.mail === input.mail);
 
     if (!input.usuario) {
       errors.usuario = "Tenes que ingresar un nombre de usuario";
@@ -55,7 +61,7 @@ export default function MiInformacion(props) {
     ) {
       errors.usuario = "El nombre de usuario no es válido";
     }
-     if (noRepeatUser.length) {
+    if (noRepeatUser.length && input.usuario !== props.datos.usuario) {
       errors.usuario = `El nombre de usuario ${input.usuario} no está disponible`;
     }
 
@@ -69,7 +75,7 @@ export default function MiInformacion(props) {
       errors.telefono = "Tenes que ingresar un telefono";
     }
     if (!/^[0-9]*(\.?)[0-9]+$/.test(input.telefono)) {
-      errors.telefono = "Este campo solo debe contener numeros"
+      errors.telefono = "Este campo solo debe contener numeros";
     }
     if (input.telefono.length > 15) {
       errors.telefono = "El teléfono no es válido";
@@ -81,17 +87,14 @@ export default function MiInformacion(props) {
     if (!/[A-Z0-9._%+-]+@[A-Z0-9-]+.+.[A-Z]{2,4}/gim.test(input.mail)) {
       errors.mail = "El e-mail no es válido";
     }
-    if (noRepeatMail.length) {
+    if (noRepeatMail.length && input.mail !== props.datos.mail) {
       errors.mail = "Ya existe una cuenta vinculada a ese mail";
     }
 
     if (!input.nacimiento) {
       errors.nacimiento = "Tenes que ingresar una fecha de nacimiento";
     }
-    if (
-      input.nacimiento.length > 10 ||
-      !/^[0-9-]+$/.test(input.nacimiento)
-    ) {
+    if (input.nacimiento.length > 10 || !/^[0-9-]+$/.test(input.nacimiento)) {
       errors.nacimiento = "Tenes  que ingresar una fecha válida (dd-mm-yyyy)";
     }
 
@@ -106,6 +109,13 @@ export default function MiInformacion(props) {
       errors.localidad = "Tenes que ingresar una localidad";
     }
 
+    if (!input.fotoPerfil || input.fotoPerfil === "") {
+      setInput({
+        fotoPerfil:
+          "https://res.cloudinary.com/dvw0vrnxp/image/upload/v1670012585/usuarios/userImageDefault_bm6bdk.png",
+      });
+    }
+
     if (Object.keys(errors).length === 0) {
       setisSubmit(true);
     }
@@ -115,12 +125,21 @@ export default function MiInformacion(props) {
 
     return errors;
   }
+  console.log("este es el input");
+  console.log(input);
+  console.log("estos son los errors");
+  console.log(errors);
 
-  console.log("estos son los errors")
-  console.log(errors)
-   
   function handleSubmit(e) {
     e.preventDefault();
+    if (noRepeatMail.length && input.mail !== props.datos.mail) {
+      return alert(`El mail ingresado ${input.mail} ya esta en uso`);
+    }
+    if (noRepeatUser.length && input.usuario !== props.datos.usuario) {
+      return alert(
+        `El nombre de usuario ${input.usuario} ingresado ya esta en uso`
+      );
+    }
     //Si no hay errores, el isSubmit esta en true
     if (isSubmit) {
       console.log(
@@ -213,7 +232,9 @@ export default function MiInformacion(props) {
               SELECCIONE FOTO DE PERFIL
             </button>
             <span></span>
-            {errors.fotoPerfil && <p className={stl.err}>{errors.fotoPerfil}</p>}
+            {errors.fotoPerfil && (
+              <p className={stl.err}>{errors.fotoPerfil}</p>
+            )}
           </div>
           <br></br>
 
@@ -304,9 +325,7 @@ export default function MiInformacion(props) {
               onChange={(e) => handleChange(e)}
               placeholder={props.datos.localidad}
             />
-            {errors.localidad && (
-              <p className={stl.err}>{errors.localidad}</p>
-            )}
+            {errors.localidad && <p className={stl.err}>{errors.localidad}</p>}
           </div>
           <br></br>
           <div>
