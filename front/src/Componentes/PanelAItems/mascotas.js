@@ -92,20 +92,11 @@ const Mascotas = () => {
                type="submit"
                onClick={handleSubmit}>Ir</button>    
       </div>
-     {/*  <div className={stl.filtros}>Filtar: 
-               
-               <select className={stl.op} onChange={(e) => handleOrden(e)}>
-                    <option disabled selected defaultValue>
-                        Alfabeticamente
-                    </option>
-                    <option value='A-Z'>A-Z</option>
-                    <option value='Z-A'>Z-A</option>
-                </select>
-      </div> */}
+    
       <FloatingUI />
         <br/>
         <div>
-            <button className={stl.btnNavHome} onClick={handleClick}>Home</button>
+            <button className={stl.btnNavHome} onClick={handleClick}>Refresh</button>
         </div>
       {/* <div>
        <EnAdopcion />

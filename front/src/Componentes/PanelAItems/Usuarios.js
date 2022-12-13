@@ -11,26 +11,26 @@ import CardUser from "../CardUser/CardUser";
 import Paging from "../Pagination/Pagination"
 
 
-const Clientes = () => {
+const Usuarios = () => {
 
  const dispatch = useDispatch();
  const navigate = useNavigate();
 
-  // const allPets = useSelector((state) => state.gatos);
-  const allUsersData = useSelector((state) => state.users)
-  const allUsers = allUsersData.data
-  /* const allUsers = allUsersData.data
- console.log(allUsers) */
+  
+ const allUsersData = useSelector((state) => state.users).data
+ 
+  /* const allUsers = allUsersData.data 
+   console.log(allUsersData)*/
   const [currentPage, setCurrentPage] = useState(1) 
   const [mascotasPerPage] = useState(4)
 
   const lastPetIndex = currentPage * mascotasPerPage 
   const firstPetIndex = lastPetIndex - mascotasPerPage 
-  const currentPets = allUsers.slice(firstPetIndex,lastPetIndex) 
+  const currentPets = allUsersData.slice(firstPetIndex,lastPetIndex) 
 
 
   const [input, setInput] = useState("");
-  const [orden, setOrden] = useState(""); 
+  
   const [searchClient, setSearchClient] = useState("");
 /*   const [localCat, setlocalCat] = useState(""); */
 
@@ -57,29 +57,24 @@ const Clientes = () => {
       if(searchClient){
       dispatch(getusers(searchClient))
       setInput("")
-      navigate("/panel-Administrador/usuario") 
+      navigate("/panel-Administrador/usuarios") 
       actualPage(1)
       }
  }
- const handleOrden = (e) => {
-  e.preventDefault();
-  dispatch(getusers(e.target.value))
-  setCurrentPage(1)
-  setOrden(`Ordenado ${e.target.value}`)
-}
+
 
 
   return(
     <div>
       <div>
-        <h2>INFORME GENERAL DE NUESTRAS USUARIOS</h2>
+        <h2>INFORME GENERAL DE NUESTROS USUARIOS</h2>
       </div>
        <div>
         <NavBarPAdmin />
        </div>
-       <div>
+      {/*  <div>
         <TotalUsuarios />
-       </div>
+       </div> */}
      
     <div>
         <label className={stl.labelSearch}>Nombre:</label>
@@ -93,26 +88,17 @@ const Clientes = () => {
                type="submit"
                onClick={handleSubmit}>Ir</button>    
       </div>
-      <div className={stl.filtros}>Filtar: 
-               
-               <select className={stl.op} onChange={(e) => handleOrden(e)}>
-                    <option disabled selected defaultValue>
-                        Alfabeticamente
-                    </option>
-                    <option value='A-Z'>A-Z</option>
-                    <option value='Z-A'>Z-A</option>
-                </select>
-      </div>
+    
       <FloatingUI />
         <br/>
         <div>
-            <button className={stl.btnNavHome} onClick={handleClick}>Home</button>
+            <button className={stl.btnNavHome} onClick={handleClick}>Refresh</button>
         </div>
     
       <div className={stl.paginado}>
         <Paging 
         mascotasPerPage={mascotasPerPage} 
-        allPets={allUsers.length} 
+        allPets={allUsersData.length} 
         currentPage={currentPage}
         actualPage={actualPage}
         currentPets={currentPets}
@@ -125,17 +111,17 @@ const Clientes = () => {
         {currentPets.length > 0 ? currentPets.map((p, l) => {
 
               return (  
-                <Link to={`/usuarios/${p._id}`}  key={l}>     
+                <Link to={`/panel-Administrador/usuarios/${p._id}`}  key={l}>   
                <div>
 
                      <CardUser
                      id={p._id}
                      usuario={p.usuario}
                      nombre={p.nombre}                
-                     imagen={p.imagen}
+                    
                      />  
-                     </div>
-               </Link>                                                                                           
+                </div>
+              </Link>                                                                                   
             )
           }): <div>no hay
               </div>     
@@ -147,4 +133,4 @@ const Clientes = () => {
   )
 }
 
-export default Clientes;
+export default Usuarios;
