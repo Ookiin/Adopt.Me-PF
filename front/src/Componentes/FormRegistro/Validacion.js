@@ -2,24 +2,23 @@ import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import React, { useState, useEffect } from "react";
 import getDetalleUsuarioSinValidar from "../../Actions/getDetalleUsuarioSinValidar";
-import crearUsuarioValidado from "../../Actions/crearUsuarioValidado";
+import postUsuario from "../../Actions/postUsuario";
+
 
 export default function Validacion() {
   const { id } = useParams();
   const dispatch = useDispatch();
 
   // Crear un estado global de usuarioSinValidar
-  const user = useSelector(
-    (state) => state.detalleUsuarioSinValidar
-  ); // (o el estado global que usemos para guardar todos los usuarios)
+
+  const usuario = useSelector((state) => state.detalleUsuarioSinValidar); // (o el estado global que usemos para guardar todos los usuarios)
+
 
   // Despachar la action para que guarde en el estado el detalle del usuario
   console.log('id', id)
   useEffect(() => {
     dispatch(getDetalleUsuarioSinValidar(id));
   }, [dispatch]);
-
-  console.log(user)
 
   const usuario = user.usuario;
   const contrasena = user.contrasena;
@@ -29,6 +28,7 @@ export default function Validacion() {
   const nacimiento = user.nacimiento;
   const localidad = user.localidad;
   const fotoPerfil = user.fotoPerfil;
+
 
 
   const [input, setInput] = useState({
@@ -46,6 +46,9 @@ export default function Validacion() {
 
   function onClick(e) {
     e.preventDefault();
+
+    dispatch(postUsuario(input));
+
     setInput({
       usuario: "",
       contrasena: "",
@@ -55,9 +58,9 @@ export default function Validacion() {
       nacimiento: "",
       localidad: "",
       fotoPerfil: "",
-    })
-    console.log(input)
-    dispatch(crearUsuarioValidado(input))
+
+    });
+
   }
 
   return (

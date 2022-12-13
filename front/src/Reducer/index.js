@@ -1,4 +1,3 @@
-
 import {
   CREATE_ANIMAL,
   CREATE_USER,
@@ -46,7 +45,6 @@ import {
   CREATE_FAVORITO,
   CREAR_USUARIO_VALIDADO
 } from "../Actions";
-
 
 const initialState = {
   animales: [],
@@ -488,10 +486,12 @@ export default function rootReducer(state = initialState, action) {
         ...state,
       };
 
-      case CREAR_USUARIO_VALIDADO:
-        return {
-          ...state,
-        };
+
+    case "postUsuario":
+      return {
+        ...state,
+      };
+
 
     default:
       return state;
