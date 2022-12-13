@@ -33,7 +33,7 @@ postUsuario = async (req, res) => {
       await user.save();
       res.status(200).json(user);
     } else {
-      res.status(400).json({ msg: "no se creó el usuario" });
+      res.status(400).json({ msg: "no se creó el usuario " });
     }
   } catch (error) {
     res.status(400).json({ msg: "no se creó el usuario" });
