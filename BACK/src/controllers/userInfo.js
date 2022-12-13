@@ -2,13 +2,24 @@ const UsuarioModel = require("../modelos/usuarios");
 const infoUser = {};
 const bcrypt = require("bcryptjs");
 const nodemailer = require("nodemailer");
+const UsuariosSinValidar = require("../modelos/usuariosSinValidar");
 const { USERGMAIL, PASSWORDGMAIL } = process.env;
-
 
 getUsuarios = async (req, res) => {
   try {
     let users = await UsuarioModel.find();
     res.status(200).json(users);
+  } catch (error) {
+    res.status(400).json({ msg: "no se encontró nada" });
+  }
+};
+
+getUserSinValidar = async (req, res) => {
+  const { id } = req.params;
+  console.log(id);
+  try {
+    let user = await UsuariosSinValidar.findById(id);
+    res.status(200).json(user);
   } catch (error) {
     res.status(400).json({ msg: "no se encontró nada" });
   }
@@ -22,7 +33,7 @@ postUsuario = async (req, res) => {
       await user.save();
       res.status(200).json(user);
     } else {
-      res.status(400).json({ msg: "no se creó el usuario" });
+      res.status(400).json({ msg: "no se creó el usuario " });
     }
   } catch (error) {
     res.status(400).json({ msg: "no se creó el usuario" });
@@ -107,17 +118,17 @@ deleteUsuario = async (req, res) => {
 };
 
 emailBienvenida = async (req, res) => {
-  const {mail, nombre} = req.body
-  console.log(req.body)
+  const { mail, nombre } = req.body;
+  console.log(req.body);
 
-  try{
+  try {
     const transporter = nodemailer.createTransport({
       host: "smtp.gmail.com",
       port: 465,
       secure: true, // true for 465, false for other ports
       auth: {
         user: USERGMAIL,
-        pass: PASSWORDGMAIL
+        pass: PASSWORDGMAIL,
       },
     });
 
@@ -130,16 +141,15 @@ emailBienvenida = async (req, res) => {
       <h2>Hola ${nombre}!<h2/>
       <p>Gracias por unirte a la comunidad de Adopt.me! Adoptar es ser parte de la solución.</p>
       <div/>
-      `
+      `,
     });
-    
-    return res.send('Ok')
 
-  }catch (error){
-      emailStatus = error
-      res.status(400).json({ msg: "Algo salió mal" });
+    return res.send("Ok");
+  } catch (error) {
+    emailStatus = error;
+    res.status(400).json({ msg: "Algo salió mal" });
   }
-}
+};
 
 // putVerificacion = async (req, res) => {
 //   console.log(req.body);
@@ -162,18 +172,20 @@ emailBienvenida = async (req, res) => {
 // };
 
 emailInfoAdoptante = async (req, res) => {
-  const {nombre, telefono, mail, mailUsuario} = req.body
+
+  const {nombre, telefono, mail, mailUsuario, nombreUsuario} = req.body
   console.log('nombre', nombre)
   console.log('req body', req.body)
 
-  try{
+
+  try {
     const transporter = nodemailer.createTransport({
       host: "smtp.gmail.com",
       port: 465,
       secure: true, // true for 465, false for other ports
       auth: {
         user: USERGMAIL,
-        pass: PASSWORDGMAIL
+        pass: PASSWORDGMAIL,
       },
     });
 
@@ -186,7 +198,7 @@ emailInfoAdoptante = async (req, res) => {
       subject: "Estas a un paso de concretar la adopción!", // Subject line
       html: `
       <div>
-      <h2>Hola!</h2>
+      <h2>Hola ${nombreUsuario}!</h2>
       <p>Te dejamos los datos del responsable de tu futura mascota para que puedas ponerte en contacto y concretar la adopción:</p>
       <ul>
       <li>Nombre: ${nombre}</li>
@@ -195,15 +207,14 @@ emailInfoAdoptante = async (req, res) => {
       </ul>
       <p>Gracias por confiar en Adopt.Me!</p>
       </div>
-      `
+      `,
     });
-    
-    return res.send('Ok')
 
-  }catch (error){
-      emailStatus = error
-      res.status(400).json({ msg: "Algo salió mal" });
+    return res.send("Ok");
+  } catch (error) {
+    emailStatus = error;
+    res.status(400).json({ msg: "Algo salió mal" });
   }
-}
+};
 
 module.exports = infoUser;
