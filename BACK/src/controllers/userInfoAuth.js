@@ -1,4 +1,5 @@
 const UsuariosSinValidar = require("../modelos/usuariosSinValidar");
+const UsuarioModel = require("../modelos/usuarios");
 const { roleModel } = require("../modelos/roles");
 const infoUserAuth = {};
 const bcrypt = require("bcryptjs");
@@ -108,6 +109,5 @@ getUserGoogle = async (req, res) => {
     res.status(400).json(`${id} no encontrado`);
   }
 };
-
 
 module.exports = infoUserAuth;
