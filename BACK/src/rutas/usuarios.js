@@ -30,6 +30,8 @@ router.post("/signin", postSignin);
 
 router.post("/google/signup", postSignupGoogle);
 
+router.post("/crearUsuarioValidado", crearUsuarioValidado)
+
 router.get("/google/:id", getUserGoogle);
 
 router.post("/mailVerificarUsuario", mailVerificarUsuario);

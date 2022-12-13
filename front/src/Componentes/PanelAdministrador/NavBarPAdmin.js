@@ -23,15 +23,10 @@ const NavBarPAdmin = () => {
        </div>
        <div>
           <div className={stl.items}>
-            {/* <div>
-            <Link to="/panel-Administrador">
-                <button>INICIO</button>
-            </Link>
-            </div> */}
            
             <div>
             <Link to="/panel-Administrador/usuarios">
-                <button className={stl.botonesAdmin} >CLIENTES</button>
+                <button className={stl.botonesAdmin} >USUARIOS</button>
             </Link>
             </div>
             

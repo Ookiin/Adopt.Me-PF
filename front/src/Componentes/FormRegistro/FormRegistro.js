@@ -213,6 +213,7 @@ export default function FormRegistro() {
       <NavBar />
       <FloatingUI />
 
+
       {cartelito ? <Cartelito input={input} /> :
         <div className={stl.form} key={params.id}>
           <div className={stl.titulomayor}>Registro de Usuario</div>
@@ -239,6 +240,7 @@ export default function FormRegistro() {
                 SELECCIONE FOTO DE PERFIL
               </button>
               <span></span>
+
             
               {errors.fotoPerfil && (<p className={stl.err}>{errors.fotoPerfil}</p>)}
             
@@ -376,6 +378,7 @@ export default function FormRegistro() {
                 <p className={stl.err}>{errors.localidad}</p>
               )}
            
+
               <span></span>
             </div>
 
@@ -398,6 +401,7 @@ export default function FormRegistro() {
 
         </div>
       }
+
       <Footer />
     </div>
   );

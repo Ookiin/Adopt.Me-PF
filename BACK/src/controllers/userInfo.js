@@ -1,4 +1,5 @@
 const UsuarioModel = require("../modelos/usuarios");
+const { roleModel } = require("../modelos/roles");
 const infoUser = {};
 const bcrypt = require("bcryptjs");
 const nodemailer = require("nodemailer");
@@ -51,6 +52,49 @@ postUsuario = async (req, res) => {
     nacimiento,
     roles,
     contrasena: contraseñaHasheada,
+  });
+
+  if (roles) {
+    const encuentraRole = await roleModel.findOne({ nombre: { $in: roles } });
+
+    newUser.roles = encuentraRole;
+  } else {
+    const rol = await roleModel.findOne({ nombre: "user" });
+    newUser.roles = [rol._id];
+  }
+  const savedUser = await newUser.save();
+
+  const token = jwt.sign({ id: savedUser._id }, SECRET, {
+    expiresIn: 86400,
+  });
+
+  res.status(200).json(token);
+};
+
+crearUsuarioValidado = async (req, res) => {
+  const {
+    contrasena,
+    nombre,
+    usuario,
+    mail,
+    telefono,
+    localidad,
+    fotoPerfil,
+    nacimiento,
+    roles,
+  } = req.body;
+
+  // const existente = UsuarioModel.find({email})
+  const newUser = new UsuarioModel({
+    nombre,
+    usuario,
+    mail,
+    telefono,
+    localidad,
+    fotoPerfil,
+    nacimiento,
+    roles,
+    contrasena,
   });
 
   if (roles) {
