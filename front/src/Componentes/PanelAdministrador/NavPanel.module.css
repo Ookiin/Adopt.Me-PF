@@ -20,6 +20,7 @@
     background-image: url(https://cloudfront-us-east-1.images.arcpublishing.com/infobae/N2GFBVR5PFF75OS4JH3XT4GU7A.jpg);
     background-size: cover;
     background-repeat: no-repeat;
+   /*  position: fixed; */
  }
 .menuCollapsed {
     background-color: rgb(98, 182, 183);
