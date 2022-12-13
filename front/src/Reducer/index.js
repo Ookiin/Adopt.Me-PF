@@ -44,6 +44,7 @@ import {
   EMAIL_INFO_ADOPTANTE,
   GET_FAVORITOS,
   CREATE_FAVORITO,
+  CREAR_USUARIO_VALIDADO
 } from "../Actions";
 
 
@@ -487,6 +488,10 @@ export default function rootReducer(state = initialState, action) {
         ...state,
       };
 
+      case CREAR_USUARIO_VALIDADO:
+        return {
+          ...state,
+        };
 
     default:
       return state;
