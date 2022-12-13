@@ -2,6 +2,7 @@ const UsuarioModel = require("../modelos/usuarios");
 const infoUser = {};
 const bcrypt = require("bcryptjs");
 const nodemailer = require("nodemailer");
+const UsuariosSinValidar = require("../modelos/usuariosSinValidar");
 const { USERGMAIL, PASSWORDGMAIL } = process.env;
 
 
@@ -9,6 +10,17 @@ getUsuarios = async (req, res) => {
   try {
     let users = await UsuarioModel.find();
     res.status(200).json(users);
+  } catch (error) {
+    res.status(400).json({ msg: "no se encontró nada" });
+  }
+};
+
+getUserSinValidar = async (req, res) => {
+  const { id } = req.params;
+  console.log(id);
+  try {
+    let user = await UsuariosSinValidar.findById(id);
+    res.status(200).json(user);
   } catch (error) {
     res.status(400).json({ msg: "no se encontró nada" });
   }
@@ -77,7 +89,7 @@ putUsuario = async (req, res) => {
           usuario,
           nombre,
           mail,
-          contrasena: hasheada,
+          contrasena: hasheada ? hasheada : contrasena,
           localidad,
           nacimiento,
           publicaciones,
@@ -106,11 +118,30 @@ deleteUsuario = async (req, res) => {
   }
 };
 
-emailBienvenida = async (req, res) => {
-  const {mail, nombre} = req.body
-  console.log(req.body)
+mailVerificarUsuario = async (req, res) => {
+  const {mail, nombre} = req.body;
+  if(!mail) {
+    return res.status(400).json({ msg: 'El mail es requerido'})
+  }
+  console.log('req body', req.body)
+
+  let linkVerificación;
 
   try{
+    user = await UsuariosSinValidar.find({"mail": mail})
+    // const token = jwt.sign({ userId: user._id }, config.jwtSecret, { expiresIn: '24h' } )
+
+    let id = undefined
+    if(user) {
+      id = user[0]._id
+    }
+    console.log('id', id)
+    linkVerificación = `http://localhost:3000/validacion/${id}`
+
+    console.log('dentro del try', user)
+
+  
+
     const transporter = nodemailer.createTransport({
       host: "smtp.gmail.com",
       port: 465,
@@ -127,16 +158,17 @@ emailBienvenida = async (req, res) => {
       subject: "Bienvenidx a Adopt.me!", // Subject line
       html: `
       <div>
-      <h2>Hola ${nombre}!<h2/>
-      <p>Gracias por unirte a la comunidad de Adopt.me! Adoptar es ser parte de la solución.</p>
-      <div/>
+      <h2>Hola ${nombre}!</h2>
+      <p>Gracias por unirte a la comunidad de Adopt.me! Por favor ingresa en el siguiente enlace para verificar tu cuenta:</p>
+      <a href="${linkVerificación}">${linkVerificación}</a>
+      </div>
       `
     });
     
     return res.send('Ok')
 
   }catch (error){
-      emailStatus = error
+      // emailStatus = error
       res.status(400).json({ msg: "Algo salió mal" });
   }
 }
@@ -162,7 +194,7 @@ emailBienvenida = async (req, res) => {
 // };
 
 emailInfoAdoptante = async (req, res) => {
-  const {nombre, telefono, mail, mailUsuario} = req.body
+  const {nombre, telefono, mail, mailUsuario, nombreUsuario} = req.body
   console.log('nombre', nombre)
   console.log('req body', req.body)
 
@@ -186,7 +218,7 @@ emailInfoAdoptante = async (req, res) => {
       subject: "Estas a un paso de concretar la adopción!", // Subject line
       html: `
       <div>
-      <h2>Hola!</h2>
+      <h2>Hola ${nombreUsuario}!</h2>
       <p>Te dejamos los datos del responsable de tu futura mascota para que puedas ponerte en contacto y concretar la adopción:</p>
       <ul>
       <li>Nombre: ${nombre}</li>

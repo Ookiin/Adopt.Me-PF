@@ -8,7 +8,7 @@ import InfoProceso from "../Componentes/DonarMascota/InfoProceso";
 import FormRegistro from "../Componentes/FormRegistro/FormRegistro";
 import FormSignIn from "../Componentes/FormSignIn/FormSingIn";
 import DetalleAdopcion from "../Componentes/AdoptarMascota/DetalleAdopcion";
-import Confirmacion from "../Componentes/FormRegistro/Confirmacion";
+import Validacion from "../Componentes/FormRegistro/Validacion";
 import TePuedeInteresar from "../Componentes/TePuedeInteresar/TePuedeInteresar";
 import ReportarMaltrato from "../Componentes/TePuedeInteresar/ReportarMaltrato";
 import Directorio from "../Componentes/TePuedeInteresar/Directorio";
@@ -19,7 +19,7 @@ import DetallePerro from "../Componentes/AdoptarMascota/DetallePerro";
 import DarEnAdopcion from "../Componentes/DonarMascota/formularioDar";
 import Perfil from "../Componentes/Perfil/perfil";
 import Login from "../Componentes/Login/Login";
-import DetalleMascotaPerdida from '../Componentes/BuscarMascota/DetalleMascotaPerdida';
+import DetalleMascotaPerdida from "../Componentes/BuscarMascota/DetalleMascotaPerdida";
 import MapView from "../Componentes/Maps/Maps";
 import MapPets from "../Componentes/Maps/Maps2";
 import MapPets2 from "../Componentes/Maps/Maps3";
@@ -35,7 +35,6 @@ import Localizaciones from "../Componentes/PanelAItems/localizaciones";
 import AdminFyQ from "../Componentes/PanelAItems/adminFyQ";
 import Paginas from "../Componentes/PanelAItems/paginas";
 
-
 function App() {
   return (
     <BrowserRouter>
@@ -49,11 +48,23 @@ function App() {
           <Route exact path="/usuarios/signup" element={<FormRegistro />} />
           <Route exact path="/usuarios/signin" element={<FormSignIn />} />
           <Route exact path="/contacto" element={<DetalleAdopcion />} />
-          <Route exact path="/confirmation" element={<Confirmacion />} />
+          <Route exact path="/validacion/:id" element={<Validacion />} />
           <Route exact path="/animales/:id" element={<DetallePerro />} />
-          <Route exact path="/animalesPerdidos/:id" element={<DetalleMascotaPerdida />} />    
-          <Route exact path="/tepuedeinteresar" element={<TePuedeInteresar />} />
-          <Route exact path="/reportarmaltrato" element={<ReportarMaltrato />} />
+          <Route
+            exact
+            path="/animalesPerdidos/:id"
+            element={<DetalleMascotaPerdida />}
+          />
+          <Route
+            exact
+            path="/tepuedeinteresar"
+            element={<TePuedeInteresar />}
+          />
+          <Route
+            exact
+            path="/reportarmaltrato"
+            element={<ReportarMaltrato />}
+          />
           <Route exact path="/directorio" element={<Directorio />} />
           <Route exact path="/donation" element={<Donar />} />
           <Route exact path="/reportarmascota" element={<ReportarMascota />} />
@@ -71,12 +82,12 @@ function App() {
           <Route exact path="/panel-Administrador" element={<PanelAdminis />} />
           <Route exact path="/panel-Administrador/clientes" element={<Clientes />} />
           <Route exact path="/panel-Administrador/mascotas" element={<Mascotas />} />
+          <Route exact path="/panel-Administrador/mascotas/animales/:id" element={<DetallePerro />} />
           <Route exact path="/panel-Administrador/donaciones" element={<Donaciones />} />
           <Route exact path="/panel-Administrador/localizaciones" element={<Localizaciones />} />
           <Route exact path="/panel-Administrador/paginas" element={<Paginas />} />
           <Route exact path="/panel-Administrador/adminis-fyq" element={<AdminFyQ/>} />
 
-          
         </Routes>
       </div>
     </BrowserRouter>
