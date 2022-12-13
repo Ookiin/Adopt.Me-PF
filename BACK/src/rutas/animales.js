@@ -25,10 +25,9 @@ router.get('/gato', getGatos);
 
 router.get('/nombre-gato', getGatosByName); 
 
+router.put("/:id", putAnimal);
 
 router.get("/:id", getDetalleAnimal);
-
-router.put("/:id", putAnimal);
 
 router.delete("/:id", deleteAnimal);
 

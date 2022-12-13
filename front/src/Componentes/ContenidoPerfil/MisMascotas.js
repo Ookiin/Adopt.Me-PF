@@ -44,11 +44,7 @@ export default function MisMascotas() {
     const detalleUser = useSelector((state) => state.detalleUsuario); // Estado global con los datos del usuario
 
     const detalleUserGoogle = useSelector((state) => state.detalleUsuarioGoogle) 
-    
-    console.log(detalleUser)
-    console.log(detalleUserGoogle)
-    
-    console.log(animales);
+
     
     let _id = ""
     if (detalleUserGoogle.usuario) {
@@ -57,21 +53,25 @@ export default function MisMascotas() {
         _id = detalleUser._id
     }
 
-console.log(id)
 
   let mascotasFiltradas = animales.filter(
       (p) => p.pichina === _id
   );
-
-  console.log(mascotasFiltradas);
-
-    
-    
-    
+ 
   return (
+
       <div className={stl.cartel}>
         
-        {mascotasFiltradas.map(e => <CardPruebaNacho nombre={e.nombre} id={e._id} estado={e.estado} imagen={e.imagen} />)}
+        {mascotasFiltradas.map(e => 
+
+        <CardPruebaNacho 
+        nombre={e.nombre} 
+        id={e._id} 
+        estado={e.estado} 
+        imagen={e.imagen} 
+        />
+
+        )}
           
     </div>
   );

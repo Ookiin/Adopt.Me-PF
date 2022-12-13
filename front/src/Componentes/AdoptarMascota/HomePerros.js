@@ -23,13 +23,17 @@ export default function HomePerros () {
 
     // const allPets = useSelector((state) => state.perros);
     const copiaPerros = useSelector((state)=>state.perrosCopia)
+    const sinAdopcion = copiaPerros
+    const sinAdoptar = sinAdopcion.filter(({ adoptado }) => adoptado === false)
+    
 
     const [currentPage, setCurrentPage] = useState(1) 
     const [mascotasPerPage] = useState(4)
 
     const lastPetIndex = currentPage * mascotasPerPage 
     const firstPetIndex = lastPetIndex - mascotasPerPage 
-    const currentPets = copiaPerros.slice(firstPetIndex,lastPetIndex) 
+    const currentPets = sinAdoptar.slice(firstPetIndex,lastPetIndex) 
+
 
     const [setInput] = useState("");
     const [setOrden] = useState("");
@@ -83,6 +87,7 @@ export default function HomePerros () {
     console.log(e.target.value);
   };
         
+  
    return(
         <div className={stl.paginaadopcionperros}>
             <NavBar />

@@ -33,6 +33,9 @@ const AnimalPerdidoSchema = new Schema ({
     lat: {
         type: String,
         required: false
+    }, 
+    adoptado: {
+        type: Boolean,
     }
 
 })

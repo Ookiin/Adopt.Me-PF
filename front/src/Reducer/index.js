@@ -1,3 +1,4 @@
+
 import {
   CREATE_ANIMAL,
   CREATE_USER,
@@ -44,6 +45,7 @@ import {
   GET_FAVORITOS,
   CREATE_FAVORITO,
 } from "../Actions";
+
 
 const initialState = {
   animales: [],
@@ -484,6 +486,7 @@ export default function rootReducer(state = initialState, action) {
       return {
         ...state,
       };
+
 
     default:
       return state;
