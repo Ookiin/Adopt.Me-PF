@@ -161,12 +161,12 @@ getDetalleAnimal = async (req, res) => {
 
 putAnimal = async (req, res) => {
   const { id } = req.params;
-  const { adoptado } = req.body;
+  const { adoptado, estado } = req.body;
   try {
     await AnimalModel.findByIdAndUpdate(
       { _id: id },
       {
-        $set: {adoptado},
+        $set: {adoptado, estado},
       }
     );
   } catch (error) {
