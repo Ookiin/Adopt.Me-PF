@@ -30,7 +30,7 @@ const NavBarPAdmin = () => {
             </div> */}
            
             <div>
-            <Link to="/panel-Administrador/clientes">
+            <Link to="/panel-Administrador/usuarios">
                 <button className={stl.botonesAdmin} >CLIENTES</button>
             </Link>
             </div>

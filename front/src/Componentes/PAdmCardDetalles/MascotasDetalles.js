@@ -1,6 +1,6 @@
-/* import React, { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useNavigate } from "react-router-dom";
+import {  useNavigate } from "react-router-dom";
 import getmascotasbyid from "../../Actions/getmascotabyid";
 import { useParams } from "react-router-dom";
 import NavBar from "../NavBar/NavBar";
@@ -16,7 +16,7 @@ import { MapContainer, Marker, Popup, TileLayer, useMap } from "react-leaflet";
 import { IconLocation } from "../Maps/IconLocation";
 import getDetalleUsuarioGoogle from "../../Actions/getDetalleUsuarioGoogle";
 
-export default function DetallePerro() {
+ function MascotasDetalles() {
   const { id } = useParams();
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -212,18 +212,21 @@ export default function DetallePerro() {
             </button>
           </div>
 
-          <Link to="/contacto">
+          {/* <Link to="/contacto">
             <button
               className={stl.botonDarAdopcion}
               onClick={(e) => onClick(e)}
             >
               ADOPTAR
             </button>
-          </Link>
+          </Link> */}
         </div>
       </div>
 
       <Footer />
     </div>
   );
-} */
+}
+
+
+export default MascotasDetalles;
