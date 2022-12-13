@@ -11,7 +11,7 @@ const checkRoles = require("../middlewares/verifyRoles");
 
 router.post("/", [verifyToken, checkRoles], postUsuario);
 
-router.get("/getUserSinValidar", getUserSinValidar);
+router.get("/getUserSinValidar/:id", getUserSinValidar);
 
 router.get("/", getUsuarios);
 

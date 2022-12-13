@@ -18,7 +18,7 @@ getUserSinValidar = async (req, res) => {
   const { id } = req.params;
   console.log(id);
   try {
-    let user = await UsuariosSinValidar.find();
+    let user = await UsuariosSinValidar.findById(id);
     res.status(200).json(user);
   } catch (error) {
     res.status(400).json({ msg: "no se encontró nada" });
