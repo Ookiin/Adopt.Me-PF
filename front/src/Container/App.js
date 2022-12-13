@@ -29,13 +29,11 @@ import LostPetsList from "../Componentes/MapaPerdidos/MapaPerdidos3";
 import PostDetail from "../Componentes/Blog/PostDetail";
 import PanelAdminis from "../Componentes/PanelAdministrador/PanelAdminis";
 import Mascotas from "../Componentes/PanelAItems/mascotas";
-import Clientes from "../Componentes/PanelAItems/Clientes";
+import Usuarios from "../Componentes/PanelAItems/Usuarios";
 import Donaciones from "../Componentes/PanelAItems/donaciones";
-import Localizaciones from "../Componentes/PanelAItems/localizaciones";
 import AdminFyQ from "../Componentes/PanelAItems/adminFyQ";
-import Paginas from "../Componentes/PanelAItems/paginas";
-/* import DetalleUsuario from "../Componentes/PAdmCardDetalles/DetalleUsuario"; */
-import MascotasDetalles from "../Componentes/PAdmCardDetalles/MascotasDetalles"
+import UsuariosDetalles from "../Componentes/PAdmCardDetalles/UsuariosDetalles"; 
+import MascotasDetalles from "../Componentes/PAdmCardDetalles/MascotasDetalles";
 
 
 function App() {
@@ -83,12 +81,12 @@ function App() {
           <Route exact path="/viewlostpets" element={<LostPetsList />} />
           <Route exact path="/comentario/:id" element={<PostDetail />} />
           <Route exact path="/panel-Administrador" element={<PanelAdminis />} />
-          <Route exact path="/panel-Administrador/usuarios" element={<Clientes />} />
+          <Route exact path="/panel-Administrador/usuarios" element={<Usuarios />} />
           <Route exact path="/panel-Administrador/mascotas" element={<Mascotas />} />
           <Route exact path="/panel-Administrador/mascotas/animales/:id" element={<MascotasDetalles/>} />
           <Route exact path="/panel-Administrador/donaciones" element={<Donaciones />} />
           <Route exact path="/panel-Administrador/adminis-fyq" element={<AdminFyQ/>} />
-      {/*     <Route exact path="/panel-Administrador/usuarios/:id" element={<DetalleUsuario />} /> */}
+          <Route exact path="/panel-Administrador/usuarios/:id" element={<UsuariosDetalles />} /> 
         </Routes>
       </div>
     </BrowserRouter>
