@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useNavigate } from "react-router-dom";
+import {  useNavigate } from "react-router-dom";
 import getmascotasbyid from "../../Actions/getmascotabyid";
 import { useParams } from "react-router-dom";
 import NavBar from "../NavBar/NavBar";
@@ -11,14 +11,12 @@ import getDetalleUsuario from "../../Actions/getDetalleUsuario";
 import { useAuth0 } from "@auth0/auth0-react";
 import Toast from "light-toast";
 import getusers from "../../Actions/getusers";
-import emailInfoAdoptante from "../../Actions/emailInfoAdoptante"
+// import emailInfoAdoptante from "../../Actions/emailInfoAdoptante"
 import { MapContainer, Marker, Popup, TileLayer, useMap } from "react-leaflet";
 import { IconLocation } from "../Maps/IconLocation";
-import axios from "axios";
 import getDetalleUsuarioGoogle from "../../Actions/getDetalleUsuarioGoogle";
 
-
-export default function DetallePerro() {
+ function MascotasDetalles() {
   const { id } = useParams();
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -27,7 +25,6 @@ export default function DetallePerro() {
   const detalleUser = useSelector((state) => state.detalleUsuario);
   const detalleUserGoogle = useSelector((state) => state.detalleUsuarioGoogle);
   const { user, isAuthenticated } = useAuth0();
-
 
   //////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -61,7 +58,13 @@ export default function DetallePerro() {
   // Usuario va a tener los datos del usuario logueado, sin importar si esta logueado con google o normal
   let usuario = detalleUserGoogle.usuario ? detalleUserGoogle : detalleUser;
 
+  console.log("Estos son los detalles del usaurio");
+  console.log(usuario);
 
+
+
+  
+  ///////////////////////////////////////////////////////////////////////////////////////
 
   function onClick(e) {
     e.preventDefault();
@@ -81,16 +84,6 @@ export default function DetallePerro() {
       );
     }
     if ((user && detalleUser.usuario) || detalleUserGoogle.usuario) {
-
-      dispatch(emailInfoAdoptante(input));
-      setInput({
-        nombre: "",
-        telefono: "",
-        mail: "",
-        mailUsuario: "",
-        nombreUsuario: ""
-      });
-
       return Toast.info(
         `Esta es la informacion del usuario que dio en adopcion esta mascota: \n
       Se enviara un mail con estos datos a tu correo electronico \n 
@@ -115,17 +108,6 @@ export default function DetallePerro() {
   const nombre = ownerPet2.map(({ nombre }) => nombre);
   const telefono = ownerPet2.map(({ telefono }) => telefono);
   const mail = ownerPet2.map(({ mail }) => mail);
-  const mailUsuario = usuario.mail;
-  const nombreUsuario = usuario.nombre
-
-
-  const [input, setInput] = useState({
-    nombre: nombre,
-    telefono: telefono,
-    mail: mail,
-    mailUsuario: mailUsuario,
-    nombreUsuario: nombreUsuario
-  });
 
   ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -153,53 +135,19 @@ export default function DetallePerro() {
 
   function handleLocation() {
     setGeo({
+      lat: detail.lat,
+      lng: detail.lng,
+    });
 
-          lat: detail.lat,
-          lng: detail.lng
-    })
-   
-    Toast.success("Reubicandose a la ubicacion de esta mascota", 1500, () => {});
-}
-///////////////////////////////////////////////////////////////////////////////////////////////////////
-
-const [adopt, setAdopt] = useState({
-  adoptado: false,
-  estado: "En adopcion"
-})
-console.log("estado", adopt)
-
-useEffect(() => {
-  setAdopt({
-    adoptado: true,
-    estado: "Adoptado"
-  })
-}, [])
-
-function handleUpdate() {
-  setAdopt({
-      adoptado: true,
-      estado: "Adoptado"
-  })
-}  
-
-function handleAdoptado() {
-  setInput({
-      adoptado: true,
-      estado: "Adoptado"
-  })
-
-  axios.put("animales/" + id, adopt)
-   .then((res) => {
-  console.log("res", res.data)
-}).catch((error) => {
-  console.log(error)
-})
-}
-
+    Toast.success(
+      "Reubicandose a la ubicacion de esta mascota",
+      1500,
+      () => {}
+    );
+  }
 
   ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-   if (ownerPet2.length === 1) {
   return (
     <div className={stl.paginaAdopcion}>
       <NavBar />
@@ -264,105 +212,21 @@ function handleAdoptado() {
             </button>
           </div>
 
-          <Link to="/contacto">
+          {/* <Link to="/contacto">
             <button
               className={stl.botonDarAdopcion}
               onClick={(e) => onClick(e)}
             >
               ADOPTAR
             </button>
-          </Link>
-          <button onClick={(e) => {handleUpdate(e); handleAdoptado(e); }}>Ya se adopto</button>
+          </Link> */}
         </div>
       </div>
 
       <Footer />
     </div>
   );
-  } else {
-    return (
-      <div className={stl.paginaAdopcion}>
-        <NavBar />
-        <FloatingUI />
-        <img className={stl.img} src={detail.imagen} alt="" />
-        <div className={stl.cardDetalles}>
-          <div className={stl.datosAdopcion}>
-            <div className={stl.tituloAdopcion}>Datos de la Mascota</div>
-            <div className={stl.datos2}>
-              <div className={stl.titulos2}>
-                Nombre: <p className={stl.details}>{detail.nombre}</p>
-              </div>
-              <div className={stl.titulos2}>
-                Raza: <p className={stl.details}>{detail.raza}</p>
-              </div>
-              <div className={stl.titulos2}>
-                Edad: <p className={stl.details}>{detail.edad}</p>
-              </div>
-              <div className={stl.titulos2}>
-                Estado: <p className={stl.details}>{detail.estado}</p>
-              </div>
-              <div className={stl.titulos2}>
-                Tamaño: <p className={stl.details}>{detail.tama}</p>
-              </div>
-              <div className={stl.titulos2}>
-                Peso: <p className={stl.details}>{detail.peso}</p>
-              </div>
-              <div className={stl.titulos2}>
-                Descripcion: <p className={stl.details}>{detail.descripcion}</p>
-              </div>
-              <div className={stl.titulos2}>
-                Castrado: <p className={stl.details}>{detail.castrado}</p>
-              </div>
-              <div className={stl.titulos2}>
-                Vacunado: <p className={stl.details}>{detail.vacunado}</p>
-              </div>
-  
-            </div>
-  
-            <div className={stl.ubicacionMascota}>
-  
-       
-              <MapContainer center={position} zoom={13} scrollWheelZoom={false}>
-                  <FlyMapTo />
-                  <TileLayer
-                    attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-                    url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"/>
-  
-                   
-  
-                      return (
-  
-                    <Marker
-                    position={[geo.lat, geo.lng]} 
-                    icon={IconLocation}> 
-                    <Popup>
-                      <img className={stl.imagenMarcador}src={detail.imagen} alt="" /><br></br>
-                      Esta es la ubicacion<br></br> de esta mascota
-                    </Popup>
-                    </Marker>
-                      )
-                  
-              </MapContainer>
-              <button onClick={handleLocation} className={stl.verUbicacion}>Ver ubicacion de esta mascota</button>
-                      
-  
-            </div>
-  
-  
-            <Link to="/contacto">
-              <button
-                className={stl.botonDarAdopcion}
-                onClick={(e) => onClick(e)}
-              >
-                ADOPTAR
-              </button>
-            </Link>
-       
-          </div>
-        </div>
-  
-        <Footer />
-      </div>
-    );
-  }
 }
+
+
+export default MascotasDetalles;

@@ -21,9 +21,6 @@ export default function Post({titulo, contenido, id, owner}) {
 
             
                     <LikeButton />
-                  
-
-
 
                     <div>
                         <div>Post de : {owner}</div>

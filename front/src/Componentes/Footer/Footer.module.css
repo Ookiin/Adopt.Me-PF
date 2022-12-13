@@ -23,7 +23,8 @@
     align-items: center;
     flex-wrap: wrap;
     justify-content: center;
-    width: 400px;
+    width: 1800px;
+    margin-left: 460px;
     margin-right: 90px;
 }
 
@@ -65,16 +66,32 @@
  /* border: 1px solid violet; */
  background-image: url("../../Imagenes/facebook.png");
  background-size: contain;
- width: 30px;
- height: 30px;
+ width: 60px;
+ height: 60px;
+ position: absolute;
+ margin-left: -2580px;
+}
+
+.facebootexto {
+    position: absolute;
+    margin-left: -2599px;
+    margin-top: 90px;
+}
+
+.instagramtexto {
+    position: absolute;
+    margin-right: 380px;
+    margin-top: 90px;
 }
 
 .instagram {
  /* border: 1px solid fuchsia; */
  background-image: url("../../Imagenes/instagram.png");
  background-size: contain;
- width: 30px;
- height: 30px;
+ width: 60px;
+ height: 60px;
+ position: absolute;
+ margin-right: 400px;
 }
 
 .twitter {

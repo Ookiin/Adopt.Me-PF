@@ -35,16 +35,14 @@ getPerrosPerdidos = async (req,res) => {
       
       const {tama} = req.body;      
       let mediano = await AnimalesPerdidosModel.find({tam:{path: ''}});    
-      console.log(mediano);
       const mapeado = await mediano.map(t=>t.tama)
-      
-      
-      console.log(mapeado);  
+        
       if (mediano) await res.status(200).json(mapeado)
     } catch (error) {
       res.status(400).json('UPS! algo salio mal')   
     }
   };
+  
   postAnimalesPerdidos = async (req, res) => {
     try {
       const {  
@@ -57,7 +55,8 @@ getPerrosPerdidos = async (req,res) => {
         descripcion,        
         imagen,
         lng,
-        lat} = req.body;
+        lat,
+        adoptado} = req.body;
   
         const animales = await new AnimalesPerdidosModel({
         _id: _id,
@@ -69,7 +68,8 @@ getPerrosPerdidos = async (req,res) => {
         descripcion,
         imagen, 
         lng,
-        lat       
+        lat,
+        adoptado       
         })    
         if (animales.length) await animales.save()
         const nuevoAnimal = await animales.save()      
@@ -105,5 +105,23 @@ getPerrosPerdidos = async (req,res) => {
     }
   }
 
+
+  putAnimalesPerdidos = async (req, res) => {
+    const { id } = req.params;
+    const { adoptado } = req.body;
+    try {
+      await AnimalesPerdidosModel.findByIdAndUpdate(
+        { _id: id },
+        {
+          $set: {adoptado},
+        }
+      );
+    } catch (error) {
+        res.status(400).send(error)
+      } 
+      const animal = await AnimalesPerdidosModel.findById(id)
+      res.send(animal)
+    }
+ 
+
 module.exports = InfoAnimalesPerdidos;
-//

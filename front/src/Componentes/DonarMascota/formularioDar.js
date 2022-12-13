@@ -67,7 +67,8 @@ import "../DonarMascota/formularioDar.css"
         imagen: "",
         pichina: detalleUserGoogle.usuario ? detalleUserGoogle._id : usuario._id,
         lat: "",
-        lng: ""
+        lng: "",
+        adoptado: false
       });
 
   const [imagenes, setImagenes] = useState([]);
@@ -193,7 +194,8 @@ console.log("input 1", input)
         imagen: "",
         pichina: detalleUserGoogle.usuario ? detalleUserGoogle._id : usuario._id,
         lat: "",
-        lng: ""
+        lng: "",
+        adoptado: false
       });
       console.log("input 2", input)
       Toast.success("Mascota publicada correctamente", 1500, () => {

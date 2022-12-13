@@ -1,3 +1,4 @@
+
 import {
   CREATE_ANIMAL,
   CREATE_USER,
@@ -45,6 +46,7 @@ import {
   CREATE_FAVORITO,
   CREAR_USUARIO_VALIDADO
 } from "../Actions";
+
 
 const initialState = {
   animales: [],
