@@ -39,7 +39,7 @@ import {
   GET_RESPUESTA,
   GET_LIKES,
   CREATE_LIKE,
-  EMAIL_BIENVENIDA,
+  MAIL_VERIFICAR_USUARIO,
   EMAIL_INFO_ADOPTANTE,
   GET_FAVORITOS,
   CREATE_FAVORITO,
@@ -475,7 +475,7 @@ export default function rootReducer(state = initialState, action) {
         ...state,
       };
 
-    case EMAIL_BIENVENIDA:
+    case MAIL_VERIFICAR_USUARIO:
       return {
         ...state,
       };

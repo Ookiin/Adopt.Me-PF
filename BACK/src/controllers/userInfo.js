@@ -5,6 +5,7 @@ const nodemailer = require("nodemailer");
 const UsuariosSinValidar = require("../modelos/usuariosSinValidar");
 const { USERGMAIL, PASSWORDGMAIL } = process.env;
 
+
 getUsuarios = async (req, res) => {
   try {
     let users = await UsuarioModel.find();
@@ -33,7 +34,7 @@ postUsuario = async (req, res) => {
       await user.save();
       res.status(200).json(user);
     } else {
-      res.status(400).json({ msg: "no se creó el usuario " });
+      res.status(400).json({ msg: "no se creó el usuario" });
     }
   } catch (error) {
     res.status(400).json({ msg: "no se creó el usuario" });
@@ -117,18 +118,37 @@ deleteUsuario = async (req, res) => {
   }
 };
 
-emailBienvenida = async (req, res) => {
-  const { mail, nombre } = req.body;
-  console.log(req.body);
+mailVerificarUsuario = async (req, res) => {
+  const {mail, nombre} = req.body;
+  if(!mail) {
+    return res.status(400).json({ msg: 'El mail es requerido'})
+  }
+  console.log('req body', req.body)
 
-  try {
+  let linkVerificación;
+
+  try{
+    user = await UsuariosSinValidar.find({"mail": mail})
+    // const token = jwt.sign({ userId: user._id }, config.jwtSecret, { expiresIn: '24h' } )
+
+    let id = undefined
+    if(user) {
+      id = user[0]._id
+    }
+    console.log('id', id)
+    linkVerificación = `http://localhost:3000/validacion/${id}`
+
+    console.log('dentro del try', user)
+
+  
+
     const transporter = nodemailer.createTransport({
       host: "smtp.gmail.com",
       port: 465,
       secure: true, // true for 465, false for other ports
       auth: {
         user: USERGMAIL,
-        pass: PASSWORDGMAIL,
+        pass: PASSWORDGMAIL
       },
     });
 
@@ -138,18 +158,20 @@ emailBienvenida = async (req, res) => {
       subject: "Bienvenidx a Adopt.me!", // Subject line
       html: `
       <div>
-      <h2>Hola ${nombre}!<h2/>
-      <p>Gracias por unirte a la comunidad de Adopt.me! Adoptar es ser parte de la solución.</p>
-      <div/>
-      `,
+      <h2>Hola ${nombre}!</h2>
+      <p>Gracias por unirte a la comunidad de Adopt.me! Por favor ingresa en el siguiente enlace para verificar tu cuenta:</p>
+      <a href="${linkVerificación}">${linkVerificación}</a>
+      </div>
+      `
     });
+    
+    return res.send('Ok')
 
-    return res.send("Ok");
-  } catch (error) {
-    emailStatus = error;
-    res.status(400).json({ msg: "Algo salió mal" });
+  }catch (error){
+      // emailStatus = error
+      res.status(400).json({ msg: "Algo salió mal" });
   }
-};
+}
 
 // putVerificacion = async (req, res) => {
 //   console.log(req.body);
@@ -172,20 +194,18 @@ emailBienvenida = async (req, res) => {
 // };
 
 emailInfoAdoptante = async (req, res) => {
-
   const {nombre, telefono, mail, mailUsuario, nombreUsuario} = req.body
   console.log('nombre', nombre)
   console.log('req body', req.body)
 
-
-  try {
+  try{
     const transporter = nodemailer.createTransport({
       host: "smtp.gmail.com",
       port: 465,
       secure: true, // true for 465, false for other ports
       auth: {
         user: USERGMAIL,
-        pass: PASSWORDGMAIL,
+        pass: PASSWORDGMAIL
       },
     });
 
@@ -207,14 +227,15 @@ emailInfoAdoptante = async (req, res) => {
       </ul>
       <p>Gracias por confiar en Adopt.Me!</p>
       </div>
-      `,
+      `
     });
+    
+    return res.send('Ok')
 
-    return res.send("Ok");
-  } catch (error) {
-    emailStatus = error;
-    res.status(400).json({ msg: "Algo salió mal" });
+  }catch (error){
+      emailStatus = error
+      res.status(400).json({ msg: "Algo salió mal" });
   }
-};
+}
 
 module.exports = infoUser;

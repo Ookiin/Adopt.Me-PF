@@ -6,10 +6,11 @@ import NavBar from "../NavBar/NavBar";
 import stl from "../FormRegistro/FormRegistro.module.css";
 import createuser from "../../Actions/createuser";
 import getusers from "../../Actions/getusers";
-import emailBienvenida from "../../Actions/emailBienvenida"
+// import mailVerificarUsuario from "../../Actions/mailVerificarUsuario"
 import FloatingUI from "../Floating UI/FloatingUI";
 import userImageDefault from "../../Imagenes/userImageDefault.png";
 import Toast from "light-toast";
+import Cartelito from "./Cartelito"
 
 export default function FormRegistro() {
   const params = useParams();
@@ -35,6 +36,7 @@ export default function FormRegistro() {
 
   const [errors, setErrors] = useState({});
   const [isSubmit, setisSubmit] = useState(false);
+  const [cartelito, setCartelito] = useState(false);
 
   function validation(input) {
     let errors = {};
@@ -130,22 +132,29 @@ export default function FormRegistro() {
     if (isSubmit) {
       // console.log("Se despacha el create con estos valores")
       // console.log(input)
+     // dispatch(createuser(input));
+
       dispatch(createuser(input));
-      dispatch(emailBienvenida(input));
+
+      setCartelito(true);
+
+      // dispatch(mailVerificarUsuario(input));
+
+      // dispatch(mailVerificarUsuario(input));
       
-      setInput({
-        usuario: "",
-        contrasena: "",
-        repitaContrasena: "",
-        nombre: "",
-        telefono: "",
-        mail: "",
-        nacimiento: "",
-        localidad: "",
-        fotoPerfil: "",
-      });
+      // setInput({
+      //   usuario: "",
+      //   contrasena: "",
+      //   repitaContrasena: "",
+      //   nombre: "",
+      //   telefono: "",
+      //   mail: "",
+      //   nacimiento: "",
+      //   localidad: "",
+      //   fotoPerfil: "",
+      // });
       Toast.success("Usuario creado correctamente", 1500, () => {
-        navigate("/prueba");
+       // navigate("/prueba");
       });
     } else {
       Toast.fail(
@@ -371,8 +380,6 @@ export default function FormRegistro() {
             <span></span>
           </div>
 
-         
-
           <div>
             <button
               className={stl.buttons}
@@ -387,6 +394,9 @@ export default function FormRegistro() {
             </Link>
           </div>
         </form>
+
+        {cartelito ? <Cartelito input={input}/> : null}
+
       </div>
       <Footer />
     </div>
