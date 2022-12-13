@@ -4,7 +4,7 @@
     /* border: 2px solid red; */
     display: flex;
     width: 600px;  
-    height: 850px; 
+    height: 550px; 
     margin-top: 60px;
     justify-content: center;
     position: relative;
@@ -48,7 +48,7 @@ input {
 .metodosPago {
     display: block;
     position: absolute;
-    margin-top: 350px;
+    margin-top: 90px;
     width: 450px;
     height: 430px;
     background-color: #F2E7D5;

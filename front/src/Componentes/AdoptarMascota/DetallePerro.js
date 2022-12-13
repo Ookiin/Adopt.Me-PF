@@ -163,24 +163,29 @@ export default function DetallePerro() {
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
 
 const [adopt, setAdopt] = useState({
-  adoptado: false
+  adoptado: false,
+  estado: "En adopcion"
 })
+console.log("estado", adopt)
 
 useEffect(() => {
   setAdopt({
-    adoptado: true
+    adoptado: true,
+    estado: "Adoptado"
   })
 }, [])
 
 function handleUpdate() {
   setAdopt({
-      adoptado: true
+      adoptado: true,
+      estado: "Adoptado"
   })
 }  
 
 function handleAdoptado() {
   setInput({
-      adoptado: true
+      adoptado: true,
+      estado: "Adoptado"
   })
 
   axios.put("animales/" + id, adopt)

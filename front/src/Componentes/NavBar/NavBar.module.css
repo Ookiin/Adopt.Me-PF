@@ -406,8 +406,9 @@ h4 {
   @media (min-width: 481px) and (max-width: 767px) {
     .logo {
       font-size: 23px;
-      margin-left: -100px;
-      margin-right: -40px;
+      /* margin-left: 30px; */
+      margin-right: -30px;
+      /* border: 1px solid red; */
     }
 
     .algomas {
