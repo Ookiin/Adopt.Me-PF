@@ -21,6 +21,8 @@ router.put("/:id", putUsuario);
 
 router.delete("/:id", deleteUsuario);
 
+// crear ruta postVerificado, controller, action, reducer, despachar la action desde componente validacion, acomodar cartelito
+
 router.post("/signup", postSignup);
 
 router.post("/signin", postSignin);
@@ -29,7 +31,7 @@ router.post("/google/signup", postSignupGoogle);
 
 router.get("/google/:id", getUserGoogle);
 
-router.post("/emailbienvenida", emailBienvenida);
+router.post("/mailVerificarUsuario", mailVerificarUsuario);
 
 router.post("/emailInfoAdoptante", emailInfoAdoptante);
 
