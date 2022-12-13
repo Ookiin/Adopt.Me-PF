@@ -8,7 +8,7 @@ import  { Link, useNavigate}  from "react-router-dom";
 import getmascotas from "../../Actions/getmascotas";
 import FloatingUI from "../Floating UI/FloatingUI";
 import Footer from "../Footer/Footer";
-import Card from "../Card/Card";
+import CardMascotas from "../PanelAdministrador/CardMascotas";
 import Paging from "../Pagination/Pagination"
 
 const Mascotas = () => {
@@ -28,7 +28,7 @@ const Mascotas = () => {
 
 
   const [input, setInput] = useState("");
-  const [orden, setOrden] = useState(""); 
+  /* const [orden, setOrden] = useState("");  */
   const [search, setSearch] = useState("");
 /*   const [localCat, setlocalCat] = useState(""); */
 
@@ -55,16 +55,16 @@ const Mascotas = () => {
       if(search){
       dispatch(getmascotas(search))
       setInput("")
-      navigate("/panel-Administrador") 
+      navigate("/panel-Administrador/mascotas") 
       actualPage(1)
       }
  }
- const handleOrden = (e) => {
+/*  const handleOrden = (e) => {
   e.preventDefault();
   dispatch(getmascotas(e.target.value))
   setCurrentPage(1)
   setOrden(`Ordenado ${e.target.value}`)
-}
+} */
 
   return(
     <div>
@@ -92,7 +92,7 @@ const Mascotas = () => {
                type="submit"
                onClick={handleSubmit}>Ir</button>    
       </div>
-      <div className={stl.filtros}>Filtar: 
+     {/*  <div className={stl.filtros}>Filtar: 
                
                <select className={stl.op} onChange={(e) => handleOrden(e)}>
                     <option disabled selected defaultValue>
@@ -101,7 +101,7 @@ const Mascotas = () => {
                     <option value='A-Z'>A-Z</option>
                     <option value='Z-A'>Z-A</option>
                 </select>
-      </div>
+      </div> */}
       <FloatingUI />
         <br/>
         <div>
@@ -129,14 +129,13 @@ const Mascotas = () => {
         {currentPets.length > 0 ? currentPets.map((p, l) => {
 
               return (  
-                <Link to={`/animales/${p._id}`}  key={l}>     
+                <Link to={`/panel-Administrador/mascotas/animales/${p._id}`}  key={l}>     
                <div>
 
-                
-                     <Card
-                     id={p._id}
-                     nombre={p.nombre}                     
-                     imagen={p.imagen}
+                     <CardMascotas
+                     nombre={p.nombre}
+                     id={p._id}                    
+                     estado={p.estado}
                      />  
                      </div>
                </Link>                                                                                           
