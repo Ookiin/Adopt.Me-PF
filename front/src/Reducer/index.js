@@ -1,4 +1,4 @@
-
+import update from 'react-addons-update';
 import { 
     CREATE_ANIMAL,
     CREATE_USER,
@@ -41,7 +41,8 @@ import {
     EMAIL_BIENVENIDA,
     EMAIL_INFO_ADOPTANTE,
     GET_FAVORITOS,
-    CREATE_FAVORITO
+    CREATE_FAVORITO,
+    UPDATE_MASCOTA,
   } from "../Actions";
 
 
@@ -478,6 +479,12 @@ case GET_CAT_TAMAÑOS: {
               ...state
             }
 
+          // case UPDATE_MASCOTA: 
+          //  return {
+          //   ...state,
+          //   animales: action.payload
+          //  }
+          
         
     default:
       return state;

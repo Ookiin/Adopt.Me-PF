@@ -4,7 +4,7 @@ import createLike from "../../Actions/createLike"
 import "./Likes.css";
 
 const LikeButton = () => {
-  const [input, setInput] = useState(0);
+  const [input, setInput] = useState(14);
   const [isClicked, setIsClicked] = useState(false);
   const dispatch = useDispatch()
 

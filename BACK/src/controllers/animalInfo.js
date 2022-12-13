@@ -114,7 +114,9 @@ postAnimal = async (req, res) => {
       imagen,
       pichina,
       lng,
-      lat} = req.body;
+      lat,
+      adoptado
+      } = req.body;
 
     const animales = await new AnimalModel({
       _id: _id,
@@ -133,7 +135,8 @@ postAnimal = async (req, res) => {
       imagen,
       pichina,
       lng,
-      lat    
+      lat,
+      adoptado    
       })    
       if (animales.length) await animales.save()
       const nuevoAnimal = await animales.save()      
@@ -158,55 +161,20 @@ getDetalleAnimal = async (req, res) => {
 
 putAnimal = async (req, res) => {
   const { id } = req.params;
-  const {
-    perro,
-    gato,
-    nombre,
-    raza,
-    edad,
-    estado,
-    tama,
-    peso,
-    localidad,
-    descripcion,
-    castrado,
-    vacunado,
-    imagen,
-    longitude,
-    latitude,
-  } = req.body;
+  const { adoptado } = req.body;
   try {
-    let mascota = await AnimalModel.updateOne(
+    await AnimalModel.findByIdAndUpdate(
       { _id: id },
       {
-        $set: {
-          perro,
-          gato,
-          nombre,
-          raza,
-          edad,
-          estado,
-          tama,
-          peso,
-          localidad,
-          descripcion,
-          castrado,
-          vacunado,
-          imagen,
-          longitude,
-          latitude,
-        },
+        $set: {adoptado},
       }
     );
-    if (mascota) {
-      res.status(200).json(mascota);
-    } else {
-      res.status(400).json({ msg: "no coincide el id que deseas modificar" });
-    }
   } catch (error) {
-    console.log(error);
+      res.status(400).send(error)
+    } 
+    const animal = await AnimalModel.findById(id)
+    res.send(animal)
   }
-};
 
 deleteAnimal = async (req, res) => {
   const { id } = req.params;

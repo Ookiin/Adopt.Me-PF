@@ -71,7 +71,9 @@ const AnimalSchema = new Schema({
         type: String,
         required: false,
       },
-    
+    adoptado: {
+        type: Boolean,
+    }
 });
 
 const AnimalModel = mongoose.model('animales', AnimalSchema)

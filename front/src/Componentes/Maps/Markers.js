@@ -13,6 +13,8 @@ export default function Markers() {
 
   const dispatch = useDispatch()
   const gps = useSelector((state) => state.animales);
+  const sinAdopcion = gps
+  const sinAdoptar = sinAdopcion.filter(({ adoptado }) => adoptado === false)
 
 
     useEffect(() => {
@@ -23,7 +25,7 @@ export default function Markers() {
     return (
     
       <>
-      {gps.map(p => {
+      {sinAdoptar.map(p => {
 
      return (
       <Marker
