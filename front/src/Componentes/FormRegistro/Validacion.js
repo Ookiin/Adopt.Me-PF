@@ -11,7 +11,7 @@ export default function Validacion() {
 
   // Crear un estado global de usuarioSinValidar
 
-  const usuario = useSelector((state) => state.detalleUsuarioSinValidar); // (o el estado global que usemos para guardar todos los usuarios)
+  const user = useSelector((state) => state.detalleUsuarioSinValidar); // (o el estado global que usemos para guardar todos los usuarios)
 
 
   // Despachar la action para que guarde en el estado el detalle del usuario

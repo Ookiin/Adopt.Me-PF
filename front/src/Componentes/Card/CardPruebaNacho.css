@@ -63,3 +63,6 @@
   color: white;
   transform: rotateY( 180deg );
 }
+.colorEstado {
+  color: rgb(156, 12, 12);
+}

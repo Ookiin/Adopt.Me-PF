@@ -29,15 +29,13 @@ import LostPetsList from "../Componentes/MapaPerdidos/MapaPerdidos3";
 import PostDetail from "../Componentes/Blog/PostDetail";
 import PanelAdminis from "../Componentes/PanelAdministrador/PanelAdminis";
 import Mascotas from "../Componentes/PanelAItems/mascotas";
-
-import Clientes from "../Componentes/PanelAItems/clientes";
-
+// import Clientes from "../Componentes/PanelAItems/";
 import Donaciones from "../Componentes/PanelAItems/donaciones";
 import AdminFyQ from "../Componentes/PanelAItems/adminFyQ";
-
-import Paginas from "../Componentes/PanelAItems/paginas";
+// import Paginas from "../Componentes/PanelAItems/paginas";
 /* import DetalleUsuario from "../Componentes/PAdmCardDetalles/DetalleUsuario"; */
 import MascotasDetalles from "../Componentes/PAdmCardDetalles/MascotasDetalles";
+import Usuarios from "../Componentes/PanelAItems/Usuarios";
 
 
 function App() {
@@ -55,21 +53,9 @@ function App() {
           <Route exact path="/contacto" element={<DetalleAdopcion />} />
           <Route exact path="/validacion/:id" element={<Validacion />} />
           <Route exact path="/animales/:id" element={<DetallePerro />} />
-          <Route
-            exact
-            path="/animalesPerdidos/:id"
-            element={<DetalleMascotaPerdida />}
-          />
-          <Route
-            exact
-            path="/tepuedeinteresar"
-            element={<TePuedeInteresar />}
-          />
-          <Route
-            exact
-            path="/reportarmaltrato"
-            element={<ReportarMaltrato />}
-          />
+          <Route exact path="/animalesPerdidos/:id" element={<DetalleMascotaPerdida />} />
+          <Route exact path="/tepuedeinteresar" element={<TePuedeInteresar />} />
+          <Route exact path="/reportarmaltrato" element={<ReportarMaltrato />} />
           <Route exact path="/directorio" element={<Directorio />} />
           <Route exact path="/donation" element={<Donar />} />
           <Route exact path="/reportarmascota" element={<ReportarMascota />} />
@@ -85,32 +71,11 @@ function App() {
           <Route exact path="/viewlostpets" element={<LostPetsList />} />
           <Route exact path="/comentario/:id" element={<PostDetail />} />
           <Route exact path="/panel-Administrador" element={<PanelAdminis />} />
-
-          <Route
-            exact
-            path="/panel-Administrador/usuarios"
-            element={<Clientes />}
-          />
-          <Route
-            exact
-            path="/panel-Administrador/mascotas"
-            element={<Mascotas />}
-          />
-          <Route
-            exact
-            path="/panel-Administrador/mascotas/animales/:id"
-            element={<MascotasDetalles />}
-          />
-          <Route
-            exact
-            path="/panel-Administrador/donaciones"
-            element={<Donaciones />}
-          />
-          <Route
-            exact
-            path="/panel-Administrador/adminis-fyq"
-            element={<AdminFyQ />}
-          />
+          <Route exact path="/panel-Administrador/usuarios" element={<Usuarios />} />
+          <Route exact path="/panel-Administrador/mascotas" element={<Mascotas />} />
+          <Route exact path="/panel-Administrador/mascotas/animales/:id" element={<MascotasDetalles />} />
+          <Route exact path="/panel-Administrador/donaciones" element={<Donaciones />} />
+          <Route exact path="/panel-Administrador/adminis-fyq" element={<AdminFyQ />} />
           {/*     <Route exact path="/panel-Administrador/usuarios/:id" element={<DetalleUsuario />} /> */}
 
         </Routes>
