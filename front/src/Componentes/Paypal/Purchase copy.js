@@ -1,10 +1,11 @@
 import React, { useState } from "react";
-import PayPal from "../Paypal/Paypal";
+
 import stl from "../Paypal/Purchase.module.css";
+import PayPal2 from "./Paypal copy";
 
 
 
-const Purchases = () => {
+const Purchases2 = () => {
   const [state, setState] = useState({
     value: 5.0,
     checkout: false,
@@ -30,7 +31,7 @@ const Purchases = () => {
             }
             color="primary"
           >
-            Donar U$S 1
+            Donar U$S 5
           </button>
         </div>
 
@@ -44,8 +45,7 @@ const Purchases = () => {
     <div >
       {state.checkout ? (
         <div>
-          <PayPal cost={state.value} desc={state.desc} />
-  
+                 <PayPal2 cost={state.value} desc={state.desc} />
         </div>
       ) : (
         <div >
@@ -57,4 +57,4 @@ const Purchases = () => {
    
   );
 };
-export default Purchases;
+export default Purchases2;

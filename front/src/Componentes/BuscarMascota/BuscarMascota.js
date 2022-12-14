@@ -19,6 +19,8 @@ export default function BuscarMascota() {
   const dispatch = useDispatch();
   
   const allPets = useSelector((state)=>state.animalesPerdidosCopia);
+
+
   const [currentPage, setCurrentPage] = useState(1);
   const [mascotasPerPage] = useState(4);
   const lastPetIndex = currentPage * mascotasPerPage; 

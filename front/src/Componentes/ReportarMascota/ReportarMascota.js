@@ -64,7 +64,8 @@ function validation(input){
         descripcion: "",        
         imagen: "",
         lng: "",
-        lat: ""
+        lat: "",
+        adoptado: false
       });
       console.log("input", input)
   const [imagenes, setImagenes] = useState([]);
@@ -86,7 +87,8 @@ function validation(input){
       descripcion: "",        
       imagen: "",
       lng: "",
-      lat: ""
+      lat: "",
+      adoptado: false
     })
   
     // setImagenes([])
@@ -437,7 +439,7 @@ useEffect(() => {
          donde perdio 
         su mascota o vio una mascota perdida. <br></br><br></br>Despues seleccione "Establecer mi Ubicacion", 
         y luego "Guardar mi Ubicacion".</p>
-        <p>Finalmente "Confirmar y Volver"</p>
+        {/* <p>Finalmente "Confirmar y Volver"</p> */}
         <div className={stl.botones}>
         <button className={stl.botonubicacion} onClick={handleLocation}>Establecer mi Ubicacion</button>
         <button className={stl.botonubicacion} onClick={handleLocation2}>Guardar mi Ubicacion</button>
@@ -478,6 +480,7 @@ useEffect(() => {
                 <textarea className={stl.textareaRepor} onChange={(e) => {handleChange(e); handleDesc(e); }} type="textarea" name="descripcion" value={input.descripcion}/>
                
            </div>
+            <div className={stl.contacto}>( Por favor deja algun dato de contacto en la descripcion para <br></br>que puedan comunicarse contigo en caso de alguien la encuentre )</div>
           </div>
 
             <button className={stl.botonperdido} onClick={handleImagen}>Reportar</button>

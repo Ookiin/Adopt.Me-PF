@@ -6,11 +6,14 @@ import getmascotas from "../../Actions/getmascotas";
 import CardPruebaNacho from "../Card/CardPruebaNacho";
 import getDetalleUsuarioGoogle from "../../Actions/getDetalleUsuarioGoogle";
 import getDetalleUsuario from "../../Actions/getDetalleUsuario"
+import Paging from "../Pagination/Pagination";
 
 export default function MisMascotas() {
+
   const dispatch = useDispatch();
   const animales = useSelector((state) => state.animales);
   const { user, isAuthenticated } = useAuth0();
+
 
   useEffect(() => {
     dispatch(getmascotas());
@@ -57,12 +60,29 @@ export default function MisMascotas() {
   let mascotasFiltradas = animales.filter(
       (p) => p.pichina === _id
   );
+
+  const [currentPage, setCurrentPage] = useState(1) 
+  const [mascotasPerPage] = useState(4)
+
+  const lastPetIndex = currentPage * mascotasPerPage 
+  const firstPetIndex = lastPetIndex - mascotasPerPage 
+  const currentPets = mascotasFiltradas.slice(firstPetIndex,lastPetIndex) 
+  const actualPage = (pageNumber) => {setCurrentPage(pageNumber)}
  
   return (
-
+      <div>
+        <div className={stl.paginado}>
+        <Paging 
+        mascotasPerPage={mascotasPerPage} 
+        allPets={mascotasFiltradas.length} 
+        currentPage={currentPage}
+        actualPage={actualPage}
+        currentPets={currentPets}
+        />
+        </div>
       <div className={stl.cartel}>
         
-        {mascotasFiltradas.map(e => 
+        {currentPets.map(e => 
 
         <CardPruebaNacho 
         nombre={e.nombre} 
@@ -73,6 +93,18 @@ export default function MisMascotas() {
 
         )}
           
+    </div>
+
+    <div className={stl.paginado}>
+        <Paging 
+        mascotasPerPage={mascotasPerPage} 
+        allPets={mascotasFiltradas.length} 
+        currentPage={currentPage}
+        actualPage={actualPage}
+        currentPets={currentPets}
+        />
+        </div>
+        
     </div>
   );
 }

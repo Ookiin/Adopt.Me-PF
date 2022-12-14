@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import "./Paypal.css";
 
-export default function PayPal({ cost, desc }) {
+export default function PayPal3({ cost, desc }) {
   const [completed, setCompleted] = useState(false);
   const [paid, setPaid] = useState(false);
 
@@ -15,7 +15,7 @@ export default function PayPal({ cost, desc }) {
                 description: desc, 
                 amount: {
                   currency_code: "USD",
-                  value: 1 
+                  value: 10
                 }
               }
             ]
@@ -38,8 +38,8 @@ export default function PayPal({ cost, desc }) {
 
   return (
     <div className="Processing">
-      Donar U$S 1
-      <div id="paypal-button-container" /> 
+      Donar U$S 10
+      <div id="paypal-button-container" />
       {completed &&
         (paid ? (
           

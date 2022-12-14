@@ -240,6 +240,11 @@
   margin-right: 30px;
 }
 
+.contacto {
+  margin-left: 100px;
+  color: red;
+}
+
 /*//////////////////////////////////////////////////////////*/
 
 @media (min-width: 481px) and (max-width: 767px) {
