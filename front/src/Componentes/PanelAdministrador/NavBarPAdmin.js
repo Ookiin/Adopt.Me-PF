@@ -42,23 +42,7 @@ const NavBarPAdmin = () => {
             </Link>
             </div> 
             
-            <div>
-            <Link to="/panel-Administrador/localizaciones">
-                <button className={stl.botonesAdmin} >LOCALIZACIONES</button>
-            </Link>
-            </div> 
             
-            <div>
-            <Link to="/panel-Administrador/paginas">
-                <button className={stl.botonesAdmin} >PAGINAS</button>
-            </Link>
-            </div>
-            
-            <div>
-            <Link to="/panel-Administrador/adminis-fyq">
-               <button className={stl.botonesAdmin} >ADMINIS. F & Q</button> 
-            </Link> 
-            </div> 
             
             <div>
             <Link to="/homepage">

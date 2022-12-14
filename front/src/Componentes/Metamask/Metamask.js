@@ -1,20 +1,24 @@
 import { useState } from "react";
 import stl from "../Metamask/Metamask.module.css";
+import MetaMaskSDK from '@metamask/sdk';
 
 export default function Metamask() {
     
     const [buttonText, setButtonText] = useState()
     const [account, setAccount] = useState(null)
 
+    const options = {
+        injectProvider: true,
+        communicationLayerPreference: 'webrtc',
+      };
+    
+    const MMSDK = new MetaMaskSDK(options);
+    
+    const ethereum = MMSDK.getProvider();
+    
     function connectWallet() {
-        if(window.ethereum && window.ethereum.isMetaMask) {
-            window.ethereum.request({method: "eth_requestAccounts"})
-            .then(result => {
-                setAccount(result[0])
-            })
-            .catch(error => {
-                setButtonText(error.message)
-            })
+        if(ethereum && ethereum.isMetaMask) {
+            ethereum.request({ method: 'eth_requestAccounts', params: [] });
         } else {
             setButtonText("Necesitas tener metamask instalado")
         }

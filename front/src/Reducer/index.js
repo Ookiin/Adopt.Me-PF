@@ -198,7 +198,7 @@ export default function rootReducer(state = initialState, action) {
     case GET_PAGOS:
       return { 
         ...state, 
-      paypal: action.payload
+      paypal: action.payload,
       };
 
       case POST_PAYPAL:
