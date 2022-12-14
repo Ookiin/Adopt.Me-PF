@@ -3,7 +3,6 @@ import {
   CREATE_USER,
   GET_ANIMAL_BY_ID,
   GET_MASCOTAS,
-  PAGO_PAYPAL,
   PAGO_MERCADO_PAGO,
   GET_USERS,
   GET_GATO,
@@ -43,7 +42,9 @@ import {
   EMAIL_INFO_ADOPTANTE,
   GET_FAVORITOS,
   CREATE_FAVORITO,
-  CREAR_USUARIO_VALIDADO
+  CREAR_USUARIO_VALIDADO,
+  POST_PAYPAL,
+  GET_PAGOS,
 } from "../Actions";
 
 const initialState = {
@@ -88,6 +89,8 @@ const initialState = {
 
   tamañoPerdidos: "All",
   estadoPerdidos: "estado",
+
+  paypal: []
 };
 
 export default function rootReducer(state = initialState, action) {
@@ -192,8 +195,14 @@ export default function rootReducer(state = initialState, action) {
         gatos: action.payload,
       };
 
-    case PAGO_PAYPAL:
-      return { ...state };
+    case GET_PAGOS:
+      return { 
+        ...state, 
+      paypal: action.payload
+      };
+
+      case POST_PAYPAL:
+        return {...state}
 
     case PAGO_MERCADO_PAGO:
       return { ...state };
