@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import NavBarPAdmin from "../PanelAdministrador/NavBarPAdmin";
 import getpagos from "../../Actions/getpaypal";
+import "./donaciones.css";
 
 export default function Donaciones() {
 
@@ -21,7 +22,7 @@ export default function Donaciones() {
 
     <div>
         <NavBarPAdmin />
-        <div>Total de donaciones: U$S {totalDonaciones}</div>
+        <div class="donaciones">Total de donaciones: U$S {totalDonaciones}</div>
     </div>
   )
 }
