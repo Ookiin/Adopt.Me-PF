@@ -2,11 +2,28 @@ import { useEffect, useState } from "react";
 import "./Paypal.css";
 import Toast from 'light-toast';
 import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import postPaypal from "../../Actions/postPaypal";
 
 export default function PayPal3({ cost, desc }) {
   const [completed, setCompleted] = useState(false);
   const [paid, setPaid] = useState(false);
   const navigate = useNavigate()
+  const paypal = useSelector((state) => state.paypal)
+  const dispatch = useDispatch()
+
+  const [pago, setPago] = useState({
+    donacion: 10
+  })
+  console.log("pago", pago)
+
+
+  function handlePago(e) {
+    e.preventDefault();
+    setPago({
+      donacion: 10
+    })
+  }
 
   useEffect(() => {
     window.paypal?.Buttons({
@@ -29,6 +46,7 @@ export default function PayPal3({ cost, desc }) {
           const order = await actions.order.capture();
           setPaid(true);
           setCompleted(true);
+          dispatch(postPaypal(pago))
           console.log(order);
         },
         onError: (err) => {
@@ -42,7 +60,7 @@ export default function PayPal3({ cost, desc }) {
   return (
     <div className="Processing">
       Donar U$S 10
-      <div id="paypal-button-container" />
+      <div onClick={handlePago} id="paypal-button-container" />
       {completed &&
         (paid ? (
           
