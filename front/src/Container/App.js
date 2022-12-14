@@ -75,8 +75,6 @@ function App() {
           <Route exact path="/panel-Administrador/mascotas" element={<Mascotas />} />
           <Route exact path="/panel-Administrador/mascotas/animales/:id" element={<MascotasDetalles />} />
           <Route exact path="/panel-Administrador/donaciones" element={<Donaciones />} />
-
-          <Route exact path="/panel-Administrador/adminis-fyq" element={<AdminFyQ />} />
           <Route exact path="/panel-Administrador/usuarios/:id" element={<UsuarioDetalles />} /> 
 
 
