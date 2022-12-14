@@ -4,7 +4,8 @@ const infoUser = {};
 const bcrypt = require("bcryptjs");
 const nodemailer = require("nodemailer");
 const UsuariosSinValidar = require("../modelos/usuariosSinValidar");
-const { USERGMAIL, PASSWORDGMAIL } = process.env;
+const jwt = require("jsonwebtoken");
+const { USERGMAIL, PASSWORDGMAIL, SECRET} = process.env;
 
 
 getUsuarios = async (req, res) => {
@@ -202,7 +203,6 @@ mailVerificarUsuario = async (req, res) => {
 
   try{
     user = await UsuariosSinValidar.find({"mail": mail})
-    // const token = jwt.sign({ userId: user._id }, config.jwtSecret, { expiresIn: '24h' } )
 
     let id = undefined
     if(user) {
