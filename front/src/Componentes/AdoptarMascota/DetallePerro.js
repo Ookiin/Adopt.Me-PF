@@ -183,17 +183,18 @@ function handleUpdate() {
 }  
 
 function handleAdoptado() {
-  setInput({
+  setAdopt({
       adoptado: true,
       estado: "Adoptado"
   })
-
   axios.put("animales/" + id, adopt)
    .then((res) => {
   console.log("res", res.data)
 }).catch((error) => {
   console.log(error)
 })
+Toast.success("La mascota se dio en adopcion. \nYa no aparecera en los listados de Adopcion.\n", 1500, () => {});
+navigate("/homepage")
 }
 
 
@@ -262,17 +263,18 @@ function handleAdoptado() {
             <button onClick={handleLocation} className={stl.verUbicacion}>
               Ver ubicacion de esta mascota
             </button>
+            <div className={stl.avisoAdopcion}>Eres el dueño de esta Mascota. Si la diste en adopcion<br></br> hace click en "Ya se adopto" para sacarla de Adopcion</div>
           </div>
 
-          <Link to="/contacto">
+          {/* <Link to="/contacto">
             <button
               className={stl.botonDarAdopcion}
               onClick={(e) => onClick(e)}
             >
               ADOPTAR
             </button>
-          </Link>
-          <button onClick={(e) => {handleUpdate(e); handleAdoptado(e); }}>Ya se adopto</button>
+          </Link> */}
+          <button className={stl.botonDarAdopcion} onClick={(e) => {handleUpdate(e); handleAdoptado(e); }}>Ya se adopto</button>
         </div>
       </div>
 

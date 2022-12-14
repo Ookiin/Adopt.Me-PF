@@ -12,6 +12,8 @@ export default function MarkersLost() {
 
   const dispatch = useDispatch()
   const gps = useSelector((state) => state.animalesPerdidos);
+  const perdidos = gps;
+  const sinEncontrar = perdidos.filter(({ adoptado }) => adoptado === false)
 
     useEffect(() => {
       dispatch(getAnimalesPerdidos())
@@ -21,7 +23,7 @@ export default function MarkersLost() {
     return (
     
       <>
-      {gps.map(p => {
+      {sinEncontrar.map(p => {
 
      return (
       <Marker
