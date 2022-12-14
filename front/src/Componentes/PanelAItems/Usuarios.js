@@ -113,17 +113,18 @@ const Usuarios = () => {
         {usuarios && usuarios.map(p => {
 
               return (  
-                <Link to={`/panel-Administrador/usuarios/${p._id}`} >   
+
                <div>
 
                      <CardUser
                      id={p._id}
                      usuario={p.usuario}
                      nombre={p.nombre}                
-                    
-                     />  
+  
+                     />
+                       
                 </div>
-              </Link>                                                                                   
+                                                                                              
             )
           })     
                                   

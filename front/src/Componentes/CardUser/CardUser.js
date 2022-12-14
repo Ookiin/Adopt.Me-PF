@@ -1,15 +1,15 @@
 import React from "react";
-/* import "./CardUser.css"; */
+import stl from "./CardUser.module.css"; 
 
 
-export default function CardUser({ id, usuario, nombre}) {
+export default function CardUser({ usuario, nombre}) {
 
   
 
   return (
-    <div>
-      <div>Usiario: {usuario}</div>
-      <div>Nombre: {nombre}</div>   
+    <div className={stl.infoContein}>
+      <div className={stl.infoCardUser}>Usuario: {usuario} - Nombre: {nombre}</div>
+    
     </div>
       
     );
