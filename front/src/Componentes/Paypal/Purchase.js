@@ -38,10 +38,11 @@ const Purchases = () => {
     );
   };
 
-
+console.log("estoy en el purchase")
   return (
     
     <div >
+      
       {state.checkout ? (
         <div>
           <PayPal cost={state.value} desc={state.desc} />

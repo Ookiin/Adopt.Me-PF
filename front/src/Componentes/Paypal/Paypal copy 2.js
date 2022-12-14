@@ -1,9 +1,12 @@
 import { useEffect, useState } from "react";
 import "./Paypal.css";
+import Toast from 'light-toast';
+import { useNavigate } from "react-router-dom";
 
 export default function PayPal3({ cost, desc }) {
   const [completed, setCompleted] = useState(false);
   const [paid, setPaid] = useState(false);
+  const navigate = useNavigate()
 
   useEffect(() => {
     window.paypal?.Buttons({
@@ -43,10 +46,12 @@ export default function PayPal3({ cost, desc }) {
       {completed &&
         (paid ? (
           
-          <div>Gracias por su donacion!</div>
+          Toast.success("Su pago fue realizado con exito", 1000, () => {
+            navigate("/homepage")
+        })
         ) : (
        
-          <div>Ocurrio un error con su pago. Por favor verifique los datos</div>
+          Toast.fail("Hubo un problema con su pago. Revise los datos e intente nuevamente", 1000, () => {})
         ))}
     </div>
   );
