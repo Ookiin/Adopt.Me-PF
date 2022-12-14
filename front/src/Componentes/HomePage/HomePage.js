@@ -37,9 +37,9 @@ export default function HomePage() {
   
   
 
-  const detalleUser = useSelector((state) => state.detalleUsuario); // Estado global con los datos del usuario
+  useSelector((state) => state.detalleUsuario); // Estado global con los datos del usuario
 
-  const detalleUserGoogle = useSelector((state) => state.detalleUsuarioGoogle) 
+  useSelector((state) => state.detalleUsuarioGoogle) 
 
 
   return (

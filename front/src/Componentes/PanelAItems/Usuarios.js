@@ -1,14 +1,15 @@
 import NavBarPAdmin from "../PanelAdministrador/NavBarPAdmin" ;
-import TotalUsuarios from "../PAdmChartsClientes/TotalUsuarios";
-import stl from "./mascotas.module.css";
+// import TotalUsuarios from "../PAdmChartsClientes/TotalUsuarios";
+// import stl from "./mascotas.module.css";
+import stl from "./Usuarios.module.css";
 import React, { useEffect, useState } from "react";
 import {useDispatch, useSelector} from 'react-redux';
-import  { Link, useNavigate}  from "react-router-dom";
+import  {useNavigate}  from "react-router-dom";
 import getusers from "../../Actions/getusers";
 import FloatingUI from "../Floating UI/FloatingUI";
 import Footer from "../Footer/Footer";
 import CardUser from "../CardUser/CardUser";
-import Paging from "../Pagination/Pagination"
+// import Paging from "../Pagination/Pagination"
 
 
 const Usuarios = () => {
@@ -19,7 +20,8 @@ const Usuarios = () => {
   
  const allUsersData = useSelector((state) => state.users)
  const usuarios = allUsersData.data
- console.log(usuarios)
+ const cantidadUsuarios = usuarios.length
+ console.log(cantidadUsuarios)
 
   /* const allUsers = allUsersData.data 
    console.log(allUsersData)*/
@@ -31,7 +33,7 @@ const Usuarios = () => {
   // const currentPets = usuarios.slice(firstPetIndex,lastPetIndex) 
 
 
-  const [input, setInput] = useState("");
+  const [setInput] = useState("");
   
   const [searchClient, setSearchClient] = useState("");
 /*   const [localCat, setlocalCat] = useState(""); */
@@ -74,9 +76,11 @@ const Usuarios = () => {
        <div>
         <NavBarPAdmin />
        </div>
-      {/*  <div>
-        <TotalUsuarios />
-       </div> */}
+       <div>
+        <div className={stl.cantidadusuarios}>Cantidad de Usuarios: {cantidadUsuarios}</div>
+       </div>
+
+
      
     <div>
         <label className={stl.labelSearch}>Nombre:</label>
@@ -97,15 +101,15 @@ const Usuarios = () => {
             <button className={stl.btnNavHome} onClick={handleClick}>Refresh</button>
         </div>
     
-      <div className={stl.paginado}>
-        {/* <Paging 
+      {/*<div className={stl.paginado}>
+         <Paging 
         mascotasPerPage={mascotasPerPage} 
         allPets={allUsersData.length} 
         currentPage={currentPage}
         actualPage={actualPage}
         currentPets={currentPets}
-        /> */}
-        </div>
+        /> 
+        </div>*/}
 
         <div className={stl.listadoCards}> 
      
