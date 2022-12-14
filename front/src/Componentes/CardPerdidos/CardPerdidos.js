@@ -2,6 +2,7 @@ import React from "react";
 // import stl from "../Card/Card.module.css";
 import "./CardPerdidos.css";
 import { Link } from "react-router-dom";
+import perdido from "../../Imagenes/perdida.jpg"
 
 export default function CardPerdidos({ descripcion, id, tama, estado, imagen}) {
 
@@ -13,7 +14,7 @@ export default function CardPerdidos({ descripcion, id, tama, estado, imagen}) {
     <div href="" class="card">
     <div class="link">
             <Link to = {`/animalesPerdidos/${id}`}>
-      <img src="https://e7.pngegg.com/pngimages/189/675/png-clipart-dog-cat-relationship-dog-cat-relationship-pet-cat-face-animals.png" class="card__image" alt="" />
+      <img src={perdido} class="card__image" alt="" />
             </Link>
             </div>
       <div class="card__overlay">
