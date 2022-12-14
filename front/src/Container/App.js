@@ -31,7 +31,6 @@ import PanelAdminis from "../Componentes/PanelAdministrador/PanelAdminis";
 import Mascotas from "../Componentes/PanelAItems/mascotas";
 // import Clientes from "../Componentes/PanelAItems/";
 import Donaciones from "../Componentes/PanelAItems/donaciones";
-import AdminFyQ from "../Componentes/PanelAItems/adminFyQ";
 // import Paginas from "../Componentes/PanelAItems/paginas";
 /* import DetalleUsuario from "../Componentes/PAdmCardDetalles/DetalleUsuario"; */
 import MascotasDetalles from "../Componentes/PAdmCardDetalles/MascotasDetalles";
@@ -76,8 +75,10 @@ function App() {
           <Route exact path="/panel-Administrador/mascotas" element={<Mascotas />} />
           <Route exact path="/panel-Administrador/mascotas/animales/:id" element={<MascotasDetalles />} />
           <Route exact path="/panel-Administrador/donaciones" element={<Donaciones />} />
+
           <Route exact path="/panel-Administrador/adminis-fyq" element={<AdminFyQ />} />
           <Route exact path="/panel-Administrador/usuarios/:id" element={<UsuarioDetalles />} /> 
+
 
         </Routes>
       </div>

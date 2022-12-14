@@ -53,7 +53,7 @@ export default function Perfil() {
     
 
     const detalleUser = useSelector((state) => state.detalleUsuario); // Estado global con los datos del usuario
-
+    const usuario = detalleUser.roles[0]
     const detalleUserGoogle = useSelector((state) => state.detalleUsuarioGoogle) 
 
     /////////////////// ON CLICKS ////////////////////////
@@ -82,6 +82,87 @@ export default function Perfil() {
         setRender(5)
     } 
     
+    if (usuario === "6397ce1035c65595db3f409e") {
+    return (
+        <div >
+            <NavBar/>
+            <div className={css.container}>
+                <div className={css.miniContainer}>
+                    
+                    <div className={css.sideBar}>
+                       
+                        <div>
+                            <button onClick={(e) => onClick1(e)} className={css.botonSideBar}>Mi informacion</button>
+                        </div>
+
+                        <div >
+                            <Link to="/panel-Administrador">
+                        <button className={css.botonSideBar}>
+                             Admin
+                                </button>
+                                </Link>
+                            </div>
+                       
+                        <div>
+                            <button onClick={(e) => onClick2(e)} className={css.botonSideBar}>Mis favoritos</button>
+                        </div>
+                     
+                        <div>
+                            <button onClick={(e) => onClick3(e)} className={css.botonSideBar}>Mis Mascotas</button>
+                        </div>
+                      
+                        <div>
+                            <button onClick={(e) => onClick4(e)} className={css.botonSideBar}>Cambiar contraseña</button>
+                        </div>
+                       
+                        <div>
+                            <button onClick={(e) => onClick5(e)} className={css.botonSideBar}>Completar registro</button>
+                        </div>
+                      
+                        <div>
+                            <Link to="/homepage">
+                                <button className={css.botonSideBar}>Inicio</button>
+                            </Link>
+                        </div>
+                        
+                    </div>
+
+                    <div className={css.contenido}> 
+                        
+                        
+                        <div className={css.datos}>
+                        {Render === 1 && detalleUser.usuario ? <MiInformacion datos={detalleUser} /> : null}
+                        {Render === 1 && detalleUserGoogle.usuario ? <MiInformacion datos={detalleUserGoogle} /> : null}
+                        {Render === 1 && !detalleUser.usuario && !detalleUserGoogle.usuario ? <CartelCompletarRegistro></CartelCompletarRegistro> : null}
+                        
+                        {Render === 2 ? <MisFavoritos></MisFavoritos>: null }
+                        {Render === 3 ? <MisMascotas></MisMascotas> : null}
+
+                        
+                        {Render === 4 && detalleUser.usuario  ?  <CambiarContraseña></CambiarContraseña> : null}
+                        {Render === 4 && detalleUserGoogle.usuario ? <CartelCambiarContraseña></CartelCambiarContraseña> : null}
+                        {Render === 4 && !detalleUserGoogle.usuario && !detalleUser.usuario ? <CartelCambiarContraseña></CartelCambiarContraseña> : null}
+                       
+                            
+                        {Render === 5 && detalleUser.usuario ? <CartelRegistroCompleto></CartelRegistroCompleto> : null}
+                        {Render === 5 && detalleUserGoogle.usuario ? <CartelRegistroCompleto></CartelRegistroCompleto> : null}
+                        {Render === 5 && !detalleUser.usuario && !detalleUserGoogle.usuario ? <CompletarRegistro></CompletarRegistro> : null}
+                        </div>
+                        
+                        
+                    </div>
+                    
+                </div>
+                <Footer></Footer>
+            </div>
+
+            
+
+            
+        </div>
+    
+    )
+} else if (usuario === "6397ce1035c65595db3f409d" || detalleUserGoogle.lenght === 1) {
     return (
         <div >
             <NavBar/>
@@ -153,6 +234,7 @@ export default function Perfil() {
         </div>
     
     )
+}
 };
 
 

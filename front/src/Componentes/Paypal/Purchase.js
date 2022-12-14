@@ -2,14 +2,16 @@ import React, { useState } from "react";
 import PayPal from "../Paypal/Paypal";
 import stl from "../Paypal/Purchase.module.css";
 
+
+
 const Purchases = () => {
   const [state, setState] = useState({
-    cost: 5.0,
+    value: 5.0,
     checkout: false,
     desc: "Test"
   });
 
-  const renderCard = (title, desc, cost) => {
+  const renderCard = (title, desc, value) => {
     return (
       <div >
         <div>
@@ -21,14 +23,14 @@ const Purchases = () => {
           <button className={stl.botonespaypal}
             onClick={() =>
               setState({
-                cost,
+                value,
                 desc,
                 checkout: true
               })
             }
             color="primary"
           >
-            Donar
+            Donar U$S 1
           </button>
         </div>
 
@@ -36,30 +38,24 @@ const Purchases = () => {
     );
   };
 
-
+console.log("estoy en el purchase")
   return (
+    
     <div >
+      
       {state.checkout ? (
         <div>
-          <div>Checkout</div>
-          <div >
-            {state.desc}: ${state.cost} USD
-          </div>
-          <button className={stl.botonespaypal}
-            onClick={() => setState((prev) => ({ ...prev, checkout: false }))}
-          >
-            Cambiar Donacion
-          </button>
-          <PayPal cost={state.cost} desc={state.desc} />
+          <PayPal cost={state.value} desc={state.desc} />
+  
         </div>
       ) : (
         <div >
-          {renderCard("U$S 1", 1)}
-          {renderCard("U$S 5", 5)}
-          {renderCard("U$S 10", 10)}
+          {renderCard("Donar con Paypal")}
         </div>
       )}
     </div>
+    
+   
   );
 };
 export default Purchases;

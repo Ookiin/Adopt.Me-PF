@@ -1,9 +1,29 @@
 import { useEffect, useState } from "react";
 import "./Paypal.css";
+import Toast from 'light-toast';
+import { Navigate, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux"
+import postPaypal from "../../Actions/postPaypal";
 
 export default function PayPal({ cost, desc }) {
   const [completed, setCompleted] = useState(false);
   const [paid, setPaid] = useState(false);
+  const navigate = useNavigate();
+  const paypal = useSelector((state) => state.paypal)
+  const dispatch = useDispatch()
+
+  const [pago, setPago] = useState({
+    donacion: 1
+  })
+  console.log("pago", pago)
+
+
+  function handlePago(e) {
+    e.preventDefault();
+    setPago({
+      donacion: 1
+    })
+  }
 
   useEffect(() => {
     window.paypal?.Buttons({
@@ -19,13 +39,15 @@ export default function PayPal({ cost, desc }) {
                 }
               }
             ]
+
           });
         },
         onApprove: async (data, actions) => {
           const order = await actions.order.capture();
           setPaid(true);
           setCompleted(true);
-          console.log(order);
+          dispatch(postPaypal(pago))
+          console.log("order", order);
         },
         onError: (err) => {
           setCompleted(true);
@@ -37,14 +59,17 @@ export default function PayPal({ cost, desc }) {
 
   return (
     <div className="Processing">
-      <div id="paypal-button-container" />
+      Donar U$S 1
+      <div onClick={handlePago} id="paypal-button-container" /> 
       {completed &&
-        (paid ? (
-          
-          <div>Gracias por su donacion!</div>
+        (paid ? (    
+               
+          Toast.success("Su pago fue realizado con exito", 1000, () => {
+            navigate("/homepage")
+        })
         ) : (
        
-          <div>Ocurrio un error con su pago. Por favor verifique los datos</div>
+          Toast.fail("Hubo un problema con su pago. Revise los datos e intente nuevamente", 1000, () => {})
         ))}
     </div>
   );

@@ -1,8 +1,10 @@
 .grafica {
-    
-    padding-left: 640px;
-    padding-top: 150px;
-  
+    position: absolute;
+    /* padding-left: 640px; */
+    /* padding-top: 150px; */
+    width: 1000px;
+    margin-top: -400px;
+    margin-left: 400px;
 }
 
 .title {

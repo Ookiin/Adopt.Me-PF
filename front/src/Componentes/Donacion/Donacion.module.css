@@ -4,7 +4,7 @@
     /* border: 2px solid red; */
     display: flex;
     width: 600px;  
-    height: 550px; 
+    height: 850px; 
     margin-top: 60px;
     justify-content: center;
     position: relative;
@@ -50,7 +50,7 @@ input {
     position: absolute;
     margin-top: 90px;
     width: 450px;
-    height: 430px;
+    height: 630px;
     background-color: #F2E7D5;
     box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;    
 }

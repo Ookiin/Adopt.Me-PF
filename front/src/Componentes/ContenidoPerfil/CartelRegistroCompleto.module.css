@@ -8,3 +8,15 @@
     border-radius: 80px;
     /* border: solid black 8px; */
 }
+
+@media (min-width: 481px) and (max-width: 767px) {
+
+    .cartel {
+        width: 300px;
+        margin-top: 170px;
+        margin-bottom: 200px;
+        font-size: 10px;
+        height: 140px;
+    }
+
+}

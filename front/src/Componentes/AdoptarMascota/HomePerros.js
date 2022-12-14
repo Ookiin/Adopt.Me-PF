@@ -32,7 +32,6 @@ export default function HomePerros () {
     const lastPetIndex = currentPage * mascotasPerPage 
     const firstPetIndex = lastPetIndex - mascotasPerPage 
     const currentPets = sinAdoptar.slice(firstPetIndex,lastPetIndex) 
-    console.log("mascotas", currentPets)
 
     const [setInput] = useState("");
     const [setOrden] = useState("");

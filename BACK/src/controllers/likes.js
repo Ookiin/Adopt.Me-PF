@@ -2,26 +2,19 @@ const likesModel = require("../modelos/likesModel");
 const likesCount = {};
 
 putLikes = async (req, res) => {
-  const { id } = req.params;
   const { likes } = req.body;
   try {
-    let likes = await likesModel.updateOne(
-      { _id: id },
+    await likesModel.findOneAndUpdate(
       {
-        $set: {
-          likes,
-        },
+        $set: { likes },
       }
     );
-    if (likes) {
-      res.status(200).json(likes);
-    } else {
-      res.status(400).json({ msg: "no puede modificar su comentario" });
-    }
   } catch (error) {
-    console.log(error);
+      res.status(400).send(error)
+    } 
+    const likie = await likesModel.findOne(likes)
+    res.send(likie)
   }
-};
 
 getLikes = async (req, res) => {
   try {

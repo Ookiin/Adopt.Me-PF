@@ -19,15 +19,16 @@ const HomeGatos = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
-    // const allPets = useSelector((state) => state.gatos);
     const copiaGatos = useSelector((state)=>state.gatosCopia);
+    const sinAdopcion = copiaGatos
+    const sinAdoptar = sinAdopcion.filter(({ adoptado }) => adoptado === false)
 
     const [currentPage, setCurrentPage] = useState(1) 
     const [mascotasPerPage] = useState(4)
 
     const lastPetIndex = currentPage * mascotasPerPage 
     const firstPetIndex = lastPetIndex - mascotasPerPage 
-    const currentPets = copiaGatos.slice(firstPetIndex,lastPetIndex) 
+    const currentPets = sinAdoptar.slice(firstPetIndex,lastPetIndex) 
 
 
     const [input, setInput] = useState("");
