@@ -65,7 +65,7 @@ import "../DonarMascota/formularioDar.css"
         vacunado: "",
         desparasitado: "",
         imagen: "",
-        pichina: detalleUserGoogle.usuario ? detalleUserGoogle._id : usuario._id,
+        pichina: "",
         lat: "",
         lng: "",
         adoptado: false
