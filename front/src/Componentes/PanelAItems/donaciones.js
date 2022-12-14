@@ -5,22 +5,23 @@ import getpagos from "../../Actions/getpaypal";
 
 export default function Donaciones() {
 
-  const donaciones = useSelector((state) => state.paypal)
-  console.log("total", donaciones)
-  
   const dispatch = useDispatch()
+  const donaciones = useSelector((state) => state.paypal)
+  
   useEffect(() => {
     dispatch(getpagos())
   }, [dispatch])
-
-
-// const total = donaciones.map(({ donacion }) => donacion)
+  
+  
+  const total = donaciones.map(({ donacion }) => donacion)
+  let totalDonaciones = total.reduce((a, b) => a + b, 0);
+  
 
   return(
 
     <div>
         <NavBarPAdmin />
-        <div>Total de donaciones: {}</div>
+        <div>Total de donaciones: U$S {totalDonaciones}</div>
     </div>
   )
 }
