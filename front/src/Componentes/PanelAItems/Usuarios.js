@@ -17,16 +17,18 @@ const Usuarios = () => {
  const navigate = useNavigate();
 
   
- const allUsersData = useSelector((state) => state.users).data
- 
+ const allUsersData = useSelector((state) => state.users)
+ const usuarios = allUsersData.data
+ console.log(usuarios)
+
   /* const allUsers = allUsersData.data 
    console.log(allUsersData)*/
-  const [currentPage, setCurrentPage] = useState(1) 
-  const [mascotasPerPage] = useState(4)
+  // const [currentPage, setCurrentPage] = useState(1) 
+  // const [mascotasPerPage] = useState(4)
 
-  const lastPetIndex = currentPage * mascotasPerPage 
-  const firstPetIndex = lastPetIndex - mascotasPerPage 
-  const currentPets = allUsersData.slice(firstPetIndex,lastPetIndex) 
+  // const lastPetIndex = currentPage * mascotasPerPage 
+  // const firstPetIndex = lastPetIndex - mascotasPerPage 
+  // const currentPets = usuarios.slice(firstPetIndex,lastPetIndex) 
 
 
   const [input, setInput] = useState("");
@@ -34,13 +36,13 @@ const Usuarios = () => {
   const [searchClient, setSearchClient] = useState("");
 /*   const [localCat, setlocalCat] = useState(""); */
 
-  const actualPage = (pageNumber) => {setCurrentPage(pageNumber)}
+  // const actualPage = (pageNumber) => {setCurrentPage(pageNumber)}
 
   useEffect(()=>{
       dispatch(getusers())
-      setCurrentPage(1)
+      // setCurrentPage(1)
   }, [dispatch])
-  
+
 
      const handleClick = (e) => {
       e.preventDefault()
@@ -58,7 +60,7 @@ const Usuarios = () => {
       dispatch(getusers(searchClient))
       setInput("")
       navigate("/panel-Administrador/usuarios") 
-      actualPage(1)
+      // actualPage(1)
       }
  }
 
@@ -96,22 +98,22 @@ const Usuarios = () => {
         </div>
     
       <div className={stl.paginado}>
-        <Paging 
+        {/* <Paging 
         mascotasPerPage={mascotasPerPage} 
         allPets={allUsersData.length} 
         currentPage={currentPage}
         actualPage={actualPage}
         currentPets={currentPets}
-        />
+        /> */}
         </div>
 
         <div className={stl.listadoCards}> 
      
 
-        {currentPets.length > 0 ? currentPets.map((p, l) => {
+        {usuarios && usuarios.map(p => {
 
               return (  
-                <Link to={`/panel-Administrador/usuarios/${p._id}`}  key={l}>   
+                <Link to={`/panel-Administrador/usuarios/${p._id}`} >   
                <div>
 
                      <CardUser
@@ -123,8 +125,7 @@ const Usuarios = () => {
                 </div>
               </Link>                                                                                   
             )
-          }): <div>no hay
-              </div>     
+          })     
                                   
         }</div> 
 

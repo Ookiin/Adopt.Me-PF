@@ -284,4 +284,13 @@
         margin-left: 20px;
     }
 
+    .encontradoaviso {
+      font-size: 20px;
+    }
+
+    .cardDetalles2 {
+      margin-left: 45px;
+      width: 400px;
+    }
+
   }

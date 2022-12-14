@@ -123,3 +123,33 @@
     margin-top: 0;
     margin-bottom: 0;
   }
+
+  @media (min-width: 481px) and (max-width: 767px) {
+
+    .form {
+      width: 300px;
+    }
+
+    .err {
+      font-size: 10px;
+      width: 250px;
+      margin-left: 26px;
+      margin-top: 5px;
+    }
+
+    .label {
+      font-size: 15px;
+    }
+
+    .input {
+      font-size: 15px;
+      height: 25px;
+    }
+
+    .botonActualizar {
+      width: 200px;
+      height: 30px;
+      font-size: 15px;
+    }
+
+  }
