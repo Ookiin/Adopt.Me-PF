@@ -50,14 +50,14 @@ export default function Validacion() {
     dispatch(postUsuario(input));
 
     setInput({
-      usuario: "",
-      contrasena: "",
-      nombre: "",
-      telefono: "",
-      mail: "",
-      nacimiento: "",
-      localidad: "",
-      fotoPerfil: "",
+      usuario: usuario,
+      contrasena: contrasena,
+      nombre: nombre,
+      telefono: telefono,
+      mail: mail,
+      nacimiento: nacimiento,
+      localidad: localidad,
+      fotoPerfil: fotoPerfil,
 
     });
 

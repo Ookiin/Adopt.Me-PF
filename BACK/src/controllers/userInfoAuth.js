@@ -20,7 +20,6 @@ postSignup = async (req, res) => {
   } = req.body;
 
   // const existente = UsuarioModel.find({email})
-  const contraseñaHasheada = await bcrypt.hash(contrasena, 10);
   const newUser = new UsuariosSinValidar({
     nombre,
     usuario,
@@ -30,7 +29,7 @@ postSignup = async (req, res) => {
     fotoPerfil,
     nacimiento,
     roles,
-    contrasena: contraseñaHasheada,
+    contrasena,
   });
 
   if (roles) {
