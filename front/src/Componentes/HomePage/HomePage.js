@@ -8,7 +8,6 @@ import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import getDetalleUsuario from "../../Actions/getDetalleUsuario"
 import getDetalleUsuarioGoogle from "../../Actions/getDetalleUsuarioGoogle";
-import LikeButton from "../Blog/Likes";
 
 export default function HomePage() {
   const { user, isAuthenticated } = useAuth0()
@@ -177,13 +176,6 @@ export default function HomePage() {
           </Link>
         </div>
       </div>
-         <div>{/* BOTONSITO PARA IR AL PANEL DE ADMINIS */}
-            <Link to="/panel-Administrador">
-               <button className={stl.botonadmin}>
-                 PANEL ADMINISTRADOR
-               </button>
-            </Link>
-         </div>
       <Footer />
     </div>
   );
