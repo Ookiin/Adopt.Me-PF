@@ -1,16 +1,21 @@
-import e from "connect-flash";
+// import e from "connect-flash";
 import React from "react";
 import { useDispatch } from "react-redux";
 import stl from "./CardUser.module.css"; 
 import deleteUser from "../../Actions/deleteUser";
+import Toast from "light-toast";
+import { useNavigate } from "react-router-dom";
 
 export default function CardUser({id, usuario, nombre}) {
 
   const dispatch = useDispatch()
+  const navigate = useNavigate()
 
   function handleDelete() {
     dispatch(deleteUser(id)) 
-      
+    Toast.success("Usuario eliminado con exito", 1500, () => {
+      navigate("/panel-Administrador")
+    });
   }
 
   return (
