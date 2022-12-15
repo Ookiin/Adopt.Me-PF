@@ -38,10 +38,18 @@ export default function FormRegistro() {
   const [isSubmit, setisSubmit] = useState(false);
   const [cartelito, setCartelito] = useState(false);
 
+  let noRepeatUser = undefined;
+  let noRepeatMail = undefined;
+  //Lo meto en un if pq me rompia el filter
+  if (Allusers) {
+    noRepeatUser = Allusers.filter((u) => u.usuario === input.usuario);
+    noRepeatMail = Allusers.filter((u) => u.mail === input.mail);
+  }
+
   function validation(input) {
     let errors = {};
-    let noRepeatUser = Allusers.filter((u) => u.usuario === input.usuario);
-    let noRepeatMail = Allusers.filter((u) => u.mail === input.mail);
+    // let noRepeatUser = Allusers.filter((u) => u.usuario === input.usuario);
+    // let noRepeatMail = Allusers.filter((u) => u.mail === input.mail);
 
     if (!input.usuario) {
       errors.usuario = "Tenes que ingresar un nombre de usuario";
@@ -105,7 +113,7 @@ export default function FormRegistro() {
     if (!input.fotoPerfil || input.fotoPerfil === "") {
       setInput({
         fotoPerfil:
-          "https://res.cloudinary.com/dvw0vrnxp/image/upload/v1670012585/usuarios/userImageDefault_bm6bdk.png",
+        "https://res.cloudinary.com/dvw0vrnxp/image/upload/v1671058408/usuarios/avatarvacio_hcmos8.jpg",
       });
     }
 
@@ -128,6 +136,14 @@ export default function FormRegistro() {
 
   function handleSubmit(e) {
     e.preventDefault();
+    if (noRepeatMail.length) {
+      return alert(`El mail ingresado ${input.mail} ya esta en uso`);
+    }
+    if (noRepeatUser.length) {
+      return alert(
+        `El nombre de usuario ${input.usuario} ingresado ya esta en uso`
+      );
+    }
     //Si no hay errores, el isSubmit esta en true
     if (isSubmit) {
       // console.log("Se despacha el create con estos valores")
