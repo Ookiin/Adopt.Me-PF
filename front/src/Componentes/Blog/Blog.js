@@ -9,12 +9,10 @@ import createPost from "../../Actions/createPost";
 import getPosts from "../../Actions/getPosts";
 import getDetalleUsuario from "../../Actions/getDetalleUsuario";
 import { useAuth0 } from "@auth0/auth0-react";
-import LikeButton from "./Likes";
 
 export default function Blog() {
     
     const dispatch = useDispatch();
-    const likies = useSelector((state) => state.likes)
     
     /////////////////////// TRAIGO LOS POSTEOS //////////////////////////////////////////7
     
