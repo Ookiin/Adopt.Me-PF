@@ -14,6 +14,10 @@ const UsuarioSchema = new Schema({
   mail: {
     type: String,
     required: true,
+<<<<<<< HEAD
+=======
+    unique: true,
+>>>>>>> 5515ffb95834c32001674ef43ca8780864207784
   },
   contrasena: {
     type: String
