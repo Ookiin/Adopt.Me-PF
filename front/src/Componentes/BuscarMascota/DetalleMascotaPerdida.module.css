@@ -27,7 +27,7 @@
     background-color: #F2E7D5;
     /* border: 2px solid yellow; */
     width: 600px;
-    height: 860px;
+    height: 960px;
     margin-left: 480px;
     margin-top: 150px;
     margin-bottom: 150px;
@@ -108,12 +108,29 @@
   .details {
     margin-left: 250px;
     display:flex;
-    position: absolute;
+    /* position: absolute; */
+    overflow: auto;
     margin-top: -28px;
     border: 2px;
     color: #E14D2A;
     font-size: 23px;
+    width: 180px;
+    height: 40px;
+  }
 
+  .details2 {
+    margin-left: 200px;
+    display:flex;
+    flex-wrap: wrap;
+    /* position: absolute; */
+    margin-top: -28px;
+    border: 2px;
+    color: #E14D2A;
+    font-size: 17px;
+    width: 290px;
+    height: 100px;
+    /* border: 1px solid red;   */
+    word-break: break-all;
   }
 
   .imagenMarcador {
@@ -122,7 +139,7 @@
   }
 
   .ubicacionMascota {
-    margin-top: -130px;
+    margin-top: -40px;
     margin-left: 10px;
   }
 
@@ -255,7 +272,7 @@
     .cardDetalles {
       margin-left: 30px;
       width: 440px;
-      height: 700px;
+      height: 1000px;
       margin-top: 30px;
     }
 
@@ -272,10 +289,26 @@
       font-size: 16px;
       margin-left: 200px;
       margin-top: -20px;
+      /* border: 1px solid red; */
+    }
+
+    .details2 {
+      margin-left: 150px;
+      display:flex;
+      flex-wrap: wrap;
+      /* position: absolute; */
+      margin-top: -28px;
+      border: 2px;
+      color: #E14D2A;
+      font-size: 17px;
+      width: 200px;
+      height: 100px;
+      /* border: 1px solid red;   */
+      word-break: break-all;
     }
 
     .ubicacionMascota {
-      margin-top: -200px;
+      margin-top: -40px;
       margin-left: -20px;
     }
 

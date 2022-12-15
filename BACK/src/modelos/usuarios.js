@@ -13,7 +13,7 @@ const UsuarioSchema = new Schema({
   },
   mail: {
     type: String,
-    required: true,
+    required: true,zzz
   },
   contrasena: {
     type: String

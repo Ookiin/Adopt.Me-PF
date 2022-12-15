@@ -108,7 +108,7 @@ if (detail.adoptado === false) {
             
                           <div className={stl.titulos2}>Tamaño: <p className={stl.details}>{detail.tama}</p></div>                 
                           <div className={stl.titulos2}>Estado: <p className={stl.details}>{detail.estado}</p></div>             
-                          <div className={stl.titulos2}>Descripcion: <p className={stl.details}>{detail.descripcion}</p></div>
+                          <div className={stl.titulos2}>Descripcion: <div className={stl.details2}>{detail.descripcion}</div></div>
            
                       </div>        
                   </div>

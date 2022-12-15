@@ -42,7 +42,7 @@ const UsuarioSchema = new Schema({
       ref: "roles",
       type: Schema.Types.ObjectId,
     },
-  ],
+  ],z
 });
 
 const UsuariosSinValidar = mongoose.model("usuariosSinValidar", UsuarioSchema);
