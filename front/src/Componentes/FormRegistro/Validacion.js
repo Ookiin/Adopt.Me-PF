@@ -11,7 +11,7 @@ export default function Validacion() {
   const dispatch = useDispatch();
   const navigate = useNavigate()
   const user = useSelector((state) => state.detalleUsuarioSinValidar); // (o el estado global que usemos para guardar todos los usuarios)
-
+  
   useEffect(() => {
     dispatch(getDetalleUsuarioSinValidar(id));
   }, [dispatch]);

@@ -45,6 +45,7 @@ import {
   CREAR_USUARIO_VALIDADO,
   POST_PAYPAL,
   GET_PAGOS,
+  DELETE_USER,
 } from "../Actions";
 
 const initialState = {
@@ -500,6 +501,11 @@ export default function rootReducer(state = initialState, action) {
       return {
         ...state,
       };
+
+      case DELETE_USER:
+        return {
+          ...state
+        };
 
 
     default:

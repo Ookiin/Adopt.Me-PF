@@ -40,7 +40,7 @@ postUsuario = async (req, res) => {
     nacimiento,
     roles,
   } = req.body;
-console.log("contrasena", contrasena)
+
   // const existente = UsuarioModel.find({email})
   const contraseñaHasheada = await bcrypt.hash(contrasena, 10);
   const newUser = new UsuarioModel({
