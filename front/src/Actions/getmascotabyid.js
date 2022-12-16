@@ -11,7 +11,7 @@ const getmascotabyid =(id) => {
             
             let result = await axios.get(`/animales/${id}`); 
             dispatch({ type: GET_ANIMAL_BY_ID, payload: result.data })                                                                                                      
-            console.log(result.data);       
+                  
             
         } catch (error) {
             return alert (error)            

@@ -2,9 +2,7 @@ import axios from "axios";
 
 export default function getDetalleUsuarioSinValidar(id) {
   return async function (dispatch) {
-    const result = await axios.get(`usuarios/getUserSinValidar/${id}`);
-
-    console.log(result)
+    const result = await axios.get(`/usuarios/getUserSinValidar/${id}`);
 
     return dispatch({
       type: "getDetalleUsuarioSinValidar",

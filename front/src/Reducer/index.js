@@ -7,11 +7,8 @@ import {
   GET_USERS,
   GET_GATO,
   GET_PERRO,
-  GET_DOG_NAME,
-  GET_CAT_NAME,
   GET_DOG_LOCALIDAD,
   GET_CAT_LOCALIDAD,
-  // GET_TAMAÑO_PERDIDOS,
   GET_ANIMALES_PERDIDOS,
   GET_TAMAÑO_FILTRO,
   GET_DETAIL_MASCOTA_PERDIDA,
@@ -185,17 +182,6 @@ export default function rootReducer(state = initialState, action) {
         gatos: action.payload,
       };
 
-    case GET_DOG_NAME:
-      return {
-        ...state,
-        perros: action.payload,
-      };
-    case GET_CAT_NAME:
-      return {
-        ...state,
-        gatos: action.payload,
-      };
-
     case GET_PAGOS:
       return { 
         ...state, 
@@ -217,8 +203,6 @@ export default function rootReducer(state = initialState, action) {
         sortedPerros = [...state.perrosCopia].sort((a, b) =>
           a.nombre.localeCompare(b.nombre)
         );
-        // a = 1, b = 2, c = 3, etc.
-        // localcompare permite comprarar dos cadenas teniendo en cuenta acentos y demas.
       }
       if (action.payload === "Z-A") {
         sortedPerros = [...state.perrosCopia].sort((a, b) =>
@@ -237,8 +221,6 @@ export default function rootReducer(state = initialState, action) {
         sortedGatos = [...state.gatosCopia].sort((a, b) =>
           a.nombre.localeCompare(b.nombre)
         );
-        // a = 1, b = 2, c = 3, etc.
-        // localcompare permite comprarar dos cadenas teniendo en cuenta acentos y demas.
       }
       if (action.payload === "Z-A") {
         sortedGatos = [...state.gatosCopia].sort((a, b) =>
@@ -323,30 +305,6 @@ export default function rootReducer(state = initialState, action) {
       };
     }
 
-    //------------------------------------------Animales Perdidos Inicio-----------------------------------------------------------------------//
-
-    // case GET_TAMAÑO_FILTRO:
-    //     let filtered = state.animalesPerdidosCopia;
-    //     let filterByTam = filtered.filter(
-    //         (t)=>t.tama.map(
-    //             (ty)=>ty.tama).includes(
-    //                 action.payload === 'Chico'|| action.payload === 'Grande' || action.payload === 'Mediano')
-    //          || t.tama.includes(action.payload))
-    //     if(action.payload === 'All')filterByTam = filtered;
-
-    //     console.log(filterByTam);
-    //     return{
-    //         ...state,
-    //         animalesPerdidos: filterByTam,
-    //     };
-
-    //     case GET_TAMAÑO_PERDIDOS:
-
-    //       return{
-    //           ...state,
-    //           filtroPerdidos: action.payload,
-    //       }
-
     case GET_TAMAÑO_FILTRO: {
       const filteredByEstado =
         state.estadoPerdidos === "estado"
@@ -379,20 +337,6 @@ export default function rootReducer(state = initialState, action) {
         animalesPerdidos: action.payload,
         animalesPerdidosCopia: action.payload,
       };
-
-    // case FILTRADO_ESTADO_PERDIDO:
-    //     let animPerdidos = state.animalesPerdidosCopia;
-    //     let filterByEstado = animPerdidos.filter(
-    //         (e)=>e.estado.map(
-    //             (e)=>e.estado).includes(
-    //                 action.payload === 'Perdido'|| action.payload === 'Encontrado')
-    //          || e.estado.includes(action.payload))
-    //     if(action.payload === 'estado')filterByEstado = animPerdidos;
-    //     console.log(filterByEstado);
-    //     return{
-    //         ...state,
-    //         animalesPerdidos: filterByEstado,
-    //     };
 
     case FILTRADO_ESTADO_PERDIDO: {
       const filteredByTamaño =

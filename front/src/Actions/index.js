@@ -6,10 +6,8 @@ export const GET_ANIMAL_BY_ID = "GET_ANIMAL_BY_ID";
 export const GET_GATO = "GET_GATO";
 export const GET_PERRO = "GET_PERRO";
 export const PAGO_MERCADO_PAGO = "PAGO_MERCADO_PAGO";
-export const GET_DOG_NAME = "GET_DOG_NAME";
 export const ORDEN_PERRO = "ORDEN_PERRO";
 export const ORDEN_GATO = "ORDEN_GATO";
-export const GET_CAT_NAME = "GET_CAT_NAME";
 export const GET_DOG_LOCALIDAD = "GET_DOG_LOCALIDAD";
 export const RESET_DOG = "RESET_DOG";
 export const FILTRA_TAMAÑO = "FILTRA_TAMAÑO";
@@ -44,7 +42,6 @@ export const EMAIL_INFO_ADOPTANTE = "EMAIL_INFO_ADOPTANTE";
 export const CREATE_FAVORITO = "CREATE_FAVORITO";
 export const GET_FAVORITOS = "GET_FAVORITOS";
 export const CREAR_USUARIO_VALIDADO = "CREAR_USUARIO_VALIDADO";
-export const UPDATE_MASCOTA = "UPDATE_MASCOTA";
 export const POST_PAYPAL = "POST_PAYPAL";
 export const GET_PAGOS = "GET_PAGOS";
 export const DELETE_USER = "DELETE_USER";
@@ -53,5 +50,4 @@ export const DELETE_USER = "DELETE_USER";
 
 
 
-// export const VERIFICADO = "VERIFICADO";
 
