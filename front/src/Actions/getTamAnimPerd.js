@@ -4,7 +4,6 @@ import {GET_TAMAÑO_PERDIDOS} from '.';
 export default function getTamañoPerdidos() {
     return async function (dispatch) {       
       const tamaño = await axios.get("/animalesPerdidos/tama/");
-      console.log(tamaño.data)
       return dispatch({ type: GET_TAMAÑO_PERDIDOS, payload: tamaño.data});
     };
   }

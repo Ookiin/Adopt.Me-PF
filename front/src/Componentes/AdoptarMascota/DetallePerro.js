@@ -52,11 +52,11 @@ export default function DetallePerro() {
 
   useEffect(() => {
     dispatch(getDetalleUsuarioGoogle(_id));
-  }, [id, dispatch]);
+  }, [dispatch]);
 
   useEffect(() => {
     dispatch(getDetalleUsuario(_id));
-  }, [id, dispatch]);
+  }, [dispatch]);
 
   // Usuario va a tener los datos del usuario logueado, sin importar si esta logueado con google o normal
   let usuario = detalleUserGoogle.usuario ? detalleUserGoogle : detalleUser;
@@ -108,13 +108,13 @@ export default function DetallePerro() {
   //////////////////////////////// DATOS DEL USUARIO QUE DIO EN ADOPCION ESTA MASCOTA //////////////////////////////
 
   const ownerPet = petOwner.data;
-  const ownerPet2 = ownerPet
-    ? ownerPet.filter(({ _id }) => _id === detail.pichina)
-    : [];
+  const ownerPet2 = ownerPet ? ownerPet.filter(({ _id }) => _id === detail.pichina) : []; 
+  const userLog = detalleUser._id
 
   const nombre = ownerPet2.map(({ nombre }) => nombre);
   const telefono = ownerPet2.map(({ telefono }) => telefono);
   const mail = ownerPet2.map(({ mail }) => mail);
+  
   const mailUsuario = usuario.mail;
   const nombreUsuario = usuario.nombre
 
@@ -166,7 +166,6 @@ const [adopt, setAdopt] = useState({
   adoptado: false,
   estado: "En adopcion"
 })
-console.log("estado", adopt)
 
 useEffect(() => {
   setAdopt({
@@ -200,7 +199,7 @@ navigate("/homepage")
 
   ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-   if (ownerPet2.length === 1) {
+   if (userLog === detail.pichina) {
   return (
     <div className={stl.paginaAdopcion}>
       <NavBar />

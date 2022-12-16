@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import  {Link, useNavigate}  from "react-router-dom"
+import  {Link }  from "react-router-dom"
 import Card from "../Card/Card";
 import stl from "./HomePerros.module.css";
 import NavBar from "../NavBar/NavBar";
@@ -8,7 +8,6 @@ import Paging from "../Pagination/Pagination";
 import Footer from "../Footer/Footer";
 import FloatingUI from "../Floating UI/FloatingUI";
 import getperro from "../../Actions/getperros";
-import getDogByName from "../../Actions/getDogByName";
 import ordenAlfaPerro from "../../Actions/ordenAlfaPerro";
 import getdogtamaños from "../../Actions/getDogTamaños";
 import getDogEdad from "../../Actions/getDogEdad";
@@ -19,7 +18,6 @@ export default function HomePerros () {
 
     
     const dispatch = useDispatch();
-    const navigate = useNavigate();
 
     const copiaPerros = useSelector((state)=>state.perrosCopia)
     const sinAdopcion = copiaPerros
@@ -33,9 +31,8 @@ export default function HomePerros () {
     const firstPetIndex = lastPetIndex - mascotasPerPage 
     const currentPets = sinAdoptar.slice(firstPetIndex,lastPetIndex) 
 
-    const [setInput] = useState("");
     const [setOrden] = useState("");
-    const [searchDog, setSearchDog] = useState("");
+
 
     const actualPage = (pageNumber) => {setCurrentPage(pageNumber)}
 
@@ -48,22 +45,6 @@ export default function HomePerros () {
             e.preventDefault()
             window.location.reload();
         }
-        
-        const handleInput = (e) => {//cambia cada caracter
-        e.preventDefault();
-        setSearchDog(e.target.value)
-    }
- 
-
-    const handleSubmit = (e) => {//mando la accion y me trae el dog
-        e.preventDefault();
-        if(searchDog){
-        dispatch(getDogByName(searchDog))
-        setInput("")
-        navigate("/adoptdog") 
-        actualPage(1)
-        }
-   }
 
 
    const handleOrden = (e) => {
@@ -91,19 +72,9 @@ export default function HomePerros () {
             <NavBar />
         <div className={stl.tituloPerros}>Perros en Adopcion</div>
 <br></br><br></br>
-        <div>
-        <label className={stl.labelSearch}>Nombre:</label>
-           <input className={stl.inputNav}
-               value={searchDog}
-               type="text"
-               placeholder=" Nombre..."
-               onChange={handleInput}>
-           </input>
-           <button className={stl.btnNav}
-               type="submit"
-               onClick={handleSubmit}>Ir</button>  
-
-        </div>
+<div>
+            <button className={stl.btnNavHome} onClick={handleClick}>Todos</button>
+        </div><br></br>
 
         <div className={stl.filtros}>Filtar: 
                
@@ -131,10 +102,8 @@ export default function HomePerros () {
         </div>
             <FloatingUI />
         <br/>
-        <div>
-            <button className={stl.btnNavHome} onClick={handleClick}>HomePerros</button>
-        </div>
-
+        
+        <br></br>
         <div className={stl.ico}></div>
         <div className={stl.mapapets}>
             <Link to ="/mappets">

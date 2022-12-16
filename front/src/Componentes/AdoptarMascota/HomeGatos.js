@@ -1,23 +1,20 @@
 import React, { useEffect, useState } from "react";
 import {useDispatch, useSelector} from 'react-redux';
-import  {Link, useNavigate}  from "react-router-dom"
+import  {Link}  from "react-router-dom"
 import getgato from "../../Actions/getgatos";
 import CardGato from "../Card/CardGato";
 import NavBar from "../NavBar/NavBar";
 import Paging from "../Pagination/Pagination";
 import stl from './HomePerros.module.css';
 import ordenAlfaGato from "../../Actions/ordenAlfaGato";
-import getCatByName from "../../Actions/getCatByName";
 import FloatingUI from "../Floating UI/FloatingUI";
 import getCatTamaños from "../../Actions/getCatTamaños";
 import getCatEdad from '../../Actions/getCatEdad';
-import getCatsLocal from "../../Actions/getCatsLocal"
 import Footer from "../Footer/Footer";
 
 const HomeGatos = () => {
 
     const dispatch = useDispatch();
-    const navigate = useNavigate();
 
     const copiaGatos = useSelector((state)=>state.gatosCopia);
     const sinAdopcion = copiaGatos
@@ -31,10 +28,7 @@ const HomeGatos = () => {
     const currentPets = sinAdoptar.slice(firstPetIndex,lastPetIndex) 
 
 
-    const [input, setInput] = useState("");
     const [orden, setOrden] = useState("");
-    const [searchCat, setSearchCat] = useState("");
-    const [localCat, setlocalCat] = useState("");
 
     const actualPage = (pageNumber) => {setCurrentPage(pageNumber)}
 
@@ -48,20 +42,6 @@ const HomeGatos = () => {
         window.location.reload();
         }
 
-    const handleInput = (e) => {
-        e.preventDefault();
-        setSearchCat(e.target.value)
-    }
-
-    const handleSubmit = (e) => {//mando la accion y me trae el dog
-        e.preventDefault();
-        if(searchCat){
-        dispatch(getCatByName(searchCat))
-        setInput("")
-        navigate("/adoptcat") 
-        actualPage(1)
-        }
-   }
 
    const handleOrden = (e) => {
     e.preventDefault();
@@ -70,14 +50,14 @@ const HomeGatos = () => {
     setOrden(`Ordenado ${e.target.value}`)
   }
 
-  async function handleTamaño (e){  
-    await e.preventDefault();   
-    await dispatch(getCatTamaños(e.target.value));
+   function handleTamaño (e){  
+     e.preventDefault();   
+     dispatch(getCatTamaños(e.target.value));
     console.log(e.target.value);
   };
-  async function handleEdad (e){  
-    await e.preventDefault();   
-    await dispatch(getCatEdad(e.target.value));
+   function handleEdad (e){  
+     e.preventDefault();   
+     dispatch(getCatEdad(e.target.value));
     console.log(e.target.value);
   };
 
@@ -89,19 +69,10 @@ const HomeGatos = () => {
         <div className={stl.tituloPerros}>Gatos en Adopcion</div>
         <br></br><br></br>
        
-       <div>
-        <label className={stl.labelSearch}>Nombre:</label>
-           <input className={stl.inputNav}
-               value={searchCat}
-               type="text"
-               placeholder=" Nombre..."
-               onChange={handleInput}>
-           </input>
-           <button className={stl.btnNav}
-               type="submit"
-               onClick={handleSubmit}>Ir</button>    
-     
+        <div>
+        <button className={stl.btnNavHome} onClick={handleClick}>Todos</button>
         </div>
+        <br></br>
         <div className={stl.filtros}>Filtar: 
                
                <select className={stl.op} onChange={(e) => handleOrden(e)}>
@@ -125,10 +96,8 @@ const HomeGatos = () => {
               
         </div>
         <br/>
-        <div>
-        <button className={stl.btnNavHome} onClick={handleClick}>HomeGatos</button>
-        </div>
-
+        
+<br></br>
         <div className={stl.ico}></div>
         <div className={stl.mapapets}>
             <Link to ="/mappets2">

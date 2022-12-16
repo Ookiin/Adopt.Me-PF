@@ -8,8 +8,7 @@ const getDetailMascotaPerdida =(id) => {
     return async function (dispatch) {
         try {            
             let result = await axios.get(`/animalesPerdidos/${id}`); 
-            dispatch({ type: GET_DETAIL_MASCOTA_PERDIDA, payload: result.data })                                                                                                      
-            console.log(result.data);            
+            dispatch({ type: GET_DETAIL_MASCOTA_PERDIDA, payload: result.data })                       
         } catch (error) {
             return alert (error)            
         }        
