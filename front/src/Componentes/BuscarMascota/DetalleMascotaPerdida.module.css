@@ -261,17 +261,17 @@
 
   /*////////////////////////////////////////////////////*/
 
-  @media (min-width: 481px) and (max-width: 767px) {
+  @media only screen and (max-width : 900px) {
 
     .img {
-      width: 400px;
+      width: 380px;
       height: 200px;
-      margin-left: 10px;
+      margin-left: 5px;
     }
 
     .cardDetalles {
-      margin-left: 30px;
-      width: 440px;
+      margin-left: 15px;
+      width: 380px;
       height: 1000px;
       margin-top: 30px;
     }
@@ -301,14 +301,14 @@
       border: 2px;
       color: #E14D2A;
       font-size: 17px;
-      width: 200px;
+      width: 180px;
       height: 100px;
-      /* border: 1px solid red;   */
+      border: 1px solid black;  
       word-break: break-all;
     }
 
     .ubicacionMascota {
-      margin-top: -40px;
+      margin-top: -180px;
       margin-left: -20px;
     }
 
@@ -321,9 +321,15 @@
       font-size: 20px;
     }
 
+    .encontre {
+      width: 370px;
+      margin-left: 20px;
+      font-size: 12px;
+    }
+
     .cardDetalles2 {
-      margin-left: 45px;
-      width: 400px;
+      margin-left: 20px;
+      width: 380px;
     }
 
   }

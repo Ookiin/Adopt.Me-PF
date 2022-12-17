@@ -78,23 +78,24 @@
 
 /*///////////////////////////////////////////////////////////////////////*/
 
-  @media (min-width: 481px) and (max-width: 767px) {
+@media only screen and (max-width : 900px) {
 
     .h3s {
-      margin-left: 50px;
+      margin-left: 10px;
       font-size: 15px;
       width: 400px;
     }
 
     .h2s {
       font-size: 20px;
-      margin-left: 50px;
+      margin-left: 10px;
     }
 
     .tituloDonarMascota {
-      font-size: 30px;
+      font-size: 26px;
       margin-top: 60px;
       margin-left: 20px;
+      margin-bottom: -50px;
     }
 
   }

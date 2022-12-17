@@ -63,7 +63,7 @@ export default function InfoProceso() {
       <div>
         <h2 className={stl.h2s}>¿Sabes cómo funciona Adopt.ME?</h2>
         <h3 className={stl.h3s}>
-          El objetivo de Adopta.ME es brindarte una herramienta de amplia
+          El objetivo de Adopt.Me es brindarte una herramienta de amplia
           difusión para que vos, como protector o protectora independiente,
           colectivo, fundación o asociación civil que resguardas temporalmente
           perros y gatos, los ofrezcas en adopción; la idea es enlazarte con el
@@ -77,7 +77,7 @@ export default function InfoProceso() {
           mostrarle a nuestros seguidores y visitantes. Incluso podes comentar
           sobre sus habilidades o contarnos alguna historia breve sobre su vida.
           Recorda que también difundimos a través de todas nuestras redes
-          sociales a los perros y gatos que están en Adopta.ME.
+          sociales a los perros y gatos que están en Adopt.Me.
         </h3>
       </div>
 

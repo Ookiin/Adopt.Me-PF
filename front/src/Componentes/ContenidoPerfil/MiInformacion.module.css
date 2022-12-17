@@ -159,11 +159,11 @@
 
   /*///////////////////////////////////////////////////////////////////////////////////////////////////////////*/
 
-  @media (min-width: 481px) and (max-width: 767px) {
+  @media only screen and (max-width : 900px) {
 
     .formUser {
       width: 300px;
-      margin-left: 30px;
+      margin-left: 1px;
       height: 900px;
     }
 

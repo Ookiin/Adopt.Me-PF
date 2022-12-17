@@ -26,16 +26,16 @@
 }
 
 
-@media (min-width: 481px) and (max-width: 767px) {
+@media only screen and (max-width : 900px) {
 
     .paginado {
-        margin-left: -220px;
+        margin-left: -280px;
     }
 
     .cartel{
-        width: 360px;
+        width: 300px;
         height: 1500px;
-        margin-left: 10px;
+        margin-left: 1x;
     }
     
 }

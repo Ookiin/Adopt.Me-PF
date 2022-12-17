@@ -168,14 +168,14 @@
 
 /*/////////////////////////////////////////////////7*/
 
-@media (min-width: 481px) and (max-width: 767px) {
+@media only screen and (max-width : 900px) {
 
   .ubicacionmapa {  
-    margin-left: 5px;
+    margin-left: -5px;
   }
 
   .botonMapa {
-    margin-left: -90px;
+    margin-left: -150px;
   }
 
 }

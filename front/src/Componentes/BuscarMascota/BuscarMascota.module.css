@@ -265,22 +265,29 @@
 
   /*///////////////////////////////////////////////////////////*/
 
-  @media (min-width: 481px) and (max-width: 767px) {
+  @media only screen and (max-width : 900px) {
 
     .tituloPerros {
-      font-size: 30px;
+      font-size: 27px;
       margin-top: 50px;
     }
 
     .paginado {
-      margin-left: -160px;
+      margin-left: -180px;
     }
 
     .filtros {
-      margin-left: 140px;
+      margin-left: 100px;
       width: 200px;
       margin-bottom: 20px;
     }
 
+    .listadoCards {
+      margin-left: -40px;
+      margin: -100px;
+    }
 
+    .boton {
+      margin-top: -10px;
+    }
   }

@@ -11,7 +11,7 @@ export default function MisFavoritos() {
 
     const detalleUser = useSelector((state) => state.detalleUsuario);
     const favs = useSelector((state) => state.favoritos)
-  
+
     useEffect(() => {
         dispatch(getFavoritos())
     }, [dispatch])
