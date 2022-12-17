@@ -284,7 +284,7 @@ navigate("/homepage")
     return (
       <div className={stl.paginaAdopcion}>
         <NavBar />
-        <FloatingUI />
+        {/* <FloatingUI /> */}
         <img className={stl.img} src={detail.imagen} alt="" />
         <div className={stl.cardDetalles}>
           <div className={stl.datosAdopcion}>
@@ -309,7 +309,8 @@ navigate("/homepage")
                 Peso: <p className={stl.details}>{detail.peso}</p>
               </div>
               <div className={stl.titulos2}>
-                Descripcion: <p className={stl.details}>{detail.descripcion}</p>
+                Descripcion: <p className={stl.details2}>{detail.descripcion}</p>
+                <br></br><br></br>
               </div>
               <div className={stl.titulos2}>
                 Castrado: <p className={stl.details}>{detail.castrado}</p>

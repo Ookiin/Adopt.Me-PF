@@ -35,8 +35,9 @@
 .card__image {      
   width: 100%;
   height: auto;
-  margin-top: 00px;
+  margin-top: 25px;
   /* border: 1px solid blue; */
+  border-top-left-radius: 25px;
 }
 
 .card__overlay {

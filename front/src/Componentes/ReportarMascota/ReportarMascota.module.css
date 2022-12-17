@@ -247,16 +247,17 @@
 
 /*//////////////////////////////////////////////////////////*/
 
-@media (min-width: 481px) and (max-width: 767px) {
+@media only screen and (max-width : 900px) {
 
   .tituloperdido {
-    font-size: 30px;
+    font-size: 26px;
   }
 
   .formul {
     margin-left: 16px;
-    width: 450px;
+    width: 380px;
     border-radius: 10px;
+    height: 1480px;
   }
 
   .ps {
@@ -281,7 +282,7 @@
   .textareaRepor {
     margin-top: 30px;
     height: 100px;
-    width: 250px;
+    width: 230px;
   }
 
   .botonperdido {
@@ -293,7 +294,7 @@
   }
 
   .contacto {
-    width: 400px;
+    width: 370px;
     margin-left: 110px;
     font-size: 13px;
   }

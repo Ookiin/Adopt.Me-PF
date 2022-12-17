@@ -183,19 +183,20 @@
 
 /*/////////////////////////////////////////////// MEDIA QUERIES CELULARES MODO VERTICAL //////////////////////////////////////////*/
 
-@media (min-width: 481px) and (max-width: 767px) {
+@media only screen and (max-width : 900px) {
+
   .titulo {
-    font-size: 15px;
+    font-size: 13px;
   } 
   .logo {
     margin-top: 230px;
-    margin-left: 60px;
+    margin-left: 36px;
     width: 50px;
     height: 50px;
   }
 
   .fineslucro {
-    font-size: 10px;
+    font-size: 8px;
     margin-right: 200px;
     margin-left: 20px;
   }
@@ -221,4 +222,4 @@
   }
 }
 
-/*////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
+

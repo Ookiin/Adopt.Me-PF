@@ -220,13 +220,13 @@
   /*////////////////////////////////// MEDIA QUERIE CELULARES //////////////////////////////7*/
 
 
-  @media (min-width: 481px) and (max-width: 767px) {
+  @media only screen and (max-width : 900px) {
 
 
     .filtros {
       position: absolute;
-      margin-left: 40px;
-      width: 400px;
+      margin-left: 20px;
+      width: 370px;
     }
 
     .btnNavHome {
@@ -234,12 +234,25 @@
     }
 
     .paginado {
-      margin-left: -160px;
+      margin-left: -180px;
+      margin-bottom: -100px;
     }
 
     .ico {
       margin-right: -210px;
-      margin-left: 44px;
+      margin-left: 24px;
+    }
+
+    .btnMap {
+      margin-left: 35px;
+    }
+
+    .listadoCards {
+      margin-left: -32px;
     }
     
+    .tituloPerros {
+      font-size: 30px;
+      margin-bottom: -25px;
+    }
   }

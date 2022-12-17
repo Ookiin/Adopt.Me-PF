@@ -112,8 +112,25 @@
     margin-top: -28px;
     border: 2px;
     color: #E14D2A;
-    font-size: 23px;
+    font-size: 16px;
+    overflow: auto;
+    /* border: 1px solid red; */
+    width: 230px;
+  }
 
+  .details2 {
+    margin-left: 250px;
+    display:flex;
+    position: absolute;
+    margin-top: -38px;
+    border: 2px;
+    color: #E14D2A;
+    font-size: 16px;
+    overflow: scroll;
+    border: 1px solid black;
+    width: 270px;
+    height: 80px;
+    margin-bottom: -10px;
   }
 
   .imagenMarcador {
@@ -180,19 +197,21 @@
 
   /*////////////////////////////////////////////////////*/
 
-  @media (min-width: 481px) and (max-width: 767px) {
+  @media only screen and (max-width : 900px) {
 
     .img {
-      width: 400px;
+      width: 380px;
       height: 200px;
-      margin-left: 10px;
+      margin-left: -5px;
+     
     }
 
     .cardDetalles {
-      margin-left: 30px;
-      width: 440px;
-      height: 1000px;
+      margin-left: 15px;
+      width: 380px;
+      height: 960px;
       margin-top: 30px;
+     
     }
 
     .tituloAdopcion {
@@ -210,14 +229,24 @@
       margin-top: -20px;
     }
 
+    .details2 {
+      font-size: 14px;
+      margin-left: 170px;
+      margin-top: -20px;
+      width: 150px;
+      height: 50px;
+      overflow-x: scroll;
+    }
+
     .ubicacionMascota {
-      margin-left: -23px;
-      margin-top: 20px;
+      margin-left: -21px;
+      margin-top: 10px;
     }
 
     .verUbicacion{
       margin-bottom: 5px;
       margin-top: 30px;
+      margin-left: 15px;
     }
 
   }

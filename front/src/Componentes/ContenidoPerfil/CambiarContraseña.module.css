@@ -124,10 +124,11 @@
     margin-bottom: 0;
   }
 
-  @media (min-width: 481px) and (max-width: 767px) {
+  @media only screen and (max-width : 900px) {
 
     .form {
       width: 300px;
+      margin-left: 1px;
     }
 
     .err {

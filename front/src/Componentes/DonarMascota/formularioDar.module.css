@@ -333,51 +333,67 @@ textarea {
 /*//////////////////////////////////////////////////////////////////////////////////////7*/
 
 
-@media (min-width: 481px) and (max-width: 767px) {
+@media only screen and (max-width : 900px) {
 
   .titulo {
-    font-size: 30px;
+    font-size: 26px;
     margin-top: 60px;
   }
 
   .formularito {
     border-radius: 10px;
     margin-left: 16px;
-    width: 450px;
+    width: 380px;
     height: 1900px;
   }
 
   .imageContainer {
-    margin-right: 70px;
+    margin-right: 40px;
     margin-top: -10px;
+    margin-left: -40px;
+    /* border: 1px solid red; */
   }
 
   .contenedordatos {
-    margin-right: 25px;
+    margin-right: -13px;
     width: 400px;
   }
 
   .mapaInfo {
     margin-top: 60px;
-    margin-left: 80px;
-    width: 400px;
+    margin-left: 90px;
+    width: 320px;
+    font-size: 15px;
+    /* border: 1px solid red; */
   }
 
   .botonMapa2 {
     margin-bottom: -60px;
-    width: 140px;
+    width: 100px;
     margin-right: 32px;
+    font-size: 12px;
   }
 
   .boton {
     /* border: 1px solid red; */
     font-size: 10px;
-    margin-left: 160px;
+    margin-right: 10px;
     margin-top: 50px;
+    width: 200px;
+    justify-content: center;
   }
 
   .contenedorMapa {
     margin-right: 30px;
+  }
+
+  .textareaDonar {
+    width: 350px;
+    margin-left: -8px;
+  }
+
+  .titulos {
+    font-size: 12px;
   }
 
 }

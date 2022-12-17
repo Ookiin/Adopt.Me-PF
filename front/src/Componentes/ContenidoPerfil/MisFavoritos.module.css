@@ -18,11 +18,11 @@
     margin-top: 30px;
 }
 
-@media (min-width: 481px) and (max-width: 767px) {
+@media only screen and (max-width : 900px) {
 
     .misfavoritos {
-        width: 320px;
-        margin-left: 36px;
+        width: 300px;
+        margin-left: 1px;
         height: 500px;
         overflow: auto;
     }

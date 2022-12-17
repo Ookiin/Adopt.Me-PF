@@ -146,7 +146,7 @@
 
   /*///////////////////////////////////////////////////////////////////////////////////*/
 
-  @media (min-width: 481px) and (max-width: 767px) {
+  @media only screen and (max-width : 900px) {
 
     .grupohogares {
       width: 300px;

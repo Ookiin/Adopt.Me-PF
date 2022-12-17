@@ -556,7 +556,7 @@ const [draggable, setDraggable] = useState(false)
             <p className={stl.mapaInfo}>Por favor. Para guardar su ubicacion exitosamente<br></br>
             <br></br>1. Primero haga click sobre el marcador azul y muevalo hasta donde se encuentra la mascota
         <br></br>2. Despues seleccione "Establecer mi Ubicacion"<br></br>3. Luego "Guardar mi Ubicacion".</p>
-        <p>Finalmente "Confirmar y Volver"</p>
+        
         <div className={stl.botones}>
         <button className={stl.botonMapa2} onClick={handleLocation}>Establecer mi Ubicacion</button>
         <button className={stl.botonMapa2} onClick={handleLocation2}>Guardar mi Ubicacion</button>

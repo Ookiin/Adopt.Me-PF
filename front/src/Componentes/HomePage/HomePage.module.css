@@ -507,7 +507,7 @@
 
 /*//////////////////////////// MEDIA QUERIE PARA CELULARES ///////////////////////*/
 
-@media (min-width: 481px) and (max-width: 767px) {
+@media only screen and (max-width : 900px) {
 
   .banner {
     height: 75.5px;
@@ -546,8 +546,8 @@
 
   .adoptar {
     /* border: 1px solid red; */
-    margin-left: 36px;
-    width: 400px;
+    margin-left: 10px;
+    width: 380px;
     height: 500px;
     border-radius: 15px;
   }
@@ -555,8 +555,8 @@
   .darEnAdopcion {
     /* border: 1px solid blue; */
     margin-top: 940px;
-    margin-left: -420px;
-    width: 400px;
+    margin-left: -390px;
+    width: 380px;
     position: absolute;
     border-radius: 15px;
   }
@@ -564,8 +564,8 @@
   .reportarMascota {
     /* border: 1px solid green; */
     position: absolute;
-    width: 400px;
-    margin-left: -420px;
+    width: 380px;
+    margin-left: -390px;
     margin-top: 570px;
     border-radius: 15px;
   }
@@ -623,10 +623,10 @@
   /* border: 1px solid red; */
   border-radius: 15px;
   position: absolute;
-  width: 400px;
+  width: 380px;
   height: 130px;
   font-size: 10px;
-  margin-left: 52px;
+  margin-left: 17px;
   margin-top: 800px;
 }
 
