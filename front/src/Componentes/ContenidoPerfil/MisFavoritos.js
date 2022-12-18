@@ -7,13 +7,17 @@ import CardFavoritos from "../Card/CardFavoritos";
 
 export default function MisFavoritos() {
 
-    const dispatch = useDispatch()
+    const dispatch = useDispatch();
+
+
+        
 
     const detalleUser = useSelector((state) => state.detalleUsuario);
     const favs = useSelector((state) => state.favoritos)
 
     useEffect(() => {
         dispatch(getFavoritos())
+        window.scrollTo(0,0);
     }, [dispatch])
 
     const favs2 = favs.filter(({ userFav }) => userFav === detalleUser._id)

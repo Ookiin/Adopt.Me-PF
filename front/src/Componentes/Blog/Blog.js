@@ -13,6 +13,9 @@ import { useAuth0 } from "@auth0/auth0-react";
 export default function Blog() {
     
     const dispatch = useDispatch();
+
+   
+        
     
     /////////////////////// TRAIGO LOS POSTEOS //////////////////////////////////////////7
     
@@ -20,6 +23,7 @@ export default function Blog() {
     
     useEffect(() => {
         dispatch(getPosts())
+        window.scrollTo(0,0);
     }, [dispatch])
     
     ////////////////////////////////////////////////////////////////////////////////////////

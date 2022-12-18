@@ -10,8 +10,12 @@ import getDetalleUsuario from "../../Actions/getDetalleUsuario"
 import getDetalleUsuarioGoogle from "../../Actions/getDetalleUsuarioGoogle";
 
 export default function HomePage() {
-  const { user, isAuthenticated } = useAuth0()
-  const dispatch = useDispatch()
+  const { user, isAuthenticated } = useAuth0();
+  const dispatch = useDispatch();
+
+  window.onbeforeunload = function () {
+    window.scrollTo(0,0);
+};
     
   let usuarioIdRaro = ""
   let id = ""
@@ -29,10 +33,12 @@ export default function HomePage() {
 
   useEffect(() => {
       dispatch(getDetalleUsuarioGoogle(id));
+      window.scrollTo(0,0);
   }, [id, dispatch]);
 
   useEffect(() => {
           dispatch(getDetalleUsuario(id));
+          window.scrollTo(0,0);
   }, [id, dispatch]);
   
   

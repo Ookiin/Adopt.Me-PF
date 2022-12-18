@@ -18,8 +18,11 @@ export default function FormRegistro() {
   const navigate = useNavigate(); // Metodo de router que me redirige a la ruta que yo le diga
   const Allusers = useSelector((state) => state.users).data; // (o el estado global que usemos para guardar todos los usuarios)
 
+
+
   useEffect(() => {
     dispatch(getusers());
+    window.scrollTo(0,0);
   }, [dispatch]);
 
   const [input, setInput] = useState({

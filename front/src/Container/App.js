@@ -7,7 +7,6 @@ import HomeGatos from "../Componentes/AdoptarMascota/HomeGatos";
 import InfoProceso from "../Componentes/DonarMascota/InfoProceso";
 import FormRegistro from "../Componentes/FormRegistro/FormRegistro";
 import FormSignIn from "../Componentes/FormSignIn/FormSingIn";
-import DetalleAdopcion from "../Componentes/AdoptarMascota/DetalleAdopcion";
 import Validacion from "../Componentes/FormRegistro/Validacion";
 import TePuedeInteresar from "../Componentes/TePuedeInteresar/TePuedeInteresar";
 import ReportarMaltrato from "../Componentes/TePuedeInteresar/ReportarMaltrato";
@@ -29,10 +28,7 @@ import LostPetsList from "../Componentes/MapaPerdidos/MapaPerdidos3";
 import PostDetail from "../Componentes/Blog/PostDetail";
 import PanelAdminis from "../Componentes/PanelAdministrador/PanelAdminis";
 import Mascotas from "../Componentes/PanelAItems/mascotas";
-// import Clientes from "../Componentes/PanelAItems/";
 import Donaciones from "../Componentes/PanelAItems/donaciones";
-// import Paginas from "../Componentes/PanelAItems/paginas";
-/* import DetalleUsuario from "../Componentes/PAdmCardDetalles/DetalleUsuario"; */
 import MascotasDetalles from "../Componentes/PAdmCardDetalles/MascotasDetalles";
 import Usuarios from "../Componentes/PanelAItems/Usuarios";
 import UsuarioDetalles from "../Componentes/PAdmCardDetalles/UsuariosDetalles";
@@ -50,7 +46,6 @@ function App() {
           <Route exact path="/givepet" element={<InfoProceso />} />
           <Route exact path="/usuarios/signup" element={<FormRegistro />} />
           <Route exact path="/usuarios/signin" element={<FormSignIn />} />
-          <Route exact path="/contacto" element={<DetalleAdopcion />} />
           <Route exact path="/validacion/:id" element={<Validacion />} />
           <Route exact path="/animales/:id" element={<DetallePerro />} />
           <Route exact path="/animalesPerdidos/:id" element={<DetalleMascotaPerdida />} />

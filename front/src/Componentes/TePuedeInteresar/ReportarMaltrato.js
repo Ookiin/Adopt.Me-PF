@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import FloatingUI from "../Floating UI/FloatingUI";
 import Footer from '../Footer/Footer';
@@ -8,6 +8,11 @@ import stl from "../TePuedeInteresar/ReportarMaltrato.module.css";
 export default function ReportarMaltrato () {
 
     const params = useParams();
+
+    useEffect(() => {
+        window.scrollTo(0,0);
+      }, [])
+        
 
     return (
         <div className={stl.maltrato} key={params.id}>

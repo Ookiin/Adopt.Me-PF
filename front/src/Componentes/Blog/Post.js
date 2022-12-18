@@ -4,7 +4,7 @@ import "./Post.css";
 
 
 export default function Post({titulo, contenido, id, owner}) {
-
+ 
 
     return (
         <div className="posted">
