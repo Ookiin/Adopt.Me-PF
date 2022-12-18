@@ -18,8 +18,10 @@ export default function PostDetail() {
 
     const { id } = useParams()
     const dispatch = useDispatch()
-
     const postDetalles = useSelector((state) => state.postDetails)
+
+   
+        
 
        ////////////////////////////////////////////////////////////////////////////////////////
     
@@ -90,7 +92,8 @@ export default function PostDetail() {
     }
 
     useEffect(() => {
-        dispatch(getComentarioId(id))   
+        dispatch(getComentarioId(id))  
+        window.scrollTo(0,0); 
     }, [id, dispatch])
 
     const [input, setInput] = useState({

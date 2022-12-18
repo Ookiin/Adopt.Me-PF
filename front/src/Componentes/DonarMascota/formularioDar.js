@@ -24,6 +24,8 @@ import "../DonarMascota/formularioDar.css"
  const navigate = useNavigate();
  const dispatch = useDispatch();
 
+ 
+
  const usuario = useSelector((state) => state.detalleUsuario)
  const detalleUserGoogle = useSelector((state) => state.detalleUsuarioGoogle) 
 
@@ -47,6 +49,7 @@ import "../DonarMascota/formularioDar.css"
         }, {
             enableHighAccuracy: true
         });
+        window.scrollTo(0,0);
   }, [])
 
   ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -173,7 +176,7 @@ console.log("input 1", input)
 
     //Si no hay errores, el isSubmit esta en true
     // if (isSubmit === true) {
-    console.log(input)
+    
       dispatch(createLocation(input));
       dispatch(createanimal(input));
       
@@ -197,7 +200,7 @@ console.log("input 1", input)
         lng: "",
         adoptado: false
       });
-      console.log("input 2", input)
+      
       Toast.success("Mascota publicada correctamente", 1500, () => {
         navigate("/homepage")
       });

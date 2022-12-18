@@ -15,6 +15,11 @@ export default function FormSignIn() {
   const navigate = useNavigate(); // Metodo de router que me redirige a la ruta que yo le diga
   const Allusers = useSelector((state) => state.users).data; // (o el estado global que usemos para guardar todos los usuarios)
 
+  window.onbeforeunload = function () {
+    window.scrollTo(0,0);
+};
+    
+
   useEffect(() => {
     dispatch(getusers());
   }, [dispatch]);

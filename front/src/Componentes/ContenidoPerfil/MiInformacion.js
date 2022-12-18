@@ -20,10 +20,12 @@ export default function MiInformacion(props) {
   const navigate = useNavigate(); // Metodo de router que me redirige a la ruta que yo le diga
   const Allusers = useSelector((state) => state.users).data; // (o el estado global que usemos para guardar todos los usuarios)
 
+
   const id = props.datos._id;
 
   useEffect(() => {
     dispatch(getusers());
+    window.scrollTo(0,0);
   }, [dispatch]);
 
   const [input, setInput] = useState({

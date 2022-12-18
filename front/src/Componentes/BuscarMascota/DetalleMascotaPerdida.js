@@ -14,14 +14,15 @@ import axios from "axios";
 
 export default function DetallePerro () {
     const {id} = useParams();
-    
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const detail = useSelector((state) => state.animalesPerdidosDetail);
-    console.log("detail", detail)
+    
+
 
     useEffect(() => {
-        dispatch(getDetailMascotaPerdida(id))               
+        dispatch(getDetailMascotaPerdida(id))  
+        window.scrollTo(0,0);             
     }, [id, dispatch])
    
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////

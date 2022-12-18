@@ -19,6 +19,7 @@ import getDetalleUsuarioGoogle from "../../Actions/getDetalleUsuarioGoogle";
 
 
 export default function DetallePerro() {
+  
   const { id } = useParams();
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -27,17 +28,22 @@ export default function DetallePerro() {
   const detalleUser = useSelector((state) => state.detalleUsuario);
   const detalleUserGoogle = useSelector((state) => state.detalleUsuarioGoogle);
   const { user, isAuthenticated } = useAuth0();
-
+  
+  window.onbeforeunload = function () {
+    window.scrollTo(0,0);
+};
+  
 
   //////////////////////////////////////////////////////////////////////////////////////////////
-
+  
   useEffect(() => {
     dispatch(getmascotasbyid(id));
     dispatch(getusers());
+      window.scrollTo(0,0);
   }, []);
-
+  
   //////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
+  
   let usuarioIdRaro = "";
   let _id = "";
   if (isAuthenticated) {

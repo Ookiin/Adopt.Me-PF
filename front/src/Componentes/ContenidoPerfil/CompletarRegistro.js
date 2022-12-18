@@ -1,15 +1,9 @@
-import { Link, useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import Footer from "../Footer/Footer";
-import NavBar from "../NavBar/NavBar";
 import stl from "./CompletarRegistro.module.css";
-import createuser from "../../Actions/createuser";
 import getusers from "../../Actions/getusers";
-import FloatingUI from "../Floating UI/FloatingUI";
-
 import { useAuth0 } from "@auth0/auth0-react";
-
 import Toast from "light-toast";
 import createUserGoogle from "../../Actions/createUserGoogle";
 
@@ -19,10 +13,12 @@ export default function FormRegistro() {
   const navigate = useNavigate(); // Metodo de router que me redirige a la ruta que yo le diga
   const Allusers = useSelector((state) => state.users).data; // (o el estado global que usemos para guardar todos los usuarios)
   const { user, isAuthenticated } = useAuth0();
-  console.log(user);
+  
+    
 
   useEffect(() => {
     dispatch(getusers());
+    window.scrollTo(0,0);
   }, [dispatch]);
 
   const [input, setInput] = useState({

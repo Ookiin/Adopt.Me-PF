@@ -14,9 +14,12 @@ export default function MisMascotas() {
   const animales = useSelector((state) => state.animales);
   const { user, isAuthenticated } = useAuth0();
 
+ 
+    
 
   useEffect(() => {
     dispatch(getmascotas());
+    window.scrollTo(0,0);
   }, [dispatch]);
 
     

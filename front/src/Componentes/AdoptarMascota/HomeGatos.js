@@ -14,26 +14,24 @@ import Footer from "../Footer/Footer";
 
 const HomeGatos = () => {
 
-    const dispatch = useDispatch();
-
+    const dispatch = useDispatch()
     const copiaGatos = useSelector((state)=>state.gatosCopia);
     const sinAdopcion = copiaGatos
     const sinAdoptar = sinAdopcion.filter(({ adoptado }) => adoptado === false)
-
     const [currentPage, setCurrentPage] = useState(1) 
     const [mascotasPerPage] = useState(4)
-
     const lastPetIndex = currentPage * mascotasPerPage 
     const firstPetIndex = lastPetIndex - mascotasPerPage 
     const currentPets = sinAdoptar.slice(firstPetIndex,lastPetIndex) 
-
-
     const [orden, setOrden] = useState("");
-
     const actualPage = (pageNumber) => {setCurrentPage(pageNumber)}
+
+
+        
 
     useEffect(()=>{
         dispatch(getgato())
+        window.scrollTo(0,0);
     }, [dispatch])
     
     // if(allPets.map(e=>e.perro === true))

@@ -13,7 +13,6 @@ import CompletarRegistro from "../ContenidoPerfil/CompletarRegistro";
 import MisMascotas from "../ContenidoPerfil/MisMascotas";
 import getDetalleUsuarioGoogle from "../../Actions/getDetalleUsuarioGoogle";
 import Footer from "../Footer/Footer";
-import CartelPerfil from "../ContenidoPerfil/CartelRegistroCompleto";
 import CartelRegistroCompleto from "../ContenidoPerfil/CartelRegistroCompleto";
 import CartelCambiarContraseña from "../ContenidoPerfil/CartelCambiarContraseña";
 import CartelCompletarRegistro from "../ContenidoPerfil/CartelCompletarRegistro";
@@ -27,6 +26,7 @@ export default function Perfil() {
 
     const { user, isAuthenticated } = useAuth0()
 
+  
     
     let usuarioIdRaro = ""
     let id = ""
@@ -44,10 +44,12 @@ export default function Perfil() {
 
     useEffect(() => {
         dispatch(getDetalleUsuarioGoogle(id));
+        window.scrollTo(0,0);
     }, [id, dispatch]);
 
     useEffect(() => {
             dispatch(getDetalleUsuario(id));
+            window.scrollTo(0,0);
     }, [id, dispatch]);
     
     

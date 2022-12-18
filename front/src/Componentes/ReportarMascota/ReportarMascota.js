@@ -55,6 +55,11 @@ function validation(input){
  const navigate = useNavigate();
  const dispatch = useDispatch();
 
+ useEffect(() => {
+   window.scrollTo(0,0);
+ }, [])
+  
+
  const [input, setInput] = useState({
         perro: false,
         gato: false,        
@@ -67,7 +72,6 @@ function validation(input){
         lat: "",
         adoptado: false
       });
-      console.log("input", input)
   const [imagenes, setImagenes] = useState([]);
       
   const [errors, setErrors] = useState({});
@@ -429,17 +433,13 @@ useEffect(() => {
         
 
             <div className={stl.opcionesMapa}>
-              {/* <Link to ="/lostpets">
-                <button className={stl.botonubicacion}>Establecer ubicacion donde se perdio o vio por ultima vez
-                  la mascota
-                </button>
-                  </Link>         */}
+            
         <p className={stl.ps}>Por favor. Para guardar su ubicacion exitosamente<br></br>
         Primero haga click en el marcador para moverlo  <br></br>a la posicion
          donde perdio 
         su mascota o vio una mascota perdida. <br></br><br></br>Despues seleccione "Establecer mi Ubicacion", 
         y luego "Guardar mi Ubicacion".</p>
-        {/* <p>Finalmente "Confirmar y Volver"</p> */}
+      
         <div className={stl.botones}>
         <button className={stl.botonubicacion} onClick={handleLocation}>Establecer mi Ubicacion</button>
         <button className={stl.botonubicacion} onClick={handleLocation2}>Guardar mi Ubicacion</button>

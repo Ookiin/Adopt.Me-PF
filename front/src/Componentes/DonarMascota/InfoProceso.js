@@ -18,6 +18,7 @@ export default function InfoProceso() {
   const dispatch = useDispatch();
 
   
+  
   let id = undefined
   if (user) {
   const usuarioIdRaro = user.sub
@@ -26,6 +27,7 @@ export default function InfoProceso() {
   
   useEffect(() => {
           dispatch(getDetalleUsuario(id));
+          window.scrollTo(0,0);
   }, [dispatch]);
   
 
