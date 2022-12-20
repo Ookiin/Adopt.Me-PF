@@ -39,7 +39,7 @@ import {
   EMAIL_INFO_ADOPTANTE,
   GET_FAVORITOS,
   CREATE_FAVORITO,
-  CREAR_USUARIO_VALIDADO,
+  // CREAR_USUARIO_VALIDADO,
   POST_PAYPAL,
   GET_PAGOS,
   DELETE_USER,
@@ -132,7 +132,9 @@ export default function rootReducer(state = initialState, action) {
       return { ...state, postDetails: action.payload };
 
     case GET_LIKES:
-      return { ...state, likes: action.payload };
+      return { ...state, 
+        likes: action.payload 
+      };
 
     case GET_USERS:
       return {
