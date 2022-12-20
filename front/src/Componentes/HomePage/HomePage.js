@@ -9,6 +9,7 @@ import { useSelector, useDispatch } from "react-redux";
 import getDetalleUsuario from "../../Actions/getDetalleUsuario"
 import getDetalleUsuarioGoogle from "../../Actions/getDetalleUsuarioGoogle";
 import LikeButton from "../Likes/Likes";
+import "./HomePage.css";
 
 export default function HomePage() {
   const { user, isAuthenticated } = useAuth0();
@@ -48,6 +49,14 @@ export default function HomePage() {
 
   useSelector((state) => state.detalleUsuarioGoogle) 
 
+  const elements = document.querySelectorAll('.hover');
+
+for (const element of elements) {
+  element.addEventListener('mouseleave', function() {
+    this.classList.remove('hover');
+  });
+}
+
 
   return (
     <div className={stl.homepage}>
@@ -83,10 +92,34 @@ export default function HomePage() {
 
       <div className={stl.banner}></div>
 
-      
+      <div class="paper">
+  <div class="pin">
+    <div class="shadow"></div>
+    <div class="metal"></div>
+    <div class="bottom-circle"></div>
+  </div>
+  <p>Recuerda registrarte<br></br> para Adoptar o <br></br>Dar en Adopcion</p>
+</div>
       <div className={stl.adoptarDarEnAdopcion} >
         <div className={stl.adoptar}>
-          <div className={stl.opciones}>
+
+        <figure class="snip1576">
+          <img className={stl.perros} />
+          <figcaption>
+            <h3>Adoptar <span>Perro</span></h3>
+          </figcaption>
+          <a href="/adoptdog"></a>
+        </figure>
+
+        <figure class="snip1576 hover">
+          <img  className={stl.gatos}/>
+          <figcaption>
+            <h3>Adoptar <span>Gato</span></h3>
+          </figcaption>
+          <a href="/adoptcat"></a>
+        </figure>
+
+          {/* <div className={stl.opciones}>
             <Link to="/adoptdog">
               <div className={stl.perros}></div>
             </Link>
@@ -94,9 +127,9 @@ export default function HomePage() {
             <Link to="/adoptcat">
               <div className={stl.gatos}></div>
             </Link>
-          </div>
+          </div> */}
           <p className={stl.tituloAdoptar}>Adoptar Mascota</p>
-          <p className={stl.parrafo}>
+          {/* <p className={stl.parrafo}>
             Solo en la Ciudad de Buenos Aires, habitan más de 1 millón de perros
             y gatos. Muchos de ellos son parte de una familia y están cuidados.
             Pero muchos otros no: están perdidos, abandonados o quizá toda la
@@ -110,7 +143,7 @@ export default function HomePage() {
             sanitario y el bienestar de estos animales, así como disminuir e
             instaurar soluciones no eutanásicas para situaciones derivadas de la
             convivencia con los seres humanos
-          </p>
+          </p> */}
         </div>
         
         <div>
@@ -136,7 +169,7 @@ export default function HomePage() {
       </br><br></br><br></br>Muchos animales <br></br>te necesitan
       <br></br><br></br><br></br>Adopt.Me te ayuda<br></br>a cumplir ese objetivo</div>  
 
-
+      
 
           <div className={stl.reportarMascota}>
             <p className={stl.reportarTitulo}>Reportar Mascota Perdida</p>
