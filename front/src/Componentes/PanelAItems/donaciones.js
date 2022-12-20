@@ -8,6 +8,7 @@ export default function Donaciones() {
 
   const dispatch = useDispatch()
   const donaciones = useSelector((state) => state.paypal)
+  console.log("donaciones", donaciones)
   
   useEffect(() => {
     dispatch(getpagos())

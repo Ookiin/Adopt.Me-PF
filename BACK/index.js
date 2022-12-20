@@ -21,6 +21,7 @@ const respuestaRutas = require("../BACK/src/rutas/respuesta");
 const favoritosRutas = require("../BACK/src/rutas/favoritos")
 const donaciones = require("./src/rutas/donacionesRuta");
 const donacionesModel = require("./src/modelos/donacionesModel");
+const likes = require("../BACK/src/rutas/like");
 
 //inicializacion
 const app = express();
@@ -65,6 +66,7 @@ app.use("/comentario", comentarioRutas);
 app.use("/respuesta", respuestaRutas);
 app.use("/favoritos", favoritosRutas)
 app.use("/donaciones", donaciones)
+app.use("/likes", likes)
 // app.use("/payment", pagosStripes);
 
 

@@ -8,6 +8,7 @@ import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import getDetalleUsuario from "../../Actions/getDetalleUsuario"
 import getDetalleUsuarioGoogle from "../../Actions/getDetalleUsuarioGoogle";
+import LikeButton from "../Likes/Likes";
 
 export default function HomePage() {
   const { user, isAuthenticated } = useAuth0();
@@ -53,6 +54,9 @@ export default function HomePage() {
       
       <NavBar />
       
+      <div className={stl.likebutton}>
+      <LikeButton />
+      </div>
       <div className={stl.donacion}>
         <p className={stl.textoDonacion}>Realiza tu donacion</p>
         <Link to="/donation">
@@ -108,7 +112,7 @@ export default function HomePage() {
             convivencia con los seres humanos
           </p>
         </div>
-
+        
         <div>
           <div className={stl.darEnAdopcion}>
             <p className={stl.darTitulo}>Dar en Adopcion</p>
@@ -187,7 +191,7 @@ export default function HomePage() {
                <div className={stl.botonadmin}>
                  
                </div>
-         
+        
          </div>
       <Footer />
     </div>
