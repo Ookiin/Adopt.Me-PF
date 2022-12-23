@@ -2,11 +2,12 @@ import React, { useEffect, useState } from "react"
 import {MapContainer, TileLayer, useMap} from "react-leaflet"
 import "leaflet/dist/leaflet.css"
 import "./Maps.css";
-import Markers from "./Markers";
+// import Markers from "./Markers";
 import NavBar from "../NavBar/NavBar";
 import Footer from "../Footer/Footer";
 import { Link } from "react-router-dom";
 import stl from "../Maps/Maps.module.css";
+import MarkersCats from "./MarkersCats";
 
 export default function MapPets2() {
 
@@ -58,7 +59,7 @@ useEffect(() => {
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"/>
 
-          <Markers />
+          <MarkersCats />
 
         </MapContainer>
 

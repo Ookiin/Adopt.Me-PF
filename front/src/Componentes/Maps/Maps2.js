@@ -7,7 +7,8 @@ import NavBar from "../NavBar/NavBar";
 import Footer from "../Footer/Footer";
 import { Link } from "react-router-dom";
 import stl from "../Maps/Maps.module.css";
-import Markers from "./Markers";
+// import Markers from "./Markers";
+import MarkersDogs from "./MarkersDogs";
 
 
 export default function MapPets() {
@@ -60,7 +61,7 @@ useEffect(() => {
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"/>
 
-          <Markers />
+          <MarkersDogs />
 
         </MapContainer>
 

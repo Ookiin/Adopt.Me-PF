@@ -24,6 +24,7 @@ export default function BuscarMascota() {
   const firstPetIndex = lastPetIndex - mascotasPerPage ;
   const currentPets = allPets.slice(firstPetIndex,lastPetIndex);
   const actualPage = (pageNumber) => {setCurrentPage(pageNumber)};
+  console.log("pets", currentPets)
 
     
 

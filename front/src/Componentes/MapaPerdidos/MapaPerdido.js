@@ -9,6 +9,8 @@ import NavBar from "../NavBar/NavBar";
 import Footer from "../Footer/Footer";
 import { Link } from "react-router-dom";
 import Toast from 'light-toast';
+import MarkersLostCats from "./MarcadoresCats";
+import MarkersLostDogs from "./MarcadoresDogs";
 
 
 export default function MapLostPets() {
@@ -137,7 +139,6 @@ export default function MapLostPets() {
         </Popup>
       </Marker>
 
-    <MarkersLost />
         
     </MapContainer>
     
