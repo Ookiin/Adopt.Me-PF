@@ -5,9 +5,8 @@ import NavBar from "../NavBar/NavBar";
 import Footer from "../Footer/Footer";
 import { Link } from "react-router-dom";
 import stl from "../MapaPerdidos/MapaPerdido.module.css";
-import MarkersLost from "./Marcadores";
-
-
+import MarkersLostCats from "./MarcadoresCats";
+import MarkersLostDogs from "./MarcadoresDogs";
 
 export default function LostPetsList() {
 
@@ -58,6 +57,13 @@ function FlyMapTo() {
 
         <p>Estas son las mascotas perdidas reportadas</p>
 
+        <div className={stl.iconos}>
+        <div className={stl.gatos}></div>
+        <div className={stl.titulogatosperros}>Gatos</div>
+        <div className={stl.perros}></div>
+        <div className={stl.titulogatosperros}>Perros</div>
+        </div>
+
         <div className={stl.mapPerdidos}>
         <MapContainer center={local} zoom={13} scrollWheelZoom={false} >
         <FlyMapTo />
@@ -65,7 +71,8 @@ function FlyMapTo() {
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"/>
 
-         <MarkersLost  />
+         <MarkersLostCats  />
+         <MarkersLostDogs />
 
             
         </MapContainer > 

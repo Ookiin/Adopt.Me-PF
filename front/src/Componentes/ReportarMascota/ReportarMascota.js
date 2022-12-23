@@ -468,8 +468,6 @@ useEffect(() => {
           </div>
         </Popup>
       </Marker>
-
-    <MarkersLost />
         
     </MapContainer>
 

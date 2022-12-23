@@ -167,6 +167,36 @@
     height: 60px;
   }
 
+  .perros {
+    background-image: url("../Maps/dogs.ico");
+    background-size: 100% 100%;
+    width: 30px;
+    height: 30px;
+    margin-left: 373px;
+    margin-top: 30px;
+  }
+
+  .gatos {
+    background-image: url("../Maps/cat.ico");
+    background-size: 100% 100%;
+    width: 30px;
+    height: 30px;
+    margin-left: 373px;
+    margin-top: 30px;
+  }
+
+  .iconos {
+    position: absolute;
+    margin-left: 0px;
+    margin-top: 100px;
+  }
+
+  .titulogatosperros {
+    /* border: 1px solid red; */
+    margin-right: -370px;
+  }
+
+
   /*/////////////////////////////////////////////////////////*/
 
   @media (min-width: 481px) and (max-width: 767px) {
