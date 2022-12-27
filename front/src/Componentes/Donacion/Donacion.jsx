@@ -44,9 +44,17 @@ export default function Donar() {
                     Hace Click Aqui</a>  
                 <div className={stl.paypal} >👆
                 </div>
-                <div>
+
+                <a href="https://mpago.la/1frR19s">
+                    Donacion unica vez</a>  
+                    <div>
+
+                    <a mp-mode="dftl" href="https://www.mercadopago.com.ar/subscriptions/checkout?preapproval_plan_id=2c938084852a2e0f018554a4adcb132a" name="MP-payButton" class='blue-ar-l-rn-none'>Suscribirme a donacion mensual</a>
+
+                    </div>
+                {/* <div>
                     <MercadoPago /> 
-                </div>
+                </div> */}
                 {/* <div> */}
                     {/* <Purchases />
                 </div>
