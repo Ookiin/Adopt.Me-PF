@@ -1,4 +1,5 @@
 import React from "react";
+import MercadoPago from "../MercadoPago/MercadoPago";
 // import { Link } from "react-router-dom";
 // import Footer from "../Footer/Footer";
 // import Metamask from "../Metamask/Metamask";
@@ -43,6 +44,9 @@ export default function Donar() {
                     Hace Click Aqui</a>  
                 <div className={stl.paypal} >👆
                 </div>
+                <div>
+                    <MercadoPago /> 
+                </div>
                 {/* <div> */}
                     {/* <Purchases />
                 </div>
@@ -50,6 +54,7 @@ export default function Donar() {
                 <div>
                     <Purchases2 /> 
                 </div>
+               
 
                 <div>
                     <Purchases3 /> */}

@@ -1,5 +1,23 @@
-import MercadoPago from "mercadopago";
+/* import mercadopago from "mercadopago"; */
+import React from "react";
 import axios from "axios";
+
+const MercadoPago = (prod) => {
+  
+  return (
+      <div>
+      <button type="submit"
+        onClick={() => {
+          axios.post("http://localhost:3001/pagosMP/payment", prod).then((res) => window.location.href = res.data.response.body.init_point)
+        }}>Mercado Pago</button>
+      </div>
+  )
+      
+}
+
+export default MercadoPago
+
+/* 
 const mercadopago = new MercadoPago(
   "APP_USR-9d7a8c51-f5d6-4e3b-a40b-3054768ac269",
   {
@@ -45,6 +63,8 @@ const backMercadoP = async () => {
     window.alert("No se puede hacer el pago");
   }
 };
+ */
+
 
 /* 
 import {useDispatch} from "react-redux"
