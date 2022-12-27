@@ -85,10 +85,10 @@
     margin-top: 90px;
   }
 
-  @media (min-width: 481px) and (max-width: 767px) {
-  
+  @media only screen and (max-width : 900px) {
+
     iframe {
-      width: 400px;
+      width: 350px;
       margin-left: 10px;
     }
 
@@ -98,8 +98,8 @@
     }
 
     .vacunacion {
-      margin-left: 50px;
-      width: 400px;
+      margin-left: 40px;
+      width: 350px;
     }
 
     .boton {
@@ -108,6 +108,12 @@
       flex-direction: column;
       margin-left: 50px;
       margin-top: -120px;
+    }
+
+    .texto {
+      font-size: 15px;
+      width: 300px;
+      margin-left: 70px;
     }
   
   }

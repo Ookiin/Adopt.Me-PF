@@ -218,4 +218,19 @@
 }
 
 
+@media only screen and (max-width : 900px) {
+  .paper {
+    margin-left: 90px;
+    margin-top: 570px;
+    min-width:  275px;
+    min-height: 115px;  
+  }
+
+  .snip1576 {
+    /* border: 1px solid red; */
+    width: 60px;
+  }
+
+}
+
   

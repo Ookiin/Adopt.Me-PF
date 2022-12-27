@@ -29,12 +29,10 @@
 .corazon {
   margin-left: 270px;
   margin-top: -30px;
-  /* border: 1px solid blue; */
   position: absolute;
 }
 
 .likes {
-  /* border: 1px solid red; */
   margin-left: 60px;
   margin-top: -60px;
   position: relative;
@@ -63,3 +61,20 @@
     border-color: rgb(65, 163, 12);
   }
   
+  @media only screen and (max-width : 900px) {
+
+    .corazon {
+      /* border: 1px solid red; */
+      margin-left: 130px;
+      margin-top: -140px;
+    }
+
+    .daleclick {
+      /* border: 1px solid red; */
+      margin-left: -45px;
+      margin-bottom: 150px;
+      font-size: 10px;
+    }
+
+
+  }
