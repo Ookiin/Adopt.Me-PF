@@ -10,6 +10,7 @@ import { MapContainer, Marker, Popup, TileLayer, useMap } from "react-leaflet";
 import Toast from "light-toast";
 import { IconLocation } from "../Maps/IconLocation";
 import axios from "axios";
+import Loading from "../Loader/Loader";
 
 
 export default function DetallePerro () {
@@ -88,6 +89,14 @@ function handleAdoptado() {
 })
 Toast.success("Gracias por informar que la mascota ya fue encontrada", 1500, () => {});
 navigate("/homepage")
+}
+
+if (detail.length === 0) {
+  return (
+      <>
+      <Loading />
+      </>
+  )
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

@@ -11,6 +11,7 @@ import getperro from "../../Actions/getperros";
 import ordenAlfaPerro from "../../Actions/ordenAlfaPerro.js";
 import getdogtamaños from "../../Actions/getDogTamaños";
 import getDogEdad from "../../Actions/getDogEdad";
+import Loading from "../Loader/Loader";
 
 
 
@@ -63,6 +64,14 @@ export default function HomePerros () {
   };
         
   
+if (copiaPerros.length === 0) {
+    return (
+        <>
+        <Loading />
+        </>
+    )
+}
+
    return(
         <div className={stl.paginaadopcionperros}>
             <NavBar />

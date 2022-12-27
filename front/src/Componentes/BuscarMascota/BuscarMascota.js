@@ -13,6 +13,7 @@ import {useSelector, useDispatch} from 'react-redux';
 import { useState } from "react";
 import Paging from "../Pagination/Pagination";
 import getPerroPerdido from "../../Actions/getPerrosPerdidos";
+import Loading from "../Loader/Loader";
 
 export default function BuscarMascota() {
   const params = useParams();
@@ -60,6 +61,13 @@ export default function BuscarMascota() {
     setCurrentPage(1)
   };
 
+  if (allPets.length === 0) {
+    return (
+        <>
+        <Loading />
+        </>
+    )
+}
 
   return (
 
