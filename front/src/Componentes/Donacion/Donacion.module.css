@@ -4,8 +4,8 @@
     /* border: 2px solid red; */
     display: flex;
     width: 600px;  
-    height: 850px; 
-    margin-top: 60px;
+    height: 350px; 
+    margin-top: 170px;
     justify-content: center;
     position: relative;
     box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;    
@@ -17,10 +17,10 @@
     display: flex;
     justify-content: center;
     /* border: 5px solid yellow; */
-    position: relative;
-    height: 943px;
-    background-image: url("../../Imagenes/pisadas.jpg");
-    background-size: contain;
+    /* position: relative; */
+    height: 800px;
+    background-image: url("../../Imagenes/Pet-Slide-Backgrounds.jpg");
+    background-size: 100% 100%;
 }
 
 .datos {
@@ -50,7 +50,7 @@ input {
     position: absolute;
     margin-top: 90px;
     width: 450px;
-    height: 630px;
+    height: 230px;
     background-color: #F2E7D5;
     box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;    
 }
@@ -76,6 +76,17 @@ label {
     margin-top: 160px;
     margin-left: 54px;
  }
+
+ .paypal {
+    background-image: url("../../Imagenes/donar-con-paypal.png");
+    background-repeat: no-repeat;
+    background-position: 35%;
+    background-size: 100% 100%;
+    height: 200px;
+    width: 400px;
+    margin-left: 25px;
+ }
+ 
 
  /*////////////////////////////////////////////////////////////////////////////////////////*/
 
