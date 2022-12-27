@@ -1,11 +1,12 @@
 import React from "react";
-import Footer from "../Footer/Footer";
-import Metamask from "../Metamask/Metamask";
+// import { Link } from "react-router-dom";
+// import Footer from "../Footer/Footer";
+// import Metamask from "../Metamask/Metamask";
 import NavBar from "../NavBar/NavBar";
-import Paypal from "../Paypal/Paypal";
-import Purchases from "../Paypal/Purchase";
-import Purchases2 from "../Paypal/Purchase copy";
-import Purchases3 from "../Paypal/Purchase copy 2";
+// import Paypal from "../Paypal/Paypal";
+// import Purchases from "../Paypal/Purchase";
+// import Purchases2 from "../Paypal/Purchase copy";
+// import Purchases3 from "../Paypal/Purchase copy 2";
 // import App from "../Stripes/Stripe";
 import stl from "./Donacion.module.css";
 // import {Elements, CardElement, useStripe, useElements} from '@stripe/react-stripe-js';
@@ -20,7 +21,7 @@ export default function Donar() {
 
     return (
         <div>
-            <NavBar></NavBar>
+            <NavBar />
             <div className={stl.pagina}>  
             
             <form className={stl.formulario}>
@@ -34,12 +35,16 @@ export default function Donar() {
            <div className={stl.metodosPago}>
             
 
-                <div className={stl.botonmetamask}>
+                {/* <div className={stl.botonmetamask}>
                 <Metamask />
-                </div>
+                </div> */}
                 <br></br>
-                <div>
-                    <Purchases />
+                <a href="https://www.paypal.com/donate/?hosted_button_id=64TE6LEKG24ES">
+                    Hace Click Aqui</a>  
+                <div className={stl.paypal} >👆
+                </div>
+                {/* <div> */}
+                    {/* <Purchases />
                 </div>
 
                 <div>
@@ -47,8 +52,8 @@ export default function Donar() {
                 </div>
 
                 <div>
-                    <Purchases3 />
-                </div>
+                    <Purchases3 /> */}
+                {/* </div> */}
 
                 {/* <div className={stl.botonstripes}>
                 <Elements stripe={stripePromise}>
@@ -66,7 +71,7 @@ export default function Donar() {
         
             </form>
             </div>
-            <Footer></Footer>
+            {/* <Footer /> */}
         </div>
         
         
