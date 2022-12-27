@@ -11,6 +11,7 @@ import FloatingUI from "../Floating UI/FloatingUI";
 import getCatTamaños from "../../Actions/getCatTamaños";
 import getCatEdad from '../../Actions/getCatEdad';
 import Footer from "../Footer/Footer";
+import Loading from "../Loader/Loader";
 
 const HomeGatos = () => {
 
@@ -58,6 +59,14 @@ const HomeGatos = () => {
      dispatch(getCatEdad(e.target.value));
     console.log(e.target.value);
   };
+
+  if (copiaGatos.length === 0) {
+    return (
+        <>
+        <Loading />
+        </>
+    )
+}
 
     return (
 
