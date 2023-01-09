@@ -32,6 +32,7 @@ import Donaciones from "../Componentes/PanelAItems/donaciones";
 import MascotasDetalles from "../Componentes/PAdmCardDetalles/MascotasDetalles";
 import Usuarios from "../Componentes/PanelAItems/Usuarios";
 import UsuarioDetalles from "../Componentes/PAdmCardDetalles/UsuariosDetalles";
+import GeolocationMap from "../Componentes/GpsTiempoReal/GpsTiempoReal";
 
 
 function App() {
@@ -70,8 +71,8 @@ function App() {
           <Route exact path="/panel-Administrador/mascotas" element={<Mascotas />} />
           <Route exact path="/panel-Administrador/mascotas/animales/:id" element={<MascotasDetalles />} />
           <Route exact path="/panel-Administrador/donaciones" element={<Donaciones />} />
-          <Route exact path="/panel-Administrador/usuarios/:id" element={<UsuarioDetalles />} /> 
-
+          <Route exact path="/panel-Administrador/usuarios/:id" element={<UsuarioDetalles />} />
+          <Route exact path="/gps" element={<GeolocationMap />} /> 
 
         </Routes>
       </div>
