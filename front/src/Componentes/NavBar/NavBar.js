@@ -38,8 +38,14 @@ export default function NavBar() {
 
       <div className={stl.algomas}>
         <Link to ="/blog">
-        <button className={stl.blogInfo}>Blog</button>
+        <button className={stl.blogInfo}>Blog/Foro</button>
         </Link>
+
+        <div>
+          <Link to ="/gps">
+            <button className={stl.blogInfo2}>Paseador GPS</button>
+          </Link>
+        </div>
 
         <div className={stl.dropdown}>
           <button className={stl.blogInfo} onClick={handleOpen}>

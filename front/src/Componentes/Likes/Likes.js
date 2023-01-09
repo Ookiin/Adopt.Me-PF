@@ -50,7 +50,10 @@ const saveLikeToBackend = () => {
     <div className={liked ? 'boton-liked' : 'boton-sin-liked'} onClick={handleClick}/>
     <div className="likes">{totalLikes + numLikes} Me gusta</div>
     </div>
-  <div className="daleclick">(Si te gusta la página hace "Doble Click" para dejarnos un Like)</div>
+    <div class="sign">
+      <span class="fast-flicker">Si te gusta&nbsp;</span>la página hace "Doble Click" para dejarnos&nbsp;<span class="flicker">un&nbsp;</span> Like
+    </div>
+  {/* <div className="daleclick">(Si te gusta la página hace "Doble Click" para dejarnos un Like)</div> */}
     </>
 
   );
